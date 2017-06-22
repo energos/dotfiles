@@ -16,15 +16,15 @@ urxvtcd ()
 set -- $@
 
 case "$1" in
-    "")	
+    "")
         $TERMINAL
         ;;
-	"mc")
-	    $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
-	    ;;
-	"cmus")
+    "mc")
+        $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
+        ;;
+    "cmus")
         CLASS=cmusMusicPlayer
-        WINDOW=$(xdotool search --classname ^$CLASS$ | head -n 1) 
+        WINDOW=$(xdotool search --classname ^$CLASS$ | head -n 1)
         if [[ -n  $WINDOW ]]
         then
             TODESKTOP=$(xdotool get_desktop)
@@ -41,21 +41,21 @@ case "$1" in
             urxvtcd -icon $ICONS/Audio-x-generic.svg -name $CLASS -sl 0 -geometry 80x18+2944+256 -e cmus
         fi
         ;;
-	"man")
+    "man")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry 145x91+0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz &
-	    ;;
-	"info")
+        ;;
+    "info")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
-	    ;;
-	"help")
-	    $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
-	    ;;
-	"logs")
-	    brocket -a freakingLogs
-	    ;;
+        ;;
+    "help")
+        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
+        ;;
+    "logs")
+        brocket -a freakingLogs
+        ;;
     "mrxvt")
         LANG="en_US.ISO-8859-1" mrxvt -stt -profile0.tabTitle "terminal (ISO-8859-1)" &
         ;;
-	*)
-	    $TERMINAL -title "$*" -e $@
+    *)
+        $TERMINAL -title "$*" -e $@
 esac
