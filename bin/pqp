@@ -23,8 +23,8 @@ case "$1" in
 	    $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
 	    ;;
 	"cmus")
-        CLASS=^cmusMusicPlayer$
-        WINDOW=$(xdotool search --classname $CLASS | head -n 1) 
+        CLASS=cmusMusicPlayer
+        WINDOW=$(xdotool search --classname ^$CLASS$ | head -n 1) 
         if [[ -n  $WINDOW ]]
         then
             TODESKTOP=$(xdotool get_desktop)
@@ -38,7 +38,7 @@ case "$1" in
                 xdotool windowactivate $WINDOW
             fi
         else
-            urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 80x18+2944+256 -e cmus
+            urxvtcd -icon $ICONS/Audio-x-generic.svg -name $CLASS -sl 0 -geometry 80x18+2944+256 -e cmus
         fi
         ;;
 	"man")
