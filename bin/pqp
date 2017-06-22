@@ -1,0 +1,61 @@
+#!/bin/bash
+# echo "energos was here..."
+# echo "$1 | $2 | $3 | $4 | $5 | $6"
+# exit
+
+TERMINAL=urxvtcd
+ICONS=$HOME/.local/share/icons
+HIDEDESKTOP=4
+
+urxvtcd ()
+{
+    urxvtc 2> /dev/null "$@" || (urxvtd -q -f && urxvtc "$@")
+}
+
+# contorno o fato de gmrun enfiar tudo em $1
+set -- $@
+
+case "$1" in
+    "")	
+        $TERMINAL
+        ;;
+	"mc")
+	    $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
+	    ;;
+	"cmus")
+        CLASS=^cmusMusicPlayer$
+        WINDOW=$(xdotool search --classname $CLASS | head -n 1) 
+        if [[ -n  $WINDOW ]]
+        then
+            TODESKTOP=$(xdotool get_desktop)
+            if [[ -n $(echo $WINDOW | grep ^$(xdotool getactivewindow)$) ]]
+            then
+                # echo "$WINDOW - ACTIVE" > /dev/pts/7
+                xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
+            else
+                # echo "$WINDOW - NOT active" > /dev/pts/7
+                xdotool set_desktop_for_window $WINDOW $TODESKTOP
+                xdotool windowactivate $WINDOW
+            fi
+        else
+            urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 80x18+2944+256 -e cmus
+        fi
+        ;;
+	"man")
+        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry 145x91+0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz &
+	    ;;
+	"info")
+        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
+	    ;;
+	"help")
+	    $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
+	    ;;
+	"logs")
+	    brocket -a freakingLogs
+	    ;;
+    "mrxvt")
+        LANG="en_US.ISO-8859-1" mrxvt -stt -profile0.tabTitle "terminal (ISO-8859-1)" &
+        ;;
+	*)
+	    $TERMINAL -title "$*" -e $@
+esac
