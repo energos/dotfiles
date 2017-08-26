@@ -1,0 +1,36 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+# If you want to use GNOME config tools...
+#
+#if test -x /usr/lib/openbox/gnome-settings-daemon >/dev/null; then
+#  /usr/lib/openbox/gnome-settings-daemon &
+#elif which gnome-settings-daemon >/dev/null 2>&1; then
+#  gnome-settings-daemon &
+#fi
+
+# If you want to use XFCE config tools...
+#
+#xfce-mcs-manager &
+
+# VBoxClient-all
+
+xsetroot -solid '#3366aa'
+
+# gkrellm &
+# (sleep 10.0 && wmctrl -r gkrellm -b add,hidden) &
+# rhr_gkrellm
+# (sleep 10.0 && rhr_gkrellm) &
+
+# (sleep 0.6 && xrandr --output VGA-1 --mode 1024x1280 --pos 0x0 --output VGA-2 --mode 1920x1080 --pos 1024x200 --output VGA-3 --mode 1280x1024 --pos 2944x256) &
+# (sleep 0.6 && xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x200 --output DVI-1 --pos 2944x256) &
+
+(sleep 0.8 && fbpanel --profile default) &
+(sleep 1.0 && parcellite) &
+(sleep 1.8 && volumeicon) &
+
+(sleep 1.9 && $HOME/.fehbg) &
+(sleep 2.0 && sh -c 'while /usr/bin/fortune | col -x | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK:1,Another:0 -default OK -file - ; do :; done') &
