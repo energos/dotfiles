@@ -81,6 +81,16 @@ case "$1" in
                 ;;
         esac
         ;;
+    "ww")
+        # set active window width
+        # ugly hack to give gmrum time to shut off
+        (sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,$2,-1) &
+        ;;
+    "wh")
+        # set active window height
+        # ugly hack to give gmrum time to shut off
+        (sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,-1,$2) &
+        ;;
     *)
         $TERMINAL -title "$*" -e $@
 esac
