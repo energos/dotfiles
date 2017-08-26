@@ -38,11 +38,11 @@ case "$1" in
                 xdotool windowactivate $WINDOW
             fi
         else
-            urxvtcd -icon $ICONS/Audio-x-generic.svg -name $CLASS -sl 0 -geometry 80x18+2944+256 -e cmus
+            urxvtcd -icon $ICONS/Audio-x-generic.svg -name $CLASS -sl 0 -geometry 80x18+3840+540 -e cmus
         fi
         ;;
     "man")
-        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry 145x91+0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz &
+        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
         ;;
     "info")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
