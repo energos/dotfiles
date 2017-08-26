@@ -56,6 +56,31 @@ case "$1" in
     "mrxvt")
         LANG="en_US.ISO-8859-1" mrxvt -stt -profile0.tabTitle "terminal (ISO-8859-1)" &
         ;;
+    "res")
+        case "$2" in
+            "1")
+                # SCALE 1
+                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 1920x1080+3840+1080 --scale 1x1 --pos 3840x1080
+                # Sometimes it doesn't work on the first try...
+                sleep 0.5
+                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 1920x1080+3840+1080 --scale 1x1 --pos 3840x1080
+                ;;
+            "2")
+                # SCALE 1.5
+                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 2880x1620+3840+540 --scale 1.5x1.5 --pos 3840x540
+                # Sometimes it doesn't work on the first try...
+                sleep 0.5
+                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 2880x1620+3840+540 --scale 1.5x1.5 --pos 3840x540
+                ;;
+            *)
+                # SCALE 1.65
+                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 3168x1782+3840+220 --scale 1.65x1.65 --pos 3840x220
+                # Sometimes it doesn't work on the first try...
+                sleep 0.5
+                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 3168x1782+3840+220 --scale 1.65x1.65 --pos 3840x220
+                ;;
+        esac
+        ;;
     *)
         $TERMINAL -title "$*" -e $@
 esac
