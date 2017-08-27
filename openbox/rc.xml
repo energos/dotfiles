@@ -262,26 +262,6 @@
     <keybind key="W-F11">
       <action name="ToggleDecorations"/>
     </keybind>
-    <keybind key="W-A-Right">
-      <action name="DirectionalCycleWindows">
-        <direction>right</direction>
-      </action>
-    </keybind>
-    <keybind key="W-A-Left">
-      <action name="DirectionalCycleWindows">
-        <direction>left</direction>
-      </action>
-    </keybind>
-    <keybind key="W-A-Up">
-      <action name="DirectionalCycleWindows">
-        <direction>up</direction>
-      </action>
-    </keybind>
-    <keybind key="W-A-Down">
-      <action name="DirectionalCycleWindows">
-        <direction>down</direction>
-      </action>
-    </keybind>
     <keybind key="C-A-Escape">
       <action name="Execute">
         <command>xkill</command>
@@ -694,26 +674,31 @@
           </action>
         </keybind>
       </keybind>
-      <!-- Relative resize -->
+      <!-- Grow to next Edge in given direction -->
       <keybind key="Right">
-        <action name="ResizeRelative">
-          <right>60</right>
-        </action>
+        <action name="GrowToEdge"><direction>east</direction></action>
       </keybind>
       <keybind key="Left">
-        <action name="ResizeRelative">
-          <right>-60</right>
-        </action>
+        <action name="GrowToEdge"><direction>west</direction></action>
       </keybind>
+      <keybind key="Up">
+        <action name="GrowToEdge"><direction>north</direction></action>
+      </keybind>
+      <keybind key="Down">
+        <action name="GrowToEdge"><direction>south</direction></action>
+      </keybind>
+      <!-- Shrink to next Edge in given direction -->
       <keybind key="W-Right">
-        <action name="ResizeRelative">
-          <left>-60</left>
-        </action>
+        <action name="ShrinkToEdge"><direction>east</direction></action>
       </keybind>
       <keybind key="W-Left">
-        <action name="ResizeRelative">
-          <left>60</left>
-        </action>
+        <action name="ShrinkToEdge"><direction>west</direction></action>
+      </keybind>
+      <keybind key="W-Up">
+        <action name="ShrinkToEdge"><direction>north</direction></action>
+      </keybind>
+      <keybind key="W-Down">
+        <action name="ShrinkToEdge"><direction>south</direction></action>
       </keybind>
       <!-- Monitor scaling -->
       <keybind key="F1">
@@ -730,22 +715,6 @@
         <action name="Execute">
           <command>pqp res 3 # SCALE 1.65</command>
         </action>
-      </keybind>
-      <keybind key="S-Left">
-        <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo">
-          <x>0</x>
-          <width>1/2</width>
-        </action>
-        <action name="MaximizeVert"/>
-      </keybind>
-      <keybind key="S-Right">
-        <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo">
-          <x>1/2</x>
-          <width>1/2</width>
-        </action>
-        <action name="MaximizeVert"/>
       </keybind>
     </keybind>
 
@@ -829,45 +798,17 @@
     <!--   </action> -->
     <!-- </keybind> -->
 
-    <!-- Grow to next Edge in given direction -->
-    <keybind key="W-S-Right">
-      <action name="GrowToEdge"><direction>east</direction></action>
-    </keybind>
-    <keybind key="W-S-Left">
-      <action name="GrowToEdge"><direction>west</direction></action>
-    </keybind>
-    <keybind key="W-S-Up">
-      <action name="GrowToEdge"><direction>north</direction></action>
-    </keybind>
-    <keybind key="W-S-Down">
-      <action name="GrowToEdge"><direction>south</direction></action>
-    </keybind>
-
-    <!-- Shrink to next Edge in given direction -->
-    <keybind key="W-C-Right">
-      <action name="ShrinkToEdge"><direction>east</direction></action>
-    </keybind>
-    <keybind key="W-C-Left">
-      <action name="ShrinkToEdge"><direction>west</direction></action>
-    </keybind>
-    <keybind key="W-C-Up">
-      <action name="ShrinkToEdge"><direction>north</direction></action>
-    </keybind>
-    <keybind key="W-C-Down">
-      <action name="ShrinkToEdge"><direction>south</direction></action>
-    </keybind>
-
     <!-- Move to next Edge in given direction -->
-    <keybind key="W-Right">
+    <keybind key="W-S-Right">
       <action name="MoveToEdge"><direction>east</direction></action>
     </keybind>
-    <keybind key="W-Left">
+    <keybind key="W-S-Left">
       <action name="MoveToEdge"><direction>west</direction></action>
     </keybind>
-    <keybind key="W-Up">
+    <keybind key="W-S-Up">
       <action name="MoveToEdge"><direction>north</direction></action>
     </keybind>
-    <keybind key="W-Down">
+    <keybind key="W-S-Down">
       <action name="MoveToEdge"><direction>south</direction></action>
     </keybind>
 
@@ -1000,28 +941,26 @@
       </action>
     </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
-    <!-- CEE
-    <keybind key="W-S-Right">
+    <keybind key="W-Right">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Left">
+    <keybind key="W-Left">
       <action name="DirectionalCycleWindows">
         <direction>left</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Up">
+    <keybind key="W-Up">
       <action name="DirectionalCycleWindows">
         <direction>up</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Down">
+    <keybind key="W-Down">
       <action name="DirectionalCycleWindows">
         <direction>down</direction>
       </action>
     </keybind>
-    /CEE -->
     <!-- Keybindings for running applications -->
     <!-- CEE
     <keybind key="W-e">
