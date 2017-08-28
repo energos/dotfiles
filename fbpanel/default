@@ -157,15 +157,15 @@ Global {
 #         }
 #         separator {
 #         }
-# 	menu {  
-# 	    name = Computer
-# 	    icon = computer
-            
-# 	    item {
-# 		name = Terminal
-# 		icon = terminal
-# 		action = x-terminal
-# 	    }
+#   menu {
+#       name = Computer
+#       icon = computer
+
+#       item {
+#       name = Terminal
+#       icon = terminal
+#       action = x-terminal
+#       }
 #             item {
 #                 name = Lock Display
 #                 icon = gnome-lockscreen
@@ -230,12 +230,12 @@ Plugin {
             tooltip = Terminal
             action = urxvtcd -geometry +5718+1484
         }
-	button {
+    button {
             # icon = web-browser
             image = /usr/lib64/firefox/browser/icons/mozicon128.png
             tooltip = Firefox Web Browser
             action = firefox
-    	}
+        }
     }
 }
 
@@ -281,9 +281,9 @@ Plugin {
 
 # Plugin {
 #     type = space
-# 	config {
-# 	   size = 15
-# 	}
+#   config {
+#      size = 15
+#   }
 # }
 
 # Plugin {
@@ -369,9 +369,9 @@ Plugin {
         TooltipFmt = %A %d/%m/%Y
         # Action = gsimplecal
         Action = urxvtcd -title CALENDAR -geometry 70x36+5874+1220 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
-	# Color = LavenderBlush
+    # Color = LavenderBlush
         ShowCalendar = false
-	Color = Gray95
+    Color = Gray95
     }
 }
 
@@ -443,4 +443,3 @@ Plugin {
         }
     }
 }
-
