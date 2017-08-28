@@ -689,15 +689,19 @@
       </keybind>
       <!-- Shrink to next Edge in given direction -->
       <keybind key="W-Right">
+        <action name="Unmaximize"><direction>horizontal</direction></action>
         <action name="ShrinkToEdge"><direction>east</direction></action>
       </keybind>
       <keybind key="W-Left">
+        <action name="Unmaximize"><direction>horizontal</direction></action>
         <action name="ShrinkToEdge"><direction>west</direction></action>
       </keybind>
       <keybind key="W-Up">
+        <action name="Unmaximize"><direction>vertical</direction></action>
         <action name="ShrinkToEdge"><direction>north</direction></action>
       </keybind>
       <keybind key="W-Down">
+        <action name="Unmaximize"><direction>vertical</direction></action>
         <action name="ShrinkToEdge"><direction>south</direction></action>
       </keybind>
       <!-- Monitor scaling -->
