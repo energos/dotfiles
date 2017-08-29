@@ -1,0 +1,20 @@
+#+TITLE:   dotfiles
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+a useless collection of dotfiles
+
+* link
+  - [[https://github.com/energos/dotfiles][GitHub - energos/dotfiles]]
+* dotfiles
+  - .Xresources
+  - .xinitrc
+  - .bashrc
+  - .gmrun
+  - .tmuxrc
+  - .config/openbox/rc.xml
+  - .config/openbox/menu.xml
+  - .config/openbox/autostart
+  - .config/fbpanel/default
+  - .emacs.d/init.el
+  - bin/pqp
