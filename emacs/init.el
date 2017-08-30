@@ -30,6 +30,8 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain) ; ediff, sem frame de controle
 (setq ediff-split-window-function 'split-window-horizontally) ; ediff, dividir na vertical
 
+(defalias 'list-buffers 'ibuffer)
+
 ;; --- Themes ---
 ;; https://github.com/emacs-jp/replace-colorthemes
 ;; Please set your themes directory to 'custom-theme-load-path
@@ -45,6 +47,16 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (electric-indent-mode -1)
+
+;; --- Ido mode ---
+;; https://www.masteringemacs.org/article/introduction-to-ido-mode
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-everywhere t)
+;; (setq ido-use-filename-at-point 'guess)
+;; (ido-mode 1)
+;;
+;; ido vs. helm vs. counsel ?
+;; let's disable ido-mode and give counsel a ride...
 
 ;; --- Mensagem inicial ---
 (setq initial-scratch-message
@@ -62,6 +74,7 @@
              '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+; https://github.com/jwiegley/use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -88,6 +101,34 @@
   (setq vc-handled-backends nil)
   (global-set-key (kbd "C-x g") 'magit-status)
   (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup))
+
+; http://cestlaz.github.io/posts/using-emacs-6-swiper/
+; https://github.com/abo-abo/swiper/blob/master/README.md
+; http://oremacs.com/swiper/
+(use-package counsel
+  :ensure t
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "<f6>") 'ivy-resume)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c k") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+  )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
@@ -173,7 +214,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (magit framemove which-key try use-package))))
+ '(package-selected-packages (quote (counsel magit framemove which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
