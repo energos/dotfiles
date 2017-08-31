@@ -101,6 +101,10 @@
   (setq vc-handled-backends nil)
   (global-set-key (kbd "C-x g") 'magit-status)
   (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup))
+; https://github.com/nonsequitur/smex/
+; https://github.com/abo-abo/swiper/issues/629
+(use-package smex
+  :ensure t)
 
 ; http://cestlaz.github.io/posts/using-emacs-6-swiper/
 ; https://github.com/abo-abo/swiper/blob/master/README.md
@@ -214,7 +218,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (counsel magit framemove which-key try use-package))))
+ '(package-selected-packages
+   (quote
+    (smex counsel magit framemove which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
