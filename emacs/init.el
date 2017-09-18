@@ -49,7 +49,7 @@
 ;; (ido-mode 1)
 ;;
 ;; ido vs. helm vs. counsel ?
-;; let's disable ido-mode and give counsel a ride...
+;; let's disable ido-mode and give counsel, or helm, a ride...
 
 ;; --- Mensagem inicial ---
 (setq initial-scratch-message
@@ -107,38 +107,64 @@
   :config
   (setq vc-handled-backends nil))
 
-; https://github.com/nonsequitur/smex/
-; https://github.com/abo-abo/swiper/issues/629
-(use-package smex
-  :ensure t)
-
-; http://cestlaz.github.io/posts/using-emacs-6-swiper/
-; https://github.com/abo-abo/swiper/blob/master/README.md
-; http://oremacs.com/swiper/
-(use-package counsel
+;; https://github.com/emacs-helm/helm
+(use-package helm
   :ensure t
-  :bind (("C-s"     . swiper)
-         ("C-r"     . swiper)
-         ("C-c C-r" . ivy-resume)
-         ("<f6>"    . ivy-resume)
-         ("M-x"     . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("<f1> f"  . counsel-describe-function)
-         ("<f1> v"  . counsel-describe-variable)
-         ("<f1> l"  . counsel-find-library)
-         ("<f2> i"  . counsel-info-lookup-symbol)
-         ("<f2> u"  . counsel-unicode-char)
-         ("C-c g"   . counsel-git)
-         ("C-c j"   . counsel-git-grep)
-         ("C-c k"   . counsel-ag)
-         ("C-x l"   . counsel-locate))
   :config
-  (ivy-mode 1)
-  ;; (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-  )
+  (require 'helm-config)
+  (setq helm-split-window-default-side 'other)
+  (global-set-key (kbd "C-x b")   'helm-buffers-list)
+  (global-set-key (kbd "M-x")     'helm-M-x)
+  (global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "M-y")     'helm-show-kill-ring)
+  (helm-mode 1))
+
+;; https://github.com/ShingoFukuyama/helm-swoop
+(use-package helm-swoop
+  :ensure t
+  :config
+  (require 'helm)
+  (require 'helm-swoop)
+  (global-set-key (kbd "M-i") 'helm-swoop)
+  (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+  (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+  (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all))
+
+;; https://github.com/areina/helm-dash
+(use-package helm-dash
+  :ensure t
+  :config
+  (setq helm-dash-docsets-path (concat (getenv "HOME") "/.emacs.d/docsets"))
+  (defun energos/dash-install (docset)
+    (if (helm-dash-docset-installed-p docset)
+        (message (format "%s docset is already installed!" docset))
+      (progn (message (format "Installing %s docset..." docset))
+             ; Arghh, there is a freaking mess between " " and "_"
+             (helm-dash-install-docset (subst-char-in-string ?\s ?_ docset)))))
+  (energos/dash-install "Apache_HTTP_Server")
+  (energos/dash-install "C")
+  (energos/dash-install "Bash")
+  (energos/dash-install "Emacs Lisp")
+  (energos/dash-install "Common Lisp")
+  (energos/dash-install "HTML")
+  (energos/dash-install "CSS")
+  (energos/dash-install "Rust")
+  (energos/dash-install "Go")
+  (energos/dash-install "Haskell")
+
+  (setq helm-dash-browser-func 'eww)
+  ;; (setq helm-dash-browser-func 'browse-url)
+
+  (defun energos/dash-elisp ()
+    (setq-local helm-dash-docsets '("Emacs Lisp")))
+  (add-hook 'emacs-lisp-mode-hook 'energos/dash-elisp)
+
+  (defun energos/dash-bash ()
+    (setq-local helm-dash-docsets '("Bash")))
+  (add-hook 'sh-mode-hook 'energos/dash-bash)
+)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
@@ -255,7 +281,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smex counsel magit framemove which-key try use-package))))
+    (afternoon-theme helm-dash helm-swoop helm magit help-fns+ framemove which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
