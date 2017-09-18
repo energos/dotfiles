@@ -110,26 +110,26 @@
 ;; https://github.com/emacs-helm/helm
 (use-package helm
   :ensure t
+  :bind (("C-x b"   . helm-buffers-list)
+         ("M-x"     . helm-M-x)
+         ("C-x r b" . helm-filtered-bookmarks)
+         ("C-x C-f" . helm-find-files)
+         ("M-y"     . helm-show-kill-ring))
   :config
   (require 'helm-config)
   (setq helm-split-window-default-side 'other)
-  (global-set-key (kbd "C-x b")   'helm-buffers-list)
-  (global-set-key (kbd "M-x")     'helm-M-x)
-  (global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "M-y")     'helm-show-kill-ring)
   (helm-mode 1))
 
 ;; https://github.com/ShingoFukuyama/helm-swoop
 (use-package helm-swoop
   :ensure t
+  :bind (("M-i"     . helm-swoop)
+         ("M-I"     . helm-swoop-back-to-last-point)
+         ("C-c M-i" . helm-multi-swoop)
+         ("C-x M-i" . helm-multi-swoop-all))
   :config
   (require 'helm)
-  (require 'helm-swoop)
-  (global-set-key (kbd "M-i") 'helm-swoop)
-  (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
-  (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
-  (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all))
+  (require 'helm-swoop))
 
 ;; https://github.com/areina/helm-dash
 (use-package helm-dash
