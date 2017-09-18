@@ -32,13 +32,6 @@
 
 (defalias 'list-buffers 'ibuffer)
 
-;; --- Themes ---
-;; https://github.com/emacs-jp/replace-colorthemes
-;; Please set your themes directory to 'custom-theme-load-path
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'charcoal-black t t)
-(enable-theme 'charcoal-black)
-
 ;; --- Não expiro senhas - DANGER! ---
 (setq password-cache-expiry nil)
 
@@ -146,6 +139,35 @@
   (setq ivy-count-format "(%d/%d) ")
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
   )
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; THEMES
+
+;; themes from the packages repository:
+(use-package afternoon-theme    :ensure t)
+;; (use-package ample-zen-theme    :ensure t)
+;; (use-package blackboard-theme   :ensure t)
+;; (use-package darkburn-theme     :ensure t)
+;; (use-package darkmine-theme     :ensure t)
+;; (use-package eclipse-theme      :ensure t)
+;; (use-package hc-zenburn-theme   :ensure t)
+;; (use-package idea-darkula-theme :ensure t)
+;; (use-package lush-theme         :ensure t)
+;; (use-package material-theme     :ensure t)
+;; (use-package naquadah-theme     :ensure t)
+;; (use-package reverse-theme      :ensure t)
+;; (use-package tangotango-theme   :ensure t)
+;; (use-package zenburn-theme      :ensure t)
+
+;; hand picked themes:
+;; https://github.com/emacs-jp/replace-colorthemes
+;; Please set your themes directory to 'custom-theme-load-path
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
+;; choose one of them:
+;; (load-theme 'charcoal-black t t)
+;; (enable-theme 'charcoal-black)
+(load-theme 'afternoon t t)
+(enable-theme 'afternoon)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
