@@ -16,7 +16,7 @@
 (column-number-mode 1)                  ; mostra coluna no 'mode-line'
 (show-paren-mode 1)                     ; destacar par de parenteses
 (setq frame-resize-pixelwise t)         ; pixel perfect resize
-(setq default-truncate-lines t)         ; disable line wrap
+(setq-default truncate-lines t)         ; disable line wrap
 (setq truncate-partial-width-windows nil)
 (winner-mode 1)
 
@@ -71,10 +71,16 @@
 ;;
 (require 'package)
 (add-to-list 'package-archives
+             '("melpa-stbl" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(setq package-archive-priorities
+      '(("melpa-stbl" .  0)
+        ("gnu"        .  5)
+        ("melpa"      . 10)))
 (package-initialize)
 
-; https://github.com/jwiegley/use-package
+;; https://github.com/jwiegley/use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -94,6 +100,12 @@
   (require 'cl)
   :config
   (setq framemove-hook-into-windmove t))
+
+;; https://www.emacswiki.org/emacs/HelpPlus
+(use-package help-fns+
+  :ensure t
+  :config
+  (require 'help-fns+))
 
 (use-package magit
   :ensure t
