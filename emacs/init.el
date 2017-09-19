@@ -1,11 +1,11 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PREFERÊNCIAS
 ;;
-(desktop-save-mode 1)                   ; restaurar desktop,
-(setq desktop-restore-frames nil)       ; sem salvar tamanho e posição dos frames
+(desktop-save-mode 1)                   ; restaurar desktop, exceto
+(setq desktop-restore-frames nil)       ; a configuração de windows e frames
 
 (setq inhibit-startup-screen t)         ; desabilitar 'splash screen'
-(setq initial-buffer-choice t)          ; mostrar sempre *scratch* buffer no início
+(setq initial-buffer-choice t)          ; iniciar mostrando o *scratch* buffer
 
 (scroll-bar-mode -1)                    ; desabilitar 'scrollbar'
 (menu-bar-mode -1)                      ; desabilitar 'menu'
@@ -25,10 +25,11 @@
 (setq scroll-error-top-bottom t)        ; exceto na primeira e última página
 
 (defalias 'yes-or-no-p 'y-or-n-p)       ; "y or n" em vez de "yes or no"
-(setq confirm-nonexistent-file-or-buffer t) ; confirmar criação de arquivo ou buffer
+(setq confirm-nonexistent-file-or-buffer t) ; confirmar criação arquivo/buffer
 
-(setq ediff-window-setup-function 'ediff-setup-windows-plain) ; ediff, sem frame de controle
-(setq ediff-split-window-function 'split-window-horizontally) ; ediff, dividir na vertical
+;; ediff sem frame de controle e com janelas lado a lado
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 
 (defalias 'list-buffers 'ibuffer)
 
@@ -56,7 +57,11 @@
       (let ((string "")
             (list (split-string (shell-command-to-string "fortune") "\n")))
         (dolist (line list)
-          (setq string (concat string ";;" (if (= 0 (length line)) "" "  ") line "\n")))
+          (setq string (concat string
+                               ";;"
+                               (if (= 0 (length line)) "" "  ")
+                               line
+                               "\n")))
         string))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -206,7 +211,8 @@
 
 ;; https://www.emacswiki.org/emacs/NavigatingParentheses
 (defun goto-match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis. Else go to the opening parenthesis one level up."
+  "Go to the matching parenthesis if on parenthesis.
+Else go to the opening parenthesis one level up."
   (interactive "p")
   (cond ((looking-at "\\s\(") (forward-list 1))
         (t
@@ -226,7 +232,7 @@
 ;; http://emacsblog.org/2007/01/17/indent-whole-buffer/
 ;; indent whole buffer, remove trailing spaces
 (defun iwb ()
-  "indent whole buffer"
+  "Indent whole buffer."
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
@@ -238,31 +244,47 @@
 (define-key key-translation-map (kbd "<f13>") 'event-apply-hyper-modifier)
 
 (global-set-key (kbd "C-z") 'undo)
+
 (global-set-key (kbd "C-<up>") (lambda () (interactive) (scroll-down 1)))
 (global-set-key (kbd "C-<down>") (lambda () (interactive) (scroll-up 1)))
-(global-set-key (kbd "M-<up>") (lambda () (interactive) (scroll-other-window-down 1)))
-(global-set-key (kbd "M-<down>") (lambda () (interactive) (scroll-other-window 1)))
+
+(global-set-key (kbd "M-<up>")
+                (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd "M-<down>")
+                (lambda () (interactive) (scroll-other-window 1)))
+
 (global-set-key (kbd "H-<left>") 'windmove-left)
 (global-set-key (kbd "H-<right>") 'windmove-right)
 (global-set-key (kbd "H-<up>") 'windmove-up)
 (global-set-key (kbd "H-<down>") 'windmove-down)
+
 (global-set-key (kbd "<f12>") 'toggle-truncate-lines)
-(global-set-key (kbd "C-<prior>") (lambda () (interactive) (move-to-window-line 0)))
-(global-set-key (kbd "C-<next>") (lambda () (interactive) (move-to-window-line -1)))
-(global-set-key (kbd "C-<tab>") (lambda (arg) "Insert TAB" (interactive "P") (insert-tab arg)))
+
+(global-set-key (kbd "C-<prior>")
+                (lambda () (interactive) (move-to-window-line 0)))
+(global-set-key (kbd "C-<next>")
+                (lambda () (interactive) (move-to-window-line -1)))
+
+(global-set-key (kbd "C-<tab>")
+                (lambda (arg) "Insert TAB." (interactive "P") (insert-tab arg)))
+
 (global-set-key (kbd "M-b") 'backward-symbol)
 (global-set-key (kbd "M-f") 'forward-symbol)
+
 (global-set-key (kbd "C-c C-o") 'browse-url-at-point)
+
 (global-set-key (kbd "M-]") 'goto-match-paren)
 
 ;; --- Mostrar arquivo correspondente ao buffer ---
 (global-set-key (kbd "S-<f12>")
-                (lambda () "Show current buffer file path" (interactive)
-                  (or (message buffer-file-name) (message "This buffer is not a file!"))))
+                (lambda () "Show current buffer file path."
+                  (interactive)
+                  (or (message buffer-file-name)
+                      (message "This buffer is not a file!"))))
 
 ;; --- Recarregar buffer ---
 (global-set-key (kbd "<f5>")
-                (lambda () "Refresh the buffer from the disk (prompt if modified)."
+                (lambda () "Reload buffer from disk if modified."
                   (interactive)
                   (revert-buffer t (not (buffer-modified-p)) t)))
 
