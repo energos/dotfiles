@@ -238,6 +238,34 @@ Else go to the opening parenthesis one level up."
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+(defun energos/inc-or-dec (n max &optional dec)
+  "Return 1 if N is not an integer greater or equal to zero.
+If DEC is t, return N-1 if 0<N≤MAX, return 0 if N=0, return MAX if MAX<N.
+If DEC is nil or absent, return N+1 if N<MAX, return MAX if MAX≤N."
+  (or
+   (and (or (not (integerp n)) (< n 0)) 1)
+   (and dec
+        (or
+         (and (> n max) max)
+         (and (> n 0) (1- n)) 0))
+   (and (>= n max) max)
+   (1+ n)
+   )
+  )
+
+(defun energos/resize-frame (&optional dec)
+  "If DEC is t, decrease current frame size, else increase current frame size."
+  (interactive "P")
+  (let* (
+         (list [88 178 267])
+         (i (energos/inc-or-dec
+             (get 'energos/frame-width 'index) (1- (length list)) dec))
+         (width (aref list i))
+         )
+    (put 'energos/frame-width 'index i)
+    (set-frame-width (selected-frame) width)
+    (message (format "Frame width resized to %d characteres" width))))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
 (global-set-key (kbd "<f13>") 'ignore)
@@ -287,6 +315,11 @@ Else go to the opening parenthesis one level up."
                 (lambda () "Reload buffer from disk if modified."
                   (interactive)
                   (revert-buffer t (not (buffer-modified-p)) t)))
+
+;; --- Frame resize ---
+(global-set-key (kbd "<f11>") 'energos/resize-frame)
+(global-set-key (kbd "S-<f11>")
+                (lambda () (interactive) (energos/resize-frame t)))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
