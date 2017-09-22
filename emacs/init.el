@@ -239,19 +239,12 @@ Else go to the opening parenthesis one level up."
   (untabify (point-min) (point-max)))
 
 (defun energos/inc-or-dec (n max &optional dec)
-  "Return 1 if N is not an integer greater or equal to zero.
-If DEC is t, return N-1 if 0<N≤MAX, return 0 if N=0, return MAX if MAX<N.
-If DEC is nil or absent, return N+1 if N<MAX, return MAX if MAX≤N."
-  (or
-   (and (or (not (integerp n)) (< n 0)) 1)
-   (and dec
-        (or
-         (and (> n max) max)
-         (and (> n 0) (1- n)) 0))
-   (and (>= n max) max)
-   (1+ n)
-   )
-  )
+  "Increment or decrement N, limiting the result to the interval 0≤N≤MAX.
+If DEC is t:             Return N-1 if 0<N≤MAX, 0 if N≤0, MAX if N>MAX.
+If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
+  (or (integerp n) (setq n 0))                ; must be an integer
+  (setq n (or (and dec (1- n)) (1+ n)))       ; increment or decrement
+  (or (and (< n 0) 0) (and (> n max) max) n)) ; limit to the valid range
 
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
