@@ -256,15 +256,14 @@ If DEC is nil or absent, return N+1 if N<MAX, return MAX if MAX≤N."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* (
-         (list [88 178 267])
+  (let* ((list [88 178 267])
          (i (energos/inc-or-dec
-             (get 'energos/frame-width 'index) (1- (length list)) dec))
-         (width (aref list i))
-         )
-    (put 'energos/frame-width 'index i)
+             (frame-parameter (selected-frame) 'energos/width)
+             (1- (length list)) dec))
+         (width (aref list i)))
+    (set-frame-parameter (selected-frame) 'energos/width i)
     (set-frame-width (selected-frame) width)
-    (message (format "Frame width resized to %d characteres" width))))
+    (message (format "Frame width resized to %d characters" width))))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
