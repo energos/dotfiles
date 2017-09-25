@@ -160,6 +160,10 @@
   (add-hook 'sh-mode-hook 'energos/dash-bash)
 )
 
+;; https://github.com/flycheck/flycheck
+(use-package flycheck
+  :ensure t)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
