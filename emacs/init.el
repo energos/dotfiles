@@ -42,16 +42,6 @@
 (setq-default tab-width 4)
 (electric-indent-mode -1)
 
-;; --- Ido mode ---
-;; https://www.masteringemacs.org/article/introduction-to-ido-mode
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-everywhere t)
-;; (setq ido-use-filename-at-point 'guess)
-;; (ido-mode 1)
-;;
-;; ido vs. helm vs. counsel ?
-;; let's disable ido-mode and give counsel, or helm, a ride...
-
 ;; --- Mensagem inicial ---
 (setq initial-scratch-message
       (let ((string "")
@@ -203,17 +193,11 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
 
-;; https://www.emacswiki.org/emacs/SearchAtPoint#toc7
-(defun backward-symbol (arg)
-  "Move point to the previous position that is the beggining of a symbol."
-  (interactive "p")
-  (forward-symbol (- arg)))
-
 ;; https://www.emacswiki.org/emacs/NavigatingParentheses
-(defun goto-match-paren (arg)
+(defun goto-match-paren ()
   "Go to the matching parenthesis if on parenthesis.
 Else go to the opening parenthesis one level up."
-  (interactive "p")
+  (interactive)
   (cond ((looking-at "\\s\(") (forward-list 1))
         (t
          (backward-char 1)
@@ -286,9 +270,12 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
                 (lambda () (interactive) (move-to-window-line -1)))
 
 (global-set-key (kbd "C-<tab>")
-                (lambda (arg) "Insert TAB." (interactive "P") (insert-tab arg)))
+                (lambda (arg) "Insert TAB." (interactive "p") (insert-tab arg)))
 
-(global-set-key (kbd "M-b") 'backward-symbol)
+;; https://www.emacswiki.org/emacs/SearchAtPoint#toc7
+(global-set-key (kbd "M-b") (lambda (arg) "\
+Move point to the previous position that is the beggining of a symbol."
+                              (interactive "p") (forward-symbol (- arg))))
 (global-set-key (kbd "M-f") 'forward-symbol)
 
 (global-set-key (kbd "C-c C-o") 'browse-url-at-point)
