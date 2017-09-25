@@ -19,3 +19,4 @@ a useless collection of dotfiles
   - .emacs.d/init.el
   - bin/pqp
   - bin/nohup-open
+  - /etc/fonts/local.conf

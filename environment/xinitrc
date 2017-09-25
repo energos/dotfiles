@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# VBoxClient-all
+
+xrdb ~/.Xresources
+
+# xrandr --output VGA-1 --mode 1024x1280 --pos 0x0 --output VGA-2 --mode 1920x1080 --pos 1024x200 --output VGA-3 --mode 1280x1024 --pos 2944x256
+# xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x200 --output DVI-1 --pos 2944x256
+# xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x200 --output DVI-1 --pos 2944x256
+pqp res 2 # scale left monitor to 1.5
+
+setxkbmap -model pc105 -layout us,us -variant intl,basic -option -option grp:shifts_toggle,grp_led:caps,compose:ralt,caps:none,terminate:ctrl_alt_bksp
+# setxkbmap -model abnt2,pc105 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,compose:ralt,caps:none,terminate:ctrl_alt_bksp
+xmodmap -e 'keycode 66 = F13'
+xmodmap -e 'keycode 77 = F14'
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# xset s off -dpms
+
+exec openbox-session
+# exec startkde
+# exec twm
+# exec icewm-session

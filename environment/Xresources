@@ -1,0 +1,53 @@
+! ~/.Xresources
+
+!Emacs.font:             Droid Sans Mono Slashed 11
+Emacs.font:             Iosevka 12
+Emacs.verticalScrollBars: off
+Emacs.menuBar:          off
+Emacs.toolBar:          0
+Emacs.geometry:         88x56
+Emacs.cursorBlink:      off
+
+xterm*faceName:         Droid Sans Mono Slashed:size=10
+!xterm*faceName:         DejaVu Sans Mono:size=10
+xterm*background:       black
+xterm*foreground:       white
+xterm*metaSendsEscape:  true
+xterm*backarrowKey:     false
+
+URxvt*font:             xft:Droid Sans Mono Slashed:size=11
+!URxvt*font:             xft:DejaVu Sans Mono:size=11
+URxvt.letterSpace:      -2
+URxvt*scrollBar:        false
+URxvt*savedLines:       1000
+URxvt*iso14755:         false
+URxvt*iso14755_52:      false
+URxvt*iconFile:         /home/energos/.local/share/icons/Utilities-terminal.svg
+URxvt*title:            Terminal
+
+!http://stackoverflow.com/questions/8254705/redhat-linux-change-directory-color/8254921#8254921
+URxvt*background:       black
+URxvt*foreground:       white
+!URxvt.background:       #000000
+!URxvt.foreground:       gray75
+!URxvt.color3:           DarkGoldenrod
+!URxvt.color4:           RoyalBlue
+!URxvt.color11:          LightGoldenrod
+URxvt.color12:          LightSteelBlue
+!URxvt.color7:           gray75
+!URxvt.colorBD:          #ffffff
+!URxvt.colorUL:          LightSlateGrey
+!URxvt.colorIT:          SteelBlue
+!URxvt.cursorColor:      grey90
+!URxvt.highlightColor:   grey25
+
+Xcursor.size:           32
+
+Xmessage*font:          -*-lucidatypewriter-medium-r-normal-*-25-*-*-*-*-*-*-*
+!Xmessage*font:          -*-lucidatypewriter-bold-r-normal-*-20-*-*-*-*-*-*-*
+Xmessage*nearMouse:     FALSE
+Xmessage*center:        FALSE
+Xmessage*geometry:      +1400+1000
+
+XFontSel*font:          -*-lucidatypewriter-bold-r-normal-*-20-*-*-*-*-*-*-*
+Xmag*font:              -*-lucidatypewriter-medium-r-normal-*-20-*-*-*-*-*-*-*
