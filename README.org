@@ -11,7 +11,7 @@ a useless collection of dotfiles
   - .xinitrc
   - .bashrc
   - .gmrun
-  - .tmuxrc
+  - .tmux.conf
   - .config/openbox/rc.xml
   - .config/openbox/menu.xml
   - .config/openbox/autostart
