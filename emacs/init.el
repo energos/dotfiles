@@ -18,6 +18,8 @@
 (setq frame-resize-pixelwise t)         ; pixel perfect resize
 (setq-default truncate-lines t)         ; disable line wrap
 (setq truncate-partial-width-windows nil)
+(setq save-interprogram-paste-before-kill t)
+(delete-selection-mode 1)
 (winner-mode 1)
 
 (setq scroll-step 1)                    ; scroll de apenas 1 linha
