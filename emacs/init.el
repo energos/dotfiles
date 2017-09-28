@@ -33,6 +33,12 @@
 
 (defalias 'list-buffers 'ibuffer)
 
+;; --- Enable some disabled commands ---
+;; https://www.emacswiki.org/emacs/DisabledCommands
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
 ;; --- Não expiro senhas - DANGER! ---
 (setq password-cache-expiry nil)
 
