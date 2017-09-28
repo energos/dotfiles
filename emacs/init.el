@@ -168,20 +168,21 @@
 ;; THEMES
 
 ;; themes from the packages repository:
-(use-package afternoon-theme    :ensure t)
-;; (use-package ample-zen-theme    :ensure t)
-;; (use-package blackboard-theme   :ensure t)
-;; (use-package darkburn-theme     :ensure t)
-;; (use-package darkmine-theme     :ensure t)
-;; (use-package eclipse-theme      :ensure t)
-;; (use-package hc-zenburn-theme   :ensure t)
-;; (use-package idea-darkula-theme :ensure t)
-;; (use-package lush-theme         :ensure t)
-;; (use-package material-theme     :ensure t)
-;; (use-package naquadah-theme     :ensure t)
-;; (use-package reverse-theme      :ensure t)
-;; (use-package tangotango-theme   :ensure t)
-;; (use-package zenburn-theme      :ensure t)
+(use-package afternoon-theme    :ensure t :defer t)
+(use-package ample-zen-theme    :ensure t :defer t)
+(use-package blackboard-theme   :ensure t :defer t)
+(use-package darkburn-theme     :ensure t :defer t)
+(use-package darkmine-theme     :ensure t :defer t)
+(use-package darktooth-theme    :ensure t :defer t)
+(use-package eclipse-theme      :ensure t :defer t)
+(use-package hc-zenburn-theme   :ensure t :defer t)
+(use-package idea-darkula-theme :ensure t :defer t)
+(use-package lush-theme         :ensure t :defer t)
+(use-package material-theme     :ensure t :defer t)
+(use-package naquadah-theme     :ensure t :defer t)
+(use-package reverse-theme      :ensure t :defer t)
+(use-package tangotango-theme   :ensure t :defer t)
+(use-package zenburn-theme      :ensure t :defer t)
 
 ;; hand picked themes:
 ;; https://github.com/emacs-jp/replace-colorthemes
