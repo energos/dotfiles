@@ -50,6 +50,9 @@
 (setq-default tab-width 4)
 (electric-indent-mode -1)
 
+;; --- Org-mode preferences ---
+(setq org-replace-disputed-keys t)
+
 ;; --- Mensagem inicial ---
 (setq initial-scratch-message
       (let ((string "")
@@ -275,10 +278,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (global-set-key (kbd "M-<down>")
                 (lambda () (interactive) (scroll-other-window 1)))
 
-(global-set-key (kbd "H-<left>") 'windmove-left)
-(global-set-key (kbd "H-<right>") 'windmove-right)
-(global-set-key (kbd "H-<up>") 'windmove-up)
-(global-set-key (kbd "H-<down>") 'windmove-down)
+(windmove-default-keybindings 'hyper)
 
 (global-set-key (kbd "<f12>") 'toggle-truncate-lines)
 
