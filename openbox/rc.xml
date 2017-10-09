@@ -352,22 +352,24 @@
         <menu>root-menu</menu>
       </action>
     </keybind>
+    <!-- Unfortunately remapping Pause to XF86AudioRaiseVolume doesn't work in Openbox,
+         so we explicitly bind the actions to the Pause key. -->
     <keybind key="Pause">
       <action name="Execute">
         <command>amixer -q set Master 1%+ unmute</command>
       </action>
     </keybind>
-    <keybind key="Scroll_Lock">
+    <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
         <command>amixer -q set Master 1%- unmute</command>
       </action>
     </keybind>
-    <keybind key="S-Scroll_Lock">
+    <keybind key="S-XF86AudioLowerVolume">
       <action name="Execute">
         <command>amixer -q set Master toggle</command>
       </action>
     </keybind>
-    <keybind key="W-Scroll_Lock">
+    <keybind key="W-XF86AudioLowerVolume">
       <action name="Execute">
         <command>amixer -q set Master toggle</command>
       </action>

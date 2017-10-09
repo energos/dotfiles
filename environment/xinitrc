@@ -14,6 +14,12 @@ xmodmap -e 'remove mod4 = Hyper_L'
 xmodmap -e 'add mod3 = Hyper_L'
 xmodmap -e 'keycode 77 = F13'
 
+# Remap Scroll_Lock to XF86AudioLowerVolume
+xmodmap -e 'keycode 78 = XF86AudioLowerVolume'
+
+# Unfortunately remapping Pause to XF86AudioRaiseVolume doesn't work in Openbox
+# xmodmap -e 'keycode 127 = XF86AudioRaiseVolume'
+
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # xset s off -dpms
