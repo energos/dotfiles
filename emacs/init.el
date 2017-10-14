@@ -54,16 +54,18 @@
 (setq org-replace-disputed-keys t)
 
 ;; --- Mensagem inicial ---
-(setq initial-scratch-message
-      (let ((string "")
-            (list (split-string (shell-command-to-string "fortune") "\n")))
-        (dolist (line list)
-          (setq string (concat string
-                               ";;"
-                               (if (= 0 (length line)) "" "  ")
-                               line
-                               "\n")))
-        string))
+(let ((command "fortune"))
+  (if (executable-find command)
+      (setq initial-scratch-message
+            (let ((string "")
+                  (list (split-string (shell-command-to-string command) "\n")))
+              (dolist (line list)
+                (setq string (concat string
+                                     ";;"
+                                     (if (= 0 (length line)) "" "  ")
+                                     line
+                                     "\n")))
+              string))))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGES
