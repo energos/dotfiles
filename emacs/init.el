@@ -22,6 +22,8 @@
 (delete-selection-mode 1)
 (winner-mode 1)
 
+(prefer-coding-system 'utf-8-unix)      ; UTF-8, no crlf, please
+
 (setq scroll-step 1)                    ; scroll de apenas 1 linha
 (setq scroll-preserve-screen-position t); PgUp/PgDown mantém posição do cursor,
 (setq scroll-error-top-bottom t)        ; exceto na primeira e última página
