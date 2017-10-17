@@ -141,39 +141,47 @@
   (require 'helm)
   (require 'helm-swoop))
 
+;; --- helm-dash ---
 ;; https://github.com/areina/helm-dash
-(use-package helm-dash
-  :ensure t
-  :config
-  (setq helm-dash-docsets-path (concat (getenv "HOME") "/.emacs.d/docsets"))
-  (defun energos/dash-install (docset)
-    (if (helm-dash-docset-installed-p docset)
-        (message (format "%s docset is already installed!" docset))
-      (progn (message (format "Installing %s docset..." docset))
-             ; Arghh, there is a freaking mess between " " and "_"
-             (helm-dash-install-docset (subst-char-in-string ?\s ?_ docset)))))
-  (energos/dash-install "Apache_HTTP_Server")
-  (energos/dash-install "C")
-  (energos/dash-install "Bash")
-  (energos/dash-install "Emacs Lisp")
-  (energos/dash-install "Common Lisp")
-  (energos/dash-install "HTML")
-  (energos/dash-install "CSS")
-  (energos/dash-install "Rust")
-  (energos/dash-install "Go")
-  (energos/dash-install "Haskell")
+;; Make sure that sqlite3, libxml2 and tar are installed
 
-  (setq helm-dash-browser-func 'eww)
-  ;; (setq helm-dash-browser-func 'browse-url)
+;; Use patched local helm-dash.el on Windows systems
+(if (eq system-type 'windows-nt)
+    (require 'helm-dash (concat user-emacs-directory "source/helm-dash/helm-dash.el"))
+  (use-package helm-dash
+    :ensure t))
 
-  (defun energos/dash-elisp ()
-    (setq-local helm-dash-docsets '("Emacs Lisp")))
-  (add-hook 'emacs-lisp-mode-hook 'energos/dash-elisp)
+(setq helm-dash-docsets-path (concat user-emacs-directory "docsets"))
 
-  (defun energos/dash-bash ()
-    (setq-local helm-dash-docsets '("Bash")))
-  (add-hook 'sh-mode-hook 'energos/dash-bash)
-)
+;; Arghh, there is a freaking mess between " " and "_"
+;; Try to fix https://github.com/areina/helm-dash/issues/84
+(defun energos/dash-install (docset)
+  (if (helm-dash-docset-installed-p docset)
+      (message (format "%s docset is already installed!" docset))
+    (progn (message (format "Installing %s docset..." docset))
+           (helm-dash-install-docset (subst-char-in-string ?\s ?_ docset)))))
+
+(energos/dash-install "Apache_HTTP_Server")
+(energos/dash-install "C")
+(energos/dash-install "Bash")
+(energos/dash-install "Emacs Lisp")
+(energos/dash-install "Common Lisp")
+(energos/dash-install "HTML")
+(energos/dash-install "CSS")
+(energos/dash-install "Rust")
+(energos/dash-install "Go")
+(energos/dash-install "Haskell")
+
+(setq helm-dash-browser-func 'eww)
+;; (setq helm-dash-browser-func 'browse-url)
+
+(defun energos/dash-elisp ()
+  (setq-local helm-dash-docsets '("Emacs Lisp")))
+(add-hook 'emacs-lisp-mode-hook 'energos/dash-elisp)
+
+(defun energos/dash-bash ()
+  (setq-local helm-dash-docsets '("Bash")))
+(add-hook 'sh-mode-hook 'energos/dash-bash)
 
 ;; https://github.com/flycheck/flycheck
 (use-package flycheck
