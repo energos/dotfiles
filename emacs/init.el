@@ -279,7 +279,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;; KEYBOARD SHORTCUTS
 (global-set-key (kbd "<f13>") 'ignore)
 (define-key key-translation-map (kbd "<f13>") 'event-apply-hyper-modifier)
-(when (eq system-type 'windows-nt)
+(when (or (eq system-type 'windows-nt) (eq system-type 'cygwin))
   (setq w32-enable-caps-lock nil)
   (define-key key-translation-map (kbd "<capslock>") 'event-apply-hyper-modifier)
   (message "Windows® system detected")
