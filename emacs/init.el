@@ -69,6 +69,12 @@
                                      "\n")))
               string))))
 
+;; --- Tramp needs PuTTY on Windows® version of Emacs ---
+;; ssh method works fine on Cygwin© and *nix Emacs
+;; see https://www.gnu.org/software/tramp/
+(when (eq system-type 'windows-nt)
+  (setq tramp-default-method "plink"))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGES
 ;;
