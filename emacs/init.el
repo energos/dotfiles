@@ -341,6 +341,8 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "S-<f11>")
                 (lambda () (interactive) (energos/resize-frame t)))
 
+(global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
 (require 'server)
