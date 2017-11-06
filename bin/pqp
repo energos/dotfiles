@@ -12,7 +12,8 @@ urxvtcd ()
     urxvtc 2> /dev/null "$@" || (urxvtd -q -f && urxvtc "$@")
 }
 
-# show_window (CLASS)
+show_window ()
+# show_window (CLASS DESKTOP)
 #
 # Search for a window of class CLASS and activate or hide it.
 #
@@ -20,11 +21,13 @@ urxvtcd ()
 #    if active then hide
 #    else activate
 # else
-#    if WINDOWS is in hide desktop then bring it to this desktop and activate it
+#    if WINDOWS is in 'other' desktop then bring it to this desktop and activate it
 #    else return 1
 # return 0
 #
-show_window ()
+# search 'other' desktop: If DESKTOP is 0, search all desktops
+#                         If DESKTOP is HIDEDESKTOP, search only HIDEDESKTOP
+#
 {
     CLASS=$1
     DESKTOP=$(xdotool get_desktop)
@@ -41,10 +44,10 @@ show_window ()
             xdotool windowactivate $WINDOW
         fi
     else
-        WINDOW=$(xdotool search --desktop $HIDEDESKTOP --classname ^$CLASS$ | head -n 1)
+        WINDOW=$(for i in $(seq $2 $HIDEDESKTOP); do xdotool search --desktop $i --classname ^$CLASS$; done | head -n 1)
         if [[ -n  $WINDOW ]]
         then
-            # echo "$WINDOW is HIDEN so we BRING it BACK" > /dev/pts/7
+            # echo "$WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > /dev/pts/7
             xdotool set_desktop_for_window $WINDOW $DESKTOP
             xdotool windowactivate $WINDOW
         else
@@ -65,26 +68,10 @@ case "$1" in
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
         ;;
     "cmus")
-        CLASS=cmusMusicPlayer
-        WINDOW=$(xdotool search --classname ^$CLASS$ | head -n 1)
-        if [[ -n  $WINDOW ]]
-        then
-            TODESKTOP=$(xdotool get_desktop)
-            if [[ -n $(echo $WINDOW | grep ^$(xdotool getactivewindow)$) ]]
-            then
-                # echo "$WINDOW - ACTIVE" > /dev/pts/7
-                xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
-            else
-                # echo "$WINDOW - NOT active" > /dev/pts/7
-                xdotool set_desktop_for_window $WINDOW $TODESKTOP
-                xdotool windowactivate $WINDOW
-            fi
-        else
-            urxvtcd -icon $ICONS/Audio-x-generic.svg -name $CLASS -sl 0 -geometry 80x18+3840+540 -e cmus
-        fi
+        show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 80x18+2794+0 -e cmus
         ;;
     "pdf")
-        ([[ "$2" != "-n" ]] && show_window Zathura) || (zathura ~/default.pdf &)
+        ([[ "$2" != "-n" ]] && show_window Zathura $HIDEDESKTOP) || (zathura ~/default.pdf &)
         ;;
     "man")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
