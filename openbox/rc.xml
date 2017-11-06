@@ -328,7 +328,12 @@
     <!-- </keybind> -->
     <keybind key="W-x">
       <action name="Execute">
-        <command>brocket -ac "mupdf -r 124 current_book.pdf" MuPDF</command>
+        <command>pqp pdf</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-x">
+      <action name="Execute">
+        <command>pqp pdf -n</command>
       </action>
     </keybind>
     <keybind key="W-q">

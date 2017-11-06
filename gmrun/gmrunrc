@@ -7,7 +7,7 @@
 # TermExec = ${Terminal} -e
 Terminal = pqp
 TermExec = ${Terminal}
-AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man bc info help cmus ww wh
+AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man bc info help cmus ww wh pdf
 
 # Set window geometry (except height)
 Width = 400
