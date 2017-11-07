@@ -35,7 +35,7 @@ show_window ()
     WINDOW=$(xdotool search --desktop $DESKTOP --classname ^$CLASS$ | head -n 1)
     if [[ -n  $WINDOW ]]
     then
-        if [[ -n $(echo $WINDOW | grep ^$(xdotool getactivewindow)$) ]]
+        if [[ -n $(echo $WINDOW | grep ^$(xdotool getactivewindow)$) ]] || [[ $CLASS == "Gkrellm" ]]
         then
             # echo "$WINDOW is ACTIVE so we HIDE it" > /dev/pts/7
             xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
@@ -49,8 +49,9 @@ show_window ()
         then
             # echo "$WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > /dev/pts/7
             xdotool set_desktop_for_window $WINDOW $DESKTOP
-            xdotool windowactivate $WINDOW
+            [[ $CLASS == "Gkrellm" ]] || xdotool windowactivate $WINDOW
         else
+            # echo "Zero, zilch, zip, nada, nothing." > /dev/pts/7
             return 1
         fi
     fi
@@ -66,6 +67,9 @@ case "$1" in
         ;;
     "mc")
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
+        ;;
+    "gkrellm")
+        show_window Gkrellm 0 || gkrellm &
         ;;
     "cmus")
         show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 80x18+2794+0 -e cmus

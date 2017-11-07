@@ -338,8 +338,7 @@
     </keybind>
     <keybind key="W-q">
       <action name="Execute">
-        <!-- <command>sh -c "wmctrl -x -r gkrellm -b toggle,hidden || (gkrellm -g +0+30 &amp;)"</command> -->
-        <command>rORr gkrellm</command>
+        <command>pqp gkrellm</command>
       </action>
     </keybind>
     <keybind key="Super_R">
