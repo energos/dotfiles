@@ -35,7 +35,7 @@ show_window ()
     WINDOW=$(xdotool search --desktop $DESKTOP --classname ^$CLASS$ | head -n 1)
     if [[ -n  $WINDOW ]]
     then
-        if [[ -n $(echo $WINDOW | grep ^$(xdotool getactivewindow)$) ]] || [[ $CLASS == "Gkrellm" ]]
+        if echo $WINDOW | grep -q ^$(xdotool getactivewindow)$ || xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE
         then
             # echo "$WINDOW is ACTIVE so we HIDE it" > /dev/pts/7
             xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
@@ -49,7 +49,7 @@ show_window ()
         then
             # echo "$WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > /dev/pts/7
             xdotool set_desktop_for_window $WINDOW $DESKTOP
-            [[ $CLASS == "Gkrellm" ]] || xdotool windowactivate $WINDOW
+            xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE || xdotool windowactivate $WINDOW
         else
             # echo "Zero, zilch, zip, nada, nothing." > /dev/pts/7
             return 1
