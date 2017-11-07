@@ -271,14 +271,9 @@
         <command>gmrun</command>
       </action>
     </keybind>
-    <!-- <keybind key="W-i"> -->
-    <!--   <action name="Execute"> -->
-    <!--     <command>brocket -ac iceweasel</command> -->
-    <!--   </action> -->
-    <!-- </keybind> -->
     <keybind key="W-i">
       <action name="Execute">
-        <command>rr_firefox</command>
+        <command>pqp firefox</command>
       </action>
     </keybind>
     <keybind key="W-S-i">
@@ -291,19 +286,9 @@
         <command>brocket -a claws-mail</command>
       </action>
     </keybind>
-    <keybind key="W-A-e">
-      <action name="Execute">
-        <command>brocket -a -c emacs</command>
-      </action>
-    </keybind>
-    <keybind key="W-A-b">
-      <action name="Execute">
-        <command>brocket -a emacs</command>
-      </action>
-    </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>rr_emacs</command>
+        <command>pqp emacs</command>
       </action>
     </keybind>
     <keybind key="W-S-e">
@@ -318,14 +303,9 @@
     </keybind>
     <keybind key="W-t">
       <action name="Execute">
-        <command>rr_terminal</command>
+        <command>pqp</command>
       </action>
     </keybind>
-    <!-- <keybind key="W-r"> -->
-    <!--   <action name="Execute"> -->
-    <!--     <command>brocket -ac mrxvt.fix terminal</command> -->
-    <!--   </action> -->
-    <!-- </keybind> -->
     <keybind key="W-x">
       <action name="Execute">
         <command>pqp pdf</command>
