@@ -29,6 +29,8 @@ show_window ()
 #                         If DESKTOP is HIDEDESKTOP, search only HIDEDESKTOP
 #
 {
+    [[ $force_new == 1 ]] && return 1
+
     CLASS=$1
     DESKTOP=$(xdotool get_desktop)
 
@@ -61,6 +63,22 @@ show_window ()
 # contorno o fato de gmrun enfiar tudo em $1
 set -- $@
 
+# default is to search for CLASS in existent windows
+force_new=0
+
+# parse options
+while getopts ":n" option; do
+    case $option in
+        n)  # echo "N" > /dev/pts/7
+            # abort search and run a new program instance
+            force_new=1
+            ;;
+        \?) # echo "${0##*/}: Invalid option -$OPTARG" > /dev/pts/7
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
 case "$1" in
     "")
         show_window Terminal $HIDEDESKTOP || $TERMINAL -name Terminal
@@ -81,7 +99,7 @@ case "$1" in
         show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 80x18+2794+0 -e cmus
         ;;
     "pdf")
-        ([[ "$2" != "-n" ]] && show_window Zathura $HIDEDESKTOP) || (zathura ~/default.pdf &)
+        show_window Zathura $HIDEDESKTOP || zathura ~/default.pdf &
         ;;
     "man")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &

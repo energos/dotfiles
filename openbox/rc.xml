@@ -278,7 +278,7 @@
     </keybind>
     <keybind key="W-S-i">
       <action name="Execute">
-        <command>firefox</command>
+        <command>pqp -n firefox</command>
       </action>
     </keybind>
     <keybind key="W-m">
@@ -293,12 +293,12 @@
     </keybind>
     <keybind key="W-S-e">
       <action name="Execute">
-        <command>emacsclient -c -n -a "emacs"</command>
+        <command>pqp -n emacs</command>
       </action>
     </keybind>
     <keybind key="W-S-t">
       <action name="Execute">
-        <command>urxvtcd -name Terminal</command>
+        <command>pqp -n</command>
       </action>
     </keybind>
     <keybind key="W-t">
@@ -313,7 +313,7 @@
     </keybind>
     <keybind key="W-S-x">
       <action name="Execute">
-        <command>pqp pdf -n</command>
+        <command>pqp -n pdf</command>
       </action>
     </keybind>
     <keybind key="W-q">
