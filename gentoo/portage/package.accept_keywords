@@ -1,0 +1,46 @@
+# VirtualBox
+app-emulation/virtualbox ~amd64
+app-emulation/virtualbox-modules ~amd64
+app-emulation/virtualbox-extpack-oracle ~amd64
+app-emulation/virtualbox-additions ~amd64
+app-emulation/virtualbox-guest-additions ~amd64
+dev-util/kbuild ~amd64
+x11-drivers/xf86-video-virtualbox ~amd64
+
+app-editors/emacs ~amd64
+virtual/emacs ~amd64
+app-emacs/org-mode ~amd64
+
+dev-util/geany ~amd64
+
+media-gfx/qiv ~amd64
+
+sci-electronics/kicad ~amd64
+sci-electronics/kicad-doc ~amd64
+
+media-video/mpv ~amd64
+media-video/smplayer ~amd64
+media-video/smtube ~amd64
+net-misc/youtube-dl ~amd64
+
+# zathura
+app-text/zathura ~amd64
+app-text/zathura-pdf-mupdf ~amd64
+app-text/zathura-djvu ~amd64
+app-text/zathura-ps ~amd64
+dev-libs/girara ~amd64
+
+# firefox
+www-client/firefox ~amd64
+www-client/firefox-bin ~amd64
+media-libs/libpng ~amd64
+media-video/ffmpeg ~amd64
+
+# openbox
+x11-misc/obmenu-generator ~amd64
+
+#synergy
+x11-misc/synergy ~amd64
+
+#golang
+dev-lang/go ~amd64

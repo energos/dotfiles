@@ -1,0 +1,6 @@
+app-editors/emacs gzip-el xft gtk libxml2 -alsa -sound
+
+# Em caso de dependências circulares...
+# net-dns/libidn -emacs
+# dev-scheme/guile -emacs
+# app-editors/emacs -svg

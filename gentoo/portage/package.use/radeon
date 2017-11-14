@@ -1,0 +1,6 @@
+dev-libs/DirectFB video_cards_radeon
+media-libs/mesa video_cards_radeon
+sys-devel/llvm video_cards_radeon
+sys-power/pm-utils video_cards_radeon
+x11-base/xorg-drivers video_cards_radeon
+x11-libs/libdrm video_cards_radeon
