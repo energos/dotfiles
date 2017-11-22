@@ -46,8 +46,8 @@ Xcursor.size:           32
 Xmessage*font:          -*-lucidatypewriter-medium-r-normal-*-25-*-*-*-*-*-*-*
 !Xmessage*font:          -*-lucidatypewriter-bold-r-normal-*-20-*-*-*-*-*-*-*
 Xmessage*nearMouse:     FALSE
-Xmessage*center:        FALSE
-Xmessage*geometry:      +1400+1000
+Xmessage*center:        TRUE
+!Xmessage*geometry:      +1400+1000
 
 XFontSel*font:          -*-lucidatypewriter-bold-r-normal-*-20-*-*-*-*-*-*-*
 Xmag*font:              -*-lucidatypewriter-medium-r-normal-*-20-*-*-*-*-*-*-*
