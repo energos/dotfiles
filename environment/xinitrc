@@ -26,6 +26,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 # xset s off -dpms
 
+SYNERGY_SERVER=speedy
+[[ $(hostname) == $SYNERGY_SERVER ]] && synergys || synergyc $SYNERGY_SERVER
+
 exec openbox-session
 # exec startkde
 # exec twm
