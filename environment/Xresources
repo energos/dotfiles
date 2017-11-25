@@ -1,22 +1,37 @@
 ! ~/.Xresources
 
-!Emacs.font:             Droid Sans Mono Slashed 11
-Emacs.font:             Iosevka 12
+#ifdef HIGH_DPI
+    #define FIXED_FONT -*-lucidatypewriter-medium-r-normal-*-25-*-*-*-*-*-*-*
+    #define CURSOR_SIZE 32
+    #define EMACS_FONT Iosevka 12
+    #define TERMINAL_FONT Droid Sans Mono Slashed:size=11
+#else
+    #define FIXED_FONT -misc-fixed-medium-r-normal-*-20-*-*-*-*-*-*-*
+    #define CURSOR_SIZE 16
+    #define EMACS_FONT -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+    #define TERMINAL_FONT Droid Sans Mono Slashed:size=11
+#endif
+
+#ifndef XSERVER_DPI
+    #define XSERVER_DPI 96
+#endif
+
+Xft.dpi:                XSERVER_DPI
+
+Emacs.font:             EMACS_FONT
 Emacs.verticalScrollBars: off
 Emacs.menuBar:          off
 Emacs.toolBar:          0
 Emacs.geometry:         88x56
 Emacs.cursorBlink:      off
 
-xterm*faceName:         Droid Sans Mono Slashed:size=10
-!xterm*faceName:         DejaVu Sans Mono:size=10
+xterm*faceName:         TERMINAL_FONT
 xterm*background:       black
 xterm*foreground:       white
 xterm*metaSendsEscape:  true
 xterm*backarrowKey:     false
 
-URxvt*font:             xft:Droid Sans Mono Slashed:size=11
-!URxvt*font:             xft:DejaVu Sans Mono:size=11
+URxvt*font:             xft:TERMINAL_FONT
 URxvt.letterSpace:      -2
 URxvt*scrollBar:        false
 URxvt*savedLines:       1000
@@ -41,13 +56,12 @@ URxvt.color12:          LightSteelBlue
 !URxvt.cursorColor:      grey90
 !URxvt.highlightColor:   grey25
 
-Xcursor.size:           32
+Xcursor.size:           CURSOR_SIZE
 
-Xmessage*font:          -*-lucidatypewriter-medium-r-normal-*-25-*-*-*-*-*-*-*
-!Xmessage*font:          -*-lucidatypewriter-bold-r-normal-*-20-*-*-*-*-*-*-*
+Xmessage*font:          FIXED_FONT
 Xmessage*nearMouse:     FALSE
 Xmessage*center:        TRUE
 !Xmessage*geometry:      +1400+1000
 
-XFontSel*font:          -*-lucidatypewriter-bold-r-normal-*-20-*-*-*-*-*-*-*
-Xmag*font:              -*-lucidatypewriter-medium-r-normal-*-20-*-*-*-*-*-*-*
+XFontSel*font:          FIXED_FONT
+Xmag*font:              FIXED_FONT

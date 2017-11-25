@@ -2,7 +2,12 @@
 
 # VBoxClient-all
 
-xrdb ~/.Xresources
+# https://superuser.com/questions/418699/
+DPI=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
+
+THRESHOLD=${THRESHOLD:-120}
+[[ $DPI -gt $THRESHOLD ]] && HDPI="-DHIGH_DPI" || HDPI=""
+xrdb $HDPI -DXSERVER_DPI=$DPI ~/.Xresources
 
 # xrandr --output VGA-1 --mode 1024x1280 --pos 0x0 --output VGA-2 --mode 1920x1080 --pos 1024x200 --output VGA-3 --mode 1280x1024 --pos 2944x256
 # xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x200 --output DVI-1 --pos 2944x256
