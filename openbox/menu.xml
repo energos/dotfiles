@@ -477,11 +477,11 @@
   <separator />
 
   <!-- Office -->
-  <item label="Libre Office Calc" icon="/usr/share/icons/hicolor/16x16/apps/libreoffice-calc.png">
-    <action name="Execute"><execute>localc</execute></action>
+  <item label="Open Office Calc" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-calc.png">
+    <action name="Execute"><execute>oocalc</execute></action>
   </item>
-  <item label="Libre Office Writer" icon="/usr/share/icons/hicolor/16x16/apps/libreoffice-writer.png">
-    <action name="Execute"><execute>lowriter</execute></action>
+  <item label="Open Office Writer" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-writer.png">
+    <action name="Execute"><execute>oowriter</execute></action>
   </item>
   <separator />
   
