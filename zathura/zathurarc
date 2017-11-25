@@ -1,0 +1,13 @@
+# .config/zathura/zathurarc
+
+set window-height 2076
+set window-width 1684
+set font "Droid Sans Mono Slashed 10"
+set page-padding 2
+set window-title-basename true
+# set guioptions ""
+
+unmap q
+unmap [index] q
+map Q quit
+map [index] Q quit

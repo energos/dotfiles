@@ -1322,5 +1322,6 @@
 
   # end of the example
 -->
+    <application class="Zathura"> <decor>no</decor> </application>
   </applications>
 </openbox_config>
