@@ -403,7 +403,35 @@
 
     <!-- Window scaling and width resize -->
     <keybind key="W-w">
-      <!-- resize windows width to fraction of monitor width -->
+      <!-- Window vertical resize -->
+      <!-- resize window height to fraction of monitor height -->
+      <keybind key="0x14 v"> <!-- "-" or "v" key -->
+        <keybind key="1">
+          <action name="Unmaximize"/>
+          <action name="MoveResizeTo">
+            <height>1/1</height>
+          </action>
+        </keybind>
+        <keybind key="2">
+          <action name="Unmaximize"/>
+          <action name="MoveResizeTo">
+            <height>1/2</height>
+          </action>
+        </keybind>
+        <keybind key="3">
+          <action name="Unmaximize"/>
+          <action name="MoveResizeTo">
+            <height>1/3</height>
+          </action>
+        </keybind>
+        <keybind key="4">
+          <action name="Unmaximize"/>
+          <action name="MoveResizeTo">
+            <height>1/4</height>
+          </action>
+        </keybind>
+      </keybind>
+      <!-- resize window width to fraction of monitor width -->
       <!-- 1/x  -->
       <keybind key="1">
         <keybind key="2">
