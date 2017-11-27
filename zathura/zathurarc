@@ -11,3 +11,9 @@ unmap q
 unmap [index] q
 map Q quit
 map [index] Q quit
+map <Space> navigate next
+map <S-Space> navigate previous
+map <Down> navigate next
+map <Up> navigate previous
+map <S-Down> scroll down
+map <S-Up> scroll up
