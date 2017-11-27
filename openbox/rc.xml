@@ -401,7 +401,7 @@
       </action>
     </keybind>
 
-    <!-- Window scaling and width resize -->
+    <!-- Window scaling and resize -->
     <keybind key="W-w">
       <!-- Window vertical resize -->
       <!-- resize window height to fraction of monitor height -->
