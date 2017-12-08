@@ -5,6 +5,7 @@ set window-width 1684
 set font "Droid Sans Mono Slashed 10"
 set page-padding 2
 set window-title-basename true
+set selection-clipboard clipboard
 # set guioptions ""
 
 unmap q
