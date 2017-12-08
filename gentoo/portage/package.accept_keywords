@@ -7,6 +7,7 @@ app-emulation/virtualbox-guest-additions ~amd64
 dev-util/kbuild ~amd64
 x11-drivers/xf86-video-virtualbox ~amd64
 
+# emacs
 app-editors/emacs ~amd64
 virtual/emacs ~amd64
 app-emacs/org-mode ~amd64
@@ -44,3 +45,6 @@ x11-misc/synergy ~amd64
 
 #golang
 dev-lang/go ~amd64
+
+#enigma
+games-puzzle/enigma ~amd64
