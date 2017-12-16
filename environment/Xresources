@@ -3,13 +3,9 @@
 #ifdef HIGH_DPI
     #define FIXED_FONT -*-lucidatypewriter-medium-r-normal-*-25-*-*-*-*-*-*-*
     #define CURSOR_SIZE 32
-    #define EMACS_FONT Iosevka 12
-    #define TERMINAL_FONT Droid Sans Mono Slashed:size=11
 #else
     #define FIXED_FONT -misc-fixed-medium-r-normal-*-20-*-*-*-*-*-*-*
     #define CURSOR_SIZE 16
-    #define EMACS_FONT -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
-    #define TERMINAL_FONT Droid Sans Mono Slashed:size=11
 #endif
 
 #ifndef XSERVER_DPI
@@ -18,21 +14,33 @@
 
 Xft.dpi:                XSERVER_DPI
 
-Emacs.font:             EMACS_FONT
+#ifdef HIGH_DPI
+Emacs.font:             Iosevka 12
+#else
+Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+#endif
 Emacs.verticalScrollBars: off
 Emacs.menuBar:          off
 Emacs.toolBar:          0
 Emacs.geometry:         88x56
 Emacs.cursorBlink:      off
 
-xterm*faceName:         TERMINAL_FONT
+#ifdef HIGH_DPI
+xterm*faceName:         Droid Sans Mono Slashed:size=11
+#else
+xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+#endif
 xterm*background:       black
 xterm*foreground:       white
 xterm*metaSendsEscape:  true
 xterm*backarrowKey:     false
 
-URxvt*font:             xft:TERMINAL_FONT
+#ifdef HIGH_DPI
+URxvt*font:             xft:Droid Sans Mono Slashed:size=11
 URxvt.letterSpace:      -2
+#else
+URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+#endif
 URxvt*scrollBar:        false
 URxvt*savedLines:       1000
 URxvt*iso14755:         false
