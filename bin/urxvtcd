@@ -1,0 +1,2 @@
+#!/bin/bash
+urxvtc 2> /dev/null "$@" || (urxvtd -q -o -f && urxvtc "$@")
