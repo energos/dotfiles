@@ -22,11 +22,12 @@ Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 Emacs.verticalScrollBars: off
 Emacs.menuBar:          off
 Emacs.toolBar:          0
-Emacs.geometry:         88x56
+Emacs.geometry:         84x56
 Emacs.cursorBlink:      off
 
 #ifdef HIGH_DPI
-xterm*faceName:         Droid Sans Mono Slashed:size=11
+!xterm*faceName:         Droid Sans Mono Slashed:size=11
+xterm*faceName:         Inconsolata:size=12
 #else
 xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
@@ -36,8 +37,12 @@ xterm*metaSendsEscape:  true
 xterm*backarrowKey:     false
 
 #ifdef HIGH_DPI
-URxvt*font:             xft:Droid Sans Mono Slashed:size=11
-URxvt.letterSpace:      -2
+!URxvt*font:             xft:Droid Sans Mono Slashed:size=11
+!URxvt.letterSpace:      -2
+!URxvt*font:             xft:Inconsolata:size=12
+!URxvt.letterSpace:      -1
+URxvt*font:             xft:Iosevka:size=11
+!URxvt.letterSpace:      0
 #else
 URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
