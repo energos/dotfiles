@@ -75,6 +75,25 @@
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plink"))
 
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LOCAL elisp FILES
+;;
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+;; https://emacsmirror.net/
+
+;; framemove
+;; https://github.com/emacsmirror/framemove
+(require 'cl)
+(require 'framemove)
+(setq framemove-hook-into-windmove t)
+(windmove-default-keybindings 'hyper)
+
+;; help-fns+
+;; https://github.com/emacsmirror/help-fns-plus
+(require 'help-fns+)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGES
 ;;
@@ -103,19 +122,7 @@
   (setq which-key-idle-delay 3.0)
   (which-key-mode))
 
-(use-package framemove
-  :ensure t
-  :init
-  (require 'cl)
-  :config
-  (setq framemove-hook-into-windmove t))
-
-;; https://www.emacswiki.org/emacs/HelpPlus
-(use-package help-fns+
-  :ensure t
-  :config
-  (require 'help-fns+))
-
+;; https://github.com/magit/magit
 (use-package magit
   :ensure t
   :bind (("C-x g"   . magit-status)
@@ -177,9 +184,10 @@
 (energos/dash-install "Rust")
 (energos/dash-install "Go")
 (energos/dash-install "Haskell")
+(energos/dash-install "Racket")
 
-(setq helm-dash-browser-func 'eww)
-;; (setq helm-dash-browser-func 'browse-url)
+;; (setq helm-dash-browser-func 'eww)
+(setq helm-dash-browser-func 'browse-url)
 
 (defun energos/dash-elisp ()
   (setq-local helm-dash-docsets '("Emacs Lisp")))
@@ -189,6 +197,10 @@
   (setq-local helm-dash-docsets '("Bash")))
 (add-hook 'sh-mode-hook 'energos/dash-bash)
 
+(defun energos/dash-scheme ()
+  (setq-local helm-dash-docsets '("Racket")))
+(add-hook 'scheme-mode-hook 'energos/dash-scheme)
+
 ;; https://github.com/flycheck/flycheck
 (use-package flycheck
   :ensure t)
@@ -197,6 +209,13 @@
 (use-package expand-region
   :ensure t
   :bind (("C-=" . er/expand-region)))
+
+;; http://www.nongnu.org/geiser/
+(use-package geiser
+  :ensure t
+  :init
+  (setq geiser-repl-use-other-window nil)
+  (setq geiser-active-implementations '(racket chicken guile mit)))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
@@ -272,7 +291,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list [88 178 267])
+  (let* ((list [84 170 244])
          (i (energos/inc-or-dec
              (frame-parameter (selected-frame) 'energos/width)
              (1- (length list)) dec))
