@@ -88,7 +88,6 @@
 (require 'cl)
 (require 'framemove)
 (setq framemove-hook-into-windmove t)
-(windmove-default-keybindings 'hyper)
 
 ;; help-fns+
 ;; https://github.com/emacsmirror/help-fns-plus
