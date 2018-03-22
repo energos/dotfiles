@@ -361,6 +361,24 @@ Move point to the previous position that is the beggining of a symbol."
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
 
+;; --- Support for keyboard physical macro keys ---
+(fset 'energos/eval-last-sexp "\C-x\C-e")
+
+(define-prefix-command 'energos/m1-map)
+(define-key energos/m1-map (kbd "s") 'save-buffer)
+(define-key energos/m1-map (kbd "b") 'helm-buffers-list)
+(define-key energos/m1-map (kbd "e") 'energos/eval-last-sexp)
+(define-key energos/m1-map (kbd "d") 'helm-dash-at-point)
+(define-key energos/m1-map (kbd "g") 'geiser-doc-symbol-at-point)
+(define-key energos/m1-map (kbd "m") 'magit-status)
+(define-key energos/m1-map (kbd "<up>") 'windmove-up)
+(define-key energos/m1-map (kbd "<down>") 'windmove-down)
+(define-key energos/m1-map (kbd "<left>") 'windmove-left)
+(define-key energos/m1-map (kbd "<right>") 'windmove-right)
+
+(global-set-key (kbd "ESC <f1>") energos/m1-map)
+(global-set-key (kbd "ESC <f2>") 'energos/eval-last-sexp)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
 (require 'server)
