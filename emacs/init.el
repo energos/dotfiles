@@ -362,22 +362,45 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
 
 ;; --- Support for keyboard physical macro keys ---
-(fset 'energos/eval-last-sexp "\C-x\C-e")
+;;
+;; M1 - ESC <f1> - energos/m1-map
+;; M2 - ESC <f2> - energos/m1-map
+;; M3 - ESC <f3> - energos/m1-map
+;; M4 - ESC <f4> - C-x C-e
+;; M5 - ESC <f5> - C-x
 
+;; M1 map
 (define-prefix-command 'energos/m1-map)
 (define-key energos/m1-map (kbd "s") 'save-buffer)
 (define-key energos/m1-map (kbd "b") 'helm-buffers-list)
-(define-key energos/m1-map (kbd "e") 'energos/eval-last-sexp)
+(define-key energos/m1-map (kbd "e") (kbd "C-x C-e"))
 (define-key energos/m1-map (kbd "d") 'helm-dash-at-point)
 (define-key energos/m1-map (kbd "g") 'geiser-doc-symbol-at-point)
 (define-key energos/m1-map (kbd "m") 'magit-status)
+(define-key energos/m1-map (kbd "Q") 'save-buffers-kill-terminal)
 (define-key energos/m1-map (kbd "<up>") 'windmove-up)
 (define-key energos/m1-map (kbd "<down>") 'windmove-down)
 (define-key energos/m1-map (kbd "<left>") 'windmove-left)
 (define-key energos/m1-map (kbd "<right>") 'windmove-right)
+(define-key energos/m1-map (kbd "0") 'delete-window)
+(define-key energos/m1-map (kbd "1") 'delete-other-windows)
+(define-key energos/m1-map (kbd "2") 'split-window-below)
+(define-key energos/m1-map (kbd "3") 'split-window-horizontally)
 
-(global-set-key (kbd "ESC <f1>") energos/m1-map)
-(global-set-key (kbd "ESC <f2>") 'energos/eval-last-sexp)
+;; M1
+(define-key (current-global-map) (kbd "ESC <f1>") energos/m1-map)
+
+;; M2
+(define-key (current-global-map) (kbd "ESC <f2>") energos/m1-map)
+
+;; M3
+(define-key (current-global-map) (kbd "ESC <f3>") energos/m1-map)
+
+;; M4
+(define-key key-translation-map (kbd "ESC <f4>") (kbd "C-x C-e"))
+
+;; M5
+(define-key key-translation-map (kbd "ESC <f5>") (kbd "C-x"))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
