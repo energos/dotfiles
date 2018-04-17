@@ -15,17 +15,12 @@ xrdb $HDPI -DXSERVER_DPI=$DPI ~/.Xresources
 # Comment next line for single monitor setup
 # pqp res 2 # scale left monitor to 1.5
 
-# setxkbmap -model abnt2,pc104 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:hyper,lv3:ralt_switch_multikey
-setxkbmap -model pc104 -layout us,us -variant intl,basic -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:hyper,lv3:ralt_switch_multikey
-xmodmap -e 'remove mod4 = Hyper_L'
-xmodmap -e 'add mod3 = Hyper_L'
-xmodmap -e 'keycode 77 = F13'
+# setxkbmap -model abnt2,pc104 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
+setxkbmap -model pc104 -layout us,us -variant intl,basic -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
 
-# Remap Scroll_Lock to XF86AudioLowerVolume
-xmodmap -e 'keycode 78 = XF86AudioLowerVolume'
-
-# Unfortunately remapping Pause to XF86AudioRaiseVolume doesn't work in Openbox
-# xmodmap -e 'keycode 127 = XF86AudioRaiseVolume'
+xmodmap -e 'keycode 66 = F13'   # Remap Caps_Lock
+xmodmap -e 'keycode 78 = F14'   # Remap Scroll_Lock
+xmodmap -e 'keycode 127 = F15'  # Remap Pause
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 

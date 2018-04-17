@@ -336,34 +336,46 @@
         <menu>root-menu</menu>
       </action>
     </keybind>
-    <!-- Unfortunately remapping Pause to XF86AudioRaiseVolume doesn't work in Openbox,
-         so we explicitly bind the actions to the Pause key. -->
-    <keybind key="Pause">
+    <!-- Raise Volume -->
+    <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
         <command>amixer -q set Master 1%+ unmute</command>
       </action>
     </keybind>
+    <keybind key="F15">
+      <action name="Execute">
+        <command>amixer -q set Master 1%+ unmute</command>
+      </action>
+    </keybind>
+    <!-- Lower Volume -->
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
         <command>amixer -q set Master 1%- unmute</command>
       </action>
     </keybind>
-    <keybind key="S-XF86AudioLowerVolume">
+    <keybind key="F14">
+      <action name="Execute">
+        <command>amixer -q set Master 1%- unmute</command>
+      </action>
+    </keybind>
+    <!-- Toggle Mute -->
+    <keybind key="XF86AudioMute">
       <action name="Execute">
         <command>amixer -q set Master toggle</command>
       </action>
     </keybind>
-    <keybind key="W-XF86AudioLowerVolume">
+    <keybind key="S-F14">
       <action name="Execute">
         <command>amixer -q set Master toggle</command>
       </action>
     </keybind>
-    <keybind key="S-Pause">
+    <!-- Media Player -->
+    <keybind key="XF86AudioPlay">
       <action name="Execute">
         <command>pqp cmus</command>
       </action>
     </keybind>
-    <keybind key="W-Pause">
+    <keybind key="S-F15">
       <action name="Execute">
         <command>pqp cmus</command>
       </action>
