@@ -5,3 +5,8 @@
 if [[ -f ~/.bashrc ]] ; then
    . ~/.bashrc
 fi
+
+# Put your fun stuff here...
+
+export PATH="${HOME}/bin:${HOME}/racket/bin:${PATH}"
+export MANPATH="${HOME}/racket/man:${MANPATH}"

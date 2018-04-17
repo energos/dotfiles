@@ -14,10 +14,7 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-
 # Put your fun stuff here...
-
-export PATH="${HOME}/bin:${PATH}"
 
 # Search history
 bind '"\e[A"':history-search-backward
