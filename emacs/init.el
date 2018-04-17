@@ -55,6 +55,12 @@
 ;; --- Org-mode preferences ---
 (setq org-replace-disputed-keys t)
 
+(setq org-file-apps
+      '((auto-mode . emacs)
+        ("\\.mm\\'" . default)
+        ("\\.x?html?\\'" . default)
+        ("\\.pdf\\'" . "xdg-open %s")))
+
 ;; --- Mensagem inicial ---
 (let ((command "fortune"))
   (if (executable-find command)
@@ -213,6 +219,7 @@
 (use-package geiser
   :ensure t
   :init
+  (setq geiser-repl-startup-time 20000)
   (setq geiser-repl-use-other-window nil)
   (setq geiser-active-implementations '(racket chicken guile mit)))
 
@@ -338,6 +345,7 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "M-f") 'forward-symbol)
 
 (global-set-key (kbd "C-c C-o") 'browse-url-at-point)
+(setq browse-url-browser-function 'browse-url-xdg-open)
 
 (global-set-key (kbd "M-]") 'goto-match-paren)
 
