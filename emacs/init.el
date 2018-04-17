@@ -369,40 +369,57 @@ Move point to the previous position that is the beggining of a symbol."
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
 
+;; --- CapsLock -> F13 -> Hyper ---
+(global-set-key (kbd "H-s") 'save-buffer)
+(global-set-key (kbd "H-k") 'kill-buffer)
+(global-set-key (kbd "H-b") 'helm-buffers-list)
+(global-set-key (kbd "H-f") 'helm-find-files)
+(global-set-key (kbd "H-e") (kbd "C-x C-e"))
+(global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
+(global-set-key (kbd "H-d") 'helm-dash-at-point)
+(global-set-key (kbd "H-D") 'geiser-doc-symbol-at-point)
+(global-set-key (kbd "H-m") 'magit-status)
+(global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
+
+(global-set-key (kbd "H-g")
+  (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
+    (interactive)
+    (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
+           (message "C-x C-e will call geiser-eval-last-sexp"))))
+(global-set-key (kbd "H-G")
+  (lambda () "Set C-x C-e to call the default command."
+    (interactive)
+    (progn (local-unset-key (kbd "C-x C-e"))
+           (message "C-x C-e reset to default"))))
+
+(global-set-key (kbd "H-0") 'delete-window)
+(global-set-key (kbd "H-1") 'delete-other-windows)
+(global-set-key (kbd "H-2") 'split-window-below)
+(global-set-key (kbd "H-3") 'split-window-horizontally)
+
 ;; --- Support for keyboard physical macro keys ---
 ;;
-;; M1 - ESC <f1> - energos/m1-map
-;; M2 - ESC <f2> - energos/m1-map
-;; M3 - ESC <f3> - energos/m1-map
-;; M4 - ESC <f4> - C-x C-e
-;; M5 - ESC <f5> - C-x
+;; M1 - ESC <f1> -> Hyper
+;; M2 - ESC <f2> -> Hyper
+;; M3 - ESC <f3> -> Hyper
+;; M4 - ESC <f4> -> C-x C-e
+;; M5 - ESC <f5> -> C-x
 
-;; M1 map
+;; m1 map
 (define-prefix-command 'energos/m1-map)
-(define-key energos/m1-map (kbd "s") 'save-buffer)
-(define-key energos/m1-map (kbd "b") 'helm-buffers-list)
-(define-key energos/m1-map (kbd "e") (kbd "C-x C-e"))
-(define-key energos/m1-map (kbd "d") 'helm-dash-at-point)
-(define-key energos/m1-map (kbd "g") 'geiser-doc-symbol-at-point)
-(define-key energos/m1-map (kbd "m") 'magit-status)
-(define-key energos/m1-map (kbd "Q") 'save-buffers-kill-terminal)
-(define-key energos/m1-map (kbd "<up>") 'windmove-up)
-(define-key energos/m1-map (kbd "<down>") 'windmove-down)
-(define-key energos/m1-map (kbd "<left>") 'windmove-left)
-(define-key energos/m1-map (kbd "<right>") 'windmove-right)
-(define-key energos/m1-map (kbd "0") 'delete-window)
-(define-key energos/m1-map (kbd "1") 'delete-other-windows)
-(define-key energos/m1-map (kbd "2") 'split-window-below)
-(define-key energos/m1-map (kbd "3") 'split-window-horizontally)
+(define-key energos/m1-map (kbd "<f1>") (kbd "C-x C-e"))
+(define-key energos/m1-map (kbd "<f2>") (kbd "C-x C-e"))
+(define-key energos/m1-map (kbd "<f3>") (kbd "C-x C-e"))
+(define-key (current-global-map) (kbd "H-<escape>") energos/m1-map)
 
 ;; M1
-(define-key (current-global-map) (kbd "ESC <f1>") energos/m1-map)
+(define-key key-translation-map (kbd "ESC <f1>") 'event-apply-hyper-modifier)
 
 ;; M2
-(define-key (current-global-map) (kbd "ESC <f2>") energos/m1-map)
+(define-key key-translation-map (kbd "ESC <f2>") 'event-apply-hyper-modifier)
 
 ;; M3
-(define-key (current-global-map) (kbd "ESC <f3>") energos/m1-map)
+(define-key key-translation-map (kbd "ESC <f3>") 'event-apply-hyper-modifier)
 
 ;; M4
 (define-key key-translation-map (kbd "ESC <f4>") (kbd "C-x C-e"))
