@@ -6,4 +6,4 @@
 # xmessage -center "$@" &
 # exit
 
-nohup xdg-open "$@" &
+nohup xdg-open "$@" &> /dev/null &

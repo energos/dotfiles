@@ -230,7 +230,12 @@ Plugin {
             tooltip = Terminal
             action = urxvtcd -geometry +2780+1430
         }
-    button {
+        button {
+            icon = emacs
+            tooltip = Emacs ROCKS!
+            action = pqp emacs
+        }
+        button {
             # icon = web-browser
             image = /usr/lib64/firefox/browser/icons/mozicon128.png
             tooltip = Firefox Web Browser
