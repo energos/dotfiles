@@ -477,6 +477,9 @@
   <separator />
 
   <!-- Office -->
+  <item label="Calibre EBook Manager" icon="/usr/share/icons/hicolor/16x16/apps/calibre-gui.png">
+    <action name="Execute"><execute>calibre --detach</execute></action>
+  </item>
   <item label="Open Office Calc" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-calc.png">
     <action name="Execute"><execute>oocalc</execute></action>
   </item>
