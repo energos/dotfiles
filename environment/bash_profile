@@ -8,5 +8,12 @@ fi
 
 # Put your fun stuff here...
 
-export PATH="${HOME}/bin:${HOME}/racket/bin:${PATH}"
-export MANPATH="${HOME}/racket/man:${MANPATH}"
+# user's bin
+PATH="${HOME}/bin:${PATH}"
+
+# user's Racket
+PATH="${HOME}/racket/bin:${PATH}"
+MANPATH="${HOME}/racket/man:${MANPATH}"
+
+export PATH
+export MANPATH
