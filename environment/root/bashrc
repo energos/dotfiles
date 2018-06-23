@@ -10,12 +10,11 @@
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
 if [[ $- != *i* ]] ; then
-        # Shell is non-interactive.  Be done now!
-        return
+    # Shell is non-interactive.  Be done now!
+    return
 fi
 
-
-# Put your fun stuff here.
+# Put your fun stuff here...
 
 # https://stackoverflow.com/questions/41046558/bashrc-how-to-check-in-what-terminal-the-shell-is-running
 # Search history
@@ -27,6 +26,7 @@ fi
 # preserve history
 HISTFILESIZE=100000
 HISTSIZE=100000
+shopt -s histappend
 
 # don't include duplicates in history
 # don't include lines beggining with spaces
@@ -42,3 +42,23 @@ alias mc='mc -d'
 alias less='less -i'
 
 stty -ixon
+
+# prompt
+if [[ ${EUID} == 0 ]] ; then
+    PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+else
+    # Add git branch to bash prompt
+    if [[ -r /usr/share/git/git-prompt.sh ]] ; then
+        source /usr/share/git/git-prompt.sh
+        # from /etc/bash/bashrc
+        # PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+        # from /usr/share/git/git-prompt.sh
+        # PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+        #
+        # slice, mix and shake:
+        PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;35m\]$(__git_ps1 " (%s)") \[\033[01;34m\]\$\[\033[00m\] '
+        GIT_PS1_SHOWDIRTYSTATE=1
+    else
+        PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    fi
+fi

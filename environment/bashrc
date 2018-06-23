@@ -1,4 +1,4 @@
-# /etc/skel/.bashrc
+# ~/.bashrc
 #
 # This file is sourced by all *interactive* bash shells on startup,
 # including some apparently interactive shells such as scp and rcp
@@ -26,6 +26,7 @@ fi
 # preserve history
 HISTFILESIZE=100000
 HISTSIZE=100000
+shopt -s histappend
 
 # don't include duplicates in history
 # don't include lines beggining with spaces
@@ -41,21 +42,26 @@ alias mc='mc -d'
 alias less='less -i'
 
 export MC_XDG_OPEN=$HOME/bin/nohup-open
-
-export ALSA_CARD=0
+# export ALSA_CARD=0
 
 stty -ixon
 
-# Add git branch to bash prompt
-if [[ -r /usr/share/git/git-prompt.sh ]] ; then
-    source /usr/share/git/git-prompt.sh
-
-    # from /etc/bash/bashrc
-    # PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
-    # from /usr/share/git/git-prompt.sh
-    # PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-    #
-    # slice, mix and shake:
-    PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;35m\]$(__git_ps1 " (%s)") \[\033[01;34m\]\$\[\033[00m\] '
-    GIT_PS1_SHOWDIRTYSTATE=1
+# prompt
+if [[ ${EUID} == 0 ]] ; then
+    PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+else
+    # Add git branch to bash prompt
+    if [[ -r /usr/share/git/git-prompt.sh ]] ; then
+        source /usr/share/git/git-prompt.sh
+        # from /etc/bash/bashrc
+        # PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+        # from /usr/share/git/git-prompt.sh
+        # PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+        #
+        # slice, mix and shake:
+        PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;35m\]$(__git_ps1 " (%s)") \[\033[01;34m\]\$\[\033[00m\] '
+        GIT_PS1_SHOWDIRTYSTATE=1
+    else
+        PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    fi
 fi
