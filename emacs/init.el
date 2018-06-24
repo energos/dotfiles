@@ -159,53 +159,6 @@
   (require 'helm)
   (require 'helm-swoop))
 
-;; --- helm-dash ---
-;; https://github.com/areina/helm-dash
-;; Make sure that sqlite3, libxml2 and tar are installed
-
-;; Use patched local helm-dash.el on Windows systems
-(if (eq system-type 'windows-nt)
-    (require 'helm-dash (concat user-emacs-directory "source/helm-dash/helm-dash.el"))
-  (use-package helm-dash
-    :ensure t))
-
-(setq helm-dash-docsets-path (concat user-emacs-directory "docsets"))
-
-;; Arghh, there is a freaking mess between " " and "_"
-;; Try to fix https://github.com/areina/helm-dash/issues/84
-(defun energos/dash-install (docset)
-  (if (helm-dash-docset-installed-p docset)
-      (message (format "%s docset is already installed!" docset))
-    (progn (message (format "Installing %s docset..." docset))
-           (helm-dash-install-docset (subst-char-in-string ?\s ?_ docset)))))
-
-(energos/dash-install "Apache_HTTP_Server")
-(energos/dash-install "C")
-(energos/dash-install "Bash")
-(energos/dash-install "Emacs Lisp")
-(energos/dash-install "Common Lisp")
-(energos/dash-install "HTML")
-(energos/dash-install "CSS")
-(energos/dash-install "Rust")
-(energos/dash-install "Go")
-(energos/dash-install "Haskell")
-(energos/dash-install "Racket")
-
-;; (setq helm-dash-browser-func 'eww)
-(setq helm-dash-browser-func 'browse-url)
-
-(defun energos/dash-elisp ()
-  (setq-local helm-dash-docsets '("Emacs Lisp")))
-(add-hook 'emacs-lisp-mode-hook 'energos/dash-elisp)
-
-(defun energos/dash-bash ()
-  (setq-local helm-dash-docsets '("Bash")))
-(add-hook 'sh-mode-hook 'energos/dash-bash)
-
-(defun energos/dash-scheme ()
-  (setq-local helm-dash-docsets '("Racket")))
-(add-hook 'scheme-mode-hook 'energos/dash-scheme)
-
 ;; https://github.com/flycheck/flycheck
 (use-package flycheck
   :ensure t)
@@ -376,7 +329,6 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-f") 'helm-find-files)
 (global-set-key (kbd "H-e") (kbd "C-x C-e"))
 (global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
-(global-set-key (kbd "H-d") 'helm-dash-at-point)
 (global-set-key (kbd "H-D") 'geiser-doc-symbol-at-point)
 (global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
