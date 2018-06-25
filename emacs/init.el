@@ -367,9 +367,10 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-k") 'kill-buffer)
 (global-set-key (kbd "H-b") 'helm-buffers-list)
 (global-set-key (kbd "H-f") 'helm-find-files)
+(global-set-key (kbd "H-c") (kbd "C-c C-c"))
 (global-set-key (kbd "H-e") (kbd "C-x C-e"))
 (global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
-(global-set-key (kbd "H-D") 'geiser-doc-symbol-at-point)
+(global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
 (global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
 
@@ -411,7 +412,7 @@ Move point to the previous position that is the beggining of a symbol."
 (define-key key-translation-map (kbd "ESC <f2>") 'event-apply-hyper-modifier)
 
 ;; M3
-(define-key key-translation-map (kbd "ESC <f3>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "ESC <f3>") (kbd "C-c C-c"))
 
 ;; M4
 (define-key key-translation-map (kbd "ESC <f4>") (kbd "C-x C-e"))
