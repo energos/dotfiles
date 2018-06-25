@@ -52,15 +52,6 @@
 (setq-default tab-width 4)
 (electric-indent-mode -1)
 
-;; --- Org-mode preferences ---
-(setq org-replace-disputed-keys t)
-
-(setq org-file-apps
-      '((auto-mode . emacs)
-        ("\\.mm\\'" . default)
-        ("\\.x?html?\\'" . default)
-        ("\\.pdf\\'" . "xdg-open %s")))
-
 ;; --- Mensagem inicial ---
 (let ((command "fortune"))
   (if (executable-find command)
@@ -175,6 +166,9 @@
   (setq geiser-repl-startup-time 20000)
   (setq geiser-repl-use-other-window nil)
   (setq geiser-active-implementations '(racket chicken guile mit)))
+;; https://github.com/nonsequitur/inf-ruby
+(use-package inf-ruby
+  :ensure t)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
@@ -258,6 +252,52 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (set-frame-parameter (selected-frame) 'energos/width i)
     (set-frame-width (selected-frame) width)
     (message (format "Frame width resized to %d characters" width))))
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ORG-MODE
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . nil)
+   (dot . t)
+   (sh . t)
+   (emacs-lisp . t)
+   (gnuplot . t)
+   (ruby . t)
+   (C . t)
+   (python . t)
+   (scheme . t)
+   ))
+
+;; Avaliar blocos de código sem exigir confirmação
+;; http://orgmode.org/manual/Code-evaluation-security.html
+(setq org-confirm-babel-evaluate
+      (lambda (lang body)
+        (not (or
+              ;; t                        ; não pergunto nada
+              (string= lang "ditaa")      ; não pergunto por ditaa
+              (string= lang "dot")        ; ...
+              (string= lang "emacs-lisp")
+              (string= lang "C")
+              (string= lang "C++")
+              (string= lang "sh")
+              (string= lang "ruby")
+              (string= lang "python")
+              (string= lang "scheme")
+              ))))
+
+
+;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
+(setq org-file-apps
+      '((auto-mode . emacs)
+        ("\\.mm\\'" . default)
+        ("\\.x?html?\\'" . "xdg-open %s")
+        ("\\.pdf\\'" . "xdg-open %s")))
+
+;; --- preferences ---
+(setq org-replace-disputed-keys t)
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
