@@ -165,7 +165,9 @@
   :init
   (setq geiser-repl-startup-time 20000)
   (setq geiser-repl-use-other-window nil)
-  (setq geiser-active-implementations '(racket chicken guile mit)))
+  (setq geiser-active-implementations '(guile racket chicken))
+  (setq geiser-default-implementation 'guile))
+
 ;; https://github.com/nonsequitur/inf-ruby
 (use-package inf-ruby
   :ensure t)
