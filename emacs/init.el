@@ -255,6 +255,13 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (set-frame-width (selected-frame) width)
     (message (format "Frame width resized to %d characters" width))))
 
+;; --- Recarregar o Browser ---
+;; https://addons.mozilla.org/en-US/firefox/addon/remote-control
+(defun browser-reload ()
+  "Reload browser."
+  (interactive)
+  (shell-command "echo reload | nc -q 1 localhost 32000 && echo Browser Reloaded"))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG-MODE
 
