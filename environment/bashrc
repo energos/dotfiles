@@ -26,6 +26,7 @@ fi
 # preserve history
 HISTFILESIZE=100000
 HISTSIZE=100000
+HISTIGNORE="history*:?:??:pwd"
 shopt -s histappend
 
 # don't include duplicates in history
