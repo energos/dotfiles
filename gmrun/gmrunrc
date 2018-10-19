@@ -13,8 +13,8 @@ AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man bc info 
 Width = 400
 # Top = 100
 # Left = 200
-Top = 620
-Left = 1784
+Top = 800
+Left = 1714
 
 # History size
 History = 256
