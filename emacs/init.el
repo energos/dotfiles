@@ -172,6 +172,10 @@
 (use-package inf-ruby
   :ensure t)
 
+;; https://github.com/hniksic/emacs-htmlize
+(use-package htmlize
+  :ensure t)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
