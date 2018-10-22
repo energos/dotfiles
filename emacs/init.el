@@ -323,7 +323,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
   (setq w32-enable-caps-lock nil)
   (define-key key-translation-map (kbd "<capslock>") 'event-apply-hyper-modifier)
   (message "Windows® system detected")
-)
+  )
 
 (global-set-key (kbd "C-z") 'undo)
 
@@ -391,15 +391,15 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
 
 (global-set-key (kbd "H-g")
-  (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
-    (interactive)
-    (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
-           (message "C-x C-e will call geiser-eval-last-sexp"))))
+                (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
+                  (interactive)
+                  (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
+                         (message "C-x C-e will call geiser-eval-last-sexp"))))
 (global-set-key (kbd "H-G")
-  (lambda () "Set C-x C-e to call the default command."
-    (interactive)
-    (progn (local-unset-key (kbd "C-x C-e"))
-           (message "C-x C-e reset to default"))))
+                (lambda () "Set C-x C-e to call the default command."
+                  (interactive)
+                  (progn (local-unset-key (kbd "C-x C-e"))
+                         (message "C-x C-e reset to default"))))
 
 (global-set-key (kbd "H-0") 'delete-window)
 (global-set-key (kbd "H-1") 'delete-other-windows)
