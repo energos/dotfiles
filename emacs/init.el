@@ -273,7 +273,8 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
  'org-babel-load-languages
  '((ditaa . nil)
    (dot . t)
-   (sh . t)
+   (calc . t)
+   (shell . t)
    (emacs-lisp . t)
    (gnuplot . t)
    (ruby . t)
@@ -290,10 +291,12 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
               ;; t                        ; não pergunto nada
               (string= lang "ditaa")      ; não pergunto por ditaa
               (string= lang "dot")        ; ...
+              (string= lang "calc")
               (string= lang "emacs-lisp")
               (string= lang "C")
               (string= lang "C++")
-              (string= lang "sh")
+              (string= lang "sh")         ; https://emacs.stackexchange.com/questions/35321/
+              (string= lang "shell")      ;
               (string= lang "ruby")
               (string= lang "python")
               (string= lang "scheme")
