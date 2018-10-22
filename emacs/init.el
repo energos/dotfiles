@@ -389,6 +389,7 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
 (global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
+(global-set-key (kbd "H-n") 'make-frame-command)
 
 (global-set-key (kbd "H-g")
                 (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
@@ -408,9 +409,9 @@ Move point to the previous position that is the beggining of a symbol."
 
 ;; --- Support for keyboard physical macro keys ---
 ;;
-;; M1 - ESC <f1> -> Hyper
-;; M2 - ESC <f2> -> Hyper
-;; M3 - ESC <f3> -> Hyper
+;; M1 - ESC <f1> -> C-c &
+;; M2 - ESC <f2> -> C-c C-o
+;; M3 - ESC <f3> -> C-c C-c
 ;; M4 - ESC <f4> -> C-x C-e
 ;; M5 - ESC <f5> -> C-x
 
@@ -422,10 +423,10 @@ Move point to the previous position that is the beggining of a symbol."
 (define-key (current-global-map) (kbd "H-<escape>") energos/m1-map)
 
 ;; M1
-(define-key key-translation-map (kbd "ESC <f1>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "ESC <f1>") (kbd "C-c &"))
 
 ;; M2
-(define-key key-translation-map (kbd "ESC <f2>") 'event-apply-hyper-modifier)
+(define-key key-translation-map (kbd "ESC <f2>") (kbd "C-c C-o"))
 
 ;; M3
 (define-key key-translation-map (kbd "ESC <f3>") (kbd "C-c C-c"))
