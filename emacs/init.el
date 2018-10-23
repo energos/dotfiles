@@ -137,6 +137,7 @@
   :config
   (require 'helm-config)
   (setq helm-split-window-default-side 'other)
+  (setq helm-candidate-number-limit 1000)
   (helm-mode 1))
 
 ;; https://github.com/ShingoFukuyama/helm-swoop
