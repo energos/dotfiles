@@ -270,6 +270,9 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG-MODE
 
+(setq org-directory "~/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ditaa . nil)
@@ -303,7 +306,6 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
               (string= lang "scheme")
               ))))
 
-
 ;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
 (setq org-file-apps
       '((auto-mode . emacs)
@@ -315,6 +317,9 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (setq org-replace-disputed-keys t)
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
+
+;; --- org-mode specific shortcuts
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
