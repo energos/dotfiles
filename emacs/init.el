@@ -378,6 +378,10 @@ Move point to the previous position that is the beggining of a symbol."
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
 
+;; --- Frequently used files ---
+(global-set-key (kbd "\e\ei") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "\e\en") (lambda () (interactive) (find-file org-default-notes-file)))
+
 ;; --- CapsLock -> F13 -> Hyper ---
 (global-set-key (kbd "H-s") 'save-buffer)
 (global-set-key (kbd "H-k") 'kill-buffer)
