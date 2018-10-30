@@ -96,7 +96,7 @@ case "$1" in
         show_window Gkrellm 0 || gkrellm &
         ;;
     "cmus")
-        show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 80x18-0+0 -e cmus
+        show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
         show_window Zathura $HIDEDESKTOP || zathura ~/default.pdf &
