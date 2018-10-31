@@ -317,8 +317,20 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (setq org-replace-disputed-keys t)
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
+(setq org-link-frame-setup
+      (quote
+       ((vm . vm-visit-folder-other-frame)
+        (vm-imap . vm-visit-imap-folder-other-frame)
+        (gnus . org-gnus-no-new-news)
+        (file . find-file)
+        (wl . wl-other-frame))))
+(setq org-goto-interface 'outline-path-completion
+      org-goto-max-level 10)
+(setq org-export-coding-system 'utf-8)
 
 ;; --- org-mode specific shortcuts
+(global-set-key (kbd "C-c b") 'org-switchb)
+(global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
