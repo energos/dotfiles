@@ -272,6 +272,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 
 (setq org-directory "~/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-agenda-files '("~/org/notes.org" "~/org/agenda.org"))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -328,9 +329,39 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
       org-goto-max-level 10)
 (setq org-export-coding-system 'utf-8)
 
-;; --- org-mode specific shortcuts
+;; --- org-refile ---
+;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+(setq org-refile-targets '((nil . (:maxlevel . 6)) (org-agenda-files . (:maxlevel . 6))))
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+
+;; --- org-capture ---
+(require 'org-protocol)
+(require 'org-capture)
+
+(setq org-capture-templates
+      '(("t" "Task" entry (file+headline org-default-notes-file "Tasks")
+         "* TODO %u %?" :prepend t)
+        ("j" "Journal entry" entry (file+datetree "journal.org")
+         "* %U %^{Title}\n  %?")
+        ("n" "Note" entry (file+headline org-default-notes-file "Unsorted Notes")
+         "* %?\n  %i\n  %a")
+        ))
+;; See org-capture-templates help:
+;; %?          After completing the template, position cursor here.
+;;
+;; %i          Initial content, copied from the active region.  If %i is
+;;             indented, the entire inserted text will be indented as well.
+;;
+;; %a          Annotation, normally the link created with `org-store-link'.
+;; %t          Time stamp, date only.
+;; %T          Time stamp, with date and time.
+;; %u, %U      Like the above, but inactive time stamps.
+
+;; --- org-mode specific shortcuts ---
 (global-set-key (kbd "C-c b") 'org-switchb)
 (global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
