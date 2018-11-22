@@ -27,6 +27,8 @@
 (setq scroll-step 1)                    ; scroll de apenas 1 linha
 (setq scroll-preserve-screen-position t); PgUp/PgDown mantém posição do cursor,
 (setq scroll-error-top-bottom t)        ; exceto na primeira e última página
+(setq hscroll-step 1)                   ; scroll horizontal de 1 caracter,
+(setq hscroll-margin 0)                 ; apenas ao chegar aos extremos da janela
 
 (defalias 'yes-or-no-p 'y-or-n-p)       ; "y or n" em vez de "yes or no"
 (setq confirm-nonexistent-file-or-buffer t) ; confirmar criação arquivo/buffer
@@ -378,6 +380,8 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 
 (global-set-key (kbd "C-<up>") (lambda () (interactive) (scroll-down 1)))
 (global-set-key (kbd "C-<down>") (lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "C-<left>") (lambda () (interactive) (scroll-right 1)))
+(global-set-key (kbd "C-<right>") (lambda () (interactive) (scroll-left 1)))
 
 (global-set-key (kbd "M-<up>")
                 (lambda () (interactive) (scroll-other-window-down 1)))
