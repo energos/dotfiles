@@ -884,6 +884,54 @@
         <direction>down</direction>
       </action>
     </keybind>
+    <!-- Keybindings to search the internet for the contents of the clipboard -->
+    <keybind key="W-s">
+      <keybind key="g">
+        <action name="Execute">
+          <command>pqp search google</command>
+        </action>
+      </keybind>
+      <keybind key="y">
+        <action name="Execute">
+          <command>pqp search youtube</command>
+        </action>
+      </keybind>
+      <keybind key="d">
+        <action name="Execute">
+          <command>pqp search dictionary</command>
+        </action>
+      </keybind>
+      <keybind key="u">
+        <action name="Execute">
+          <command>pqp search urban-dictionary</command>
+        </action>
+      </keybind>
+      <keybind key="k">
+        <action name="Execute">
+          <command>pqp search kabum</command>
+        </action>
+      </keybind>
+      <keybind key="t">
+        <action name="Execute">
+          <command>pqp search tweakers</command>
+        </action>
+      </keybind>
+      <keybind key="h">
+        <action name="Execute">
+          <command>pqp search hardware.info</command>
+        </action>
+      </keybind>
+      <keybind key="s">
+        <action name="Execute">
+          <command>pqp search stack-overflow</command>
+        </action>
+      </keybind>
+      <keybind key="w">
+        <action name="Execute">
+          <command>pqp search wikipedia</command>
+        </action>
+      </keybind>
+    </keybind>
     <!-- Keybindings for running applications -->
     <!-- CEE
     <keybind key="W-e">

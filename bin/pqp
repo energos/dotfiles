@@ -89,6 +89,38 @@ case "$1" in
     "firefox")
         show_window Navigator $HIDEDESKTOP || firefox &> /dev/null &
         ;;
+    "search")
+        case "$2" in
+            "youtube")
+                engine="https://www.youtube.com/results?search_query="
+                ;;
+            "dictionary")
+                engine="https://en.oxforddictionaries.com/definition/"
+                ;;
+            "urban-dictionary")
+                engine="https://www.urbandictionary.com/define.php?term="
+                ;;
+            "kabum")
+                engine="https://www.kabum.com.br/cgi-local/site/listagem/listagem.cgi?string="
+                ;;
+            "tweakers")
+                engine="https://tweakers.net/zoeken/?keyword="
+                ;;
+            "hardware.info")
+                engine="https://nl.hardware.info/#search:"
+                ;;
+            "stack-overflow")
+                engine="https://stackoverflow.com/search?q="
+                ;;
+            "wikipedia")
+                engine="https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search="
+                ;;
+            *)
+                engine="https://www.google.com/search?q="
+                ;;
+        esac
+        firefox "${engine}$(xclip -selection clipboard -o)" &> /dev/null &
+        ;;
     "mc")
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
         ;;
