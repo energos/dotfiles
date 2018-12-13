@@ -74,6 +74,40 @@
 (when (eq system-type 'windows-nt)
   (setq tramp-default-method "plink"))
 
+;; --- webjump ---
+(setq webjump-sites
+      '(
+        ("Google" .
+         [simple-query "https://www.google.com"
+                       "https://www.google.com/search?q="
+                       ""])
+        ("DuckDuckGo" .
+         [simple-query "https://duckduckgo.com"
+                       "https://duckduckgo.com/?q="
+                       ""])
+        ("The Weather Channel" .
+         "https://weather.com/pt-BR/clima/10dias/l/BRXX0163:1:BR")
+        ("Wikipedia" .
+         [simple-query "https://wikipedia.org"
+                       "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search="
+                       ""])
+        ("Oxford Dictionary" .
+         [simple-query "https://en.oxforddictionaries.com"
+                       "https://en.oxforddictionaries.com/definition/"
+                       ""])
+        ("Urban Dictionary" .
+         [simple-query "https://www.urbandictionary.com"
+                       "https://www.urbandictionary.com/define.php?term="
+                       ""])
+        ("Emacs Wiki" .
+         [simple-query "https://www.emacswiki.org"
+                       "https://www.emacswiki.org/cgi-bin/wiki/"
+                       ""])
+        ("Emacs Home Page" .
+         "https://www.gnu.org/software/emacs/emacs.html")
+        ))
+
+(global-set-key (kbd "H-w") 'webjump)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LOCAL elisp FILES
