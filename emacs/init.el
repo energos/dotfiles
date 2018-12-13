@@ -213,6 +213,41 @@
 (use-package htmlize
   :ensure t)
 
+;; https://github.com/hrs/engine-mode
+(use-package engine-mode
+  :ensure t
+  :config
+  (defengine google
+    "https://www.google.com/search?q=%s"
+    :keybinding "g")
+  (defengine youtube
+    "https://www.youtube.com/results?search_query=%s"
+    :keybinding "y")
+  (defengine dictionary
+    "https://en.oxforddictionaries.com/definition/%s"
+    :keybinding "d")
+  (defengine urban-dictionary
+    "https://www.urbandictionary.com/define.php?term=%s"
+    :keybinding "u")
+  (defengine kabum
+    "https://www.kabum.com.br/cgi-local/site/listagem/listagem.cgi?string=%s"
+    :keybinding "k")
+  (defengine tweakers
+    "https://tweakers.net/zoeken/?keyword=%s"
+    :keybinding "t")
+  (defengine hardware.info
+    "https://nl.hardware.info/#search:%s"
+    :keybinding "h")
+  (defengine stack-overflow
+    "https://stackoverflow.com/search?q=%s"
+    :keybinding "s")
+  (defengine wikipedia
+    "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+    :keybinding "w")
+  (engine/set-keymap-prefix (kbd "H-/"))
+  (global-set-key (kbd "H-t") 'engine/search-tweakers)
+  (engine-mode t))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
