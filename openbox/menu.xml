@@ -397,11 +397,11 @@
   </item>
   <separator />
   <item label="Configure Openbox (obconf)">
-    <action name="Execute"><execute>obconf</execute></action>
+    <action name="Execute"><command>obconf</command></action>
   </item>
   <separator />
   <item label="Lock Screen (slock)">
-    <action name="Execute"><execute>slock</execute></action>
+    <action name="Execute"><command>slock</command></action>
   </item>
   <separator />
   <item label="Restart Openbox">
@@ -421,25 +421,25 @@
 
   <!-- Terminal & File Manager-->
   <item label="Terminal (urxvt)" icon="/home/energos/.local/share/icons/Utilities-terminal.svg">
-    <action name="Execute"><execute>urxvtcd -name Terminal</execute></action>
+    <action name="Execute"><command>urxvtcd -name Terminal</command></action>
   </item>
   <item label="Terminal (xterm)" icon="/usr/share/icons/Adwaita/16x16/apps/utilities-terminal.png">
-    <action name="Execute"><execute>xterm</execute></action>
+    <action name="Execute"><command>xterm</command></action>
   </item>
   <item label="Midnight Commander" icon="/home/energos/.local/share/icons/mc.svg" >
-    <action name="Execute"><execute>urxvtcd -title "Midnight Commander" -icon .local/share/icons/mc.svg -geometry 96x48 -e mc</execute></action>
+    <action name="Execute"><command>urxvtcd -title "Midnight Commander" -icon .local/share/icons/mc.svg -geometry 96x48 -e mc</command></action>
   </item>
   <item label="File Manager" icon="/usr/share/icons/Adwaita/16x16/apps/system-file-manager.png" >
-    <action name="Execute"><execute>pcmanfm</execute></action>
+    <action name="Execute"><command>pcmanfm</command></action>
   </item>
   <separator />
 
   <!-- Editors -->
   <item label="Emacs" icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
-    <action name="Execute"><execute>emacsclient -c -n -a "emacs"</execute></action>
+    <action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action>
   </item>
   <item label="Geany" icon="/usr/share/icons/hicolor/16x16/apps/geany.png">
-    <action name="Execute"><execute>geany</execute></action>
+    <action name="Execute"><command>geany</command></action>
   </item>
   <separator />
 
@@ -448,55 +448,55 @@
     <action name="Execute"><command>firefox</command></action>
   </item>
   <item label="Falkon" icon="/usr/share/icons/hicolor/16x16/apps/falkon.png">
-    <action name="Execute"><execute>falkon</execute></action>
+    <action name="Execute"><command>falkon</command></action>
   </item>
   <!-- <item label="Claws Mail" icon="/usr/share/icons/Adwaita/16x16/emblems/emblem-mail.png"> -->
-  <!--   <action name="Execute"><execute>claws-mail</execute></action> -->
+  <!--   <action name="Execute"><command>claws-mail</command></action> -->
   <!-- </item> -->
   <separator />
 
   <!-- CAD -->
   <item label="KiCad" icon="/usr/share/icons/hicolor/22x22/apps/kicad.png">
-    <action name="Execute"><execute>kicad</execute></action>
+    <action name="Execute"><command>kicad</command></action>
   </item>
   <item label="Eagle PCB" icon="/usr/share/pixmaps/eagle-7.3.0-icon50.png">
-    <action name="Execute"><execute>eagle</execute></action>
+    <action name="Execute"><command>eagle</command></action>
   </item>
   <separator />
   
   <!-- Media Player -->
   <item label="Media Player" icon="/usr/share/icons/hicolor/16x16/apps/smplayer.png">
-    <action name="Execute"><execute>smplayer</execute></action>
+    <action name="Execute"><command>smplayer</command></action>
   </item>
   <item label="YouTube Browser" icon="/home/energos/.local/share/icons/youtube.png">
-    <action name="Execute"><execute>smtube</execute></action>
+    <action name="Execute"><command>smtube</command></action>
   </item>
   <separator />
 
   <!-- Office -->
   <item label="Calibre EBook Manager" icon="/usr/share/icons/hicolor/16x16/apps/calibre-gui.png">
-    <action name="Execute"><execute>calibre --detach</execute></action>
+    <action name="Execute"><command>calibre --detach</command></action>
   </item>
   <item label="Open Office Calc" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-calc.png">
-    <action name="Execute"><execute>oocalc</execute></action>
+    <action name="Execute"><command>oocalc</command></action>
   </item>
   <item label="Open Office Writer" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-writer.png">
-    <action name="Execute"><execute>oowriter</execute></action>
+    <action name="Execute"><command>oowriter</command></action>
   </item>
   <separator />
   
   <!-- Virtual Machines -->
   <item label="VirtualBox" icon="/usr/share/icons/hicolor/16x16/apps/virtualbox.png">
-    <action name="Execute"><execute>VirtualBox</execute></action>
+    <action name="Execute"><command>VirtualBox</command></action>
   </item>
   <item label="Virtual Manager" icon="/usr/share/icons/hicolor/16x16/apps/virt-manager.png">
-    <action name="Execute"><execute>virt-manager</execute></action>
+    <action name="Execute"><command>virt-manager</command></action>
   </item>
   <separator />
 
   <!-- Run command-->
   <item label="Run Command" icon="/usr/share/icons/Adwaita/16x16/actions/document-send.png">
-    <action name="Execute"><execute>gmrun</execute></action>
+    <action name="Execute"><command>gmrun</command></action>
   </item>
   <separator />
 
