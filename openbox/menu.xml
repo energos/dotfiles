@@ -445,13 +445,10 @@
 
   <!-- Internet -->
   <item label="Firefox" icon="/usr/share/pixmaps/aurora.png">
-    <action name="Execute">
-      <command>firefox</command>
-      <startupnotify>
-        <enabled>yes</enabled>
-        <wmclass>Firefox</wmclass>
-      </startupnotify>
-    </action>
+    <action name="Execute"><command>firefox</command></action>
+  </item>
+  <item label="Falkon" icon="/usr/share/icons/hicolor/16x16/apps/falkon.png">
+    <action name="Execute"><execute>falkon</execute></action>
   </item>
   <!-- <item label="Claws Mail" icon="/usr/share/icons/Adwaita/16x16/emblems/emblem-mail.png"> -->
   <!--   <action name="Execute"><execute>claws-mail</execute></action> -->
@@ -488,9 +485,12 @@
   </item>
   <separator />
   
-  <!-- Virtualbox -->
+  <!-- Virtual Machines -->
   <item label="VirtualBox" icon="/usr/share/icons/hicolor/16x16/apps/virtualbox.png">
     <action name="Execute"><execute>VirtualBox</execute></action>
+  </item>
+  <item label="Virtual Manager" icon="/usr/share/icons/hicolor/16x16/apps/virt-manager.png">
+    <action name="Execute"><execute>virt-manager</execute></action>
   </item>
   <separator />
 
