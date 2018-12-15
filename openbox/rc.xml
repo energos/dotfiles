@@ -1410,6 +1410,18 @@
 
   # end of the example
 -->
+    <!-- No decorations on zathura -->
     <application class="Zathura"> <decor>no</decor> </application>
+
+    <!-- Center gmrun -->
+    <application class="Gmrun">
+      <decor>no</decor>
+      <position force="no">
+        <x>center</x>
+        <y>3/8</y>
+      </position>
+    </application>
+
   </applications>
+
 </openbox_config>
