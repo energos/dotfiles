@@ -3,6 +3,9 @@
 # echo "$1 | $2 | $3 | $4 | $5 | $6"
 # exit
 
+# Load host/user specific configuration
+[[ -f ~/.pqprc ]] && . ~/.pqprc
+
 TERMINAL=urxvtcd
 ICONS=$HOME/.local/share/icons
 HIDEDESKTOP=4
