@@ -339,34 +339,34 @@
     <!-- Raise Volume -->
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>amixer -q set Master 1%+ unmute</command>
+        <command>pqp volume up</command>
       </action>
     </keybind>
     <keybind key="F15">
       <action name="Execute">
-        <command>amixer -q set Master 1%+ unmute</command>
+        <command>pqp volume up</command>
       </action>
     </keybind>
     <!-- Lower Volume -->
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <command>amixer -q set Master 1%- unmute</command>
+        <command>pqp volume down</command>
       </action>
     </keybind>
     <keybind key="F14">
       <action name="Execute">
-        <command>amixer -q set Master 1%- unmute</command>
+        <command>pqp volume down</command>
       </action>
     </keybind>
     <!-- Toggle Mute -->
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <command>amixer -q set Master toggle</command>
+        <command>pqp volume toggle</command>
       </action>
     </keybind>
     <keybind key="S-F14">
       <action name="Execute">
-        <command>amixer -q set Master toggle</command>
+        <command>pqp volume toggle</command>
       </action>
     </keybind>
     <!-- Media Player -->

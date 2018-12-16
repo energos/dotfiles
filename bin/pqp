@@ -183,6 +183,35 @@ case "$1" in
         # ugly hack to give gmrum time to shut off
         (sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,-1,$2) &
         ;;
+    "volume")
+        # case "$2" in
+        #     "up")
+        #         [[ $(pulsemixer --get-mute) == 1 ]] && pulsemixer --unmute || pulsemixer --change-volume +1 --unmute
+        #         ;;
+        #     "down")
+        #         [[ $(pulsemixer --get-mute) == 1 ]] && pulsemixer --unmute || pulsemixer --change-volume -1 --unmute
+        #         ;;
+        #     "toggle")
+        #         pulsemixer --toggle-mute
+        #         ;;
+        # esac
+        # ;;
+        mixer=${ALSA_MIXER:-Master}
+        case "$2" in
+            "up")
+                amixer sget ${mixer} | grep '\[off\]' &> /dev/null && amixer -q sset ${mixer} unmute || amixer -q sset ${mixer} 1%+
+                ;;
+            "down")
+                amixer sget ${mixer} | grep '\[off\]' &> /dev/null && amixer -q sset ${mixer} unmute || amixer -q sset ${mixer} 1%-
+                ;;
+            "toggle")
+                amixer -q sset ${mixer} toggle
+                ;;
+            *)
+                amixer sget ${mixer}
+                ;;
+        esac
+        ;;
     *)
         $TERMINAL -title "$*" -e $@
 esac
