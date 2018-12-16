@@ -196,19 +196,21 @@ case "$1" in
         #         ;;
         # esac
         # ;;
-        mixer=${ALSA_MIXER:-Master}
+        volume=${ALSA_VOLUME:-Master}
+        mute=${ALSA_MUTE:-Master}
         case "$2" in
             "up")
-                amixer sget ${mixer} | grep '\[off\]' &> /dev/null && amixer -q sset ${mixer} unmute || amixer -q sset ${mixer} 1%+
+                amixer sget ${mute} | grep '\[off\]' &> /dev/null && amixer -q sset ${mute} unmute || amixer -q sset ${volume} 1%+
                 ;;
             "down")
-                amixer sget ${mixer} | grep '\[off\]' &> /dev/null && amixer -q sset ${mixer} unmute || amixer -q sset ${mixer} 1%-
+                amixer sget ${mute} | grep '\[off\]' &> /dev/null && amixer -q sset ${mute} unmute || amixer -q sset ${volume} 1%-
                 ;;
             "toggle")
-                amixer -q sset ${mixer} toggle
+                amixer -q sset ${mute} toggle
                 ;;
             *)
-                amixer sget ${mixer}
+                amixer sget ${volume}
+                [[ ${mute} != ${volume} ]] && amixer sget ${mute}
                 ;;
         esac
         ;;
