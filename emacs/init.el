@@ -338,6 +338,51 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
   (interactive)
   (shell-command "echo reload | nc -q 1 localhost 32000 && echo Browser Reloaded"))
 
+;; --- Symbol highlighting ---
+;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
+(defun unhighlight ()
+  "Unhighlight all."
+  (interactive)
+  (unhighlight-regexp t))
+
+(defun unhighlight-all-windows ()
+  "Unhighlight all in all windows."
+  (interactive)
+    (save-selected-window
+      (cl-dolist (x (window-list))
+        (select-window x)
+        (unhighlight-regexp t))))
+
+(defun highlight-symbol ()
+  "Highlight symbol at point."
+  (interactive)
+  (let ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
+    (highlight-regexp regexp)))
+
+(defun unhighlight-symbol ()
+  "Unhighlight symbol at point."
+  (interactive)
+  (let ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
+    (unhighlight-regexp regexp)))
+
+(defun highlight-symbol-all-windows ()
+  "Highlight symbol at point in all windows."
+  (interactive)
+  (let ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
+    (save-selected-window
+      (cl-dolist (x (window-list))
+        (select-window x)
+        (highlight-regexp regexp)))))
+
+(defun unhighlight-symbol-all-windows ()
+  "Highlight symbol at point in all windows."
+  (interactive)
+  (let ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
+    (save-selected-window
+      (cl-dolist (x (window-list))
+        (select-window x)
+        (unhighlight-regexp regexp)))))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG-MODE
 
@@ -501,6 +546,16 @@ Move point to the previous position that is the beggining of a symbol."
                 (lambda () (interactive) (energos/resize-frame t)))
 
 (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
+
+;; --- Symbol highlighting ---
+(global-set-key (kbd "H-H") 'highlight-symbol-all-windows)
+(global-set-key (kbd "H-h") 'highlight-symbol)
+
+(global-set-key (kbd "H-U") 'unhighlight-symbol-all-windows)
+(global-set-key (kbd "H-u") 'unhighlight-symbol)
+
+(global-set-key (kbd "H-A") 'unhighlight-all-windows)
+(global-set-key (kbd "H-a") 'unhighlight)
 
 ;; --- Frequently used files ---
 (global-set-key (kbd "\e\ei") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
