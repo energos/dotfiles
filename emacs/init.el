@@ -503,6 +503,7 @@ Move point to the previous position that is the beggining of a symbol."
 ;; --- Frequently used files ---
 (global-set-key (kbd "\e\ei") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "\e\en") (lambda () (interactive) (find-file org-default-notes-file)))
+(global-set-key (kbd "\e\es") (lambda () (interactive) (switch-to-buffer "*scratch*")))
 
 ;; --- CapsLock -> F13 -> Hyper ---
 (global-set-key (kbd "H-s") 'save-buffer)
