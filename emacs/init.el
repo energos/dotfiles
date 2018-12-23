@@ -475,6 +475,8 @@ Move point to the previous position that is the beggining of a symbol."
                               (interactive "p") (forward-symbol (- arg))))
 (global-set-key (kbd "M-f") 'forward-symbol)
 
+(global-set-key (kbd "C-S-s") 'isearch-forward-symbol-at-point)
+
 (global-set-key (kbd "C-c C-o") 'browse-url-at-point)
 (setq browse-url-browser-function 'browse-url-xdg-open)
 
