@@ -348,16 +348,18 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun unhighlight-all-windows ()
   "Unhighlight all in all windows."
   (interactive)
-    (save-selected-window
-      (cl-dolist (x (window-list))
-        (select-window x)
-        (unhighlight-regexp t))))
+  (save-selected-window
+    (cl-dolist (x (window-list))
+      (select-window x)
+      (unhighlight-regexp t))))
 
 (defun highlight-symbol ()
   "Highlight symbol at point."
   (interactive)
-  (let ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
-    (highlight-regexp regexp)))
+  (let* ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp)))
+         (hi-lock-auto-select-face t)
+         (face (hi-lock-read-face-name)))
+    (highlight-regexp regexp face)))
 
 (defun unhighlight-symbol ()
   "Unhighlight symbol at point."
@@ -368,11 +370,13 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun highlight-symbol-all-windows ()
   "Highlight symbol at point in all windows."
   (interactive)
-  (let ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
+  (let* ((regexp (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp)))
+         (hi-lock-auto-select-face t)
+         (face (hi-lock-read-face-name)))
     (save-selected-window
       (cl-dolist (x (window-list))
         (select-window x)
-        (highlight-regexp regexp)))))
+        (highlight-regexp regexp face)))))
 
 (defun unhighlight-symbol-all-windows ()
   "Highlight symbol at point in all windows."
