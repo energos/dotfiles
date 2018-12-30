@@ -228,7 +228,7 @@ Plugin {
         button {
             icon = Utilities-terminal
             tooltip = Terminal
-            action = urxvtcd -geometry +2780+1430
+            action = urxvtcd -geometry -8-44
         }
         button {
             icon = emacs
@@ -374,7 +374,7 @@ Plugin {
         # TooltipFmt = %A %x
         TooltipFmt = %A %d/%m/%Y
         # Action = gsimplecal
-        Action = urxvtcd -title CALENDAR -geometry 70x36+2924+1153 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
+        Action = urxvtcd -title CALENDAR -geometry 70x36-8-44 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
     # Color = LavenderBlush
         ShowCalendar = false
     Color = Gray95
