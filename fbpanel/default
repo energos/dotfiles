@@ -237,7 +237,8 @@ Plugin {
         }
         button {
             # icon = web-browser
-            image = /usr/lib64/firefox/browser/icons/mozicon128.png
+            # image = /usr/share/pixmaps/aurora.png
+            icon = aurora
             tooltip = Firefox Web Browser
             action = firefox
         }
