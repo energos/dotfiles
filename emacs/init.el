@@ -336,7 +336,11 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun browser-reload ()
   "Reload current desktop browser windows."
   (interactive)
-  (message (shell-command-to-string "windows=$(xdotool search --desktop $(xdotool get_desktop) --classname ^Navigator$); for i in ${windows}; do xdotool key --window $i F5; done; [[ -z ${windows} ]] && echo -n No browser found in current desktop || echo -n $(wc -w <<< ${windows}) browser window\\(s\\) reloaded")))
+  (message (shell-command-to-string "\
+windows=$(xdotool search --desktop $(xdotool get_desktop) --classname ^Navigator$); \
+for i in ${windows}; do xdotool key --window $i F5; done; \
+[[ -z ${windows} ]] && echo -n No browser found in current desktop \
+|| echo -n $(wc -w <<< ${windows}) browser window\\(s\\) reloaded")))
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
