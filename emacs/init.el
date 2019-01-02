@@ -333,11 +333,10 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (message (format "Frame width resized to %d characters" width))))
 
 ;; --- Recarregar o Browser ---
-;; https://addons.mozilla.org/en-US/firefox/addon/remote-control
 (defun browser-reload ()
-  "Reload browser."
+  "Reload current desktop browser windows."
   (interactive)
-  (shell-command "echo reload | nc -q 1 localhost 32000 && echo Browser Reloaded"))
+  (message (shell-command-to-string "windows=$(xdotool search --desktop $(xdotool get_desktop) --classname ^Navigator$); for i in ${windows}; do xdotool key --window $i F5; done; [[ -z ${windows} ]] && echo -n No browser found in current desktop || echo -n $(wc -w <<< ${windows}) browser window\\(s\\) reloaded")))
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
