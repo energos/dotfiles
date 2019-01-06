@@ -412,8 +412,11 @@ for i in ${windows}; do xdotool key --window $i F5; done; \
    (scheme . t)
    ))
 
-;; Avaliar blocos de código sem exigir confirmação
-;; http://orgmode.org/manual/Code-evaluation-security.html
+;; --- DANGER! ---
+;; Avaliar código sem exigir confirmação
+;; https://orgmode.org/manual/Code-evaluation-security.html
+;; --- DANGER! ---
+(setq org-confirm-elisp-link-function nil)
 (setq org-confirm-babel-evaluate
       (lambda (lang body)
         (not (or
@@ -422,6 +425,7 @@ for i in ${windows}; do xdotool key --window $i F5; done; \
               (string= lang "dot")        ; ...
               (string= lang "calc")
               (string= lang "emacs-lisp")
+              (string= lang "elisp")
               (string= lang "C")
               (string= lang "C++")
               (string= lang "sh")         ; https://emacs.stackexchange.com/questions/35321/
@@ -481,6 +485,12 @@ for i in ${windows}; do xdotool key --window $i F5; done; \
 ;; %t          Time stamp, date only.
 ;; %T          Time stamp, with date and time.
 ;; %u, %U      Like the above, but inactive time stamps.
+
+;; --- link to man pages ---
+;; https://www.gnu.org/software/emacs/manual/html_node/org/Adding-hyperlink-types.html
+;; org-man.el is archived in package org-plus-contrib at https://orgmode.org/elpa.html
+(require 'org-man)
+(setq org-man-command 'woman)
 
 ;; --- org-mode specific shortcuts ---
 (global-set-key (kbd "C-c b") 'org-switchb)
