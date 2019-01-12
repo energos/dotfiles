@@ -217,6 +217,30 @@ case "$1" in
                 ;;
         esac
         ;;
+    "font")
+        size=${2:-11}
+        if ((${size} >= 8 && ${size} <= 24)); then
+            case "${TERM}" in
+                "xterm")
+                    # echo "This is xterm - size is ${size}"
+                    xtermcontrol --font "Inconsolata:size=${size}"
+                    ;;
+                "rxvt"*)
+                    # echo "This is urxvt - size is ${size}"
+                    printf '\e]710;%s\007' "xft:Iosevka:size=${size}"
+                    ;;
+                *)
+                    tty -s && echo "Not xterm neither rxvt..."
+                    ;;
+            esac
+        else
+            tty -s && echo "\"${size}\" is not in the range (8..24)"
+        fi
+        ;;
+    "title")
+        shift
+        tty -s && printf '\e]0;%s\a' "$*"
+        ;;
     *)
         $TERMINAL -title "$*" -e $@
 esac
