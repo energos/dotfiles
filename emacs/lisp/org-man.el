@@ -26,9 +26,9 @@
 (require 'org)
 
 (org-link-set-parameters "man"
-			 :follow #'org-man-open
-			 :export #'org-man-export
-			 :store #'org-man-store-link)
+                         :follow #'org-man-open
+                         :export #'org-man-export
+                         :store #'org-man-store-link)
 
 (defcustom org-man-command 'man
   "The Emacs command to be used to display a man page."
@@ -62,7 +62,7 @@ PATH should be a topic that can be thrown at the man command."
 (defun org-man-export (link description format)
   "Export a man page link from Org files."
   (let ((path (format "http://man.he.net/?topic=%s&section=all" link))
-	(desc (or description link)))
+        (desc (or description link)))
     (cond
      ((eq format 'html) (format "<a target=\"_blank\" href=\"%s\">%s</a>" path desc))
      ((eq format 'latex) (format "\\href{%s}{%s}" path desc))
