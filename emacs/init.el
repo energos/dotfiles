@@ -490,7 +490,7 @@ for i in ${windows}; do xdotool key --window $i F5; done; \
 ;; https://www.gnu.org/software/emacs/manual/html_node/org/Adding-hyperlink-types.html
 ;; org-man.el is archived in package org-plus-contrib at https://orgmode.org/elpa.html
 (require 'org-man)
-(setq org-man-command 'woman)
+(setq org-man-command 'man)
 
 ;; --- org-mode specific shortcuts ---
 (global-set-key (kbd "C-c b") 'org-switchb)

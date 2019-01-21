@@ -24,6 +24,7 @@
 ;;; Commentary:
 
 (require 'org)
+(require 'man)
 
 (org-link-set-parameters "man"
                          :follow #'org-man-open
@@ -59,9 +60,15 @@ PATH should be a topic that can be thrown at the man command."
       (match-string 1 (buffer-name))
     (error "Cannot create link to this man page")))
 
+(defun org-man-translate-to-url (link)
+  (let ((args (split-string (Man-translate-references link)))
+        (section "1"))
+    (if (> (length args) 1) (setq section (pop args)))
+    (format "http://man7.org/linux/man-pages/man%s/%s.%s.html" (substring section 0 1) (car args) section)))
+
 (defun org-man-export (link description format)
   "Export a man page link from Org files."
-  (let ((path (format "http://man.he.net/?topic=%s&section=all" link))
+  (let ((path (org-man-translate-to-url link))
         (desc (or description link)))
     (cond
      ((eq format 'html) (format "<a target=\"_blank\" href=\"%s\">%s</a>" path desc))
