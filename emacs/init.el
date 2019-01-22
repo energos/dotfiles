@@ -640,6 +640,11 @@ Move point to the previous position that is the beggining of a symbol."
 ;; M5
 (define-key key-translation-map (kbd "ESC <f5>") (kbd "C-x"))
 
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; AREA 51
+(load (expand-file-name "experimental.el" user-emacs-directory))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
 (require 'server)
