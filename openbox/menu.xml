@@ -434,6 +434,72 @@
   </item>
   <separator />
 
+  <!-- The Manuals -->
+  <menu id="gnu" label="The Manuals" icon="/home/energos/.local/share/icons/Blue_question_mark_icon.svg">
+    <menu id="emacs" label="The GNU Emacs Manuals"  icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
+      <item label="The Emacs Editor">
+        <action name="Execute">
+          <command>xdg-open https://www.gnu.org/software/emacs/manual/html_mono/emacs.html</command>
+        </action>
+      </item>
+      <item label="Emacs Lisp">
+        <action name="Execute">
+          <command>xdg-open https://www.gnu.org/software/emacs/manual/html_mono/elisp.html</command>
+        </action>
+      </item>
+      <item label="Programming in Emacs Lisp">
+        <action name="Execute">
+          <command>xdg-open https://www.gnu.org/software/emacs/manual/html_mono/eintr.html</command>
+        </action>
+      </item>
+      <item label="The GNU Emacs FAQ">
+        <action name="Execute">
+          <command>xdg-open https://www.gnu.org/software/emacs/manual/html_mono/efaq.html</command>
+        </action>
+      </item>
+      <item label="Org Mode Manual">
+        <action name="Execute">
+          <command>xdg-open https://www.gnu.org/software/emacs/manual/html_mono/org.html</command>
+        </action>
+      </item>
+      <separator />
+      <item label="All GNU Emacs Manuals">
+        <action name="Execute">
+          <command>xdg-open https://www.gnu.org/software/emacs/manual/</command>
+        </action>
+      </item>
+    </menu>
+    <separator />
+    <item label="All About GIT" icon="/home/energos/.local/share/icons/git.png">
+      <action name="Execute">
+        <command>xdg-open http://speedy/~energos/git.html</command>
+      </action>
+    </item>
+    <item label="Magit User Manual" icon="/home/energos/.local/share/icons/magit.png">
+      <action name="Execute">
+        <command>xdg-open https://magit.vc/manual/magit.html</command>
+      </action>
+    </item>
+    <separator />
+    <item label="The Guile Reference Manual" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
+      <action name="Execute">
+        <command>xdg-open https://www.gnu.org/software/guile/manual/guile.html</command>
+      </action>
+    </item>
+    <item label="The GNU C Reference Manual" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
+      <action name="Execute">
+        <command>xdg-open https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html</command>
+      </action>
+    </item>
+    <separator />
+    <item label="All GNU Manuals" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
+      <action name="Execute">
+        <command>xdg-open https://www.gnu.org/manual/manual.html</command>
+      </action>
+    </item>
+  </menu>
+  <separator />
+
   <!-- Editors -->
   <item label="Emacs" icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
     <action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action>
