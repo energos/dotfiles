@@ -333,6 +333,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (message (format "Frame width resized to %d characters" width))))
 
 ;; --- Recarregar o Browser ---
+;; https://stackoverflow.com/questions/12026953/automatic-web-page-refresh-using-xdotool-not-sending-key-after-window-focus
 (defun browser-reload ()
   "Reload current desktop browser windows."
   (interactive)
