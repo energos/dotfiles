@@ -39,6 +39,7 @@
 (defun org-man-open (path)
   "Visit the manpage on PATH.
 PATH should be a topic that can be thrown at the man command."
+  (setq path (car (split-string path "#")))
   (funcall org-man-command path))
 
 (defun org-man-store-link ()
@@ -61,10 +62,11 @@ PATH should be a topic that can be thrown at the man command."
     (error "Cannot create link to this man page")))
 
 (defun org-man-translate-to-url (link)
-  (let ((args (split-string (Man-translate-references link)))
-        (section "1"))
-    (if (> (length args) 1) (setq section (pop args)))
-    (format "http://man7.org/linux/man-pages/man%s/%s.%s.html" (substring section 0 1) (car args) section)))
+  (setq link (split-string link "#"))
+  (let* ((args (split-string (Man-translate-references (car link))))
+         (section (if (> (length args) 1) (pop args) "1"))
+         (subsect (if (> (length link) 1) (concat "#" (subst-char-in-string ?\s ?_ (cadr link))) "")))
+    (format "http://man7.org/linux/man-pages/man%s/%s.%s.html%s" (substring section 0 1) (car args) section subsect)))
 
 (defun org-man-export (link description format)
   "Export a man page link from Org files."
