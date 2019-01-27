@@ -581,6 +581,11 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "\e\en") (lambda () (interactive) (find-file org-default-notes-file)))
 (global-set-key (kbd "\e\es") (lambda () (interactive) (switch-to-buffer "*scratch*")))
 
+;; --- Insert key ---
+;; I keep accidentally hitting that damn key
+(global-set-key (kbd "<insert>") (lambda () (interactive) (overwrite-mode -1)))
+(global-set-key (kbd "C-x <insert>") 'overwrite-mode)
+
 ;; --- CapsLock -> F13 -> Hyper ---
 (global-set-key (kbd "H-s") 'save-buffer)
 (global-set-key (kbd "H-k") 'kill-buffer)
