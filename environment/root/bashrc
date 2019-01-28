@@ -19,8 +19,8 @@ fi
 # https://stackoverflow.com/questions/41046558/bashrc-how-to-check-in-what-terminal-the-shell-is-running
 # Search history
 if [[ ! -v INSIDE_EMACS ]]; then
-    bind '"\e[A"':history-search-backward
-    bind '"\e[B"':history-search-forward
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
 fi
 
 # preserve history
