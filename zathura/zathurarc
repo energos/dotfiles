@@ -1,12 +1,20 @@
 # .config/zathura/zathurarc
 
-set window-height 2076
-set window-width 1684
-set font "Droid Sans Mono Slashed 10"
+# move monitor height dependent configuration to a dedicated rc file
+# ln -sf zathura.XXXXp zathura.height
+include zathura.height
+
 set page-padding 2
 set window-title-basename true
 set selection-clipboard clipboard
-# set guioptions ""
+
+# colors
+set default-bg "#f7f7f7"
+set recolor true
+set recolor-reverse-video true
+set recolor-keephue true
+set recolor-lightcolor "#f7f7f7"
+set recolor-darkcolor "#000000"
 
 unmap q
 unmap [index] q

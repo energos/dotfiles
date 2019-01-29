@@ -1,0 +1,9 @@
+# .config/zathura/zathura.1024p
+# best for 1024p height monitor
+# this file holds height dependent configuration
+# ln -sf zathura.1024p zathura.height
+
+set window-height 1024
+set window-width 900
+set guioptions ""
+set font "xos4 Terminus Regular 11"
