@@ -218,24 +218,62 @@ case "$1" in
         esac
         ;;
     "font")
-        size=${2:-11}
-        if ((${size} >= 8 && ${size} <= 24)); then
-            case "${TERM}" in
-                "xterm")
-                    # echo "This is xterm - size is ${size}"
-                    xtermcontrol --font "Inconsolata:size=${size}"
+        tty -s || exit
+        # https://superuser.com/questions/418699/
+        DPI=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
+        THRESHOLD=${THRESHOLD:-120}
+        if (( $DPI > ${THRESHOLD} )); then
+            # echo "HIGH DPI"
+            size=${2:-11}
+            if ((${size} < 8 || ${size} > 24)); then
+                echo "\"${size}\" is not in the range (8..24)"
+                exit
+            fi
+            font_rxvt="xft:Iosevka:size=${size}"
+            font_xterm="Inconsolata:size=${size}"
+        else
+            # echo "low DPI"
+            size=${2:-"medium"}
+            case "${size}" in
+                "tiny")
+                    font_rxvt="-misc-fixed-medium-r-normal-*-10-*-*-*-*-*-*-*"
+                    font_xterm=${font_rxvt}
                     ;;
-                "rxvt"*)
-                    # echo "This is urxvt - size is ${size}"
-                    printf '\e]710;%s\007' "xft:Iosevka:size=${size}"
+                "small")
+                    font_rxvt="-misc-fixed-medium-r-normal-*-13-*-*-*-*-*-*-*"
+                    font_xterm=${font_rxvt}
+                    ;;
+                "medium")
+                    font_rxvt="-misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*"
+                    font_xterm=${font_rxvt}
+                    ;;
+                "large")
+                    font_rxvt="-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-*-*"
+                    font_xterm=${font_rxvt}
+                    ;;
+                "huge")
+                    font_rxvt="xft:xos4 Terminus:size=16"
+                    font_xterm="-misc-fixed-medium-r-normal-*-20-*-*-*-*-*-*-*"
                     ;;
                 *)
-                    tty -s && echo "Not xterm neither rxvt..."
+                    echo "\"${size}\" is neither \"tiny\" nor \"small\" nor \"medium\" nor \"large\" nor \"huge\""
+                    exit
                     ;;
             esac
-        else
-            tty -s && echo "\"${size}\" is not in the range (8..24)"
         fi
+        case "${TERM}" in
+            "xterm")
+                # echo "This is xterm - size is ${size} - font is ${font_xterm}"
+                xtermcontrol --font "${font_xterm}"
+                ;;
+            "rxvt"*)
+                # echo "This is urxvt - size is ${size} - font is ${font_rxvt}"
+                printf '\e]710;%s\007' "${font_rxvt}"
+                ;;
+            *)
+                echo "\"${TERM}\" is neither \"xterm\" nor \"rxvt\""
+                ;;
+        esac
         ;;
     "title")
         shift
