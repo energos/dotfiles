@@ -501,6 +501,12 @@ for i in ${windows}; do xdotool key --window $i F5; done; \
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
+
+;; --- We don't need a freaking mouse wheel ---
+(mouse-wheel-mode -1)
+(global-set-key (kbd "<mouse-4>") 'ignore)
+(global-set-key (kbd "<mouse-5>") 'ignore)
+
 (global-set-key (kbd "<f13>") 'ignore)
 (define-key key-translation-map (kbd "<f13>") 'event-apply-hyper-modifier)
 (when (or (eq system-type 'windows-nt) (eq system-type 'cygwin))
