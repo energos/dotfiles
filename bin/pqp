@@ -224,7 +224,8 @@ case "$1" in
         THRESHOLD=${THRESHOLD:-120}
         if (( $DPI > ${THRESHOLD} )); then
             # echo "HIGH DPI"
-            size=${2:-11}
+            [[ "${TERM}" == "xterm" ]] && default=12 || default=11
+            size=${2:-${default}}
             if ((${size} < 8 || ${size} > 24)); then
                 echo "\"${size}\" is not in the range (8..24)"
                 exit
