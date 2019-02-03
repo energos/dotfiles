@@ -345,6 +345,7 @@ for i in ${windows}; do xdotool key --window $i F5; done; \
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
+(require 'hi-lock)
 (defun unhighlight ()
   "Unhighlight all."
   (interactive)
