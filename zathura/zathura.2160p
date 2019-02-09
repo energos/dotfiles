@@ -4,6 +4,6 @@
 # ln -sf zathura.2160p zathura.height
 
 set window-height 2160
-set window-width 1800
+set window-width 1780
 set guioptions "s"
 set font "Iosevka 12"
