@@ -332,16 +332,26 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (set-frame-width (selected-frame) width)
     (message (format "Frame width resized to %d characters" width))))
 
+;; --- Send a key event to another application in same desktop ---
+(defun send-key-to-window-class (class key)
+  (if (executable-find "xdotool")
+      (message (shell-command-to-string (format "\
+class=%s; key=%s; \
+window=$(xdotool search --desktop $(xdotool get_desktop) --classname ^${class}$ | head -1); \
+if \[\[ -n ${window} \]\]; then \
+xdotool keyup ${key}; \
+actual=$(xdotool getwindowfocus); \
+echo -n Sending key \\'${key}\\' to \\'${class}\\' window; \
+xdotool windowactivate --sync ${window} key ${key}; \
+xdotool windowactivate ${actual}; \
+else echo -n No \\'${class}\\' window found in current desktop; fi" class key)))
+    (message "No 'xdotool' executable found")))
+
 ;; --- Recarregar o Browser ---
-;; https://stackoverflow.com/questions/12026953/automatic-web-page-refresh-using-xdotool-not-sending-key-after-window-focus
 (defun browser-reload ()
-  "Reload current desktop browser windows."
+  "Reload current desktop browser window."
   (interactive)
-  (message (shell-command-to-string "\
-windows=$(xdotool search --desktop $(xdotool get_desktop) --classname ^Navigator$); \
-for i in ${windows}; do xdotool key --window $i F5; done; \
-[[ -z ${windows} ]] && echo -n No browser found in current desktop \
-|| echo -n $(wc -w <<< ${windows}) browser window\\(s\\) reloaded")))
+  (send-key-to-window-class "Navigator" "F5"))
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
@@ -621,6 +631,18 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-1") 'delete-other-windows)
 (global-set-key (kbd "H-2") 'split-window-below)
 (global-set-key (kbd "H-3") 'split-window-horizontally)
+
+;; --- Send a key event to another application        ---
+;; --- WARNING! Send the same key used as a shortcut! ---
+(global-set-key (kbd "H-<f5>") 'browser-reload)
+(global-set-key (kbd "H-<prior>")
+                (lambda () (interactive) (send-key-to-window-class "Zathura" "Prior")))
+(global-set-key (kbd "H-<next>")
+                (lambda () (interactive) (send-key-to-window-class "Zathura" "Next")))
+(global-set-key (kbd "H-<home>")
+                (lambda () (interactive) (send-key-to-window-class "Zathura" "Home")))
+(global-set-key (kbd "H-<end>")
+                (lambda () (interactive) (send-key-to-window-class "Zathura" "End")))
 
 ;; --- Support for keyboard physical macro keys ---
 ;;
