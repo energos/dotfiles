@@ -1412,6 +1412,8 @@
 -->
     <!-- No decorations on zathura -->
     <application class="Zathura"> <decor>no</decor> </application>
+    <!-- No decorations on emacs -->
+    <application class="Emacs"> <decor>no</decor> </application>
 
     <!-- Center gmrun -->
     <application class="Gmrun">
