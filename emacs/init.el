@@ -333,25 +333,32 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (message (format "Frame width resized to %d characters" width))))
 
 ;; --- Send a key event to another application in same desktop ---
-(defun send-key-to-window-class (class key)
+(defun send-key-to-window-class (class key &optional noactivate)
+  "Send a KEY event to a application of class CLASS in same desktop.
+If last argument NOACTIVATE (optional) is t, will send the key without
+activating the window. Some applications will refuse to accept the key
+if its window is not active."
+  (if noactivate (setq noactivate "NOACTIVATE") (setq noactivate ""))
   (if (executable-find "xdotool")
       (message (shell-command-to-string (format "\
-class=%s; key=%s; \
+class=\"%s\"; key=\"%s\"; noact=\"%s\"; \
 window=$(xdotool search --desktop $(xdotool get_desktop) --classname ^${class}$ | head -1); \
 if \[\[ -n ${window} \]\]; then \
 xdotool keyup ${key}; \
-actual=$(xdotool getwindowfocus); \
+\[\[ -z ${noact} \]\] && actual=$(xdotool getwindowfocus); \
 echo -n Sending key \\'${key}\\' to \\'${class}\\' window; \
-xdotool windowactivate --sync ${window} key ${key}; \
-xdotool windowactivate ${actual}; \
-else echo -n No \\'${class}\\' window found in current desktop; fi" class key)))
+\[\[ -z ${noact} \]\] && xdotool windowactivate --sync ${window} key ${key} \|\| \
+xdotool key --window ${window} ${key}; \
+\[\[ -z ${noact} \]\] && xdotool windowactivate ${actual}; \
+else echo -n No \\'${class}\\' window found in current desktop; fi"
+                                                class key noactivate)))
     (message "No 'xdotool' executable found")))
 
 ;; --- Recarregar o Browser ---
 (defun browser-reload ()
   "Reload current desktop browser window."
   (interactive)
-  (send-key-to-window-class "Navigator" "F5"))
+  (send-key-to-window-class "Navigator" "F5" t))
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
