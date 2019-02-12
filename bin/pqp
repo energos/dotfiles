@@ -134,7 +134,7 @@ case "$1" in
         show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
-        show_window Zathura $HIDEDESKTOP || zathura ~/default.pdf &
+        show_window Zathura $HIDEDESKTOP || zathura ~/Books/default &
         ;;
     "man")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
