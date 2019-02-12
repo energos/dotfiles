@@ -42,21 +42,21 @@ show_window ()
     then
         if echo $WINDOW | grep -q ^$(xdotool getactivewindow)$ || xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE
         then
-            # echo "$WINDOW is ACTIVE so we HIDE it" > /dev/pts/7
+            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is ACTIVE so we HIDE it" > $DEBUGPORT
             xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
         else
-            # echo "$WINDOW is NOT ACTIVE so we SHOW it" > /dev/pts/7
+            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is NOT ACTIVE so we SHOW it" > $DEBUGPORT
             xdotool windowactivate $WINDOW
         fi
     else
         WINDOW=$(for i in $(seq $2 $HIDEDESKTOP); do xdotool search --desktop $i --classname ^$CLASS$; done | head -n 1)
         if [[ -n  $WINDOW ]]
         then
-            # echo "$WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > /dev/pts/7
+            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > $DEBUGPORT
             xdotool set_desktop_for_window $WINDOW $DESKTOP
             xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE || xdotool windowactivate $WINDOW
         else
-            # echo "Zero, zilch, zip, nada, nothing." > /dev/pts/7
+            [[ -n $DEBUGPORT ]] && echo "Zero, zilch, zip, nada, nothing." > $DEBUGPORT
             return 1
         fi
     fi
@@ -68,15 +68,20 @@ set -- $@
 
 # default is to search for CLASS in existent windows
 force_new=0
+# debug port
+DEBUGPORT=""
+# DEBUGPORT=/dev/pts/10
 
 # parse options
 while getopts ":n" option; do
     case $option in
-        n)  # echo "N" > /dev/pts/7
+        n)  [[ -n $DEBUGPORT ]] && echo "n: Force new instance" > $DEBUGPORT
             # abort search and run a new program instance
             force_new=1
             ;;
-        \?) # echo "${0##*/}: Invalid option -$OPTARG" > /dev/pts/7
+        \?) [[ -n $DEBUGPORT ]] && echo "?: ${0##*/}: Invalid option -$OPTARG" > $DEBUGPORT
+            tty -s && echo "${0##*/}: Invalid option -$OPTARG"
+            exit 1
             ;;
     esac
 done
