@@ -634,7 +634,9 @@ Move point to the previous position that is the beggining of a symbol."
                   (progn (local-unset-key (kbd "C-x C-e"))
                          (message "C-x C-e reset to default"))))
 
-(global-set-key (kbd "H-0") 'delete-window)
+(global-set-key (kbd "H-0")
+                (lambda () "Delete window or delete frame if there is only one window."
+                  (interactive) (if (one-window-p) (delete-frame) (delete-window))))
 (global-set-key (kbd "H-1") 'delete-other-windows)
 (global-set-key (kbd "H-2") 'split-window-below)
 (global-set-key (kbd "H-3") 'split-window-horizontally)
