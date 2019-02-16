@@ -1,1 +1,4 @@
 media-libs/libpng apng
+www-client/firefox hwaccel
+media-libs/libvpx postproc
+dev-db/sqlite secure-delete

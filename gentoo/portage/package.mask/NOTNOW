@@ -1,0 +1,29 @@
+# virtualbox
+>app-emulation/virtualbox-6.0.4
+>app-emulation/virtualbox-additions-6.0.4
+>app-emulation/virtualbox-extpack-oracle-6.0.4.128413
+>app-emulation/virtualbox-modules-6.0.4
+>app-emulation/virtualbox-guest-additions-6.0.4
+<app-emulation/virtualbox-6.0.4
+<app-emulation/virtualbox-additions-6.0.4
+<app-emulation/virtualbox-extpack-oracle-6.0.4.128413
+<app-emulation/virtualbox-modules-6.0.4
+>app-emulation/virtualbox-guest-additions-6.0.4
+
+# firefox
+>www-client/firefox-65.0
+<www-client/firefox-65.0
+
+# kicad
+>sci-electronics/kicad-5.0.1
+>sci-electronics/kicad-footprints-5.0.1
+>sci-electronics/kicad-meta-5.0.1
+>sci-electronics/kicad-packages3d-5.0.1
+>sci-electronics/kicad-symbols-5.0.1
+>sci-electronics/kicad-templates-5.0.1
+<sci-electronics/kicad-5.0.1
+<sci-electronics/kicad-footprints-5.0.1
+<sci-electronics/kicad-meta-5.0.1
+<sci-electronics/kicad-packages3d-5.0.1
+<sci-electronics/kicad-symbols-5.0.1
+<sci-electronics/kicad-templates-5.0.1

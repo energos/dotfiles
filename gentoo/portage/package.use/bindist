@@ -1,0 +1,4 @@
+media-libs/freetype -bindist
+dev-libs/openssl -bindist
+net-misc/openssh -bindist
+dev-qt/qtnetwork -bindist

@@ -2,6 +2,7 @@ x11-libs/libxcb xkb
 # required by app-text/calibre-2.78.0::gentoo[python_targets_python2_7]
 # required by calibre (argument)
 >=dev-lang/python-2.7.12:2.7 sqlite
+>=dev-lang/python-3.6.5 sqlite
 # required by app-text/calibre-2.78.0::gentoo
 # required by calibre (argument)
 >=dev-python/PyQt5-5.7.1 printsupport webkit widgets gui network

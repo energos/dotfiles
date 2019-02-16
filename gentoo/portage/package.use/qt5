@@ -1,4 +1,5 @@
 dev-libs/libpcre pcre16
+dev-libs/libpcre2 pcre16
 # media-video/smplayer -qt4
 # dev-qt/qtcore icu
 dev-qt/qtgui dbus
