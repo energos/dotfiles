@@ -12,6 +12,7 @@
 (tool-bar-mode -1)                      ; desabilitar 'tool-bar'
 (tooltip-mode -1)                       ; desabilitar 'tooltips'
 (blink-cursor-mode -1)                  ; cursor NÃO piscando
+(setq visible-cursor nil)               ; cursor menos gritante no terminal (console)
 (line-number-mode 1)                    ; mostrar linha no 'mode line'
 (column-number-mode 1)                  ; mostra coluna no 'mode-line'
 (show-paren-mode 1)                     ; destacar par de parenteses
