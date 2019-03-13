@@ -273,12 +273,12 @@
     </keybind>
     <keybind key="W-i">
       <action name="Execute">
-        <command>pqp firefox</command>
+        <command>pqp navigator</command>
       </action>
     </keybind>
     <keybind key="W-S-i">
       <action name="Execute">
-        <command>pqp -n firefox</command>
+        <command>pqp -n navigator</command>
       </action>
     </keybind>
     <keybind key="W-m">

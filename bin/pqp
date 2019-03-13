@@ -42,8 +42,9 @@ show_window ()
     then
         if echo $WINDOW | grep -q ^$(xdotool getactivewindow)$ || xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE
         then
-            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is ACTIVE so we HIDE it" > $DEBUGPORT
-            xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
+            [[ -n $DEBUGPORT && $dont_hide == 0 ]] && echo "Window $WINDOW is ACTIVE so we HIDE it" > $DEBUGPORT
+            [[ -n $DEBUGPORT && $dont_hide != 0 ]] && echo "Window $WINDOW is ACTIVE but we DON'T HIDE it" > $DEBUGPORT
+            [[ $dont_hide == 0 ]] && xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
         else
             [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is NOT ACTIVE so we SHOW it" > $DEBUGPORT
             xdotool windowactivate $WINDOW
@@ -68,16 +69,23 @@ set -- $@
 
 # default is to search for CLASS in existent windows
 force_new=0
+# default is to hide window if active
+dont_hide=0
 # debug port
-DEBUGPORT=""
+# DEBUGPORT=""
 # DEBUGPORT=/dev/pts/10
+DEBUGPORT=${DEBUGPORT:-""}
 
 # parse options
-while getopts ":n" option; do
+while getopts ":hn" option; do
     case $option in
         n)  [[ -n $DEBUGPORT ]] && echo "n: Force new instance" > $DEBUGPORT
             # abort search and run a new program instance
             force_new=1
+            ;;
+        h)  [[ -n $DEBUGPORT ]] && echo "h: Do not hide window even if active" > $DEBUGPORT
+            # do not hide active window
+            dont_hide=1
             ;;
         \?) [[ -n $DEBUGPORT ]] && echo "?: ${0##*/}: Invalid option -$OPTARG" > $DEBUGPORT
             tty -s && echo "${0##*/}: Invalid option -$OPTARG"
@@ -86,6 +94,28 @@ while getopts ":n" option; do
     esac
 done
 shift $((OPTIND - 1))
+
+navigator=${NAVIGATOR:-firefox}
+case "$navigator" in
+    midori)
+        navigator_class=Midori
+        ;;
+    firefox)
+        navigator_class=Navigator
+        ;;
+    falkon)
+        navigator_class=Falkon\ Browser
+        ;;
+    qutebrowser)
+        navigator_class=qutebrowser
+        ;;
+    *)
+        if [[ $1 == navigator || $1 == search ]] ; then
+            tty -s && echo "Browser $navigator not defined" || (LANG=C xmessage "Browser $navigator not defined" &)
+            exit 1
+        fi
+        ;;
+esac
 
 case "$1" in
     "")
@@ -96,6 +126,18 @@ case "$1" in
         ;;
     "firefox")
         show_window Navigator $HIDEDESKTOP || firefox &> /dev/null &
+        ;;
+    "navigator")
+        case "$NAVIGATOR" in
+            midori)
+                # bad behaviour workaround
+                # midori does not open a new window if an instance is already running
+                show_window Midori 0 || midori &> /dev/null &
+                ;;
+            *)
+                show_window "$navigator_class" $HIDEDESKTOP || $navigator &> /dev/null &
+                ;;
+        esac
         ;;
     "search")
         case "$2" in
@@ -127,7 +169,10 @@ case "$1" in
                 engine="https://www.google.com/search?q="
                 ;;
         esac
-        firefox "${engine}$(xclip -selection clipboard -o)" &> /dev/null &
+        pqp -h navigator
+        # yet another ugly hack
+        # $navigator "${engine}$(xclip -selection clipboard -o)" &> /dev/null &
+        (sleep 0.1 && $navigator "${engine}$(xclip -selection clipboard -o)" &> /dev/null &) &
         ;;
     "mc")
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
