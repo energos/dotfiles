@@ -128,6 +128,7 @@ case "$1" in
         show_window Navigator $HIDEDESKTOP || (firefox &> /dev/null &)
         ;;
     "navigator")
+        [[ -n $2 ]] && dont_hide=1
         case "$NAVIGATOR" in
             midori)
                 # bad behaviour workaround
@@ -138,6 +139,10 @@ case "$1" in
                 show_window "$navigator_class" $HIDEDESKTOP || ($navigator &> /dev/null &)
                 ;;
         esac
+        # yet another ugly hack
+        shift
+        [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*..." > $DEBUGPORT
+        [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
         ;;
     "search")
         case "$2" in
@@ -169,10 +174,7 @@ case "$1" in
                 engine="https://www.google.com/search?q="
                 ;;
         esac
-        pqp -h navigator
-        # yet another ugly hack
-        # $navigator "${engine}$(xclip -selection clipboard -o)" &> /dev/null &
-        (sleep 0.1 && $navigator "${engine}$(xclip -selection clipboard -o)" &> /dev/null &) &
+        pqp navigator "${engine}$(xclip -selection clipboard -o)"
         ;;
     "mc")
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
