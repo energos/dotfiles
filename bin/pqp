@@ -122,20 +122,20 @@ case "$1" in
         show_window Terminal $HIDEDESKTOP || $TERMINAL -name Terminal
         ;;
     "emacs")
-        show_window Emacs $HIDEDESKTOP || emacsclient -c -n -a "emacs" 2> /dev/null &
+        show_window Emacs $HIDEDESKTOP || (emacsclient -c -n -a "emacs" 2> /dev/null &)
         ;;
     "firefox")
-        show_window Navigator $HIDEDESKTOP || firefox &> /dev/null &
+        show_window Navigator $HIDEDESKTOP || (firefox &> /dev/null &)
         ;;
     "navigator")
         case "$NAVIGATOR" in
             midori)
                 # bad behaviour workaround
                 # midori does not open a new window if an instance is already running
-                show_window Midori 0 || midori &> /dev/null &
+                show_window Midori 0 || (midori &> /dev/null &)
                 ;;
             *)
-                show_window "$navigator_class" $HIDEDESKTOP || $navigator &> /dev/null &
+                show_window "$navigator_class" $HIDEDESKTOP || ($navigator &> /dev/null &)
                 ;;
         esac
         ;;
@@ -178,13 +178,13 @@ case "$1" in
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
         ;;
     "gkrellm")
-        show_window Gkrellm 0 || gkrellm &
+        show_window Gkrellm 0 || (gkrellm &)
         ;;
     "cmus")
         show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
-        show_window Zathura $HIDEDESKTOP || zathura ~/Books/default &
+        show_window Zathura $HIDEDESKTOP || (zathura ~/Books/default &)
         ;;
     "man")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
@@ -229,12 +229,12 @@ case "$1" in
     "ww")
         # set active window width
         # ugly hack to give gmrum time to shut off
-        (sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,$2,-1) &
+        sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,$2,-1 &
         ;;
     "wh")
         # set active window height
         # ugly hack to give gmrum time to shut off
-        (sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,-1,$2) &
+        sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,-1,$2 &
         ;;
     "volume")
         # case "$2" in
