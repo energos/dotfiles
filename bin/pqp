@@ -95,28 +95,6 @@ while getopts ":hn" option; do
 done
 shift $((OPTIND - 1))
 
-navigator=${NAVIGATOR:-firefox}
-case "$navigator" in
-    midori)
-        navigator_class=Midori
-        ;;
-    firefox)
-        navigator_class=Navigator
-        ;;
-    falkon)
-        navigator_class=Falkon\ Browser
-        ;;
-    qutebrowser)
-        navigator_class=qutebrowser
-        ;;
-    *)
-        if [[ $1 == navigator || $1 == search ]] ; then
-            tty -s && echo "Browser $navigator not defined" || (LANG=C xmessage "Browser $navigator not defined" &)
-            exit 1
-        fi
-        ;;
-esac
-
 case "$1" in
     "")
         show_window Terminal $HIDEDESKTOP || $TERMINAL -name Terminal
@@ -128,20 +106,34 @@ case "$1" in
         show_window Navigator $HIDEDESKTOP || (firefox &> /dev/null &)
         ;;
     "navigator")
-        [[ -n $2 ]] && dont_hide=1
-        case "$NAVIGATOR" in
+        navigator=${NAVIGATOR:-firefox}
+        desktop=$HIDEDESKTOP
+        case "$navigator" in
             midori)
+                navigator_class=Midori
                 # bad behaviour workaround
                 # midori does not open a new window if an instance is already running
-                show_window Midori 0 || (midori &> /dev/null &)
+                desktop=0       # search in all desktops
+                ;;
+            firefox)
+                navigator_class=Navigator
+                ;;
+            falkon)
+                navigator_class=Falkon\ Browser
+                ;;
+            qutebrowser)
+                navigator_class=qutebrowser
                 ;;
             *)
-                show_window "$navigator_class" $HIDEDESKTOP || ($navigator &> /dev/null &)
+                tty -s && echo "Browser $navigator not defined" || (LANG=C xmessage "Browser $navigator not defined" &)
+                exit 1
                 ;;
         esac
-        # yet another ugly hack
         shift
-        [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*..." > $DEBUGPORT
+        [[ -n $* ]] && dont_hide=1
+        show_window "$navigator_class" $desktop || ($navigator &> /dev/null &)
+        [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*" > $DEBUGPORT
+        # yet another ugly hack (if you need to sleep there is something not quite right)
         [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
         ;;
     "search")
