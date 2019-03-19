@@ -15,10 +15,19 @@ xrdb $HDPI -DXSERVER_DPI=$DPI ~/.Xresources
 # Comment next line for single monitor setup
 # pqp res 2 # scale left monitor to 1.5
 
-# setxkbmap -model abnt2,pc104 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
-# setxkbmap -model pc105 -layout pt,us -variant basic,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
-setxkbmap -model pc104 -layout us,us -variant intl,basic -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
-
+# Get configured console keymap from /etc/conf.d/keymaps and set X keymap accordingly
+eval $(grep ^keymap= /etc/conf.d/keymaps)
+case "$keymap" in
+    br-abnt2)
+        setxkbmap -model abnt2,pc104 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
+        ;;
+    pt-latin1)
+        setxkbmap -model pc105 -layout pt,us -variant basic,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
+        ;;
+    *)
+        setxkbmap -model pc104 -layout us,us -variant intl,basic -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
+        ;;
+esac
 xmodmap -e 'keycode 66 = F13'   # Remap Caps_Lock
 xmodmap -e 'keycode 78 = F14'   # Remap Scroll_Lock
 xmodmap -e 'keycode 127 = F15'  # Remap Pause
