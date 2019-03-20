@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# VBoxClient-all
-
 # https://superuser.com/questions/418699/
 DPI=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
 
@@ -35,10 +33,19 @@ xmodmap -e 'keycode 77 = F15'   # Remap Num_Lock
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# xset s off -dpms
-
-SYNERGY_SERVER=speedy
-[[ $(hostname) == $SYNERGY_SERVER ]] && synergys || synergyc $SYNERGY_SERVER
+if [[ $(cat /sys/devices/virtual/dmi/id/product_name) == "VirtualBox" ]]
+then
+    # If host is a VirtualBox guest
+    # run Guest Additions client
+    [[ -x $(command -v VBoxClient-all) ]] && VBoxClient-all
+    # turn off screensaver
+    xset s off -dpms
+else
+    # If host is not a VirtualBox guest
+    # start a synergy server or connect to a existing one
+    SYNERGY_SERVER=speedy
+    [[ $(hostname) == $SYNERGY_SERVER ]] && synergys || synergyc $SYNERGY_SERVER
+fi
 
 # Call wicd-client if wicd daemon is running
 [[ -x /etc/init.d/wicd ]] && /etc/init.d/wicd status &> /dev/null && (wicd-client &> /dev/null &)
