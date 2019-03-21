@@ -30,7 +30,6 @@ esac
 xmodmap -e 'keycode 66 = F13'   # Remap Caps_Lock
 xmodmap -e 'keycode 78 = F14'   # Remap Scroll_Lock
 xmodmap -e 'keycode 127 = F15'  # Remap Pause
-xmodmap -e 'keycode 77 = F15'   # Remap Num_Lock
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
@@ -41,6 +40,8 @@ then
     [[ -x $(command -v VBoxClient-all) ]] && VBoxClient-all
     # turn off screensaver
     xset s off -dpms
+    # Why? Why? Pause is detected as Num_Lock???
+    xmodmap -e 'keycode 77 = F15'   # Remap Num_Lock
 else
     # If host is not a VirtualBox guest
     # start a synergy server or connect to a existing one
