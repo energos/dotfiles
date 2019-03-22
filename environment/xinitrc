@@ -44,9 +44,14 @@ then
     xmodmap -e 'keycode 77 = F15'   # Remap Num_Lock
 else
     # If host is not a VirtualBox guest
-    # start a synergy server or connect to a existing one
-    SYNERGY_SERVER=speedy
-    [[ $(hostname) == $SYNERGY_SERVER ]] && synergys || synergyc $SYNERGY_SERVER
+    # Get synergy server name from ~/.pqprc
+    # Default to "speedy" if SYNERGY_SERVER not defined
+    # Do not start synergy if SYNERGY_SERVER is empty
+    SYNERGY_SERVER=${SYNERGY_SERVER=speedy}
+    if [[ -n $SYNERGY_SERVER ]]; then
+        # start a synergy server or connect to a existing one
+        [[ $(hostname) == $SYNERGY_SERVER ]] && synergys || synergyc $SYNERGY_SERVER
+    fi
 fi
 
 # Call wicd-client if wicd daemon is running
