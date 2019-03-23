@@ -43,7 +43,13 @@ alias mc='mc -d'
 alias less='less -i'
 
 export MC_XDG_OPEN=$HOME/bin/nohup-open
-# export ALSA_CARD=0
+
+# If ALSA_CARD is not defined get it from ~/.pqprc, default to ALSA_CARD=0
+if [[ ! -v ALSA_CARD ]]; then
+    [[ -f ~/.pqprc ]] && eval $(grep ^ALSA_CARD= ~/.pqprc)
+    [[ -z $ALSA_CARD ]] && ALSA_CARD=0
+    export ALSA_CARD
+fi
 
 stty -ixon
 
