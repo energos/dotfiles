@@ -427,7 +427,7 @@
     <action name="Execute"><command>xterm</command></action>
   </item>
   <item label="Midnight Commander" icon="/home/energos/.local/share/icons/mc.svg" >
-    <action name="Execute"><command>urxvtcd -title "Midnight Commander" -icon .local/share/icons/mc.svg -geometry 96x48 -e mc -d</command></action>
+    <action name="Execute"><command>pqp mc</command></action>
   </item>
   <item label="File Manager" icon="/usr/share/icons/Adwaita/16x16/apps/system-file-manager.png" >
     <action name="Execute"><command>pcmanfm</command></action>

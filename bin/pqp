@@ -169,7 +169,7 @@ case "$1" in
         pqp navigator "${engine}$(xclip -selection clipboard -o)"
         ;;
     "mc")
-        $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x48 -e $@ -d
+        $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x36 -e $@ -d
         ;;
     "gkrellm")
         show_window Gkrellm 0 || (gkrellm &)
