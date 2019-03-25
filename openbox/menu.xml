@@ -439,27 +439,27 @@
     <menu id="emacs" label="The GNU Emacs Manuals"  icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
       <item label="The Emacs Editor">
         <action name="Execute">
-          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_mono/emacs.html</command>
+          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html</command>
         </action>
       </item>
       <item label="Emacs Lisp">
         <action name="Execute">
-          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_mono/elisp.html</command>
+          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html</command>
         </action>
       </item>
       <item label="Programming in Emacs Lisp">
         <action name="Execute">
-          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_mono/eintr.html</command>
+          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html</command>
         </action>
       </item>
       <item label="The GNU Emacs FAQ">
         <action name="Execute">
-          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_mono/efaq.html</command>
+          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/efaq/index.html</command>
         </action>
       </item>
       <item label="Org Mode Manual">
         <action name="Execute">
-          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_mono/org.html</command>
+          <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/org/index.html</command>
         </action>
       </item>
       <separator />
@@ -477,13 +477,13 @@
     </item>
     <item label="Magit User Manual" icon="/home/energos/.local/share/icons/magit.png">
       <action name="Execute">
-        <command>pqp navigator https://magit.vc/manual/magit.html</command>
+        <command>pqp navigator https://magit.vc/manual/magit/index.html</command>
       </action>
     </item>
     <separator />
     <item label="The Guile Reference Manual" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
       <action name="Execute">
-        <command>pqp navigator https://www.gnu.org/software/guile/manual/guile.html</command>
+        <command>pqp navigator https://www.gnu.org/software/guile/manual/html_node/index.html</command>
       </action>
     </item>
     <item label="The GNU C Reference Manual" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
