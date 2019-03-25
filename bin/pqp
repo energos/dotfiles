@@ -108,6 +108,7 @@ case "$1" in
     "navigator")
         navigator=${NAVIGATOR:-firefox}
         desktop=$HIDEDESKTOP
+        behaviour=nice
         case "$navigator" in
             midori)
                 navigator_class=Midori
@@ -124,17 +125,32 @@ case "$1" in
             qutebrowser)
                 navigator_class=qutebrowser
                 ;;
+            dillo)
+                navigator_class=dillo
+                behavior=ugly
+                ;;
+            netsurf-gtk3)
+                navigator_class=netsurf-gtk3
+                behavior=ugly
+                ;;
             *)
                 tty -s && echo "Browser $navigator not defined" || (LANG=C xmessage "Browser $navigator not defined" &)
                 exit 1
                 ;;
         esac
         shift
-        [[ -n $* ]] && dont_hide=1
-        show_window "$navigator_class" $desktop || ($navigator &> /dev/null &)
-        [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*" > $DEBUGPORT
-        # yet another ugly hack (if you need to sleep there is something not quite right)
-        [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
+        if [[ $behavior == ugly && -n $* ]]; then
+            # Ugly browsers do not allow to open a URL in a new tab in a existing
+            # window via command line (or I just don't know how to do that),
+            # so we just start a new instance
+            $navigator "$*" &> /dev/null &
+        else
+            [[ -n $* ]] && dont_hide=1
+            show_window "$navigator_class" $desktop || ($navigator &> /dev/null &)
+            [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*" > $DEBUGPORT
+            # yet another ugly hack (if you need to sleep there is something not quite right)
+            [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
+        fi
         ;;
     "search")
         case "$2" in
@@ -327,3 +343,5 @@ case "$1" in
     *)
         $TERMINAL -title "$*" -e $@
 esac
+
+exit 0
