@@ -1,9 +1,5 @@
 # .config/zathura/zathurarc
 
-# move monitor height dependent configuration to a dedicated rc file
-# ln -sf zathura.XXXXp zathura.height
-include zathura.height
-
 set page-padding 2
 set window-title-basename true
 set selection-clipboard clipboard
@@ -27,3 +23,7 @@ map <Down> navigate next
 map <Up> navigate previous
 map <S-Down> scroll down
 map <S-Up> scroll up
+
+# move monitor height dependent configuration to a dedicated rc file
+# ln -sf zathura.XXXXp zathura.height
+include zathura.height
