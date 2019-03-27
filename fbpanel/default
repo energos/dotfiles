@@ -219,8 +219,6 @@ Plugin {
             action = xdotool key Menu
         }
         button {
-            # icon = preferences-system-windows
-            # icon = view-list-symbolic
             icon = window-list
             tooltip = Windows list
             action = xdotool key Super_R
@@ -228,19 +226,17 @@ Plugin {
         button {
             icon = Utilities-terminal
             tooltip = Terminal
-            action = urxvtcd -geometry -8-44
+            action = urxvtcd -geometry -8-44 -name Terminal
         }
         button {
             icon = emacs
             tooltip = Emacs ROCKS!
-            action = pqp emacs
+            action = pqp -n emacs
         }
         button {
-            # icon = web-browser
-            # image = /usr/share/pixmaps/aurora.png
-            icon = aurora
-            tooltip = Firefox Web Browser
-            action = firefox
+            icon = navigator
+            tooltip = Web Browser
+            action = pqp -n navigator
         }
     }
 }
@@ -419,18 +415,11 @@ Plugin {
             icon = utilities-terminal
             ClassName = XTerm
         }
-        application {
-            icon = gnome-terminal
-            ClassName = mlterm
-        }
-        application {
-            icon = gnome-terminal
-            ClassName = URxvt
-        }
-        application {
-            icon = gnome-emacs
-            ClassName = Emacs
-        }
+        # Do not set urxvt icon here, otherwise it will override the ~/bin/pqp settings
+        # application {
+        #     icon = Utilities-terminal
+        #     ClassName = URxvt
+        # }
         application {
             icon = pdf
             ClassName = MuPDF
@@ -438,14 +427,6 @@ Plugin {
         application {
             icon = pdf
             ClassName = Zathura
-        }
-        application {
-            icon = mozilla-firefox
-            ClassName = Firefox-bin
-        }
-        application {
-            icon = mozilla-firefox
-            ClassName = Firefox
         }
     }
 }
