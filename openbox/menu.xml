@@ -434,6 +434,13 @@
   </item>
   <separator />
 
+  <!-- Internet -->
+  <item label="Default Browser" icon="/home/energos/.local/share/icons/navigator.png">
+    <action name="Execute"><command>pqp -n navigator</command></action>
+  </item>
+  <menu id="browsers" label="Other Browsers" icon="/usr/share/icons/Adwaita/48x48/apps/web-browser.png" execute="~/.config/openbox/menu_browsers.sh" />
+  <separator />
+
   <!-- The Manuals -->
   <menu id="gnu" label="The Manuals" icon="/home/energos/.local/share/icons/Blue_question_mark_icon.svg">
     <menu id="emacs" label="The GNU Emacs Manuals"  icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
@@ -501,42 +508,20 @@
   <separator />
 
   <!-- Editors -->
-  <item label="Emacs" icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
+  <item label="Emacs" icon="/usr/share/pixmaps/emacs.png">
     <action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action>
   </item>
-  <item label="Geany" icon="/usr/share/icons/hicolor/16x16/apps/geany.png">
+  <item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png">
     <action name="Execute"><command>geany</command></action>
   </item>
   <separator />
 
-  <!-- Internet -->
-  <item label="Firefox" icon="/usr/share/pixmaps/aurora.png">
-    <action name="Execute"><command>firefox</command></action>
-  </item>
-  <item label="Falkon" icon="/usr/share/icons/hicolor/16x16/apps/falkon.png">
-    <action name="Execute"><command>falkon</command></action>
-  </item>
-  <!-- <item label="Claws Mail" icon="/usr/share/icons/Adwaita/16x16/emblems/emblem-mail.png"> -->
-  <!--   <action name="Execute"><command>claws-mail</command></action> -->
-  <!-- </item> -->
-  <separator />
-
-  <!-- CAD -->
-  <item label="KiCad" icon="/usr/share/icons/hicolor/22x22/apps/kicad.png">
-    <action name="Execute"><command>kicad</command></action>
-  </item>
-  <item label="Eagle PCB" icon="/usr/share/pixmaps/eagle-7.3.0-icon50.png">
-    <action name="Execute"><command>eagle</command></action>
-  </item>
+  <!-- Electronics/CAD -->
+  <menu id="cad" label="Electronics" icon="/usr/share/icons/hicolor/scalable/categories/applications-electronics.svg" execute="~/.config/openbox/menu_electronics.sh" />
   <separator />
   
-  <!-- Media Player -->
-  <item label="Media Player" icon="/usr/share/icons/hicolor/16x16/apps/smplayer.png">
-    <action name="Execute"><command>smplayer</command></action>
-  </item>
-  <item label="YouTube Browser" icon="/home/energos/.local/share/icons/youtube.png">
-    <action name="Execute"><command>smtube</command></action>
-  </item>
+  <!-- Multimedia -->
+  <menu id="multimedia" label="Multimedia" icon="/usr/share/icons/Adwaita/48x48/categories/applications-multimedia.png" execute="~/.config/openbox/menu_multimedia.sh" />
   <separator />
 
   <!-- Office -->
@@ -552,12 +537,7 @@
   <separator />
   
   <!-- Virtual Machines -->
-  <item label="VirtualBox" icon="/usr/share/icons/hicolor/16x16/apps/virtualbox.png">
-    <action name="Execute"><command>VirtualBox</command></action>
-  </item>
-  <item label="Virtual Manager" icon="/usr/share/icons/hicolor/16x16/apps/virt-manager.png">
-    <action name="Execute"><command>virt-manager</command></action>
-  </item>
+  <menu id="virtualization" label="Virtualization" icon="/usr/share/icons/Adwaita/48x48/places/folder.png" execute="~/.config/openbox/menu_virtualization.sh" />
   <separator />
 
   <!-- Run command-->
