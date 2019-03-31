@@ -373,76 +373,9 @@
 
 
 
-<!-- Openbox sub-menu -->
-<menu id="openbox" label="Openbox">
-  <item label="Openbox Wiki">
-    <action name="Execute">
-      <command>pqp navigator http://openbox.org/wiki/Main_Page</command>
-    </action>
-  </item>
-  <item label="Openbox - Gentoo Wiki">
-    <action name="Execute">
-      <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox</command>
-    </action>
-  </item>
-  <item label="Openbox Guide - Gentoo Wiki">
-    <action name="Execute">
-      <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox/Guide</command>
-    </action>
-  </item>
-  <item label="Openbox - Arch Wiki">
-    <action name="Execute">
-      <command>pqp navigator http://wiki.archlinux.org/index.php/Openbox</command>
-    </action>
-  </item>
-  <separator />
-  <item label="Configure Openbox (obconf)">
-    <action name="Execute"><command>obconf</command></action>
-  </item>
-  <separator />
-  <item label="Lock Screen (slock)">
-    <action name="Execute"><command>slock</command></action>
-  </item>
-  <separator />
-  <item label="Restart Openbox">
-    <action name="Restart" />
-  </item>
-  <item label="Reconfigure Openbox">
-    <action name="Reconfigure" />
-  </item>
-</menu>
 
-
-<!-- Root Menu -->
-<menu id="root-menu" label="Openbox 3">
-  <separator label="Gentoo Linux!" />
-  <separator />
-
-
-  <!-- Terminal & File Manager-->
-  <item label="Terminal (urxvt)" icon="/home/energos/.local/share/icons/Utilities-terminal.svg">
-    <action name="Execute"><command>urxvtcd -name Terminal</command></action>
-  </item>
-  <item label="Terminal (xterm)" icon="/usr/share/icons/Adwaita/16x16/apps/utilities-terminal.png">
-    <action name="Execute"><command>xterm</command></action>
-  </item>
-  <item label="Midnight Commander" icon="/home/energos/.local/share/icons/mc.svg" >
-    <action name="Execute"><command>pqp mc</command></action>
-  </item>
-  <item label="File Manager" icon="/usr/share/icons/Adwaita/16x16/apps/system-file-manager.png" >
-    <action name="Execute"><command>pcmanfm</command></action>
-  </item>
-  <separator />
-
-  <!-- Internet -->
-  <item label="Default Browser" icon="/home/energos/.local/share/icons/navigator.png">
-    <action name="Execute"><command>pqp -n navigator</command></action>
-  </item>
-  <menu id="browsers" label="Other Browsers" icon="/usr/share/icons/Adwaita/48x48/apps/web-browser.png" execute="~/.config/openbox/menu_browsers.sh" />
-  <separator />
-
-  <!-- The Manuals -->
-  <menu id="gnu" label="The Manuals" icon="/home/energos/.local/share/icons/Blue_question_mark_icon.svg">
+  <!-- The Manuals sub-menu -->
+  <menu id="manuals" label="The Manuals">
     <menu id="emacs" label="The GNU Emacs Manuals"  icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
       <item label="The Emacs Editor">
         <action name="Execute">
@@ -504,7 +437,81 @@
         <command>pqp navigator https://www.gnu.org/manual/manual.html</command>
       </action>
     </item>
+    <separator />
+    <menu id="gentoo" label="Gentoo"  icon="/home/energos/.local/share/icons/gentoo.svg">
+      <item label="The Gentoo Handbook">
+        <action name="Execute">
+          <command>pqp navigator https://wiki.gentoo.org/wiki/Handbook:Main_Page</command>
+        </action>
+      </item>
+    </menu>
   </menu>
+
+<!-- Openbox sub-menu -->
+<menu id="openbox" label="Openbox">
+  <item label="Openbox Wiki">
+    <action name="Execute">
+      <command>pqp navigator http://openbox.org/wiki/Main_Page</command>
+    </action>
+  </item>
+  <item label="Openbox - Gentoo Wiki">
+    <action name="Execute">
+      <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox</command>
+    </action>
+  </item>
+  <item label="Openbox Guide - Gentoo Wiki">
+    <action name="Execute">
+      <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox/Guide</command>
+    </action>
+  </item>
+  <item label="Openbox - Arch Wiki">
+    <action name="Execute">
+      <command>pqp navigator http://wiki.archlinux.org/index.php/Openbox</command>
+    </action>
+  </item>
+  <separator />
+  <item label="Configure Openbox (obconf)">
+    <action name="Execute"><command>obconf</command></action>
+  </item>
+  <separator />
+  <item label="Lock Screen (slock)">
+    <action name="Execute"><command>slock</command></action>
+  </item>
+  <separator />
+  <item label="Restart Openbox">
+    <action name="Restart" />
+  </item>
+  <item label="Reconfigure Openbox">
+    <action name="Reconfigure" />
+  </item>
+</menu>
+
+
+<!-- Root Menu -->
+<menu id="root-menu" label="Openbox 3">
+  <separator label="Gentoo Linux!" />
+  <separator />
+
+  <!-- Terminal & File Manager-->
+  <item label="Terminal (urxvt)" icon="/home/energos/.local/share/icons/Utilities-terminal.svg">
+    <action name="Execute"><command>urxvtcd -name Terminal</command></action>
+  </item>
+  <item label="Terminal (xterm)" icon="/usr/share/icons/Adwaita/16x16/apps/utilities-terminal.png">
+    <action name="Execute"><command>xterm</command></action>
+  </item>
+  <item label="Midnight Commander" icon="/home/energos/.local/share/icons/mc.svg" >
+    <action name="Execute"><command>pqp mc</command></action>
+  </item>
+  <item label="File Manager" icon="/usr/share/icons/Adwaita/16x16/apps/system-file-manager.png" >
+    <action name="Execute"><command>pcmanfm</command></action>
+  </item>
+  <separator />
+
+  <!-- Internet -->
+  <item label="Default Browser" icon="/home/energos/.local/share/icons/navigator.png">
+    <action name="Execute"><command>pqp -n navigator</command></action>
+  </item>
+  <menu id="browsers" label="All Browsers" icon="/usr/share/icons/Adwaita/48x48/apps/web-browser.png" execute="~/.config/openbox/menu_browsers.sh" />
   <separator />
 
   <!-- Editors -->
@@ -546,12 +553,11 @@
   </item>
   <separator />
 
-  <!-- Sub menus -->
+  <!-- Applications -->
   <!-- <menu id="xdg-menu" label="Applications" icon="/usr/share/icons/Adwaita/16x16/places/folder.png" execute="cat /var/cache/xdg-menu/openbox/menu.xml"/> -->
   <menu id="obmenu-generator" label="Applications" icon="/usr/share/icons/Adwaita/16x16/places/folder.png" execute="/usr/bin/perl /usr/bin/obmenu-generator -i" />
   <separator />
 
-  
   <!-- <menu id="apps-accessories-menu"/> -->
   <!-- <menu id="apps-editors-menu"/> -->
   <!-- <menu id="apps-graphics-menu"/> -->
@@ -564,17 +570,12 @@
   <!-- <menu id="system-menu"/> -->
   <!-- <separator /> -->
 
-  <menu id="openbox" icon="/usr/share/pixmaps/openbox.png" />
+  <!-- The Manuals -->
+  <menu id="manuals" icon="/home/energos/.local/share/icons/Blue_question_mark_icon.svg" />
   <separator />
 
-  
-  <!-- Help -->
-  <item label="Help" icon="/usr/share/icons/Adwaita/16x16/apps/help-browser.png">
-    <action name="Execute">
-      <!-- <command>xdg-open http://wiki.archlinux.org/</command> -->
-      <command>pqp navigator https://wiki.gentoo.org/wiki/Handbook:AMD64</command>
-    </action>
-  </item>
+  <!-- Openbox -->
+  <menu id="openbox" icon="/usr/share/pixmaps/openbox.png" />
   <separator />
 
   <!-- Desktops -->
@@ -587,7 +588,6 @@
       <prompt>yes</prompt>
     </action>
   </item>
-
 
 </menu>
 

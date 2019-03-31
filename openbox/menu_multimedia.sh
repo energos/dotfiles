@@ -5,6 +5,11 @@ crappy=yes
 cat <<EOF
 <openbox_pipe_menu>
 EOF
+[[ -x $(command -v cmus) ]] && cat <<EOF && crappy=no
+<item label="C* Music Player" icon="/usr/share/icons/Adwaita/48x48/mimetypes/audio-x-generic.png">
+  <action name="Execute"><command>pqp -h cmus</command></action>
+</item>
+EOF
 [[ -x $(command -v smplayer) ]] && cat <<EOF && crappy=no
 <item label="Media Player" icon="/usr/share/icons/hicolor/64x64/apps/smplayer.png">
   <action name="Execute"><command>smplayer</command></action>
