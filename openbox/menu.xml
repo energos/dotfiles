@@ -7,7 +7,7 @@
 
   <!-- The Manuals sub-menu -->
   <menu id="manuals" label="The Manuals">
-    <menu id="emacs" label="The GNU Emacs Manuals"  icon="/usr/share/icons/hicolor/16x16/apps/emacs.png">
+    <menu id="emacs" label="The GNU Emacs Manuals" icon="/usr/share/icons/hicolor/48x48/apps/emacs.png">
       <item label="The Emacs Editor">
         <action name="Execute">
           <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html</command>
@@ -117,84 +117,10 @@
   </item>
 </menu>
 
-<!-- *************
-     * Root Menu *
-     ************* -->
-<menu id="root-menu" label="Openbox 3">
-  <separator label="Gentoo Linux!" />
-  <separator />
-  <!-- Terminal & File Manager-->
-  <item label="Terminal (urxvt)" icon="/home/energos/.local/share/icons/Utilities-terminal.svg">
-    <action name="Execute"><command>urxvtcd -name Terminal</command></action>
-  </item>
-  <item label="Terminal (xterm)" icon="/usr/share/icons/Adwaita/16x16/apps/utilities-terminal.png">
-    <action name="Execute"><command>xterm</command></action>
-  </item>
-  <item label="Midnight Commander" icon="/home/energos/.local/share/icons/mc.svg" >
-    <action name="Execute"><command>pqp mc</command></action>
-  </item>
-  <item label="File Manager" icon="/usr/share/icons/Adwaita/16x16/apps/system-file-manager.png" >
-    <action name="Execute"><command>pcmanfm</command></action>
-  </item>
-  <separator />
-  <!-- Internet -->
-  <item label="Default Browser" icon="/home/energos/.local/share/icons/navigator.png">
-    <action name="Execute"><command>pqp -n navigator</command></action>
-  </item>
-  <menu id="browsers" label="All Browsers" icon="/usr/share/icons/Adwaita/48x48/apps/web-browser.png" execute="~/.config/openbox/menu_browsers.sh" />
-  <separator />
-  <!-- Editors -->
-  <item label="Emacs" icon="/usr/share/pixmaps/emacs.png">
-    <action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action>
-  </item>
-  <item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png">
-    <action name="Execute"><command>geany</command></action>
-  </item>
-  <separator />
-  <!-- Electronics/CAD -->
-  <menu id="cad" label="Electronics" icon="/usr/share/icons/hicolor/scalable/categories/applications-electronics.svg" execute="~/.config/openbox/menu_electronics.sh" />
-  <separator />
-  <!-- Multimedia -->
-  <menu id="multimedia" label="Multimedia" icon="/usr/share/icons/Adwaita/48x48/categories/applications-multimedia.png" execute="~/.config/openbox/menu_multimedia.sh" />
-  <separator />
-  <!-- Office -->
-  <item label="Calibre EBook Manager" icon="/usr/share/icons/hicolor/16x16/apps/calibre-gui.png">
-    <action name="Execute"><command>calibre --detach</command></action>
-  </item>
-  <item label="Open Office Calc" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-calc.png">
-    <action name="Execute"><command>oocalc</command></action>
-  </item>
-  <item label="Open Office Writer" icon="/usr/share/icons/hicolor/16x16/apps/openoffice4-writer.png">
-    <action name="Execute"><command>oowriter</command></action>
-  </item>
-  <separator />
-  <!-- Virtual Machines -->
-  <menu id="virtualization" label="Virtualization" icon="/usr/share/icons/Adwaita/48x48/places/folder.png" execute="~/.config/openbox/menu_virtualization.sh" />
-  <separator />
-  <!-- Run command-->
-  <item label="Run Command" icon="/usr/share/icons/Adwaita/16x16/actions/document-send.png">
-    <action name="Execute"><command>gmrun</command></action>
-  </item>
-  <separator />
-  <!-- Applications -->
-  <menu id="applications" icon="/usr/share/icons/Adwaita/16x16/places/folder.png" />
-  <separator />
-  <!-- The Manuals -->
-  <menu id="manuals" icon="/home/energos/.local/share/icons/Blue_question_mark_icon.svg" />
-  <separator />
-  <!-- Openbox -->
-  <menu id="openbox" icon="/usr/share/pixmaps/openbox.png" />
-  <separator />
-  <!-- Desktops -->
-  <menu id="client-list-menu" icon="/usr/share/icons/Adwaita/48x48/emblems/emblem-desktop.png"/>
-  <separator />
-  <!-- Logout -->
-  <item label="Log Out" icon="/usr/share/icons/Adwaita/16x16/actions/application-exit.png">
-    <action name="Exit">
-      <prompt>yes</prompt>
-    </action>
-  </item>
-
-</menu>
+<!-- *********************
+     * Dynamic Root Menu *
+     ********************* -->
+<menu id="root-menu" label="Openbox 3" execute="~/.config/openbox/menu_root.sh" />
+<!-- </openbox_menu> -->
 
 </openbox_menu>
