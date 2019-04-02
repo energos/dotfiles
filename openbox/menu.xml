@@ -78,49 +78,49 @@
     </menu>
   </menu>
 
-<!-- Openbox sub-menu -->
-<menu id="openbox" label="Openbox">
-  <item label="Openbox Wiki">
-    <action name="Execute">
-      <command>pqp navigator http://openbox.org/wiki/Main_Page</command>
-    </action>
-  </item>
-  <item label="Openbox - Gentoo Wiki">
-    <action name="Execute">
-      <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox</command>
-    </action>
-  </item>
-  <item label="Openbox Guide - Gentoo Wiki">
-    <action name="Execute">
-      <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox/Guide</command>
-    </action>
-  </item>
-  <item label="Openbox - Arch Wiki">
-    <action name="Execute">
-      <command>pqp navigator http://wiki.archlinux.org/index.php/Openbox</command>
-    </action>
-  </item>
-  <separator />
-  <item label="Configure Openbox (obconf)">
-    <action name="Execute"><command>obconf</command></action>
-  </item>
-  <separator />
-  <item label="Lock Screen (slock)">
-    <action name="Execute"><command>slock</command></action>
-  </item>
-  <separator />
-  <item label="Restart Openbox">
-    <action name="Restart" />
-  </item>
-  <item label="Reconfigure Openbox">
-    <action name="Reconfigure" />
-  </item>
-</menu>
+  <!-- Openbox sub-menu -->
+  <menu id="openbox" label="Openbox">
+    <item label="Openbox Wiki">
+      <action name="Execute">
+        <command>pqp navigator http://openbox.org/wiki/Main_Page</command>
+      </action>
+    </item>
+    <item label="Openbox - Gentoo Wiki">
+      <action name="Execute">
+        <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox</command>
+      </action>
+    </item>
+    <item label="Openbox Guide - Gentoo Wiki">
+      <action name="Execute">
+        <command>pqp navigator https://wiki.gentoo.org/wiki/Openbox/Guide</command>
+      </action>
+    </item>
+    <item label="Openbox - Arch Wiki">
+      <action name="Execute">
+        <command>pqp navigator http://wiki.archlinux.org/index.php/Openbox</command>
+      </action>
+    </item>
+    <separator />
+    <item label="Configure Openbox (obconf)">
+      <action name="Execute"><command>obconf</command></action>
+    </item>
+    <separator />
+    <item label="Lock Screen (slock)">
+      <action name="Execute"><command>slock</command></action>
+    </item>
+    <separator />
+    <item label="Restart Openbox">
+      <action name="Restart" />
+    </item>
+    <item label="Reconfigure Openbox">
+      <action name="Reconfigure" />
+    </item>
+  </menu>
 
-<!-- *********************
-     * Dynamic Root Menu *
-     ********************* -->
-<menu id="root-menu" label="Openbox 3" execute="~/.config/openbox/menu_root.sh" />
-<!-- </openbox_menu> -->
+  <!-- *********************
+       * Dynamic Root Menu *
+       ********************* -->
+  <menu id="root-menu" label="Openbox 3" execute="~/.config/openbox/menu_root.sh" />
+  <!-- </openbox_menu> -->
 
 </openbox_menu>
