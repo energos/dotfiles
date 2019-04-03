@@ -129,7 +129,8 @@ case "$1" in
                 navigator_class=dillo
                 behavior=ugly
                 ;;
-            netsurf-gtk3)
+            netsurf-gtk3|netsurf)
+                navigator=netsurf-gtk3
                 navigator_class=netsurf-gtk3
                 behavior=ugly
                 ;;

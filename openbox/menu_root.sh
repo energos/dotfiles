@@ -3,6 +3,35 @@
 USER_ICONS=$HOME/.local/share/icons
 ICONS=/usr/share/icons/Adwaita/48x48
 
+# Exclude some sub-menus if this is a crappy host
+[[ -f ~/.pqprc ]] && . ~/.pqprc
+navigator=${NAVIGATOR:-firefox}
+
+# Ugly, ugly, very ugly
+case $navigator in
+    falkon)
+        navigator_icon=/usr/share/icons/hicolor/48x48/apps/falkon.png
+        ;;
+    qutebrowser)
+        navigator_icon=/usr/share/icons/hicolor/scalable/apps/qutebrowser.svg
+        ;;
+    netsurf)
+        navigator_icon=/usr/share/pixmaps/netsurf.xpm
+        ;;
+    midori)
+        navigator_icon=/usr/share/icons/hicolor/22x22/apps/midori.png
+        ;;
+    dillo)
+        navigator_icon=/usr/share/pixmaps/dillo.png
+        ;;
+    firefox)
+        navigator_icon=/usr/share/pixmaps/aurora.png
+        ;;
+    *)
+        navigator_icon=${ICONS}/apps/web-browser.png
+        ;;
+esac
+
 # Pipe Menu Header
 cat <<EOF
 <openbox_pipe_menu>
@@ -25,9 +54,9 @@ EOF
 
 # Internet
 cat <<EOF
-<item label="Default Browser" icon="${USER_ICONS}/navigator.png">
+<item label="${navigator^}" icon="${navigator_icon}">
 <action name="Execute"><command>pqp -n navigator</command></action> </item>
-<menu id="browsers" label="All Browsers" icon="${ICONS}/apps/web-browser.png" execute="~/.config/openbox/menu_browsers.sh" />
+<menu id="browsers" label="Browsers" icon="${ICONS}/categories/applications-internet.png" execute="~/.config/openbox/menu_browsers.sh" />
 <separator />
 EOF
 
@@ -41,7 +70,7 @@ cat <<EOF
 EOF
 
 # Electronics/CAD
-cat <<EOF
+[[ $MENU_ELECTRONICS != no ]] && cat <<EOF
 <menu id="cad" label="Electronics" icon="/usr/share/icons/hicolor/scalable/categories/applications-electronics.svg" execute="~/.config/openbox/menu_electronics.sh" />
 <separator />
 EOF
@@ -64,7 +93,7 @@ cat <<EOF
 EOF
 
 # Virtual Machines
-cat <<EOF
+[[ $MENU_VIRTUALIZATION != no ]] && cat <<EOF
 <menu id="virtualization" label="Virtualization" icon="${ICONS}/places/folder.png" execute="~/.config/openbox/menu_virtualization.sh" />
 <separator />
 EOF
