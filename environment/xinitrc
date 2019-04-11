@@ -3,6 +3,14 @@
 # Load host/user specific configuration
 [[ -f ~/.pqprc ]] && . ~/.pqprc
 
+# Generates the Openbox menu
+[[ -x ~/.config/openbox/menu_root.sh ]] && if [[ $MENU_DYNAMIC == no ]]
+then
+    ~/.config/openbox/menu_root.sh -r > ~/.config/openbox/menu_root.xml
+else
+    ~/.config/openbox/menu_root.sh -d > ~/.config/openbox/menu_root.xml
+fi
+
 # https://superuser.com/questions/418699/
 DPI=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
 

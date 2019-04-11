@@ -117,10 +117,4 @@
     </item>
   </menu>
 
-  <!-- *********************
-       * Dynamic Root Menu *
-       ********************* -->
-  <menu id="root-menu" label="Openbox 3" execute="~/.config/openbox/menu_root.sh" />
-  <!-- </openbox_menu> -->
-
 </openbox_menu>
