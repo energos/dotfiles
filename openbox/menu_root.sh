@@ -145,9 +145,11 @@ EOF
 EOF
 
     # Office
-    cat <<EOF
+    [[ -x $(command -v calibre) ]] && cat <<EOF
 <item label="Calibre EBook Manager" icon="/usr/share/icons/hicolor/48x48/apps/calibre-gui.png">
 <action name="Execute"><command>calibre --detach</command></action> </item>
+EOF
+    cat <<EOF
 <item label="Open Office Calc" icon="/usr/share/icons/hicolor/48x48/apps/openoffice4-calc.png">
 <action name="Execute"><command>oocalc</command></action> </item>
 <item label="Open Office Writer" icon="/usr/share/icons/hicolor/48x48/apps/openoffice4-writer.png">
