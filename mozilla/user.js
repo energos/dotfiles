@@ -2,8 +2,8 @@
 
 user_pref("accessibility.typeaheadfind", false);
 user_pref("accessibility.typeaheadfind.flashBar", 0);
-user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
+user_pref("app.normandy.enabled", false);
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("browser.backspace_action", 2);
 user_pref("browser.chrome.toolbar_tips", false);
@@ -23,10 +23,12 @@ user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.insertRelatedAfterCurrent", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
+user_pref("dom.webnotifications.enabled", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("extensions.screenshots.disabled", true);
 user_pref("general.smoothScroll", false);
 user_pref("general.warnOnAboutConfig", false);
+user_pref("geo.enabled", false);
 user_pref("identity.fxaccounts.enabled", false);
 user_pref("image.animation_mode", "once");
 user_pref("middlemouse.contentLoadURL", true);
