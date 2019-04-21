@@ -144,11 +144,19 @@ EOF
 <separator />
 EOF
 
-    # Office
+    # eBooks
+    cat <<EOF
+<menu id="ebooks" label="eBooks" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh" />
+EOF
     [[ -x $(command -v calibre) ]] && cat <<EOF
-<item label="Calibre EBook Manager" icon="/usr/share/icons/hicolor/48x48/apps/calibre-gui.png">
+<item label="Calibre eBook Manager" icon="/usr/share/icons/hicolor/48x48/apps/calibre-gui.png">
 <action name="Execute"><command>calibre --detach</command></action> </item>
 EOF
+    cat <<EOF
+<separator />
+EOF
+
+    # Office
     cat <<EOF
 <item label="Open Office Calc" icon="/usr/share/icons/hicolor/48x48/apps/openoffice4-calc.png">
 <action name="Execute"><command>oocalc</command></action> </item>
