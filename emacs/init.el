@@ -250,6 +250,15 @@
   (global-set-key (kbd "H-t") 'engine/search-tweakers)
   (engine-mode t))
 
+;; https://github.com/politza/pdf-tools
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install))
+
+(use-package org-pdfview
+  :ensure t)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
