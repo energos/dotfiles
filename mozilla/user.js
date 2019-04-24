@@ -23,6 +23,7 @@ user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.insertRelatedAfterCurrent", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
+user_pref("browser.urlbar.trimURLs", false);
 user_pref("dom.webnotifications.enabled", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("extensions.screenshots.disabled", true);
