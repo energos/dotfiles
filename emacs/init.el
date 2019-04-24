@@ -469,6 +469,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
       '((auto-mode . emacs)
         ("\\.mm\\'" . default)
         ("\\.x?html?\\'" . "xdg-open %s")
+        ("\\.djvu\\'" . "xdg-open %s")
         ("\\.pdf\\'" . "xdg-open %s")))
 
 ;; --- preferences ---
