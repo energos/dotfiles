@@ -58,8 +58,11 @@ if [[ ${EUID} == 0 ]] ; then
     PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
 else
     # Add git branch to bash prompt
-    if [[ -r /usr/share/git/git-prompt.sh ]] ; then
-        source /usr/share/git/git-prompt.sh
+    # try alternative location if file does not exist
+    git_prompt=/usr/share/git/git-prompt.sh
+    [[ -r $git_prompt ]] || git_prompt=/usr/lib/git-core/git-sh-prompt
+    if [[ -r $git_prompt ]] ; then
+        source $git_prompt
         # from /etc/bash/bashrc
         # PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
         # from /usr/share/git/git-prompt.sh
