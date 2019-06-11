@@ -336,6 +336,11 @@
         <menu>root-menu</menu>
       </action>
     </keybind>
+    <keybind key="C-Menu">
+      <action name="ShowMenu">
+        <menu>client-list-combined-menu</menu>
+      </action>
+    </keybind>
     <!-- Raise Volume -->
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">

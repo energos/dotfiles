@@ -221,7 +221,9 @@ Plugin {
         button {
             icon = window-list
             tooltip = Windows list
-            action = xdotool key Super_R
+            # https://github.com/jordansissel/xdotool/issues/173
+            # action = xdotool key Super_R
+            action = xdotool key Control+Menu
         }
         button {
             icon = Utilities-terminal
