@@ -254,7 +254,12 @@
 (use-package pdf-tools
   :ensure t
   :config
-  (pdf-tools-install))
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26"))
+  (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
+  (define-key pdf-view-mode-map (kbd "<home>") 'pdf-view-first-page)
+  (define-key pdf-view-mode-map (kbd "<end>") 'pdf-view-last-page))
 
 (use-package org-pdfview
   :ensure t)
