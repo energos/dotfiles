@@ -176,6 +176,7 @@
   (require 'helm-config)
   (setq helm-split-window-default-side 'other)
   (setq helm-candidate-number-limit 1000)
+  (customize-set-variable 'helm-ff-lynx-style-map t)
   (helm-mode 1))
 
 ;; https://github.com/ShingoFukuyama/helm-swoop
