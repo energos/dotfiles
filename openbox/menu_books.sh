@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEBUGPORT=${DEBUGPORT:-""}
-BOOKS=$HOME/Books
+BOOKS=$1
 
 cat <<EOF
 <openbox_pipe_menu>

@@ -146,7 +146,8 @@ EOF
 
     # eBooks
     cat <<EOF
-<menu id="ebooks" label="eBooks" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh" />
+<menu id="datasheets" label="Datasheets" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh $HOME/Datasheets" />
+<menu id="ebooks" label="eBooks" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh $HOME/Books" />
 EOF
     [[ -x $(command -v calibre) ]] && cat <<EOF
 <item label="Calibre eBook Manager" icon="/usr/share/icons/hicolor/48x48/apps/calibre-gui.png">
