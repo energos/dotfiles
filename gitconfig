@@ -3,7 +3,7 @@
     email = energos@users.noreply.github.com
 [core]
     excludesfile = /home/energos/.gitignore
-    pager = less -FXR
+    pager = less -iFXR
     editor = jed
 [alias]
     lg1 = log --graph --pretty=tformat:'%C(auto)%h%d %s %C(cyan)(%ar)%C(reset)'
