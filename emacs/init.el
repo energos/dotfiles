@@ -670,6 +670,16 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-<end>")
                 (lambda () (interactive) (send-key-to-window-class "Zathura" "End")))
 
+;; --- Make ---
+(global-set-key (kbd "<f9>") (lambda () "Make all" (interactive) (save-buffer 0) (compile "make")))
+(global-set-key (kbd "<S-f9>") (lambda () "Make clean" (interactive) (save-buffer 0) (compile "make clean")))
+(global-set-key (kbd "C-<f9>") (lambda () "Make flash" (interactive) (save-buffer 0) (compile "make flash")))
+(global-set-key (kbd "C-S-<f9>") (lambda () "Make verify" (interactive) (compile "make verify")))
+(global-set-key (kbd "M-<f9>") (lambda () "Make reset" (interactive) (compile "make reset")))
+
+(setq compilation-window-height 24)
+(setq compilation-scroll-output 'first-error)
+
 ;; --- Support for keyboard physical macro keys ---
 ;;
 ;; M1 - ESC <f1> -> C-c &
