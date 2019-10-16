@@ -8,12 +8,13 @@ fi
 
 # Put your fun stuff here...
 
-# user's bin
-[[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
-
 # user's Racket
 [[ -d ${HOME}/racket/bin ]] && PATH="${HOME}/racket/bin:${PATH}"
 [[ -d ${HOME}/racket/man ]] && MANPATH="${HOME}/racket/man:${MANPATH}"
+# user's .local/bin
+[[ -d ${HOME}/.local/bin ]] && PATH="${HOME}/.local/bin:${PATH}"
+# user's bin
+[[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
 
 export PATH
 export MANPATH
