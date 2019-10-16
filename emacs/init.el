@@ -265,6 +265,30 @@
 (use-package org-pdfview
   :ensure t)
 
+;; https://github.com/bbatsov/projectile
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode +1)
+  (setq projectile-completion-system 'helm)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "H-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (helm-projectile-on))
+(use-package helm-projectile
+  :ensure t)
+;; https://github.com/syohex/emacs-helm-ag
+(use-package helm-ag
+  :ensure t)
+
+;; ;; https://github.com/nex3/perspective-el
+;; (use-package perspective
+;;   :ensure t
+;;   :config
+;;   (persp-mode))
+;; (use-package persp-projectile
+;;   :ensure t)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
