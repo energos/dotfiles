@@ -141,6 +141,9 @@
         ("melpa"      . 10)))
 (package-initialize)
 
+;; https://stackoverflow.com/questions/57153556/
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; https://github.com/jwiegley/use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
