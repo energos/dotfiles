@@ -15,7 +15,7 @@ do
     [[ -n $DEBUGPORT ]] && echo "${0##*/}: \"${name}\"" > $DEBUGPORT
     cat <<EOF
 <item label="${name}">
-  <action name="Execute"><command>zathura "${book}"</command></action>
+  <action name="Execute"><command>xdg-open "${book}"</command></action>
 </item>
 EOF
 done

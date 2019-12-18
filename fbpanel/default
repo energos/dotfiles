@@ -430,5 +430,13 @@ Plugin {
             icon = pdf
             ClassName = Zathura
         }
+        application {
+            icon = pdf
+            ClassName = okular
+        }
+        application {
+            icon = pdf
+            ClassName = qpdfview
+        }
     }
 }

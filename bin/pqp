@@ -37,7 +37,7 @@ show_window ()
     CLASS=$1
     DESKTOP=$(xdotool get_desktop)
 
-    WINDOW=$(xdotool search --desktop $DESKTOP --classname ^$CLASS$ | head -n 1)
+    WINDOW=$(xdotool search --desktop $DESKTOP --classname $CLASS | head -n 1)
     if [[ -n  $WINDOW ]]
     then
         if echo $WINDOW | grep -q ^$(xdotool getactivewindow)$ || xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE
@@ -97,13 +97,13 @@ shift $((OPTIND - 1))
 
 case "$1" in
     "")
-        show_window Terminal $HIDEDESKTOP || $TERMINAL -name Terminal
+        show_window ^Terminal$ $HIDEDESKTOP || $TERMINAL -name Terminal
         ;;
     "emacs")
-        show_window Emacs $HIDEDESKTOP || (emacsclient -c -n -a "emacs" 2> /dev/null &)
+        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs" 2> /dev/null &)
         ;;
     "firefox")
-        show_window Navigator $HIDEDESKTOP || (firefox &> /dev/null &)
+        show_window ^Navigator$ $HIDEDESKTOP || (firefox &> /dev/null &)
         ;;
     "navigator")
         navigator=${NAVIGATOR:-firefox}
@@ -147,7 +147,7 @@ case "$1" in
             $navigator "$*" &> /dev/null &
         else
             [[ -n $* ]] && dont_hide=1
-            show_window "$navigator_class" $desktop || ($navigator &> /dev/null &)
+            show_window "^$navigator_class$" $desktop || ($navigator &> /dev/null &)
             [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*" > $DEBUGPORT
             # yet another ugly hack (if you need to sleep there is something not quite right)
             [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
@@ -189,13 +189,13 @@ case "$1" in
         $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x36 -e $@ -d
         ;;
     "gkrellm")
-        show_window Gkrellm 0 || (gkrellm &)
+        show_window ^Gkrellm$ 0 || (gkrellm &)
         ;;
     "cmus")
-        show_window cmusMusicPlayer 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
+        show_window ^cmusMusicPlayer$ 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
-        show_window Zathura $HIDEDESKTOP || (zathura ~/Books/default &)
+        show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP || (xdg-open ~/Books/default &)
         ;;
     "man")
         $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
