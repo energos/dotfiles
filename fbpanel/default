@@ -438,5 +438,9 @@ Plugin {
             icon = pdf
             ClassName = qpdfview
         }
+        application {
+            icon = kate
+            ClassName = kate
+        }
     }
 }

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+USER_ICONS=$HOME/.local/share/icons
+ICONS=/usr/share/icons/Adwaita/48x48
+
 crappy=yes
 
 cat <<EOF
@@ -15,9 +18,17 @@ EOF
   <action name="Execute"><command>eagle</command></action>
 </item>
 EOF
-[[ "$crappy" == "yes" ]] && cat <<EOF
-<item label="Get yourself a better computer, kid!" icon="/usr/share/icons/Adwaita/48x48/emotes/face-wink.png">
+[[ -x $(command -v mcu8051ide) ]] && cat <<EOF && crappy=no
+<item label="MCU 8051 IDE" icon="/usr/share/pixmaps/mcu8051ide.png">
+  <action name="Execute"><command>mcu8051ide</command></action>
 </item>
+EOF
+[[ "$crappy" == "yes" ]] && cat <<EOF
+<item label="Get yourself a better computer, kid!" icon="${ICONS}/emotes/face-wink.png">
+</item>
+EOF
+cat <<EOF
+<menu id="datasheets" label="Datasheets" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh $HOME/Datasheets" />
 EOF
 cat <<EOF
 </openbox_pipe_menu>

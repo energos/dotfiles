@@ -108,10 +108,10 @@ EOF
 <action name="Execute"><command>urxvtcd -name Terminal</command></action> </item>
 <item label="Terminal (xterm)" icon="${ICONS}/apps/utilities-terminal.png">
 <action name="Execute"><command>xterm</command></action> </item>
-<item label="Midnight Commander" icon="${USER_ICONS}/mc.svg" >
+<item label="Midnight Commander" icon="${USER_ICONS}/mc.svg">
 <action name="Execute"><command>pqp mc</command></action> </item>
-<item label="File Manager" icon="${ICONS}/apps/system-file-manager.png" >
-<action name="Execute"><command>pcmanfm</command></action> </item>
+<item label="File Manager" icon="/usr/share/icons/breeze/apps/48/system-file-manager.svg">
+<action name="Execute"><command>dolphin</command></action> </item>
 <separator />
 EOF
 
@@ -129,6 +129,8 @@ EOF
 <action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action> </item>
 <item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png">
 <action name="Execute"><command>geany</command></action> </item>
+<item label="Kate" icon="/usr/share/icons/hicolor/48x48/apps/kate.png">
+<action name="Execute"><command>kate</command></action> </item>
 <separator />
 EOF
 
@@ -146,7 +148,6 @@ EOF
 
     # eBooks
     cat <<EOF
-<menu id="datasheets" label="Datasheets" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh $HOME/Datasheets" />
 <menu id="ebooks" label="eBooks" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh $HOME/Books" />
 EOF
     [[ -x $(command -v calibre) ]] && cat <<EOF
