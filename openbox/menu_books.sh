@@ -1,20 +1,36 @@
 #!/bin/bash
 
 DEBUGPORT=${DEBUGPORT:-""}
-BOOKS=$1
+USER_ICONS=$HOME/.local/share/icons
+ICONS=/usr/share/icons/Adwaita/48x48
+BOOKS=$*
+
+shortname ()
+{
+    book=${book%/}
+    name=${book##*/}
+    name=${name%.*}
+    name=${name//_/ }
+    [[ -n ${DEBUGPORT} ]] && echo "${0##*/}: \"${name}\"" > "${DEBUGPORT}"
+}
 
 cat <<EOF
 <openbox_pipe_menu>
 EOF
 
-ls -1 ${BOOKS}/*.{pdf,djvu} | while read book
+ls -1d "${BOOKS}"/*/ 2> /dev/null | while read -r book
 do
-    fullname=${book##*/}
-    shortname=${fullname%%.*}
-    name=${shortname//_/ }
-    [[ -n $DEBUGPORT ]] && echo "${0##*/}: \"${name}\"" > $DEBUGPORT
+    shortname
     cat <<EOF
-<item label="${name}">
+<menu id="${book}" label="${name}" icon="${ICONS}/places/folder.png" execute="~/.config/openbox/menu_books.sh ${book}" />
+EOF
+done
+
+ls -1 "${BOOKS}"/*.{pdf,djvu} 2> /dev/null | while read -r book
+do
+    shortname
+    cat <<EOF
+<item label="${name}" icon="${USER_ICONS}/pdf.svg">
   <action name="Execute"><command>xdg-open "${book}"</command></action>
 </item>
 EOF
@@ -23,3 +39,6 @@ done
 cat <<EOF
 </openbox_pipe_menu>
 EOF
+
+# WARNING: weird characters like '\' and '!' are problematic
+# TODO:    https://github.com/koalaman/shellcheck/wiki/SC2012
