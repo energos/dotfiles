@@ -385,18 +385,16 @@
         <command>pqp cmus</command>
       </action>
     </keybind>
-    <!-- Launch scrot when Print is pressed -->
+    <!-- Take a screenshot with spectacle when Print is pressed -->
     <keybind key="Print">
       <action name="Execute">
-        <!-- <command>scrot</command> -->
-        <command>firefox https://wiki.archlinux.org/index.php/taking_a_screenshot</command>
+        <command>spectacle</command>
       </action>
     </keybind>
-    <!-- Take a screenshot of the current window with scrot when Alt+Print are pressed -->
+    <!-- Take a screenshot of the active window when Alt+Print are pressed -->
     <keybind key="A-Print">
       <action name="Execute">
-        <!-- <command>scrot -s</command> -->
-        <command>firefox https://wiki.archlinux.org/index.php/taking_a_screenshot</command>
+        <command>spectacle -a</command>
       </action>
     </keybind>
     <keybind key="W-l">
