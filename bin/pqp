@@ -37,6 +37,8 @@ show_window ()
     CLASS=$1
     DESKTOP=$(xdotool get_desktop)
 
+    [[ -n $DEBUGPORT ]] && echo "Desperately seeking for a Window of class $CLASS" > $DEBUGPORT
+
     WINDOW=$(xdotool search --desktop $DESKTOP --classname $CLASS | head -n 1)
     if [[ -n  $WINDOW ]]
     then
@@ -50,7 +52,7 @@ show_window ()
             xdotool windowactivate $WINDOW
         fi
     else
-        WINDOW=$(for i in $(seq $2 $HIDEDESKTOP); do xdotool search --desktop $i --classname ^$CLASS$; done | head -n 1)
+        WINDOW=$(for i in $(seq $2 $HIDEDESKTOP); do xdotool search --desktop $i --classname $CLASS; done | head -n 1)
         if [[ -n  $WINDOW ]]
         then
             [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > $DEBUGPORT
