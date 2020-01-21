@@ -110,11 +110,11 @@ case "$1" in
     "navigator")
         navigator=${NAVIGATOR:-firefox}
         desktop=$HIDEDESKTOP
-        behaviour=nice
+        behavior="nice"
         case "$navigator" in
             midori)
                 navigator_class=Midori
-                # bad behaviour workaround
+                # bad behavior workaround
                 # midori does not open a new window if an instance is already running
                 desktop=0       # search in all desktops
                 ;;
@@ -129,12 +129,12 @@ case "$1" in
                 ;;
             dillo)
                 navigator_class=dillo
-                behavior=ugly
+                behavior="ugly"
                 ;;
             netsurf-gtk3|netsurf)
                 navigator=netsurf-gtk3
                 navigator_class=netsurf-gtk3
-                behavior=ugly
+                behavior="ugly"
                 ;;
             *)
                 tty -s && echo "Browser $navigator not defined" || (LANG=C xmessage "Browser $navigator not defined" &)
@@ -142,7 +142,7 @@ case "$1" in
                 ;;
         esac
         shift
-        if [[ $behavior == ugly && -n $* ]]; then
+        if [[ $behavior == "ugly" && -n $* ]]; then
             # Ugly browsers do not allow to open a URL in a new tab in a existing
             # window via command line (or I just don't know how to do that),
             # so we just start a new instance
