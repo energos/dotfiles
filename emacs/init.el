@@ -163,6 +163,9 @@
   :ensure t
   :bind (("C-x g"   . magit-status)
          ("C-x M-g" . magit-dispatch-popup))
+  :bind (:map magit-hunk-section-map
+              ("RET"        . magit-diff-visit-file-other-window)
+              ("<S-return>" . magit-diff-visit-file))
   :config
   (setq vc-handled-backends nil))
 
