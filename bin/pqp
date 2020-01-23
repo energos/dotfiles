@@ -37,29 +37,29 @@ show_window ()
     CLASS=$1
     DESKTOP=$(xdotool get_desktop)
 
-    [[ -n $DEBUGPORT ]] && echo "Desperately seeking for a Window of class $CLASS" > $DEBUGPORT
+    [[ -n $DEBUGPORT ]] && echo "Desperately seeking for a Window of class $CLASS" > "$DEBUGPORT"
 
-    WINDOW=$(xdotool search --desktop $DESKTOP --classname $CLASS | head -n 1)
-    if [[ -n  $WINDOW ]]
+    WINDOW=$(xdotool search --desktop "$DESKTOP" --classname "$CLASS" | head -n 1)
+    if [[ -n $WINDOW ]]
     then
-        if echo $WINDOW | grep -q ^$(xdotool getactivewindow)$ || xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE
+        if echo "$WINDOW" | grep -q "^$(xdotool getactivewindow)$" || xprop _NET_WM_STATE -id "$WINDOW" | grep -q _NET_WM_STATE_ABOVE
         then
-            [[ -n $DEBUGPORT && $dont_hide == 0 ]] && echo "Window $WINDOW is ACTIVE so we HIDE it" > $DEBUGPORT
-            [[ -n $DEBUGPORT && $dont_hide != 0 ]] && echo "Window $WINDOW is ACTIVE but we DON'T HIDE it" > $DEBUGPORT
-            [[ $dont_hide == 0 ]] && xdotool set_desktop_for_window $WINDOW $HIDEDESKTOP
+            [[ -n $DEBUGPORT && $dont_hide == 0 ]] && echo "Window $WINDOW is ACTIVE so we HIDE it" > "$DEBUGPORT"
+            [[ -n $DEBUGPORT && $dont_hide != 0 ]] && echo "Window $WINDOW is ACTIVE but we DON'T HIDE it" > "$DEBUGPORT"
+            [[ $dont_hide == 0 ]] && xdotool set_desktop_for_window "$WINDOW" "$HIDEDESKTOP"
         else
-            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is NOT ACTIVE so we SHOW it" > $DEBUGPORT
-            xdotool windowactivate $WINDOW
+            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is NOT ACTIVE so we SHOW it" > "$DEBUGPORT"
+            xdotool windowactivate "$WINDOW"
         fi
     else
-        WINDOW=$(for i in $(seq $2 $HIDEDESKTOP); do xdotool search --desktop $i --classname $CLASS; done | head -n 1)
+        WINDOW=$(for i in $(seq "$2" "$HIDEDESKTOP"); do xdotool search --desktop "$i" --classname "$CLASS"; done | head -n 1)
         if [[ -n  $WINDOW ]]
         then
-            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > $DEBUGPORT
-            xdotool set_desktop_for_window $WINDOW $DESKTOP
-            xprop _NET_WM_STATE -id $WINDOW | grep -q _NET_WM_STATE_ABOVE || xdotool windowactivate $WINDOW
+            [[ -n $DEBUGPORT ]] && echo "Window $WINDOW is in 'OTHER' DESKTOP so we BRING it BACK" > "$DEBUGPORT"
+            xdotool set_desktop_for_window "$WINDOW" "$DESKTOP"
+            xprop _NET_WM_STATE -id "$WINDOW" | grep -q _NET_WM_STATE_ABOVE || xdotool windowactivate "$WINDOW"
         else
-            [[ -n $DEBUGPORT ]] && echo "Zero, zilch, zip, nada, nothing." > $DEBUGPORT
+            [[ -n $DEBUGPORT ]] && echo "Zero, zilch, zip, nada, nothing." > "$DEBUGPORT"
             return 1
         fi
     fi
@@ -81,15 +81,15 @@ DEBUGPORT=${DEBUGPORT:-""}
 # parse options
 while getopts ":hn" option; do
     case $option in
-        n)  [[ -n $DEBUGPORT ]] && echo "n: Force new instance" > $DEBUGPORT
+        n)  [[ -n $DEBUGPORT ]] && echo "n: Force new instance" > "$DEBUGPORT"
             # abort search and run a new program instance
             force_new=1
             ;;
-        h)  [[ -n $DEBUGPORT ]] && echo "h: Do not hide window even if active" > $DEBUGPORT
+        h)  [[ -n $DEBUGPORT ]] && echo "h: Do not hide window even if active" > "$DEBUGPORT"
             # do not hide active window
             dont_hide=1
             ;;
-        \?) [[ -n $DEBUGPORT ]] && echo "?: ${0##*/}: Invalid option -$OPTARG" > $DEBUGPORT
+        \?) [[ -n $DEBUGPORT ]] && echo "?: ${0##*/}: Invalid option -$OPTARG" > "$DEBUGPORT"
             tty -s && echo "${0##*/}: Invalid option -$OPTARG"
             exit 1
             ;;
@@ -150,7 +150,7 @@ case "$1" in
         else
             [[ -n $* ]] && dont_hide=1
             show_window "^$navigator_class$" $desktop || ($navigator &> /dev/null &)
-            [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*" > $DEBUGPORT
+            [[ -n $DEBUGPORT && -n $* ]] && echo "Opening $*" > "$DEBUGPORT"
             # yet another ugly hack (if you need to sleep there is something not quite right)
             [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
         fi
@@ -185,30 +185,30 @@ case "$1" in
                 engine="https://www.google.com/search?q="
                 ;;
         esac
-        pqp navigator "${engine}$(xclip -selection clipboard -o)"
+        pqp navigator "$engine$(xclip -selection clipboard -o)"
         ;;
     "mc")
-        $TERMINAL -icon $ICONS/mc.svg -title "Midnight Commander" -sl 0 -geometry 96x36 -e $@ -d
+        $TERMINAL -icon "$ICONS/mc.svg" -title "Midnight Commander" -sl 0 -geometry 96x36 -e $@ -d
         ;;
     "gkrellm")
         show_window ^Gkrellm$ 0 || (gkrellm &)
         ;;
     "cmus")
-        show_window ^cmusMusicPlayer$ 0 || urxvtcd -icon $ICONS/Audio-x-generic.svg -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
+        show_window ^cmusMusicPlayer$ 0 || urxvtcd -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
         # Get the last file opened by the document viewer
         # TODO: Add okular and qpdfview. Currently works only with zathura.
-        show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP || (xdg-open $(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "${HOME}"/.local/share/zathura/history | sort -r | head -1 | awk -F '[\\[\\]]' '{ print $2 }') &)
+        show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP || (xdg-open "$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -1 | awk -F '[\\[\\]]' '{ print $2 }')" &)
         ;;
     "man")
-        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
+        $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
         ;;
     "info")
-        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
+        $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -sl 0 -geometry +458+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
         ;;
     "help")
-        $TERMINAL -icon $ICONS/Blue_question_mark_icon.svg -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
+        $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
         ;;
     "logs")
         brocket -a freakingLogs
@@ -244,12 +244,12 @@ case "$1" in
     "ww")
         # set active window width
         # ugly hack to give gmrum time to shut off
-        sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,$2,-1 &
+        sleep 0.01 && wmctrl -r :ACTIVE: -e "0,-1,-1,$2,-1" &
         ;;
     "wh")
         # set active window height
         # ugly hack to give gmrum time to shut off
-        sleep 0.01 && wmctrl -r :ACTIVE: -e 0,-1,-1,-1,$2 &
+        sleep 0.01 && wmctrl -r :ACTIVE: -e "0,-1,-1,-1,$2" &
         ;;
     "volume")
         # case "$2" in
@@ -268,17 +268,17 @@ case "$1" in
         mute=${ALSA_MUTE:-Master}
         case "$2" in
             "up")
-                amixer sget ${mute} | grep '\[off\]' &> /dev/null && amixer -q sset ${mute} unmute || amixer -q sset ${volume} 1%+
+                amixer sget "$mute" | grep '\[off\]' &> /dev/null && amixer -q sset "$mute" unmute || amixer -q sset "$volume" 1%+
                 ;;
             "down")
-                amixer sget ${mute} | grep '\[off\]' &> /dev/null && amixer -q sset ${mute} unmute || amixer -q sset ${volume} 1%-
+                amixer sget "$mute" | grep '\[off\]' &> /dev/null && amixer -q sset "$mute" unmute || amixer -q sset "$volume" 1%-
                 ;;
             "toggle")
-                amixer -q sset ${mute} toggle
+                amixer -q sset "$mute" toggle
                 ;;
             *)
-                amixer sget ${volume}
-                [[ ${mute} != ${volume} ]] && amixer sget ${mute}
+                amixer sget "$volume"
+                [[ "$mute" != "$volume" ]] && amixer sget "$mute"
                 ;;
         esac
         ;;
@@ -287,11 +287,11 @@ case "$1" in
         # https://superuser.com/questions/418699/
         DPI=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
         THRESHOLD=${THRESHOLD:-120}
-        if (( $DPI > ${THRESHOLD} )); then
+        if (( DPI > THRESHOLD )); then
             # echo "HIGH DPI"
-            [[ "${TERM}" == "xterm" ]] && default=12 || default=11
+            [[ "$TERM" == "xterm" ]] && default=12 || default=11
             size=${2:-${default}}
-            if ((${size} < 8 || ${size} > 24)); then
+            if (( size < 8 || size > 24)); then
                 echo "\"${size}\" is not in the range (8..24)"
                 exit
             fi
@@ -300,7 +300,7 @@ case "$1" in
         else
             # echo "low DPI"
             size=${2:-"medium"}
-            case "${size}" in
+            case "$size" in
                 "tiny")
                     font_rxvt="-misc-fixed-medium-r-normal-*-10-*-*-*-*-*-*-*"
                     font_xterm=${font_rxvt}
