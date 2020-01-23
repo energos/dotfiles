@@ -689,13 +689,13 @@ Move point to the previous position that is the beggining of a symbol."
 ;; --- WARNING! Send the same key used as a shortcut! ---
 (global-set-key (kbd "H-<f5>") 'browser-reload)
 (global-set-key (kbd "H-<prior>")
-                (lambda () (interactive) (send-key-to-window-class "Zathura" "Prior")))
+                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Prior")))
 (global-set-key (kbd "H-<next>")
-                (lambda () (interactive) (send-key-to-window-class "Zathura" "Next")))
+                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Next")))
 (global-set-key (kbd "H-<home>")
-                (lambda () (interactive) (send-key-to-window-class "Zathura" "Home")))
+                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Home")))
 (global-set-key (kbd "H-<end>")
-                (lambda () (interactive) (send-key-to-window-class "Zathura" "End")))
+                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "End")))
 
 ;; --- Make ---
 (global-set-key (kbd "<f9>") (lambda () "Make all" (interactive) (save-buffer 0) (compile "make")))
