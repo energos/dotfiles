@@ -169,6 +169,12 @@
   :config
   (setq vc-handled-backends nil))
 
+(use-package minions
+  :ensure t
+  :config
+  (setq minions-mode-line-lighter "[+]")
+  (minions-mode 1))
+
 ;; https://github.com/emacs-helm/helm
 (use-package helm
   :ensure t
