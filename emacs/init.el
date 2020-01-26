@@ -280,6 +280,8 @@
   :ensure t)
 
 ;; https://github.com/bbatsov/projectile
+(use-package helm-projectile
+  :ensure t)
 (use-package projectile
   :ensure t
   :config
@@ -289,8 +291,6 @@
   (define-key projectile-mode-map (kbd "H-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (helm-projectile-on))
-(use-package helm-projectile
-  :ensure t)
 ;; https://github.com/syohex/emacs-helm-ag
 (use-package helm-ag
   :ensure t)
