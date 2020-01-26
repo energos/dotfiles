@@ -166,8 +166,10 @@
   :bind (:map magit-hunk-section-map
               ("RET"        . magit-diff-visit-file-other-window)
               ("<S-return>" . magit-diff-visit-file))
-  :config
-  (setq vc-handled-backends nil))
+  :init
+  ;; https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
+  ;; (setq vc-handled-backends nil)
+  (setq auto-revert-check-vc-info t))
 
 (use-package minions
   :ensure t
