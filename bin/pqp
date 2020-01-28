@@ -199,7 +199,8 @@ case "$1" in
     "pdf")
         # Get the last file opened by the document viewer
         # TODO: Add okular and qpdfview. Currently works only with zathura.
-        show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP || (xdg-open "$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -1 | awk -F '[\\[\\]]' '{ print $2 }')" &)
+        # TODO: treat empty history case
+        show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP || (xdg-open "$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -I % sh -c '{ [[ -f "%" ]] && echo %; }' | tail -n +1 | head -n 1)" &)
         ;;
     "man")
         $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &

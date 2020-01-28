@@ -44,10 +44,8 @@ EOF
     cat <<EOF
 <menu id="RecentFiles" label="Recent Files" icon="${ICONS}/actions/document-open-recent.png">
 EOF
-    awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "${HOME}"/.local/share/zathura/history | sort -r | head -10 | while read -r book
+    awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -I % sh -c '{ [[ -f "%" ]] && echo %; }' | while read -r book
     do
-        book=${book%\]}
-        book=${book#*\[}
         shortname
         cat <<EOF
 <item label="${name}" icon="${USER_ICONS}/pdf.svg">
