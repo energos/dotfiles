@@ -1,4 +1,0 @@
-sys-libs/zlib minizip
-dev-qt/qtwebengine widgets -bindist
-media-libs/libvpx svc
-dev-qt/qtwebchannel qml

@@ -1,0 +1,1 @@
+net-p2p/ktorrent -mediaplayer -shutdown -upnp -zeroconf -scanfolder -stats -bwscheduler

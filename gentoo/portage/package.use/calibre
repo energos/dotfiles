@@ -1,12 +1,7 @@
-x11-libs/libxcb xkb
-# required by app-text/calibre-2.78.0::gentoo[python_targets_python2_7]
-# required by calibre (argument)
->=dev-lang/python-2.7.12:2.7 sqlite
->=dev-lang/python-3.6.5 sqlite
-# required by app-text/calibre-2.78.0::gentoo
-# required by calibre (argument)
->=dev-python/PyQt5-5.7.1 printsupport webkit widgets gui network
-# required by dev-python/PyQt5-5.7.1::gentoo[webkit]
-# required by app-text/calibre-2.78.0::gentoo
-# required by calibre (argument)
->=dev-qt/qtwebkit-5.6.2 printsupport
+app-text/poppler qt5
+dev-libs/libpcre2 pcre16
+dev-libs/libpcre pcre16
+dev-python/PyQt5 network printsupport widgets gui webchannel
+dev-qt/qtwebengine widgets
+dev-qt/qtwebchannel qml
+media-libs/libvpx svc

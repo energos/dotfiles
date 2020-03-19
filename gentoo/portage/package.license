@@ -1,3 +1,6 @@
+*/* @BINARY-REDISTRIBUTABLE
+app-misc/ckermit Kermit
+sci-visualization/xgraph xgraph
 app-emulation/virtualbox-extpack-oracle PUEL
-sci-mathematics/gimps GIMPS
-www-plugins/adobe-flash AdobeFlash-11.x
+app-arch/unarj arj
+sci-electronics/eagle cadsoft-2

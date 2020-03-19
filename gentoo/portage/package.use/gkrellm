@@ -1,1 +1,1 @@
-app-admin/gkrellm -ssl hddtemp lm_sensors
+app-admin/gkrellm lm_sensors

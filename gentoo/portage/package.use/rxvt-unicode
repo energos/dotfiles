@@ -1,1 +1,1 @@
-x11-terms/rxvt-unicode 256-color pixbuf xft -mousewheel -perl
+x11-terms/rxvt-unicode 256-color gdk-pixbuf xft -mousewheel -perl

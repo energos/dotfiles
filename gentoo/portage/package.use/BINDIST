@@ -1,0 +1,9 @@
+# required by firefox
+dev-libs/openssl -bindist
+net-misc/openssh -bindist
+
+# wicd - forced by above
+net-wireless/wpa_supplicant -bindist
+
+# calibre - forced by above
+dev-qt/qtnetwork -bindist

@@ -1,0 +1,14 @@
+# mcu8051ide
+# arrow keys do not work with tcl 8.6
+
+>dev-lang/tk-8.5.17-r1
+>dev-lang/tcl-8.5.17-r1
+<dev-lang/tk-8.5.17-r1
+<dev-lang/tcl-8.5.17-r1
+
+>dev-tcltk/itcl-3.4.1
+>dev-tcltk/itk-3.4.1
+>dev-tcltk/tdom-0.8.3-r4
+<dev-tcltk/itcl-3.4.1
+<dev-tcltk/itk-3.4.1
+<dev-tcltk/tdom-0.8.3-r4

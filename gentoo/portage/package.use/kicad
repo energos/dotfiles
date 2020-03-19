@@ -1,2 +1,4 @@
-dev-libs/boost nls python context
-sci-electronics/ngspice shared
+dev-libs/boost python context nls
+
+# KiCad 5.0.1 needs
+x11-libs/wxGTK sdl -libnotify gstreamer
