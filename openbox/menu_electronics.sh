@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER_ICONS=$HOME/.local/share/icons
-ICONS=/usr/share/icons/Adwaita/48x48
+ICONS=/usr/share/icons/breeze
 
 crappy=yes
 
@@ -24,7 +24,7 @@ EOF
 </item>
 EOF
 [[ "$crappy" == "yes" ]] && cat <<EOF
-<item label="Get yourself a better computer, kid!" icon="${ICONS}/emotes/face-wink.png">
+<item label="Get yourself a better computer, kid!" icon="${ICONS}/emotes/22/face-wink.svg">
 </item>
 EOF
 cat <<EOF

@@ -1,8 +1,9 @@
+
 #!/bin/bash
 
 DEBUGPORT=${DEBUGPORT:-""}
 USER_ICONS=$HOME/.local/share/icons
-ICONS=/usr/share/icons/Adwaita/48x48
+ICONS=/usr/share/icons/breeze
 BOOKS=$*
 
 shortname ()
@@ -22,7 +23,7 @@ ls -1d "${BOOKS}"/*/ 2> /dev/null | while read -r book
 do
     shortname
     cat <<EOF
-<menu id="${book}" label="${name}" icon="${ICONS}/places/folder.png" execute="~/.config/openbox/menu_books.sh ${book}" />
+<menu id="${book}" label="${name}" icon="${ICONS}/places/32/folder-documents.svg" execute="~/.config/openbox/menu_books.sh ${book}" />
 EOF
 done
 
@@ -42,7 +43,7 @@ if [[ "$BOOKS" == "${HOME}/Books" ]]; then
 <separator />
 EOF
     cat <<EOF
-<menu id="RecentFiles" label="Recent Files" icon="${ICONS}/actions/document-open-recent.png">
+<menu id="RecentFiles" label="Recent Files" icon="${ICONS}/places/32/folder-recent.svg">
 EOF
     awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }' | while read -r book
     do
