@@ -1,9 +1,11 @@
+app-admin/eclean-kernel
 app-admin/gkrellm
 app-admin/logrotate
 app-admin/syslog-ng
 app-arch/arj
 app-arch/dpkg
 app-arch/p7zip
+app-arch/pbzip2
 app-arch/rpm
 app-arch/unarj
 app-arch/unrar
@@ -19,6 +21,7 @@ app-emulation/dosemu
 app-emulation/virtualbox
 app-emulation/virtualbox-additions
 app-emulation/virtualbox-extpack-oracle
+app-emulation/virtualbox-guest-additions
 app-emulation/virtualbox-modules
 app-eselect/eselect-repository
 app-misc/ckermit
@@ -99,6 +102,7 @@ net-misc/dhcpcd
 net-misc/openssh
 net-misc/socat
 net-misc/whois
+net-misc/wicd
 net-misc/youtube-dl
 net-p2p/ktorrent
 net-wireless/iw
