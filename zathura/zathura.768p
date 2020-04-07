@@ -1,0 +1,14 @@
+# .config/zathura/zathura.768p
+# best for 768p height monitor
+# this file holds height dependent configuration
+# ln -sf zathura.768p zathura.height
+
+set window-height 768
+set window-width 900
+set guioptions ""
+set font "xos4 Terminus Regular 11"
+
+map <S-Down> navigate next
+map <S-Up> navigate previous
+map <Down> scroll down
+map <Up> scroll up
