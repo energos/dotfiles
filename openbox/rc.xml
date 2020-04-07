@@ -341,6 +341,17 @@
         <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
+    <!-- Screen Brightness -->
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>xbacklight +5</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>xbacklight -5</command>
+      </action>
+    </keybind>
     <!-- Raise Volume -->
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
