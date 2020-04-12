@@ -1,0 +1,11 @@
+#+TITLE: Gentoo on Geode
+#+AUTHOR: energos
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+* The Machine
+  - [[https://www.ztop.com.br/proview-pc-81001-um-netbook-com-amd/][Proview PC-81001: um netbook com AMD? - ZTOP + ZUMO]]
+  - [[https://www.hardware.com.br/artigos/proview-81001/][Mini-análise do netbook Proview 81001 - Hardware.com.br]]
+  - [[https://www.clubedohardware.com.br/artigos/portateis/proview-compact-pc-pc-81001-r35064/][Proview Compact PC PC-81001 - Portáteis - Clube do Hardware]]
+* The build server
+  - [[https://wiki.gentoo.org/wiki/Project:AMD64/32-bit_Chroot_Guide][Project:AMD64/32-bit Chroot Guide - Gentoo Wiki]]
