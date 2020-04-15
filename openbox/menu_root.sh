@@ -110,8 +110,20 @@ EOF
 <action name="Execute"><command>xterm</command></action> </item>
 <item label="Midnight Commander" icon="${USER_ICONS}/mc.svg">
 <action name="Execute"><command>pqp mc</command></action> </item>
+EOF
+    if [[ -x $(command -v dolphin) ]]
+    then
+        cat <<EOF
 <item label="File Manager" icon="${ICONS}/apps/48/system-file-manager.svg">
 <action name="Execute"><command>dolphin</command></action> </item>
+EOF
+    else
+        [[ -x $(command -v pcmanfm) ]] && cat <<EOF
+<item label="File Manager" icon="${ICONS}/apps/48/system-file-manager.svg" >
+<action name="Execute"><command>pcmanfm</command></action> </item>
+EOF
+    fi
+    cat <<EOF
 <separator />
 EOF
 
@@ -129,8 +141,12 @@ EOF
 <action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action> </item>
 <item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png">
 <action name="Execute"><command>geany</command></action> </item>
+EOF
+    [[ -x $(command -v kate) ]] && cat <<EOF
 <item label="Kate" icon="${ICONS}/apps/48/kate.svg">
 <action name="Execute"><command>kate</command></action> </item>
+EOF
+    cat <<EOF
 <separator />
 EOF
 
