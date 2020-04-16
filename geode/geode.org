@@ -9,3 +9,14 @@
   - [[https://www.clubedohardware.com.br/artigos/portateis/proview-compact-pc-pc-81001-r35064/][Proview Compact PC PC-81001 - Portáteis - Clube do Hardware]]
 * The build server
   - [[https://wiki.gentoo.org/wiki/Project:AMD64/32-bit_Chroot_Guide][Project:AMD64/32-bit Chroot Guide - Gentoo Wiki]]
+* The config files
+  - [[https://wiki.gentoo.org/wiki/Safe_CFLAGS#Older_microarchitectures][Safe CFLAGS - 4.2.10 Older microarchitectures]]
+* The good, the bad, and the ugly
+** The Good
+   - Nice little machine
+   - It kind of works
+** The bad
+   - It is very, very slow
+   - No browser capable of supporting the modern bloated internet
+** The Ugly
+   - Illegal instruction error in several applications (dolphin, kate, konsole, etc.), probably due to Geode not having the sse2 instruction
