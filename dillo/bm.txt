@@ -1,0 +1,7 @@
+:s0: Search
+:s1: News
+:s2: Fun
+s0 https://duckduckgo.com/lite Duck Duck Go!
+s0 http://www.google.com/webhp?gl=us Google
+s1 https://news.ycombinator.com/ Hacker News
+s2 https://github.com/watson/awesome-computer-history Awesome Computer History
