@@ -1,0 +1,51 @@
+# Scheme & friends
+dev-scheme/guile ~x86
+
+# C-Kermit
+app-misc/ckermit ~x86
+
+# qiv
+media-gfx/qiv ~x86
+
+# Openbox
+x11-misc/obmenu-generator ~x86
+
+# gmrun from stable causes segmentation fault
+x11-misc/gmrun ~x86
+
+# media player
+media-video/mpv ~x86
+net-misc/youtube-dl ~x86
+
+# Calibre pulls dnspython. Stable dnspython depends on blocked pycrypto
+dev-python/dnspython ~x86
+
+# some Fun
+games-puzzle/enigma ~x86
+games-arcade/frozen-bubble ~x86
+games-arcade/supertux ~x86
+games-arcade/xgalaga ~x86
+
+dev-embedded/srecord ~x86
+app-backup/mkstage4 ~x86
+
+dev-embedded/mcu8051ide ~x86
+# dev-lang/tcl ~x86
+# dev-lang/tk ~x86
+
+app-text/mupdf ~x86
+app-text/zathura-pdf-mupdf ~x86
+
+# netsurf
+www-client/netsurf **
+dev-libs/libcss **
+net-libs/libdom **
+dev-libs/libnsutils **
+media-libs/libnsbmp **
+dev-libs/nsgenbind **
+media-libs/libnspsl **
+media-libs/librosprite **
+media-libs/libsvgtiny **
+dev-libs/libwapcaplet **
+
+www-client/dillo ~x86
