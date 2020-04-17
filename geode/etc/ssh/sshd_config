@@ -107,7 +107,7 @@ PrintLastLog no
 #Banner none
 
 # override default of no subsystems
-Subsystem	sftp	/usr/lib64/misc/sftp-server
+Subsystem	sftp	/usr/lib/misc/sftp-server
 
 AllowUsers	user1 user2 user3	# trusted users list
 
