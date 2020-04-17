@@ -1,0 +1,5 @@
+# /usr/local/share/keymaps
+# Add to your /etc/conf.d/keymaps
+# extended_keymaps="/usr/local/share/keymaps/nocaps.map"
+
+keycode 58 = F13
