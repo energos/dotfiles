@@ -10,7 +10,6 @@ app-arch/rpm
 app-arch/unarj
 app-arch/unrar
 app-arch/zip
-app-cdr/cdrtools
 app-crypt/md5deep
 app-editors/emacs
 app-editors/jed
