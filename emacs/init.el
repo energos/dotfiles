@@ -711,7 +711,7 @@ Move point to the previous position that is the beggining of a symbol."
 
 ;; --- Make ---
 (global-set-key (kbd "<f9>") (lambda () "Make all" (interactive) (save-buffer 0) (compile "make")))
-(global-set-key (kbd "<S-f9>") (lambda () "Make clean" (interactive) (save-buffer 0) (compile "make clean")))
+(global-set-key (kbd "S-<f9>") (lambda () "Make clean" (interactive) (save-buffer 0) (compile "make clean")))
 (global-set-key (kbd "C-<f9>") (lambda () "Make flash" (interactive) (save-buffer 0) (compile "make flash")))
 (global-set-key (kbd "C-S-<f9>") (lambda () "Make verify" (interactive) (compile "make verify")))
 (global-set-key (kbd "M-<f9>") (lambda () "Make reset" (interactive) (compile "make reset")))
