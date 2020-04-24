@@ -412,7 +412,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
 (defun browser-reload ()
   "Reload current desktop browser window."
   (interactive)
-  (send-key-to-window-class "Navigator" "F5" t))
+  (send-key-to-window-class "Navigator" "F5"))
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
