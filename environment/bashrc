@@ -41,6 +41,8 @@ export EDITOR=zile
 
 alias mc='mc -d'
 alias less='less -i'
+alias zless='zless -i'
+alias avrdude='avrdude 2>&1'
 
 export MC_XDG_OPEN=$HOME/bin/nohup-open
 
