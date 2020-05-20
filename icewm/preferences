@@ -30,6 +30,7 @@
 
 #  Raise windows when focused
 # RaiseOnFocus=1 # 0/1
+RaiseOnFocus=0
 
 #  Focus window when client area clicked
 # FocusOnClickClient=1 # 0/1
@@ -102,6 +103,7 @@
 
 #  Maximized windows can be resized
 # SizeMaximized=0 # 0/1
+SizeMaximized=1
 
 #  Show position status window during move/resize
 # ShowMoveSizeStatus=1 # 0/1
@@ -147,6 +149,7 @@
 
 #  Menus track mouse even with no mouse buttons held
 # MenuMouseTracking=0 # 0/1
+MenuMouseTracking=1
 
 #  Auto raise windows after delay
 # AutoRaise=0 # 0/1
@@ -156,9 +159,11 @@
 
 #  Support win95 keyboard keys (Penguin/Meta/Win_L,R shows menu)
 # Win95Keys=1 # 0/1
+Win95Keys=0
 
 #  Treat Super/Win modifier as Ctrl+Alt
 # ModSuperIsCtrlAlt=1 # 0/1
+ModSuperIsCtrlAlt=0
 
 #  Support mouse wheel
 # UseMouseWheel=0 # 0/1
@@ -177,6 +182,7 @@
 
 #  Alt+Tab to hidden windows
 # QuickSwitchToHidden=1 # 0/1
+QuickSwitchToHidden=0
 
 #  Prioritize Alt+Tab to urgent windows
 # QuickSwitchToUrgent=1 # 0/1
@@ -234,6 +240,7 @@
 
 #  Show task bar
 # ShowTaskBar=1 # 0/1
+ShowTaskBar=0
 
 #  Task bar at top of the screen
 # TaskBarAtTop=0 # 0/1
@@ -252,6 +259,7 @@
 
 #  Show APM/ACPI/Battery/Power status monitor on task bar
 # TaskBarShowAPMStatus=0 # 0/1
+TaskBarShowAPMStatus=0
 
 #  Enable TaskBarShowAPMStatus if a battery is present
 # TaskBarShowAPMAuto=1 # 0/1
@@ -264,6 +272,7 @@
 
 #  Show mailbox status on task bar
 # TaskBarShowMailboxStatus=1 # 0/1
+TaskBarShowMailboxStatus=0
 
 #  Beep when new mail arrives
 # TaskBarMailboxStatusBeepOnNewMail=0 # 0/1
@@ -273,12 +282,15 @@
 
 #  Show workspace switching buttons on task bar
 # TaskBarShowWorkspaces=1 # 0/1
+TaskBarShowWorkspaces=0
 
 #  Show windows on the taskbar
 # TaskBarShowWindows=1 # 0/1
+TaskBarShowWindows=0
 
 #  Show 'show desktop' button on taskbar
 # TaskBarShowShowDesktopButton=1 # 0/1
+TaskBarShowShowDesktopButton=0
 
 #  Show Ellipsis in taskbar items
 # ShowEllipsis=1 # 0/1
@@ -306,9 +318,11 @@
 
 #  Show 'window list' menu on task bar
 # TaskBarShowWindowListMenu=1 # 0/1
+TaskBarShowWindowListMenu=0
 
 #  Show CPU status on task bar
 # TaskBarShowCPUStatus=1 # 0/1
+TaskBarShowCPUStatus=0
 
 #  Show RAM usage in CPU status tool tip
 # CPUStatusShowRamUsage=1 # 0/1
@@ -327,9 +341,11 @@
 
 #  Show memory usage status on task bar (Linux only)
 # TaskBarShowMEMStatus=1 # 0/1
+TaskBarShowMEMStatus=0
 
 #  Show network status on task bar
 # TaskBarShowNetStatus=1 # 0/1
+TaskBarShowNetStatus=0
 
 #  Show a button to collapse the taskbar
 # TaskBarShowCollapseButton=0 # 0/1
@@ -348,9 +364,11 @@
 
 #  Enable mouse wheel cycling over workspaces and task buttons in taskbar
 # TaskBarUseMouseWheel=1 # 0/1
+TaskBarUseMouseWheel=0
 
 #  Show a mini desktop preview on each workspace button
 # PagerShowPreview=1 # 0/1
+PagerShowPreview=0
 
 #  Draw window icons inside large enough preview windows on pager (if PagerShowPreview=1)
 # PagerShowWindowIcons=1 # 0/1
@@ -366,6 +384,7 @@
 
 #  Execute taskbar applet commands (like MailCommand, ClockCommand, ...) on single click
 # TaskBarLaunchOnSingleClick=1 # 0/1
+TaskBarLaunchOnSingleClick=0
 
 #  Allow mouse actions on client windows (buggy with some programs)
 # ClientWindowMouseActions=1 # 0/1
@@ -450,6 +469,7 @@
 
 #  Delay before tooltip window is displayed
 # ToolTipDelay=500 # [0-5000]
+ToolTipDelay=2000
 
 #  Time before tooltip window is hidden (0 means never
 # ToolTipTime=0 # [0-60000]
@@ -489,6 +509,7 @@
 
 #  Time before workspace status window is hidden
 # WorkspaceStatusTime=700 # [0-2500]
+WorkspaceStatusTime=2500
 
 #  Bitmask of root window button click to use in window manager
 # UseRootButtons=255 # [0-255]
@@ -540,15 +561,18 @@
 
 #  Task bar width as percentage of the screen width
 # TaskBarWidthPercentage=100 # [0-100]
+TaskBarWidthPercentage=10
 
 #  Taskbar justify left, right or center
 # TaskBarJustify="left"
+TaskBarJustify="right"
 
 #  Width of APM Monitor
 # TaskBarApmGraphWidth=10 # [1-1000]
 
 #  Height of taskbar monitoring applets
 # TaskBarGraphHeight=20 # [16-1000]
+TaskBarGraphHeight=36
 
 #  Primary screen for xinerama (taskbar, ...)
 # XineramaPrimaryScreen=0 # [0-63]
@@ -570,6 +594,7 @@
 
 #  Icon search path (colon separated)
 # IconPath="/usr/share/icons/oxygen/base:/usr/share/icons/Adwaita:/usr/share/icons/hicolor:/usr/share/icons:/usr/share/pixmaps:/usr/local/share/icons/hicolor:"
+IconPath="/usr/share/icons/oxygen/base:/usr/share/icons/Adwaita:/usr/share/icons/hicolor:/usr/share/icons:/usr/share/pixmaps:/usr/local/share/icons/hicolor:~/.local/share/icons:"
 
 #  Mailbox path (use $MAIL instead)
 # MailBoxPath=""
@@ -638,12 +663,14 @@
 
 #  Clock Time format (strftime format string)
 # TimeFormat="%H:%M:%S"
+TimeFormat="%H:%M"
 
 #  Alternate Clock Time format (e.g., for blinking effects)
 # TimeFormatAlt=""
 
 #  Clock Date format for tooltip (strftime format string)
 # DateFormat="%Y-%m-%d %H:%M:%S %z %B %A"
+DateFormat="%a %d %B %Y"
 
 #  screen/output name of the primary screen
 # XRRPrimaryScreenName=""
@@ -653,67 +680,93 @@
 
 #  Mouse binding for window move
 # MouseWinMove="Alt+Pointer_Button1"
+MouseWinMove="Super+Pointer_Button1"
 
 #  Mouse binding for window resize
 # MouseWinSize="Alt+Pointer_Button3"
+MouseWinSize="Super+Pointer_Button3"
 
 #  Mouse binding to raise window
 # MouseWinRaise="Ctrl+Alt+Pointer_Button1"
+MouseWinRaise="Super+Shift+Pointer_Button1"
 
 #  Mouse binding to lower window
 # MouseWinLower="Ctrl+Alt+Pointer_Button1"
+MouseWinLower="Super+Shift+Pointer_Button1"
 
 # KeyWinRaise="Alt+F1"
+KeyWinRaise="Super+F6"
 
 # KeyWinOccupyAll="Alt+F2"
+KeyWinOccupyAll=""
 
 # KeyWinLower="Alt+F3"
+KeyWinLower="Super+F5"
 
 # KeyWinClose="Alt+F4"
 
 # KeyWinRestore="Alt+F5"
+KeyWinRestore=""
 
 # KeyWinPrev="Alt+Shift+F6"
+KeyWinPrev=""
 
+#
 # KeyWinNext="Alt+F6"
+KeyWinNext=""
 
 # KeyWinMove="Alt+F7"
+KeyWinMove="Super+F7"
 
 # KeyWinSize="Alt+F8"
+KeyWinSize="Super+F8"
 
 # KeyWinMinimize="Alt+F9"
 
 # KeyWinMaximize="Alt+F10"
+KeyWinMaximize="Alt+Shift+F10"
 
 # KeyWinMaximizeVert="Alt+Shift+F10"
+KeyWinMaximizeVert="Alt+F10"
 
 # KeyWinMaximizeHoriz=""
 
 # KeyWinFullscreen="Alt+F11"
 
 # KeyWinHide="Alt+Shift+F12"
+KeyWinHide=""
 
 # KeyWinRollup="Alt+F12"
+KeyWinRollup=""
 
 # KeyWinMenu="Alt+Space"
 
 # KeyWinArrangeN="Ctrl+Alt+KP_8"
+KeyWinArrangeN=""
 
 # KeyWinArrangeNE="Ctrl+Alt+KP_9"
+KeyWinArrangeNE=""
 
 # KeyWinArrangeE="Ctrl+Alt+KP_6"
+KeyWinArrangeE=""
 
 # KeyWinArrangeSE="Ctrl+Alt+KP_3"
+KeyWinArrangeSE=""
 
 # KeyWinArrangeS="Ctrl+Alt+KP_2"
+KeyWinArrangeS=""
 
 # KeyWinArrangeSW="Ctrl+Alt+KP_1"
+KeyWinArrangeSW=""
 
 # KeyWinArrangeW="Ctrl+Alt+KP_4"
+KeyWinArrangeW=""
 
 # KeyWinArrangeNW="Ctrl+Alt+KP_7"
+KeyWinArrangeNW=""
 
 # KeyWinArrangeC="Ctrl+Alt+KP_5"
+KeyWinArrangeC=""
 
 # KeySysSwitchNext="Alt+Tab"
 
@@ -742,94 +795,134 @@
 # KeySysDialog="Alt+Ctrl+Del"
 
 # KeySysMenu="Ctrl+Esc"
+KeySysMenu="Menu"
 
 # KeySysWindowList="Alt+Ctrl+Esc"
+KeySysWindowList="Ctrl+Menu"
 
 # KeySysWinListMenu=""
 
 # KeySysAddressBar="Alt+Ctrl+Space"
 
 # KeySysWorkspacePrev="Alt+Ctrl+Left"
+KeySysWorkspacePrev=""
 
 # KeySysWorkspaceNext="Alt+Ctrl+Right"
+KeySysWorkspaceNext=""
 
 # KeySysWorkspaceLast="Alt+Ctrl+Down"
+KeySysWorkspaceLast=""
 
 # KeySysWorkspacePrevTakeWin="Alt+Ctrl+Shift+Left"
+KeySysWorkspacePrevTakeWin=""
 
 # KeySysWorkspaceNextTakeWin="Alt+Ctrl+Shift+Right"
+KeySysWorkspaceNextTakeWin=""
 
 # KeySysWorkspaceLastTakeWin="Alt+Ctrl+Shift+Down"
+KeySysWorkspaceLastTakeWin=""
 
 # KeySysWorkspace1="Alt+Ctrl+1"
+KeySysWorkspace1="Super+1"
 
 # KeySysWorkspace2="Alt+Ctrl+2"
+KeySysWorkspace2="Super+2"
 
 # KeySysWorkspace3="Alt+Ctrl+3"
+KeySysWorkspace3="Super+3"
 
 # KeySysWorkspace4="Alt+Ctrl+4"
+KeySysWorkspace4="Super+4"
 
 # KeySysWorkspace5="Alt+Ctrl+5"
+KeySysWorkspace5="Super+5"
 
 # KeySysWorkspace6="Alt+Ctrl+6"
+KeySysWorkspace6="Super+6"
 
 # KeySysWorkspace7="Alt+Ctrl+7"
+KeySysWorkspace7="Super+7"
 
 # KeySysWorkspace8="Alt+Ctrl+8"
+KeySysWorkspace8="Super+8"
 
 # KeySysWorkspace9="Alt+Ctrl+9"
+KeySysWorkspace9="Super+9"
 
 # KeySysWorkspace10="Alt+Ctrl+0"
+KeySysWorkspace10="Super+0"
 
 # KeySysWorkspace11="Alt+Ctrl+bracketleft"
+KeySysWorkspace11=""
 
 # KeySysWorkspace12="Alt+Ctrl+bracketright"
+KeySysWorkspace12=""
 
 # KeySysWorkspace1TakeWin="Alt+Ctrl+Shift+1"
+KeySysWorkspace1TakeWin="Super+Shift+1"
 
 # KeySysWorkspace2TakeWin="Alt+Ctrl+Shift+2"
+KeySysWorkspace2TakeWin="Super+Shift+2"
 
 # KeySysWorkspace3TakeWin="Alt+Ctrl+Shift+3"
+KeySysWorkspace3TakeWin="Super+Shift+3"
 
 # KeySysWorkspace4TakeWin="Alt+Ctrl+Shift+4"
+KeySysWorkspace4TakeWin="Super+Shift+4"
 
 # KeySysWorkspace5TakeWin="Alt+Ctrl+Shift+5"
+KeySysWorkspace5TakeWin="Super+Shift+5"
 
 # KeySysWorkspace6TakeWin="Alt+Ctrl+Shift+6"
+KeySysWorkspace6TakeWin="Super+Shift+6"
 
 # KeySysWorkspace7TakeWin="Alt+Ctrl+Shift+7"
+KeySysWorkspace7TakeWin="Super+Shift+7"
 
 # KeySysWorkspace8TakeWin="Alt+Ctrl+Shift+8"
+KeySysWorkspace8TakeWin="Super+Shift+8"
 
 # KeySysWorkspace9TakeWin="Alt+Ctrl+Shift+9"
+KeySysWorkspace9TakeWin="Super+Shift+9"
 
 # KeySysWorkspace10TakeWin="Alt+Ctrl+Shift+0"
+KeySysWorkspace10TakeWin="Super+Shift+0"
 
 # KeySysWorkspace11TakeWin="Alt+Ctrl+Shift+bracketleft"
+KeySysWorkspace11TakeWin=""
 
 # KeySysWorkspace12TakeWin="Alt+Ctrl+Shift+bracketright"
+KeySysWorkspace12TakeWin=""
 
 # KeySysTileVertical="Alt+Shift+F2"
+KeySysTileVertical=""
 
 # KeySysTileHorizontal="Alt+Shift+F3"
+KeySysTileHorizontal=""
 
 # KeySysCascade="Alt+Shift+F4"
+KeySysCascade=""
 
 # KeySysArrange="Alt+Shift+F5"
+KeySysArrange=""
 
 # KeySysArrangeIcons="Alt+Shift+F8"
+KeySysArrangeIcons=""
 
 # KeySysMinimizeAll="Alt+Shift+F9"
 
 # KeySysHideAll="Alt+Shift+F11"
+KeySysHideAll=""
 
 # KeySysUndoArrange="Alt+Shift+F7"
 
 # KeySysShowDesktop="Alt+Ctrl+d"
+KeySysShowDesktop="Super+d"
 
 # KeySysCollapseTaskBar="Alt+Ctrl+h"
+# KeySysCollapseTaskBar=""
 
-WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 "
+WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 ", " 5 "
 
 #  Items supported in menu window (rmsnxfhualytickw)
 # WinMenuItems="rmsnxfhualyticw"

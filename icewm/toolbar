@@ -3,5 +3,6 @@
 # Place your variants in /etc/icewm or in $HOME/.icewm since
 # modifications to this file will be overwritten when you reinstall icewm.
 #
-prog "xterm" utilities-terminal xterm
-prog "Web browser" web-browser xdg-open about:blank
+prog "Terminal" Utilities-terminal urxvtcd -geometry -8-44 -name Terminal
+prog "Emacs ROCKS!" emacs pqp -n emacs
+prog "Web Browser" navigator pqp -n navigator

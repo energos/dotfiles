@@ -8,12 +8,34 @@
 # You'll have to omit XK_ prefixs and to replace XF86XK_ prefixes by
 # XF86. Valid modifiers are Alt, Ctrl, Shift, Meta, Super and Hyper.
 #
-key "Alt+Ctrl+t"            xterm
-key "Alt+Ctrl+b"            xdg-open about:blank
-key "Alt+Ctrl+s"            xdg-open https://www.google.com
 
-key "Super+KP_Subtract"     amixer sset Master 5%-
-key "Super+KP_Add"          amixer sset Master 5%+
+key "Alt+F2"                gmrun -g +1716+800
+key "Super+t"               pqp
+key "Super+Shift+t"         pqp -n
+key "Super+i"               pqp navigator
+key "Super+Shift+i"         pqp -n navigator
+key "Super+e"               pqp emacs
+key "Super+Shift+e"         pqp -n emacs
+key "Super+x"               pqp pdf
+key "Super+Shift+x"         pqp -n pdf
+key "Super+q"               pqp gkrellm
+key "XF86AudioLowerVolume"  pqp volume down
+key "F14"                   pqp volume down
+key "XF86AudioRaiseVolume"  pqp volume up
+key "F15"                   pqp volume up
+key "XF86AudioMute"         pqp volume toggle
+key "Shift+F14"             pqp volume toggle
+key "XF86AudioPlay"         pqp cmus
+key "Shift+F15"             pqp cmus
+key "Print"                 spectacle
+key "Super+l"               slock
+key "Alt+Ctrl+Esc"          xkill
+
+# key "Alt+Ctrl+b"          xdg-open about:blank
+# key "Alt+Ctrl+s"          xdg-open https://www.google.com
+
+key "Super+F12"             killall -SIGHUP icewm
+
 
 # "Multimedia key" bindings for Xorg. Gather the keycodes of your
 # advanced function keys by watching the output of the xev command whilest
@@ -24,12 +46,9 @@ key "Super+KP_Add"          amixer sset Master 5%+
 #
 # key "XF86Standby"         /bin/sh -c "{ test -e /run/systemd/system && systemctl suspend; } ||:"
 # key "XF86Sleep"           /bin/sh -c "{ test -e /run/systemd/system && systemctl suspend; } ||:"
-key "XF86AudioLowerVolume"  amixer sset Master 5%-
-key "XF86AudioRaiseVolume"  amixer sset Master 5%+
-key "XF86AudioMute"         amixer sset Master toggle
-key "XF86HomePage"          xdg-open about:blank
-key "XF86Search"            xdg-open https://www.google.com
-key "XF86Eject"             eject
-key "XF86Calculator"        /bin/sh -c "gnome-calculator || xcalc || ( type bc >/dev/null 2>&1 && xterm -e bc -l)"
+# key "XF86HomePage"        xdg-open about:blank
+# key "XF86Search"          xdg-open https://www.google.com
+# key "XF86Eject"           eject
+# key "XF86Calculator"      /bin/sh -c "gnome-calculator || xcalc || ( type bc >/dev/null 2>&1 && xterm -e bc -l)"
 
-switchkey "Super+p"         icewm-menu-xrandr
+# switchkey "Super+p"       icewm-menu-xrandr
