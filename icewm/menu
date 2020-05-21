@@ -34,6 +34,9 @@ menu "IceWM" folder {
     separator
     restart "Restart IceWM" - icewm
     separator
+    menu "Other Window Managers" folder {
+    restart "OpenBox" - openbox
+    }
 }
 # menufile Programs folder programs
 # menufile Tool_bar folder toolbar

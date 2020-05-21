@@ -109,6 +109,12 @@
       <action name="Execute"><command>slock</command></action>
     </item>
     <separator />
+    <menu id="window_managers" label="Other Window Managers">
+      <item label="IceWM">
+        <action name="Restart"><command>icewm</command></action>
+      </item>
+    </menu>
+    <separator />
     <item label="Restart Openbox">
       <action name="Restart" />
     </item>
