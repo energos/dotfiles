@@ -394,9 +394,11 @@ TaskBarLaunchOnSingleClick=0
 
 #  Show settings submenu in the program menu
 # ShowSettingsMenu=1 # 0/1
+ShowSettingsMenu=0
 
 #  Show focus mode submenu in the program menu
 # ShowFocusModeMenu=1 # 0/1
+ShowFocusModeMenu=0
 
 #  Show themes submenu in the program menu
 # ShowThemesMenu=1 # 0/1
@@ -409,12 +411,15 @@ TaskBarLaunchOnSingleClick=0
 
 #  Show logout submenu in the program menu
 # ShowLogoutSubMenu=1 # 0/1
+ShowLogoutSubMenu=0
 
 #  Show the about menu item in the program menu
 # ShowAbout=1 # 0/1
+ShowAbout=0
 
 #  Show the run menu item in the program menu
 # ShowRun=1 # 0/1
+ShowRun=0
 
 #  Show the window menu item in the program menu
 # ShowWindowList=1 # 0/1
@@ -594,7 +599,7 @@ TaskBarGraphHeight=36
 
 #  Icon search path (colon separated)
 # IconPath="/usr/share/icons/oxygen/base:/usr/share/icons/Adwaita:/usr/share/icons/hicolor:/usr/share/icons:/usr/share/pixmaps:/usr/local/share/icons/hicolor:"
-IconPath="/usr/share/icons/oxygen/base:/usr/share/icons/Adwaita:/usr/share/icons/hicolor:/usr/share/icons:/usr/share/pixmaps:/usr/local/share/icons/hicolor:~/.local/share/icons:"
+IconPath="/usr/share/icons/breeze/apps/48:/usr/share/icons/Adwaita:/usr/share/icons/hicolor:/usr/share/icons:/usr/share/pixmaps:/usr/local/share/icons/hicolor:~/.local/share/icons:"
 
 #  Mailbox path (use $MAIL instead)
 # MailBoxPath=""
