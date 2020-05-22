@@ -1,13 +1,9 @@
 #!/bin/bash
 
-xsetroot -solid '#3366aa'
-
-(sleep 0.8 && fbpanel --profile default) &
-(sleep 1.0 && parcellite) &
-(sleep 1.8 && volumeicon) &
-
-(sleep 1.9 && $HOME/.fehbg) &
-(sleep 2.0 && sh -c 'while /usr/bin/fortune | col -x | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK:1,Another:0 -default OK -file - ; do :; done') &
+(sleep 0.4 && fbpanel --profile default) &
+(sleep 0.6 && parcellite) &
+(sleep 0.8 && volumeicon) &
+(sleep 1.0 && sh -c 'while /usr/bin/fortune | col -x | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK:1,Another:0 -default OK -file - ; do :; done') &
 
 # Too much artifacts with amdgpu. Use compton as a workaround.
-(sleep 2.0 && lsmod | grep -q ^amdgpu && compton) &
+(sleep 1.0 && lsmod | grep -q ^amdgpu && compton) &

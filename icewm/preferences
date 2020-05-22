@@ -91,6 +91,7 @@ RaiseOnFocus=0
 
 #  Consider border frames when maximizing vertically
 # ConsiderVBorder=0 # 0/1
+ConsiderVBorder=1
 
 #  Consider XSizeHints if frame is maximized
 # ConsiderSizeHintsMaximized=1 # 0/1
@@ -103,7 +104,6 @@ RaiseOnFocus=0
 
 #  Maximized windows can be resized
 # SizeMaximized=0 # 0/1
-SizeMaximized=1
 
 #  Show position status window during move/resize
 # ShowMoveSizeStatus=1 # 0/1
@@ -514,7 +514,7 @@ ToolTipDelay=2000
 
 #  Time before workspace status window is hidden
 # WorkspaceStatusTime=700 # [0-2500]
-WorkspaceStatusTime=2500
+WorkspaceStatusTime=1000
 
 #  Bitmask of root window button click to use in window manager
 # UseRootButtons=255 # [0-255]
@@ -727,6 +727,7 @@ KeyWinMove="Super+F7"
 KeyWinSize="Super+F8"
 
 # KeyWinMinimize="Alt+F9"
+KeyWinMinimize=""
 
 # KeyWinMaximize="Alt+F10"
 KeyWinMaximize="Alt+Shift+F10"
@@ -915,11 +916,13 @@ KeySysArrange=""
 KeySysArrangeIcons=""
 
 # KeySysMinimizeAll="Alt+Shift+F9"
+KeySysMinimizeAll=""
 
 # KeySysHideAll="Alt+Shift+F11"
 KeySysHideAll=""
 
 # KeySysUndoArrange="Alt+Shift+F7"
+KeySysUndoArrange=""
 
 # KeySysShowDesktop="Alt+Ctrl+d"
 KeySysShowDesktop="Super+d"

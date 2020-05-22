@@ -3,3 +3,29 @@ MenuIconSize=32
 SmallIconSize=16
 LargeIconSize=32
 HugeIconSize=48
+
+#Fonts
+TitleFontNameXft            =   "Open Sans":size=9:bold
+MenuFontNameXft             =   "Open Sans":size=10
+MinimizedWindowFontNameXft  =   "Open Sans":size=11
+ActiveButtonFontNameXft     =   "Open Sans":size=11
+NormalButtonFontNameXft     =   "Open Sans":size=11
+ToolButtonFontNameXft       =   "Open Sans":size=11
+NormalWorkspaceFontNameXft  =   "Open Sans":size=11
+ActiveWorkspaceFontNameXft  =   "Open Sans":size=11
+QuickSwitchFontNameXft      =   "Open Sans":size=11
+ListBoxFontNameXft          =   "Open Sans":size=10
+StatusFontNameXft           =   "Open Sans":size=11
+ToolTipFontNameXft          =   "Open Sans":size=11
+ActiveTaskBarFontNameXft    =   "Open Sans":size=11
+NormalTaskBarFontNameXft    =   "Open Sans":size=11
+ClockFontNameXft            =   "Open Sans":size=11
+InputFontNameXft            =   "Open Sans":size=11
+LabelFontNameXft            =   "Open Sans":size=11
+ApmFontNameXft              =   "Open Sans":size=11
+
+#Desktop Background
+DesktopBackgroundColor="#3366aa"
+DesktopBackgroundCenter=1
+DesktopBackgroundScaled=1
+DesktopBackgroundImage="~/.images/wallpaper"

@@ -18,6 +18,7 @@ key "Super+e"               pqp emacs
 key "Super+Shift+e"         pqp -n emacs
 key "Super+x"               pqp pdf
 key "Super+Shift+x"         pqp -n pdf
+key "Super+c"               urxvtcd -title CALENDAR -geometry 70x36 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
 key "Super+q"               pqp gkrellm
 key "XF86AudioLowerVolume"  pqp volume down
 key "F14"                   pqp volume down
