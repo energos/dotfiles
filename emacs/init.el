@@ -276,8 +276,10 @@
   (define-key pdf-view-mode-map (kbd "<home>") 'pdf-view-first-page)
   (define-key pdf-view-mode-map (kbd "<end>") 'pdf-view-last-page))
 
-(use-package org-pdfview
-  :ensure t)
+;; https://github.com/fuxialexander/org-pdftools
+(use-package org-pdftools
+  :ensure t
+  :hook (org-load . org-pdftools-setup-link))
 
 ;; https://github.com/bbatsov/projectile
 (use-package helm-projectile
