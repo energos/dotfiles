@@ -281,6 +281,12 @@
   :ensure t
   :hook (org-load . org-pdftools-setup-link))
 
+;; https://github.com/abo-abo/ace-window
+(use-package ace-window
+  :ensure t
+  :bind (("M-o" . ace-window)
+         ("H-o" . ace-window)))
+
 ;; https://github.com/bbatsov/projectile
 (use-package helm-projectile
   :ensure t)
@@ -679,7 +685,6 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
 (global-set-key (kbd "H-n") 'make-frame-command)
-(global-set-key (kbd "H-o") 'other-window)
 
 (global-set-key (kbd "H-g")
                 (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
