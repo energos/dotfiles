@@ -190,6 +190,11 @@
   (require 'helm-config)
   (setq helm-split-window-default-side 'other)
   (setq helm-candidate-number-limit 1000)
+  (setq helm-display-function 'helm-display-buffer-in-own-frame
+        helm-display-buffer-reuse-frame t
+        helm-use-undecorated-frame-option t
+        helm-display-buffer-width 100
+        helm-display-buffer-height 36)
   (customize-set-variable 'helm-ff-lynx-style-map t)
   (helm-mode 1))
 
