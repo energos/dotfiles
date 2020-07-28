@@ -1,4 +1,2 @@
 dev-libs/boost python context nls
-
-# KiCad 5.0.1 needs
-x11-libs/wxGTK sdl -libnotify gstreamer
+x11-libs/wxGTK sdl libnotify gstreamer

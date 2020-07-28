@@ -4,17 +4,5 @@
 >sys-kernel/linux-headers-4.19
 <sys-kernel/linux-headers-4.19
 
-# kicad
->sci-electronics/kicad-5.1.0-r1
->sci-electronics/kicad-footprints-5.1.0
->sci-electronics/kicad-meta-5.1.0
->sci-electronics/kicad-packages3d-5.1.0
->sci-electronics/kicad-symbols-5.1.0
->sci-electronics/kicad-templates-5.1.0
-#
-<sci-electronics/kicad-5.1.0-r1
-<sci-electronics/kicad-footprints-5.1.0
-<sci-electronics/kicad-meta-5.1.0
-<sci-electronics/kicad-packages3d-5.1.0
-<sci-electronics/kicad-symbols-5.1.0
-<sci-electronics/kicad-templates-5.1.0
+>dev-db/sqlite-3.31.1
+<dev-db/sqlite-3.31.1

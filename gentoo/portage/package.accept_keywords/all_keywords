@@ -73,3 +73,18 @@ app-admin/entr ~amd64
 
 # Haskell from gentoo-haskell overlay
 */*::haskell ~amd64
+
+# icewm
+x11-wm/icewm ~amd64
+x11-themes/icewm-extra-themes ~amd64
+
+# avr
+dev-embedded/libftdi ~amd64
+dev-embedded/pk2cmd ~amd64
+sys-devel/crossdev ~amd64
+
+#
+media-gfx/inkscape ~amd64
+
+#
+app-misc/icdiff ~amd64

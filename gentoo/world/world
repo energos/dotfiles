@@ -26,6 +26,8 @@ app-emulation/virtualbox-modules
 app-eselect/eselect-repository
 app-misc/ckermit
 app-misc/figlet
+app-misc/icdiff
+app-misc/interceptty
 app-misc/mc
 app-misc/neofetch
 app-misc/rlwrap
@@ -46,15 +48,22 @@ app-text/tree
 app-text/zathura
 app-text/zathura-djvu
 app-text/zathura-pdf-mupdf
+cross-avr/avr-libc
+cross-avr/binutils
+cross-avr/gcc
+dev-embedded/avrdude
 dev-embedded/dfu-programmer
 dev-embedded/mcu8051ide
 dev-embedded/sdcc
 dev-embedded/srecord
+dev-lang/ruby
 dev-perl/Gtk2
 dev-python/pip
 dev-qt/qtsvg
+dev-ruby/rubygems
 dev-util/geany
 dev-util/meld
+dev-util/pkgconfig
 dev-util/shellcheck-bin
 dev-vcs/git
 games-misc/fortune-mod
@@ -81,12 +90,13 @@ media-fonts/liberation-fonts
 media-fonts/open-sans
 media-fonts/terminus-font
 media-gfx/feh
+media-gfx/gimp
 media-gfx/gphoto2
 media-gfx/graphviz
 media-gfx/imagemagick
+media-gfx/inkscape
 media-gfx/qiv
 media-gfx/scrot
-media-libs/sdl-sound
 media-sound/alsa-utils
 media-sound/cmus
 media-sound/volumeicon
@@ -121,6 +131,7 @@ sys-boot/syslinux
 sys-devel/autoconf
 sys-devel/automake
 sys-devel/bc
+sys-devel/crossdev
 sys-devel/gcc
 sys-firmware/zd1211-firmware
 sys-fs/dosfstools
@@ -145,6 +156,7 @@ x11-apps/xdpyinfo
 x11-apps/xev
 x11-apps/xfontsel
 x11-apps/xgamma
+x11-apps/xhost
 x11-apps/xinit
 x11-apps/xkill
 x11-apps/xmag
@@ -154,6 +166,7 @@ x11-apps/xprop
 x11-apps/xrandr
 x11-apps/xsetroot
 x11-base/xorg-server
+x11-misc/compton
 x11-misc/fbpanel
 x11-misc/gmrun
 x11-misc/gxmessage
@@ -173,4 +186,5 @@ x11-misc/xtermcontrol
 x11-plugins/gkrellm-volume
 x11-terms/rxvt-unicode
 x11-terms/xterm
+x11-wm/icewm
 x11-wm/openbox
