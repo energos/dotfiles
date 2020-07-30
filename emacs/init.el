@@ -54,6 +54,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (electric-indent-mode -1)
+(add-hook 'c-mode-hook
+          (lambda ()
+            (define-key c-mode-map (kbd "<tab>") 'indent-for-tab-command)))
 
 ;; --- Mensagem inicial ---
 (let ((command "fortune"))
@@ -206,8 +209,72 @@
          ("C-c M-i" . helm-multi-swoop)
          ("C-x M-i" . helm-multi-swoop-all))
   :config
-  (require 'helm)
-  (require 'helm-swoop))
+  (require 'helm))
+
+;; https://github.com/emacsorphanage/helm-gtags
+;; https://tuhdo.github.io/c-ide.html
+(use-package helm-gtags
+  :ensure t
+  :bind (:map helm-gtags-mode-map
+              ("C-c g a" . helm-gtags-tags-in-this-function)
+              ("C-j"     . helm-gtags-select)
+              ("M-."     . helm-gtags-dwim)
+              ("M-,"     . helm-gtags-pop-stack)
+              ("C-c <"   . helm-gtags-previous-history)
+              ("C-c >"   . helm-gtags-next-history))
+  :hook ((c-mode c++-mode asm-mode) . helm-gtags-mode)
+  :init
+  (setq helm-gtags-ignore-case t
+        helm-gtags-auto-update t
+        helm-gtags-use-input-at-cursor t
+        helm-gtags-pulse-at-cursor t
+        helm-gtags-prefix-key "\C-cg"
+        helm-gtags-suggested-key-mapping t)
+  :config
+  (require 'helm))
+
+;; https://github.com/Alexander-Miller/treemacs
+(use-package treemacs
+  :ensure t
+  :bind (("<f8>"    . treemacs-select-window)
+         ("C-<f8>"  . treemacs))
+  :config
+  (defun treemacs-custom-filter (file _)
+    (or (s-ends-with? ".o"   file)
+        (s-ends-with? ".map" file)
+        (s-ends-with? ".log" file)
+        (s-ends-with? ".elf" file)
+        (s-ends-with? ".bin" file)
+        (s-ends-with? ".sym" file)
+        (s-equals? "GPATH" file)
+        (s-equals? "GRTAGS" file)
+        (s-equals? "GTAGS" file)))
+  (push #'treemacs-custom-filter treemacs-ignored-file-predicates)
+  (setq treemacs-width 25
+        treemacs-is-never-other-window t))
+
+;; https://github.com/abo-abo/function-args
+(use-package function-args
+  :ensure t
+  :config
+  (fa-config-default))
+
+;; http://company-mode.github.io/
+(use-package company
+  :ensure t
+  :bind (:map company-mode-map
+              ("<tab>" . company-indent-or-complete-common))
+  :hook (c-mode . company-mode)
+  :config
+  (setq company-idle-delay 3))
+
+;; https://github.com/randomphrase/company-c-headers
+(use-package company-c-headers
+  :ensure t
+  :after (company)
+  :config
+  (add-to-list 'company-c-headers-path-system "/usr/avr/include")
+  (add-to-list 'company-backends 'company-c-headers))
 
 ;; https://github.com/flycheck/flycheck
 (use-package flycheck
@@ -289,8 +356,7 @@
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :ensure t
-  :bind (("M-o" . ace-window)
-         ("H-o" . ace-window)))
+  :bind (("H-o" . ace-window)))
 
 ;; https://github.com/bbatsov/projectile
 (use-package helm-projectile
