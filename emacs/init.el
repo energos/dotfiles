@@ -209,6 +209,7 @@
          ("C-c M-i" . helm-multi-swoop)
          ("C-x M-i" . helm-multi-swoop-all))
   :config
+  (setq helm-swoop-split-window-function 'helm-display-buffer-in-own-frame)
   (require 'helm))
 
 ;; https://github.com/emacsorphanage/helm-gtags
