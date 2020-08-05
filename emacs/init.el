@@ -38,6 +38,10 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
+;; prefer horizontal split (side-by-side)
+(setq split-width-threshold 132)
+(setq split-height-threshold nil)
+
 (defalias 'list-buffers 'ibuffer)
 
 ;; --- Enable some disabled commands ---
