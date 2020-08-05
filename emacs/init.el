@@ -749,9 +749,15 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "<insert>") (lambda () (interactive) (overwrite-mode -1)))
 (global-set-key (kbd "C-x <insert>") 'overwrite-mode)
 
+;; --- Kill buffers ---
+;; Too much noise in "helm-mode-kill-buffer"
+(global-set-key (kbd "C-x K") 'kill-buffer)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
+
 ;; --- CapsLock -> F13 -> Hyper ---
 (global-set-key (kbd "H-s") 'save-buffer)
-(global-set-key (kbd "H-k") 'kill-buffer)
+(global-set-key (kbd "H-K") 'kill-buffer)
+(global-set-key (kbd "H-k") 'kill-current-buffer)
 (global-set-key (kbd "H-b") 'helm-buffers-list)
 (global-set-key (kbd "H-f") 'helm-find-files)
 (global-set-key (kbd "H-c") (kbd "C-c C-c"))
