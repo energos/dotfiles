@@ -753,6 +753,11 @@ Move point to the previous position that is the beggining of a symbol."
 ;; Too much noise in "helm-mode-kill-buffer"
 (global-set-key (kbd "C-x K") 'kill-buffer)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
+;; Never kill *scratch* or *Messages*
+(with-current-buffer "*scratch*"
+	  (emacs-lock-mode 'kill))
+(with-current-buffer "*Messages*"
+	  (emacs-lock-mode 'kill))
 
 ;; --- CapsLock -> F13 -> Hyper ---
 (global-set-key (kbd "H-s") 'save-buffer)
