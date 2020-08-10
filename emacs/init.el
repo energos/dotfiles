@@ -146,6 +146,8 @@
       '(("melpa-stbl" .  0)
         ("gnu"        .  5)
         ("melpa"      . 10)))
+(setq package-pinned-packages '((helm      . "melpa-stbl")
+                                (helm-core . "melpa-stbl")))
 (package-initialize)
 
 ;; https://stackoverflow.com/questions/57153556/
