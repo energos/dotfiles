@@ -34,7 +34,7 @@ app-misc/rlwrap
 app-misc/screen
 app-misc/tmux
 app-mobilephone/dfu-util
-app-office/openoffice-bin
+app-office/libreoffice
 app-portage/cpuid2cpuflags
 app-portage/eix
 app-portage/gentoolkit

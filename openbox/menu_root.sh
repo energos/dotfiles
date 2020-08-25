@@ -176,10 +176,10 @@ EOF
 
     # Office
     cat <<EOF
-<item label="Open Office Calc" icon="/usr/share/icons/hicolor/48x48/apps/openoffice4-calc.png">
-<action name="Execute"><command>oocalc</command></action> </item>
-<item label="Open Office Writer" icon="/usr/share/icons/hicolor/48x48/apps/openoffice4-writer.png">
-<action name="Execute"><command>oowriter</command></action> </item>
+<item label="LibreOffice Calc" icon="/usr/share/icons/hicolor/48x48/apps/libreoffice-calc.png">
+<action name="Execute"><command>localc</command></action> </item>
+<item label="LibreOffice Writer" icon="/usr/share/icons/hicolor/48x48/apps/libreoffice-writer.png">
+<action name="Execute"><command>lowriter</command></action> </item>
 <separator />
 EOF
 
