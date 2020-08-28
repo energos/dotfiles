@@ -240,6 +240,14 @@
   :config
   (require 'helm))
 
+;; https://github.com/emacs-helm/helm-firefox
+(use-package helm-firefox
+  :ensure t
+  :after (helm)
+  :bind ("H-B" . helm-firefox-bookmarks)
+  :config
+  (require 'helm))
+
 ;; https://github.com/Alexander-Miller/treemacs
 (use-package treemacs
   :ensure t

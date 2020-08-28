@@ -5,6 +5,7 @@ user_pref("accessibility.typeaheadfind.flashBar", 0);
 user_pref("app.normandy.api_url", "");
 user_pref("app.normandy.enabled", false);
 user_pref("app.shield.optoutstudies.enabled", false);
+user_pref("browser.bookmarks.autoExportHTML", true);
 user_pref("browser.backspace_action", 2);
 user_pref("browser.chrome.toolbar_tips", false);
 user_pref("browser.ctrlTab.recentlyUsedOrder", false);
