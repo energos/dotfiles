@@ -205,6 +205,7 @@
         helm-display-buffer-width 100
         helm-display-buffer-height 36)
   (customize-set-variable 'helm-ff-lynx-style-map t)
+  (customize-set-variable 'helm-su-or-sudo "su")
   (helm-mode 1))
 
 ;; https://github.com/ShingoFukuyama/helm-swoop
