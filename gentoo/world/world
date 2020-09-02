@@ -109,12 +109,13 @@ net-analyzer/netcat
 net-analyzer/nmap
 net-fs/sshfs
 net-misc/chrony
+net-misc/connman
+net-misc/connman-gtk
 net-misc/curl
 net-misc/dhcpcd
 net-misc/openssh
 net-misc/socat
 net-misc/whois
-net-misc/wicd
 net-misc/youtube-dl
 net-p2p/ktorrent
 net-wireless/iw
