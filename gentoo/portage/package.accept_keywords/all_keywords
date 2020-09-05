@@ -88,3 +88,5 @@ media-gfx/inkscape ~amd64
 
 #
 app-misc/icdiff ~amd64
+#
+x11-misc/xcape ~amd64

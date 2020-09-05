@@ -182,6 +182,7 @@ x11-misc/slock
 x11-misc/synergy
 x11-misc/vdpauinfo
 x11-misc/wmctrl
+x11-misc/xcape
 x11-misc/xclip
 x11-misc/xdg-utils
 x11-misc/xdotool

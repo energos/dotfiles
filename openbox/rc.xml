@@ -331,12 +331,12 @@
         <menu>client-layer-menu</menu>
       </action>
     </keybind>
-    <keybind key="Menu">
+    <keybind key="C-Menu">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
     </keybind>
-    <keybind key="C-Menu">
+    <keybind key="Menu">
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
       </action>
