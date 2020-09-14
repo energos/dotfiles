@@ -126,7 +126,6 @@
 
 ;; framemove
 ;; https://github.com/emacsmirror/framemove
-(require 'cl)
 (require 'framemove)
 (setq framemove-hook-into-windmove t)
 
