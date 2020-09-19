@@ -185,68 +185,38 @@
   (setq minions-mode-line-lighter "[+]")
   (minions-mode 1))
 
-;; https://github.com/emacs-helm/helm
-(use-package helm
+;; https://github.com/nonsequitur/smex/
+;; https://github.com/abo-abo/swiper/issues/629
+(use-package smex
+  :ensure t)
+;; https://github.com/abo-abo/swiper
+;; http://oremacs.com/swiper
+;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
+(use-package counsel
   :ensure t
-  :bind (("C-x b"   . helm-buffers-list)
-         ("C-x C-b" . helm-mini)
-         ("M-x"     . helm-M-x)
-         ("C-x r b" . helm-filtered-bookmarks)
-         ("C-x C-f" . helm-find-files)
-         ("M-y"     . helm-show-kill-ring))
+  :demand
+  :bind (("M-i"     . swiper))
   :config
-  (require 'helm-config)
-  (setq helm-split-window-default-side 'other)
-  (setq helm-candidate-number-limit 1000)
-  (setq helm-display-function 'helm-display-buffer-in-own-frame
-        helm-display-buffer-reuse-frame t
-        helm-use-undecorated-frame-option t
-        helm-display-buffer-width 100
-        helm-display-buffer-height 36)
-  (customize-set-variable 'helm-ff-lynx-style-map t)
-  (customize-set-variable 'helm-su-or-sudo "su")
-  (helm-mode 1))
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "%d/%d "
+        ivy-height 16
+        ivy-re-builders-alist '((t . ivy--regex-ignore-order))
+        ivy-on-del-error-function #'ding
+        ivy-initial-inputs-alist nil)
+  (set-face-background 'swiper-line-face "firebrick")
+  (ivy-mode 1)
+  (counsel-mode 1))
+(use-package ivy-hydra
+  :ensure t)
 
-;; https://github.com/ShingoFukuyama/helm-swoop
-(use-package helm-swoop
+;; https://github.com/FelipeLema/emacs-counsel-gtags
+(use-package counsel-gtags
   :ensure t
-  :bind (("M-i"     . helm-swoop)
-         ("M-I"     . helm-swoop-back-to-last-point)
-         ("C-c M-i" . helm-multi-swoop)
-         ("C-x M-i" . helm-multi-swoop-all))
-  :config
-  (setq helm-swoop-split-window-function 'helm-display-buffer-in-own-frame)
-  (require 'helm))
-
-;; https://github.com/emacsorphanage/helm-gtags
-;; https://tuhdo.github.io/c-ide.html
-(use-package helm-gtags
-  :ensure t
-  :bind (:map helm-gtags-mode-map
-              ("C-c g a" . helm-gtags-tags-in-this-function)
-              ("C-j"     . helm-gtags-select)
-              ("M-."     . helm-gtags-dwim)
-              ("M-,"     . helm-gtags-pop-stack)
-              ("C-c <"   . helm-gtags-previous-history)
-              ("C-c >"   . helm-gtags-next-history))
-  :hook ((c-mode c++-mode asm-mode) . helm-gtags-mode)
-  :init
-  (setq helm-gtags-ignore-case t
-        helm-gtags-auto-update t
-        helm-gtags-use-input-at-cursor t
-        helm-gtags-pulse-at-cursor t
-        helm-gtags-prefix-key "\C-cg"
-        helm-gtags-suggested-key-mapping t)
-  :config
-  (require 'helm))
-
-;; https://github.com/emacs-helm/helm-firefox
-(use-package helm-firefox
-  :ensure t
-  :after (helm)
-  :bind ("H-B" . helm-firefox-bookmarks)
-  :config
-  (require 'helm))
+  :bind (:map counsel-gtags-mode-map
+              ("M-." . counsel-gtags-dwim)
+              ("M-," . counsel-gtags-go-backward))
+  :hook ((c-mode . counsel-gtags-mode)
+         (c++-mode . counsel-gtags-mode)))
 
 ;; https://github.com/Alexander-Miller/treemacs
 (use-package treemacs
@@ -374,20 +344,14 @@
   :bind (("H-o" . ace-window)))
 
 ;; https://github.com/bbatsov/projectile
-(use-package helm-projectile
-  :ensure t)
 (use-package projectile
   :ensure t
   :config
   (projectile-mode +1)
-  (setq projectile-completion-system 'helm)
+  (setq projectile-completion-system 'ivy)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "H-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (helm-projectile-on))
-;; https://github.com/syohex/emacs-helm-ag
-(use-package helm-ag
-  :ensure t)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; ;; https://github.com/nex3/perspective-el
 ;; (use-package perspective
@@ -765,16 +729,16 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 ;; Never kill *scratch* or *Messages*
 (with-current-buffer "*scratch*"
-	  (emacs-lock-mode 'kill))
+  (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*"
-	  (emacs-lock-mode 'kill))
+  (emacs-lock-mode 'kill))
 
 ;; --- CapsLock -> F13 -> Hyper ---
 (global-set-key (kbd "H-s") 'save-buffer)
 (global-set-key (kbd "H-K") 'kill-buffer)
 (global-set-key (kbd "H-k") 'kill-current-buffer)
-(global-set-key (kbd "H-b") 'helm-buffers-list)
-(global-set-key (kbd "H-f") 'helm-find-files)
+(global-set-key (kbd "H-b") 'switch-to-buffer)
+(global-set-key (kbd "H-f") 'find-file)
 (global-set-key (kbd "H-c") (kbd "C-c C-c"))
 (global-set-key (kbd "H-e") (kbd "C-x C-e"))
 (global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
