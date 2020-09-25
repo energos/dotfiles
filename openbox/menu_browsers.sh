@@ -12,6 +12,11 @@ EOF
   <action name="Execute"><command>firefox</command></action>
 </item>
 EOF
+[[ -x $(command -v chromium) ]] && cat <<EOF && crappy=no
+<item label="Chromium" icon="/usr/share/icons/hicolor/48x48/apps/chromium-browser.png">
+  <action name="Execute"><command>chromium</command></action>
+</item>
+EOF
 [[ -x $(command -v falkon) ]] && cat <<EOF && crappy=no
 <item label="Falkon" icon="/usr/share/icons/hicolor/48x48/apps/falkon.png">
   <action name="Execute"><command>falkon</command></action>
