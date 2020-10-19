@@ -204,7 +204,8 @@
         ivy-height 16
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
         ivy-on-del-error-function #'ding
-        ivy-initial-inputs-alist nil)
+        ivy-initial-inputs-alist nil
+        ivy-extra-directories '("../"))
   (set-face-background 'swiper-line-face "firebrick")
   (ivy-mode 1)
   (counsel-mode 1))
