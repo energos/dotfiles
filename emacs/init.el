@@ -50,8 +50,10 @@
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
-;; --- Não expiro senhas - DANGER! ---
+;; --- Do not expire passwords - DANGER! ---
 (setq password-cache-expiry nil)
+;; --- Do not save passwords ---
+(setq auth-source-save-behavior nil)
 
 ;; --- Freaking TAB behaviour
 (setq-default tab-always-indent 'complete)
