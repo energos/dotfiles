@@ -632,6 +632,10 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; --- restore old shortcuts for structure templates ---
+;; https://orgmode.org/manual/Structure-Templates.html
+(require 'org-tempo)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
 
