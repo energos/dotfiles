@@ -7,3 +7,5 @@
 
 # Too much artifacts with amdgpu. Use compton as a workaround.
 (sleep 1.0 && lsmod | grep -q ^amdgpu && compton) &
+
+(sleep 3.0 && conky) &

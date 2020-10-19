@@ -63,8 +63,6 @@ else
     fi
 fi
 
-(sleep 3.0 && conky) &
-
 # Call wicd-client if wicd daemon is running
 [[ -x /etc/init.d/wicd ]] && /etc/init.d/wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
 # Call connman-gtk if connman daemon is running

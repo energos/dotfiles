@@ -38,6 +38,8 @@ xsetroot -solid '#3366aa'
 # Too much artifacts with amdgpu. Use compton as a workaround.
 (sleep 2.0 && lsmod | grep -q ^amdgpu && compton) &
 
+(sleep 3.0 && conky) &
+
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
 xcape -e 'Super_L=Control_L|Menu'
