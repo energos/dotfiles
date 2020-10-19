@@ -1,3 +1,4 @@
+app-admin/conky
 app-admin/eclean-kernel
 app-admin/gkrellm
 app-admin/logrotate
@@ -7,17 +8,18 @@ app-arch/dpkg
 app-arch/p7zip
 app-arch/pbzip2
 app-arch/rpm
-app-arch/unarj
 app-arch/unrar
 app-arch/zip
 app-backup/mkstage4
 app-cdr/cdrtools
 app-crypt/md5deep
+app-dicts/artha
 app-editors/emacs
 app-editors/jed
 app-editors/joe
 app-editors/nano
 app-editors/zile
+app-emacs/ebuild-mode
 app-emulation/dosemu
 app-emulation/virtualbox
 app-emulation/virtualbox-additions
@@ -57,6 +59,7 @@ dev-embedded/dfu-programmer
 dev-embedded/mcu8051ide
 dev-embedded/sdcc
 dev-embedded/srecord
+dev-java/openjdk-jre-bin
 dev-lang/ruby
 dev-perl/Gtk2
 dev-python/pip
@@ -68,6 +71,7 @@ dev-util/meld
 dev-util/pkgconfig
 dev-util/shellcheck-bin
 dev-vcs/git
+dev-vcs/subversion
 games-misc/fortune-mod
 games-puzzle/enigma
 kde-apps/dolphin
@@ -77,6 +81,7 @@ kde-apps/kate
 kde-apps/kmahjongg
 kde-apps/konsole
 kde-apps/kpat
+kde-apps/kruler
 kde-apps/okular
 kde-apps/spectacle
 kde-apps/svgpart
@@ -149,6 +154,7 @@ sys-process/cronie
 sys-process/htop
 sys-process/iotop
 sys-process/lsof
+www-client/chromium
 www-client/firefox
 www-client/w3m
 www-servers/apache
