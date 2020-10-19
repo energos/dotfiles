@@ -28,6 +28,8 @@ xsetroot -solid '#3366aa'
 # (sleep 0.6 && xrandr --output VGA-1 --mode 1024x1280 --pos 0x0 --output VGA-2 --mode 1920x1080 --pos 1024x200 --output VGA-3 --mode 1280x1024 --pos 2944x256) &
 # (sleep 0.6 && xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x200 --output DVI-1 --pos 2944x256) &
 
+artha &
+
 (sleep 0.8 && fbpanel --profile default) &
 (sleep 1.0 && parcellite) &
 (sleep 1.8 && volumeicon) &
