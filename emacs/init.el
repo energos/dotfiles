@@ -378,13 +378,15 @@
 ;; https://github.com/politza/pdf-tools
 (use-package pdf-tools
   :ensure t
+  :bind (:map pdf-view-mode-map
+              ("<home>"   . image-bob)
+              ("<end>"    . image-eob)
+              ("<C-home>" . pdf-view-first-page)
+              ("<C-end>"  . pdf-view-last-page))
   :config
   (pdf-tools-install)
   (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26"))
-  (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
-  (define-key pdf-view-mode-map (kbd "<home>") 'pdf-view-first-page)
-  (define-key pdf-view-mode-map (kbd "<end>") 'pdf-view-last-page))
+  (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26")))
 
 ;; https://github.com/fuxialexander/org-pdftools
 (use-package org-pdftools
