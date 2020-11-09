@@ -1,84 +1,17 @@
+
 /***********************************************************************
- * http://kb.mozillazine.org/UserChrome-example.css
- * Do not remove the @namespace line -- it's required for correct functioning
+ * Tabs on Bottom!
+ * https://support.mozilla.org/en-US/questions/1276775
  */
+@import url(userChrome.1276775.css);
+
+/***********************************************************************
+ * Override URL bar enlargement
+ * https://support.mozilla.org/en-US/questions/1294934
+ */
+@import url(userChrome.1294934.css);
+
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
-/***********************************************************************
- * TABS ON BOTTOM!
- *
- * Não tenho a menor idéia do que acontece aqui...
- * Copiado e colado de https://support.mozilla.org/en-US/questions/1248277
- */
-
-/* TABS: on bottom */
-#navigator-toolbox toolbar:not(#nav-bar):not(#toolbar-menubar) {-moz-box-ordinal-group:10}
-#TabsToolbar {-moz-box-ordinal-group:1000!important}
-
-#TabsToolbar {
-    position: absolute !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-}
-
-#tabbrowser-tabs {
-    width: 100vw !important;
-}
-#main-window:not([chromehidden*="toolbar"]) #navigator-toolbox {padding-bottom: var(--tab-min-height) !important;}
-
-/* TABS: height */
-:root {
-    --tab-toolbar-navbar-overlap: 0px !important;
-    --tab-min-height: 33px !important; /* adjust to suit your needs */
-}
-:root #tabbrowser-tabs {
-    --tab-min-height: 33px !important; /* needs to be the same as above under :root */
-    --tab-min-width: 80px !important;
-}
-
-#TabsToolbar {
-    height: var(--tab-min-height) !important;
-    margin-bottom: 1px !important;
-    box-shadow: ThreeDShadow 0 -1px inset, -moz-dialog 0 1px !important;
-}
-
-#tabbrowser-tabs,
-#tabbrowser-tabs > .tabbrowser-arrowscrollbox,
-.tabbrowser-tabs[positionpinnedtabs] > .tabbrowser-tab[pinned] {
-    min-height: var(--tab-min-height) !important;
-    max-height: var(--tab-min-height) !important;
-}
-
-/* drag space */
-.titlebar-spacer[type="pre-tabs"],
-.titlebar-spacer[type="post-tabs"] {
-    width: 40px;
-}
-
-/* Override vertical shifts when moving a tab */
-#navigator-toolbox[movingtab] > #titlebar > #TabsToolbar {
-    padding-bottom: unset !important;
-}
-#navigator-toolbox[movingtab] #tabbrowser-tabs {
-    padding-bottom: unset !important;
-    margin-bottom: unset !important;
-}
-#navigator-toolbox[movingtab] > #nav-bar {
-    margin-top: unset !important;
-}
-
-/* hide windows-controls */
-#TabsToolbar #window-controls {display:none!important;}
-
-/* move caption buttons to right of Tab bar */
-#main-window[tabsintitlebar]:not([inFullscreen="true"]) #toolbar-menubar[autohide="true"] ~ #TabsToolbar .titlebar-buttonbox-container {
-    position: fixed !important;
-    right: 0 !important;
-    top: calc(6px + var(--tab-min-height)) !important;
-    display: block !important;
-    visibility: visible !important;
-}
-#toolbar-menubar[autohide="true"] ~ #TabsToolbar {padding-right: 100px !important;}
 
 /***********************************************************************
  * Hide all tab Close buttons
@@ -88,9 +21,9 @@
 /***********************************************************************
  * Add a New Tab context menu entry
  * https://addons.mozilla.org/en-US/firefox/addon/new-tab-context/
- * https://www.reddit.com/r/firefox/comments/7dvtw0/guide_how_to_edit_your_context_menu/
  *
  * Move entry to top and remove icon
+ * https://www.reddit.com/r/firefox/comments/7dvtw0/guide_how_to_edit_your_context_menu/
  */
 #tabContextMenu menuitem[label="New Tab"] { -moz-box-ordinal-group: 0 !important; }
 #tabContextMenu menuitem[label="New Tab"] .menu-iconic-icon { display: none !important; }
@@ -99,4 +32,10 @@
 /***********************************************************************
  * Hide Navigation from context menu
  */
-#context-navigation, #context-sep-navigation { display: none !important }
+#context-navigation, #context-sep-navigation { display: none !important; }
+
+/***********************************************************************
+ * Disable fullscreen transition animation
+ * https://support.mozilla.org/en-US/questions/1251598
+ */
+#navigator-toolbox[fullscreenShouldAnimate] { transition: none !important; }
