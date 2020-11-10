@@ -8,7 +8,7 @@ cat <<EOF
 <openbox_pipe_menu>
 EOF
 [[ -x $(command -v firefox) ]] && cat <<EOF && crappy=no
-<item label="Firefox" icon="/usr/share/pixmaps/aurora.png">
+<item label="Firefox" icon="/usr/share/icons/hicolor/48x48/apps/firefox.png">
   <action name="Execute"><command>firefox</command></action>
 </item>
 EOF

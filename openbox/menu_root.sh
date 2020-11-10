@@ -27,7 +27,7 @@ case $navigator in
         navigator_icon=/usr/share/pixmaps/dillo.png
         ;;
     firefox)
-        navigator_icon=/usr/share/pixmaps/aurora.png
+        navigator_icon=/usr/share/icons/hicolor/48x48/apps/firefox.png
         ;;
     *)
         navigator_icon=${ICONS}/apps/48/internet-web-browser.svg
