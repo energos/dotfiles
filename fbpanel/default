@@ -216,14 +216,14 @@ Plugin {
         button {
             icon = gentoo
             tooltip = Gentoo ROCKS!
-            action = xdotool key Menu
+            action = xdotool key Control+Menu
         }
         button {
             icon = window-list
             tooltip = Windows list
             # https://github.com/jordansissel/xdotool/issues/173
             # action = xdotool key Super_R
-            action = xdotool key Control+Menu
+            action = xdotool key Menu
         }
         button {
             icon = Utilities-terminal
