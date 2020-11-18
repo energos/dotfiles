@@ -15,7 +15,8 @@
 Xft.dpi:                XSERVER_DPI
 
 #ifdef HIGH_DPI
-Emacs.font:             Iosevka 12
+!Emacs.font:             Iosevka 12
+Emacs.font:             Consolas 12
 #else
 Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
