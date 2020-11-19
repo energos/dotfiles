@@ -5,6 +5,7 @@
     excludesfile = /home/energos/.gitignore
     pager = less -iFXR
     editor = jed
+    autocrlf = false
 [alias]
     lg1 = log --graph --pretty=tformat:'%C(auto)%h%d %s %C(cyan)(%ar)%C(reset)'
     lg2 = log --graph --pretty=tformat:'%C(auto)%h%d %s %C(cyan)(%ar)%C(reset) %C(bold blue)%an%C(reset)'
