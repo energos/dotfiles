@@ -378,6 +378,7 @@
 ;; https://github.com/politza/pdf-tools
 (use-package pdf-tools
   :ensure t
+  :defer nil
   :bind (:map pdf-view-mode-map
               ("<home>"   . image-bob)
               ("<end>"    . image-eob)
@@ -391,6 +392,7 @@
 ;; https://github.com/fuxialexander/org-pdftools
 (use-package org-pdftools
   :ensure t
+  :after (org pdf-tools)
   :hook (org-load . org-pdftools-setup-link))
 
 ;; https://github.com/abo-abo/ace-window
