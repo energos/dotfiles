@@ -13,7 +13,7 @@ EOF
 </item>
 EOF
 [[ -x $(command -v smplayer) ]] && cat <<EOF && crappy=no
-<item label="Media Player" icon="/usr/share/icons/hicolor/64x64/apps/smplayer.png">
+<item label="SMPlayer Media Player" icon="/usr/share/icons/hicolor/scalable/apps/smplayer.svg">
   <action name="Execute"><command>smplayer</command></action>
 </item>
 EOF
@@ -21,6 +21,11 @@ EOF
   <item label="YouTube Browser" icon="/home/energos/.local/share/icons/youtube.png">
     <action name="Execute"><command>smtube</command></action>
   </item>
+EOF
+[[ -x $(command -v vlc) ]] && cat <<EOF && crappy=no
+<item label="VLC Media Player" icon="${ICONS}/apps/48/vlc.svg">
+  <action name="Execute"><command>vlc</command></action>
+</item>
 EOF
 [[ "$crappy" == "yes" ]] && cat <<EOF
 <item label="Get yourself a better computer, kid!" icon="${ICONS}/emotes/22/face-wink.svg">
