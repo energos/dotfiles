@@ -6,7 +6,7 @@ ICONS=/usr/share/icons/breeze
 
 # Get default navigator
 # Exclude some sub-menus if this is a crappy host
-[[ -f ~/.pqprc ]] && . ~/.pqprc
+[[ -f ~/.pqprc ]] && . ~/.pqprc > /dev/null
 navigator=${NAVIGATOR:-firefox}
 
 # Ugly, ugly, very ugly
