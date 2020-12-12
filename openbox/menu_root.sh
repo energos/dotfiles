@@ -220,10 +220,10 @@ EOF
 <separator />
 EOF
 
-    # Logout
+    # Exit
     cat <<EOF
-<item label="Log Out" icon="${ICONS}/actions/32/application-exit.svg">
-<action name="Exit"> <prompt>yes</prompt> </action> </item>
+<menu id="menu-exit" icon="${ICONS}/actions/32/application-exit.svg" />
+<separator />
 EOF
 
 else

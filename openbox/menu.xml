@@ -123,4 +123,26 @@
     </item>
   </menu>
 
+  <!-- Exit sub-menu -->
+  <menu id="menu-exit" label="Exit">
+    <item label="Log Out" icon="/usr/share/icons/breeze/actions/32/system-log-out.svg">
+      <action name="Exit">
+        <prompt>yes</prompt>
+      </action>
+    </item>
+    <separator />
+    <item label="Reboot" icon="/usr/share/icons/breeze/actions/32/system-reboot.svg">
+      <action name="Execute">
+        <command>loginctl reboot</command>
+        <prompt>Are you sure you want to Reboot?</prompt>
+      </action>
+    </item>
+    <item label="Shutdown" icon="/usr/share/icons/breeze/actions/32/system-shutdown.svg">
+      <action name="Execute">
+        <command>loginctl poweroff</command>
+        <prompt>Are you sure you want to Shutdown?</prompt>
+      </action>
+    </item>
+  </menu>
+
 </openbox_menu>
