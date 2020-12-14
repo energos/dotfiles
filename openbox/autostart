@@ -42,7 +42,7 @@ artha &
 # Start compton anyway
 (sleep 2.0 && compton) &
 
-(sleep 3.0 && conky) &
+(sleep 3.0 && conky -q -d) &
 
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
