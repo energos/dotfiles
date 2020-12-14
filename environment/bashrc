@@ -49,7 +49,7 @@ alias avrdude='avrdude 2>&1'
 alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'
 # If DPI is not defined (from ~/.pqprc) default to DPI=96
-alias startX="startx -- vt$XDG_VTNR -dpi ${DPI:=96} &> /dev/null &"
+alias startX="startx -- vt$XDG_VTNR -dpi ${DPI:=96}"
 unset DPI # To unset or not to unset?
 
 export MC_XDG_OPEN=$HOME/bin/nohup-open

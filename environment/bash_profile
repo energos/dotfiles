@@ -1,9 +1,16 @@
 # /etc/skel/.bash_profile
 
+# https://wiki.gentoo.org/wiki/X_without_Display_Manager
+if ! shopt -q login_shell; then
+    echo Somehow this is a non-bash or non-login shell.
+    sleep 5
+    exit 1
+fi
+
 # This file is sourced by bash for login shells.  The following line
 # runs your .bashrc and is recommended by the bash info pages.
 if [[ -f ~/.bashrc ]] ; then
-   . ~/.bashrc
+    . ~/.bashrc
 fi
 
 # Put your fun stuff here...
@@ -18,3 +25,9 @@ fi
 
 export PATH
 export MANPATH
+
+# And now we start X11
+if [[ "${START_X11}" == "1" ]]; then
+    unset START_X11
+    [[ -t 0 && $(tty) == /dev/tty1 && ! $DISPLAY ]] && startX
+fi
