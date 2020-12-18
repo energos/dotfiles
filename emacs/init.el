@@ -392,7 +392,7 @@
 ;; https://github.com/fuxialexander/org-pdftools
 (use-package org-pdftools
   :ensure t
-  :after (org pdf-tools)
+  :after (pdf-tools)
   :hook (org-load . org-pdftools-setup-link))
 
 ;; https://github.com/abo-abo/ace-window
