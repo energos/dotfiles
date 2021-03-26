@@ -26,6 +26,9 @@ fi
 export PATH
 export MANPATH
 
+# add /usr/local/share/info to INFOPATH
+[[ -d /usr/local/share/info ]] && export INFOPATH="/usr/local/share/info:${INFOPATH}"
+
 # And now we start X11
 if [[ "${START_X11}" == "1" ]]; then
     unset START_X11
