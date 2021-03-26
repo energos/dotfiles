@@ -227,7 +227,7 @@
   (setq ivy-rich-display-transformers-list
         '(ivy-switch-buffer
           (:columns
-           ((ivy-switch-buffer-transformer (:width 20)) ; add face by the original transformer
+           ((ivy-switch-buffer-transformer (:width 40)) ; add face by the original transformer
             ;; (ivy-rich-switch-buffer-size (:width 7)) ; return buffer size
             (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right)) ; return buffer indicator
             ;; (ivy-rich-switch-buffer-major-mode (:width 12 :face warning)) ; return major mode info
