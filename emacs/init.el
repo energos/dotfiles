@@ -207,6 +207,8 @@
         ivy-initial-inputs-alist nil
         ivy-extra-directories '("../"))
   (set-face-background 'swiper-line-face "firebrick")
+  (setq counsel-find-file-ignore-regexp
+        "\\(?:\\`[#.~]\\)\\|\\(?:[#~]\\'\\)\\|\\(?:\\.bin\\'\\)\\|\\(?:\\.lib\\'\\)\\|\\(?:\\.a\\'\\)\\|\\(?:\\.o\\'\\)\\|\\(?:\\.elf\\'\\)")
   (ivy-mode 1)
   (counsel-mode 1))
 (use-package ivy-hydra
