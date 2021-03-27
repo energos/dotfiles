@@ -420,6 +420,12 @@
 ;; (use-package persp-projectile
 ;;   :ensure t)
 
+;; https://www.complang.tuwien.ac.at/forth/gforth/Docs-html/Emacs-and-Gforth.html
+;; (autoload 'forth-mode "gforth.el")
+(load "gforth.el")
+(add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
+(add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
@@ -600,6 +606,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
    (C . t)
    (python . t)
    (scheme . t)
+   (forth . t)
    ))
 
 ;; --- DANGER! ---
@@ -623,6 +630,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
               (string= lang "ruby")
               (string= lang "python")
               (string= lang "scheme")
+              (string= lang "forth")
               ))))
 
 ;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
