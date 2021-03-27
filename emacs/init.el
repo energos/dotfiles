@@ -446,6 +446,17 @@
 (add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
 (add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
 
+;; https://github.com/chenyanming/calibredb.el
+(use-package calibredb
+  :ensure t
+  :defer t
+  :init
+  (autoload 'calibredb "calibredb")
+  (setq calibredb-root-dir "~/Library")
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
+  (setq calibredb-library-alist '(("~/Library")))
+  (setq calibredb-date-width 0))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
