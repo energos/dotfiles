@@ -397,6 +397,26 @@
   :after (pdf-tools)
   :hook (org-load . org-pdftools-setup-link))
 
+;; https://github.com/weirdNox/org-noter
+(use-package org-noter
+  :ensure t
+  :after (org)
+  :config
+  (setq org-noter-doc-split-fraction '(0.4 . 0.5)
+        org-noter-default-notes-file-names '("books.org")
+        org-noter-notes-search-path '("~/Work/org")))
+
+;; TODO...
+;;
+;; https://github.com/fuxialexander/org-pdftools
+;; org-noter-pdftools
+;;
+;; https://github.com/Kungsgeten/org-brain
+;; org-brain
+;;
+;; https://github.com/org-roam/org-roam
+;; org-roam
+
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :ensure t
