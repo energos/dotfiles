@@ -205,6 +205,7 @@
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
         ivy-on-del-error-function #'ding
         ivy-initial-inputs-alist nil
+        ivy-use-selectable-prompt t
         ivy-extra-directories '("../"))
   (set-face-background 'swiper-line-face "firebrick")
   (setq counsel-find-file-ignore-regexp
@@ -547,7 +548,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list [82 166 249])
+  (let* ((list [82 146 166 220 249])
          (i (energos/inc-or-dec
              (frame-parameter (selected-frame) 'energos/width)
              (1- (length list)) dec))
