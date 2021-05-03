@@ -39,3 +39,8 @@
  * https://support.mozilla.org/en-US/questions/1251598
  */
 #navigator-toolbox[fullscreenShouldAnimate] { transition: none !important; }
+
+/***********************************************************************
+ * Remove clutter from URL bar
+ */
+.urlbarView > .search-one-offs { display: none !important; }
