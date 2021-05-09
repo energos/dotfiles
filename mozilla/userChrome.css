@@ -29,6 +29,11 @@
 #tabContextMenu menuitem[label="New Tab"] .menu-iconic-icon { display: none !important; }
 #tabContextMenu menuitem[label="New Tab"] { margin-left: 3px !important; }
 
+/* Move "Close Multiple Tabs" and "Close Tab" entries to bottom
+ */
+#context_closeTabOptions { -moz-box-ordinal-group: 8 !important; }
+#tabContextMenu menuitem[label="Close Tab"] { -moz-box-ordinal-group: 9 !important; }
+
 /***********************************************************************
  * Hide Navigation from context menu
  */
