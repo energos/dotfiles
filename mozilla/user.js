@@ -19,6 +19,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", true);
 user_pref("browser.newtabpage.activity-stream.showSearch", true);
 user_pref("browser.newtabpage.activity-stream.topSitesRows", 4);
+user_pref("browser.quitShortcut.disabled", true);
 user_pref("browser.search.region", "US");
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.sessionstore.interval", 60000);
