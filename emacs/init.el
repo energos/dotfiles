@@ -523,11 +523,19 @@
 (use-package elfeed
   :ensure t
   :hook (elfeed-new-entry . score-elfeed-entry)
+  :bind
+  (:map elfeed-search-mode-map
+        ("L" . (lambda () (interactive) (elfeed-search-toggle-all 'readlater)))
+        ("C" . (lambda () (interactive) (elfeed-search-toggle-all 'cool)))
+        ("I" . (lambda () (interactive) (elfeed-search-toggle-all 'important)))
+        ("R" . (lambda () (interactive) (elfeed-search-toggle-all 'relevant)))
+        ("U" . (lambda () (interactive) (elfeed-search-toggle-all 'unread))))
   :config
   (setq elfeed-db-directory "~/.elfeed")
   (setq elfeed-search-title-max-width 80)
   (setq elfeed-search-title-min-width 30)
   (setq elfeed-search-filter "@6-months-ago +unread")
+  (setq elfeed-search-remain-on-entry t)
   (push '(relevant elfeed-relevant-entry-face)
         elfeed-search-face-alist)
   (push '(important elfeed-important-entry-face)
