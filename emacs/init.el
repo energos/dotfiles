@@ -496,9 +496,7 @@
                                ("rust" 1)
                                ("fsm\\|state machine" 1)
                                ("embedded" 1))
-          if (string-match pattern title)
-          do (incf score n)
-          if (string-match pattern content)
+          if (or (string-match pattern title) (string-match pattern content))
           do (incf score n))
 
     (message "-----------------------------------------------\nTitle: %s\nContent: %s\nScore: %s" title content score)
