@@ -351,6 +351,9 @@
   (setq geiser-active-implementations '(guile racket chicken))
   (setq geiser-default-implementation 'guile))
 
+(use-package geiser-guile
+  :ensure t)
+
 ;; https://github.com/nonsequitur/inf-ruby
 (use-package inf-ruby
   :ensure t)
