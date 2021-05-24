@@ -477,6 +477,87 @@
   (setq calibredb-library-alist '(("~/Library")))
   (setq calibredb-date-width 0))
 
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Elfeed
+
+;; https://kitchingroup.cheme.cmu.edu/blog/2017/01/05/Scoring-elfeed-articles/
+(defun score-elfeed-entry (entry)
+  (let ((title (elfeed-entry-title entry))
+        (content (elfeed-deref (elfeed-entry-content entry)))
+        (score 0))
+    (loop for (pattern n) in '(("emacs\\|exwm" 2)
+                               ("gentoo\\|guix" 2)
+                               ("linux" 1)
+                               ("forth\\|lisp" 2)
+                               ("risc-v" 1)
+                               ("regex\\|regexp\\|regular expression" 1)
+                               ("stm32\\|esp32" 1)
+                               ("rust" 1)
+                               ("fsm\\|state machine" 1)
+                               ("embedded" 1))
+          if (string-match pattern title)
+          do (incf score n)
+          if (string-match pattern content)
+          do (incf score n))
+
+    (message "-----------------------------------------------\nTitle: %s\nContent: %s\nScore: %s" title content score)
+
+    (cond
+     ((>= score 4)
+      (elfeed-tag entry 'cool))
+     ((>= score 2)
+      (elfeed-tag entry 'important))
+     ((>= score 1)
+      (elfeed-tag entry 'relevant)))
+    ))
+
+(defface elfeed-relevant-entry-face
+  '((t :foreground "green3"))
+  "Marks a relevant Elfeed entry.")
+(defface elfeed-important-entry-face
+  '((t :foreground "magenta2"))
+  "Marks an important Elfeed entry.")
+(defface elfeed-cool-entry-face
+  '((t :foreground "cyan2"))
+  "Marks a cool Elfeed entry.")
+
+(use-package elfeed
+  :ensure t
+  :hook (elfeed-new-entry . score-elfeed-entry)
+  :config
+  (setq elfeed-db-directory "~/.elfeed")
+  (setq elfeed-search-title-max-width 80)
+  (setq elfeed-search-title-min-width 30)
+  (setq elfeed-search-filter "@6-months-ago +unread")
+  (push '(relevant elfeed-relevant-entry-face)
+        elfeed-search-face-alist)
+  (push '(important elfeed-important-entry-face)
+        elfeed-search-face-alist)
+  (push '(cool elfeed-cool-entry-face)
+        elfeed-search-face-alist)
+  (add-hook 'elfeed-update-init-hooks
+            (lambda ()
+              (message "!!! Elfeed Update starting... !!!")))
+  (add-hook 'elfeed-update-hooks
+            (lambda (url)
+              (message "*** Elfeed Update from %s finished! ***" url)))
+  (setq elfeed-feeds
+        '("http://nullprogram.com/feed/"
+          ("https://distrowatch.com/news/dw.xml" linux)
+          "https://hackaday.com/blog/feed/"
+          ("https://www.reddit.com/r/emacs.rss" emacs)
+          ("https://www.reddit.com/r/forth.rss" forth)
+          ("https://www.reddit.com/r/lisp.rss" lisp)
+          "https://hnrss.org/frontpage"
+          "https://sachachua.com/blog/category/weekly/feed/"
+          "https://www.dedoimedo.com/rss_feed.xml"
+          ("https://planet.emacslife.com/atom.xml" emacs)
+          ("https://www.youtube.com/feeds/videos.xml?channel_id=UC0uTPqBCFIpZxlz_Lv1tk_g" emacs)
+          ("https://xkcd.com/atom.xml" fun)
+          ("https://www.comicsrss.com/rss/dilbert.rss" fun)
+          "http://www.50ply.com/atom.xml")))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
