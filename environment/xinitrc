@@ -76,10 +76,11 @@ fi
 # exec dbus-launch --exit-with-session icewm-session
 # exec icewm-session
 
-session=${WINDOW_MANAGER:-openbox}
-case $session in
+export WINDOW_MANAGER=${WINDOW_MANAGER:-openbox}
+case $WINDOW_MANAGER in
     openbox)    exec dbus-launch --exit-with-session openbox-session;;
     icewm)      exec dbus-launch --exit-with-session icewm-session;;
+    emacs)      exec dbus-launch --exit-with-session emacs -mm --debug-init -l ~/.emacs.d/exwm-desktop.el;;
     w10)        VirtualBoxVM -startvm "W10" -fullscreen;;
-    *)          exec $session;;
+    *)          exec $WINDOW_MANAGER;;
 esac

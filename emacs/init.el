@@ -128,8 +128,9 @@
 
 ;; framemove
 ;; https://github.com/emacsmirror/framemove
-(require 'framemove)
-(setq framemove-hook-into-windmove t)
+(unless (string= (getenv "WINDOW_MANAGER") "emacs")
+  (require 'framemove)
+  (setq framemove-hook-into-windmove t))
 
 ;; help-fns+
 ;; https://github.com/emacsmirror/help-fns-plus
