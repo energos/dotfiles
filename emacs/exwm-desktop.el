@@ -13,6 +13,7 @@
 (start-process-shell-command "volumeicon" nil "volumeicon")
 (start-process-shell-command "compton" nil "compton")
 (start-process-shell-command "parcellite" nil "parcellite")
+(start-process-shell-command "artha" nil "artha")
 
 ;; Define some stuff
 ;; using ~/bin/pqp as a stopgap
@@ -86,6 +87,8 @@
           ([?\s-i]   . energos/navigator)
           ([?\s-I]   . energos/new-navigator)
 
+          ([?\s- ]   . counsel-linux-app)
+
           ;; 's-r': Reset (to line-mode).
           ([?\s-r] . exwm-reset)
 
@@ -106,7 +109,8 @@
                       `(,(kbd (format "s-%d" i)) .
                         (lambda ()
                           (interactive)
-                          (exwm-workspace-switch-create ,i))))
+                          (exwm-workspace-switch-create ,i)
+                          (message "Workspace %d" ,i))))
                     (number-sequence 0 9))))
   ;; Line-editing shortcuts
   (setq exwm-input-simulation-keys
