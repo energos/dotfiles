@@ -18,25 +18,25 @@
 ;; Define some stuff
 ;; using ~/bin/pqp as a stopgap
 (defun energos/volume-up () (interactive)
-  (start-process-shell-command "volume-up" nil "pqp volume up"))
+       (start-process-shell-command "volume-up" nil "pqp volume up"))
 (defun energos/volume-down () (interactive)
-  (start-process-shell-command "volume-down" nil "pqp volume down"))
+       (start-process-shell-command "volume-down" nil "pqp volume down"))
 (defun energos/volume-toggle () (interactive)
-  (start-process-shell-command "volume-toggle" nil "pqp volume toggle"))
+       (start-process-shell-command "volume-toggle" nil "pqp volume toggle"))
 (defun energos/screen-lock () (interactive)
-  (start-process-shell-command "screen-lock" nil "slock"))
+       (start-process-shell-command "screen-lock" nil "slock"))
 (defun energos/print-screen () (interactive)
-  (start-process-shell-command "print-screen" nil "spectacle"))
+       (start-process-shell-command "print-screen" nil "spectacle"))
 (defun energos/music-player () (interactive)
-  (start-process-shell-command "music-player" nil "pqp cmus"))
+       (start-process-shell-command "music-player" nil "pqp cmus"))
 (defun energos/terminal () (interactive)
-  (start-process-shell-command "terminal" nil "pqp"))
+       (start-process-shell-command "terminal" nil "pqp"))
 (defun energos/new-terminal () (interactive)
-  (start-process-shell-command "new-terminal" nil "pqp -n"))
+       (start-process-shell-command "new-terminal" nil "pqp -n"))
 (defun energos/navigator () (interactive)
-  (start-process-shell-command "navigator" nil "firefox"))
+       (start-process-shell-command "navigator" nil "firefox"))
 (defun energos/new-navigator () (interactive)
-  (start-process-shell-command "new-navigator" nil "firefox"))
+       (start-process-shell-command "new-navigator" nil "firefox"))
 
 ;; The real deal
 (use-package exwm
@@ -90,7 +90,7 @@
           ([?\s- ]   . counsel-linux-app)
 
           ;; 's-r': Reset (to line-mode).
-          ([?\s-r] . exwm-reset)
+          ([?\s-r]   . exwm-reset)
 
           ;; Move between windows
           ([s-left]  . windmove-left)
@@ -114,16 +114,16 @@
                     (number-sequence 0 9))))
   ;; Line-editing shortcuts
   (setq exwm-input-simulation-keys
-        '(([?\C-b] . [left])
-          ([?\C-f] . [right])
-          ([?\C-p] . [up])
-          ([?\C-n] . [down])
-          ([?\C-a] . [home])
-          ([?\C-e] . [end])
-          ([?\M-v] . [prior])
-          ([?\C-v] . [next])
-          ([?\C-d] . [delete])
-          ([?\C-k] . [S-end delete])))
+        '(([?\C-b]   . [left])
+          ([?\C-f]   . [right])
+          ([?\C-p]   . [up])
+          ([?\C-n]   . [down])
+          ([?\C-a]   . [home])
+          ([?\C-e]   . [end])
+          ([?\M-v]   . [prior])
+          ([?\C-v]   . [next])
+          ([?\C-d]   . [delete])
+          ([?\C-k]   . [S-end delete])))
 
   ;; Load the system tray before exwm-init
   (require 'exwm-systemtray)
