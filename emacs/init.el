@@ -955,7 +955,8 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
 (global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
-(global-set-key (kbd "H-n") 'make-frame-command)
+(unless (string= (getenv "WINDOW_MANAGER") "emacs")
+  (global-set-key (kbd "H-n") 'make-frame-command))
 
 (global-set-key (kbd "H-g")
                 (lambda () "Set C-x C-e to call geiser-eval-last-sexp."

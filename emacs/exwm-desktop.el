@@ -1,24 +1,30 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO!
+;; transparency / wallpaper
+;; F11 / resize frame
+;; printscreen / multimedia keys
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; exwm
 
+;; The real deal
 (use-package exwm
   :ensure t
   :config
 
-  (require 'exwm-config)
-
   ;; copied and fubared from exwm-config.el
-  ;;
+
   ;; Set the initial workspace number.
-  (setq exwm-workspace-number 4)
+  (setq exwm-workspace-number 6)
+  ;; Start at workspace 1
+  (add-hook 'exwm-init-hook
+            (lambda ()
+              (exwm-workspace-switch-create 1)))
+
   ;; Make class name the buffer name
   (add-hook 'exwm-update-class-hook
             (lambda ()
               (exwm-workspace-rename-buffer exwm-class-name)))
-
-  ;; Load the system tray before exwm-init
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
 
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
@@ -72,11 +78,12 @@
           ([?\C-v] . [next])
           ([?\C-d] . [delete])
           ([?\C-k] . [S-end delete])))
+
+  ;; Load the system tray before exwm-init
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+
   ;; Enable EXWM
   (exwm-enable)
-  ;; Configure Ido
-                                        ; (exwm-config-ido)
-  ;; Other configurations
-  (exwm-config-misc)
 
   )
