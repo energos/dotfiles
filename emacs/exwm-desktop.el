@@ -7,6 +7,12 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; exwm
 
+;; Start some stuff
+(start-process-shell-command "feh" nil "~/.fehbg")
+(start-process-shell-command "volumeicon" nil "volumeicon")
+(start-process-shell-command "compton" nil "compton")
+(start-process-shell-command "parcellite" nil "parcellite")
+
 ;; The real deal
 (use-package exwm
   :ensure t
