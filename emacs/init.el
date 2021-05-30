@@ -907,11 +907,12 @@ Move point to the previous position that is the beggining of a symbol."
                   (revert-buffer t (not (buffer-modified-p)) t)))
 
 ;; --- Frame resize ---
-(global-set-key (kbd "<f11>") 'energos/resize-frame)
-(global-set-key (kbd "S-<f11>")
-                (lambda () (interactive) (energos/resize-frame t)))
-
-(global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen)
+(if (string= (getenv "WINDOW_MANAGER") "emacs")
+    (global-unset-key (kbd "<f11>"))
+  (global-set-key (kbd "<f11>") 'energos/resize-frame)
+  (global-set-key (kbd "S-<f11>")
+                  (lambda () (interactive) (energos/resize-frame t)))
+  (global-set-key (kbd "M-<f11>") 'toggle-frame-fullscreen))
 
 ;; --- Symbol highlighting ---
 (global-set-key (kbd "H-H") 'highlight-symbol-all-windows)
@@ -971,7 +972,12 @@ Move point to the previous position that is the beggining of a symbol."
 
 (global-set-key (kbd "H-0")
                 (lambda () "Delete window or delete frame if there is only one window."
-                  (interactive) (if (one-window-p) (delete-frame) (delete-window))))
+                  (interactive)
+                  (if (one-window-p)
+                      (if (string= (getenv "WINDOW_MANAGER") "emacs")
+                          (message "Refusing to delete the last window")
+                        (delete-frame))
+                    (delete-window))))
 (global-set-key (kbd "H-1") 'delete-other-windows)
 (global-set-key (kbd "H-2") 'split-window-below)
 (global-set-key (kbd "H-3") 'split-window-horizontally)
