@@ -9,11 +9,12 @@
 ;; exwm
 
 ;; Start some stuff
-(start-process-shell-command "feh" nil "~/.fehbg")
+(start-process-shell-command "parcellite" nil "parcellite")
 (start-process-shell-command "volumeicon" nil "volumeicon")
 (start-process-shell-command "compton" nil "compton")
-(start-process-shell-command "parcellite" nil "parcellite")
 (start-process-shell-command "artha" nil "artha")
+(start-process-shell-command "feh" nil "~/.fehbg")
+(message "Loading background processes")
 
 ;; Define some stuff
 ;; using ~/bin/pqp as a stopgap
