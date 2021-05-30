@@ -88,6 +88,7 @@
           ([?\s-I]   . energos/new-navigator)
 
           ([?\s- ]   . counsel-linux-app)
+          ([?\M- ]   . counsel-linux-app)
 
           ;; 's-r': Reset (to line-mode).
           ([?\s-r]   . exwm-reset)
@@ -123,6 +124,7 @@
           ([?\M-v]   . [prior])
           ([?\C-v]   . [next])
           ([?\C-d]   . [delete])
+          ([?\C-s]   . [?\C-f ?\C-g])
           ([?\C-k]   . [S-end delete])))
 
   ;; Load the system tray before exwm-init

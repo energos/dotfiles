@@ -211,6 +211,7 @@
   (set-face-background 'swiper-line-face "firebrick")
   (setq counsel-find-file-ignore-regexp
         "\\(?:\\`[#.~]\\)\\|\\(?:[#~]\\'\\)\\|\\(?:\\.bin\\'\\)\\|\\(?:\\.lib\\'\\)\\|\\(?:\\.a\\'\\)\\|\\(?:\\.o\\'\\)\\|\\(?:\\.elf\\'\\)")
+  (setq counsel-linux-app-format-function 'counsel-linux-app-format-function-name-pretty)
   (ivy-mode 1)
   (counsel-mode 1))
 (use-package ivy-hydra
