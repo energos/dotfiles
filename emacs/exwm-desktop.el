@@ -49,6 +49,8 @@
   (interactive)
   (start-process-shell-command "new-navigator" nil "firefox"))
 
+(defun energos/exwm-manage-window ()
+  (message "A new window of class %s(%s) named \"%s\" is born." exwm-class-name exwm-instance-name exwm-title))
 
 ;; The real deal
 (use-package exwm
@@ -68,6 +70,12 @@
   (add-hook 'exwm-update-class-hook
             (lambda ()
               (exwm-workspace-rename-buffer exwm-class-name)))
+
+  (add-hook 'exwm-workspace-switch-hook
+            (lambda ()
+              (message "Workspace %d" exwm-workspace-current-index)))
+
+  (add-hook 'exwm-manage-finish-hook 'energos/exwm-manage-window)
 
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
@@ -122,8 +130,7 @@
                       `(,(kbd (format "s-%d" i)) .
                         (lambda ()
                           (interactive)
-                          (exwm-workspace-switch-create ,i)
-                          (message "Workspace %d" ,i))))
+                          (exwm-workspace-switch-create ,i))))
                     (number-sequence 0 9))))
   ;; Line-editing shortcuts
   (setq exwm-input-simulation-keys
@@ -145,5 +152,6 @@
 
   ;; Enable EXWM
   (exwm-enable)
+  (message "EXWM up and running!")
 
   )
