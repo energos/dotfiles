@@ -49,9 +49,26 @@
   (interactive)
   (start-process-shell-command "new-navigator" nil "firefox"))
 
+;; Hooks...
+;; exwm-update-class-hook - make class name the buffer name
+(defun energos/exwm-update-class ()
+  (exwm-workspace-rename-buffer exwm-class-name))
+;; exwm-update-title-hook - for now just send a message
+(defun energos/exwm-update-title ()
+  (message "Window title changed to \"%s\"." exwm-title))
+;; exwm-manage-finish-hook - manage freshly created windows
 (defun energos/exwm-manage-window ()
+  (pcase exwm-class-name
+    ("Firefox" (exwm-workspace-move-window 2))
+    ("Connman-gtk" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line))
+    ("Artha" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line))
+    ("kruler" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line))
+    ("dosbox" (exwm-input--release-keyboard) (exwm-layout-toggle-mode-line))
+    ("mpv" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line)))
   (message "A new window of class %s(%s) named \"%s\" is born." exwm-class-name exwm-instance-name exwm-title))
 
+(defun energos/workspace-switch-event ()
+  (message "Workspace %d" exwm-workspace-current-index))
 ;; The real deal
 (use-package exwm
   :ensure t
@@ -61,21 +78,22 @@
 
   ;; Set the initial workspace number.
   (setq exwm-workspace-number 6)
-  ;; Start at workspace 1
+
   (add-hook 'exwm-init-hook
             (lambda ()
-              (exwm-workspace-switch-create 1)))
-
-  ;; Make class name the buffer name
-  (add-hook 'exwm-update-class-hook
-            (lambda ()
-              (exwm-workspace-rename-buffer exwm-class-name)))
-
-  (add-hook 'exwm-workspace-switch-hook
-            (lambda ()
-              (message "Workspace %d" exwm-workspace-current-index)))
 
   (add-hook 'exwm-manage-finish-hook 'energos/exwm-manage-window)
+              ;; Start at workspace 1
+              (exwm-workspace-switch-create 1)
+              ;; yes, this is stupid, I know
+              (run-with-timer 2 nil
+                              (lambda ()
+                                ;; waiting for a better solution...
+                                (message "EXWM up and running! Now in workspace %d." exwm-workspace-current-index)))))
+
+  (add-hook 'exwm-workspace-switch-hook 'energos/workspace-switch-event)
+  (add-hook 'exwm-update-class-hook     'energos/exwm-update-class)
+  (add-hook 'exwm-update-title-hook     'energos/exwm-update-title)
 
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
@@ -152,6 +170,5 @@
 
   ;; Enable EXWM
   (exwm-enable)
-  (message "EXWM up and running!")
 
   )
