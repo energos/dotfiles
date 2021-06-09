@@ -8,9 +8,12 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; exwm
 
+;; awesome font
+(use-package fontawesome
+  :ensure t)
+
 ;; Start some stuff
 (start-process-shell-command "parcellite" nil "parcellite")
-(start-process-shell-command "volumeicon" nil "volumeicon")
 (start-process-shell-command "compton" nil "compton")
 (start-process-shell-command "artha" nil "artha")
 (start-process-shell-command "feh" nil "~/.fehbg")
@@ -67,8 +70,27 @@
     ("mpv" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line)))
   (message "A new window of class %s(%s) named \"%s\" is born." exwm-class-name exwm-instance-name exwm-title))
 
+(defun energos/polybar-msg (module-name hook-index)
+  (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" module-name hook-index)))
+
 (defun energos/workspace-switch-event ()
+  (energos/polybar-msg "exwm-workspace" 2)
   (message "Workspace %d" exwm-workspace-current-index))
+
+(defun energos/exwm-current-workspace-pretty ()
+  (pcase exwm-workspace-current-index
+    (0 "➉")
+    (1 "➀")
+    (2 "➁")
+    (3 "➂")
+    (4 "➃")
+    (5 "➄")
+    (6 "➅")
+    (7 "➆")
+    (8 "➇")
+    (9 "➈")
+    (_ (format "%d " exwm-workspace-current-index))))
+
 ;; The real deal
 (use-package exwm
   :ensure t
@@ -81,16 +103,19 @@
 
   (add-hook 'exwm-init-hook
             (lambda ()
-
-  (add-hook 'exwm-manage-finish-hook 'energos/exwm-manage-window)
               ;; Start at workspace 1
               (exwm-workspace-switch-create 1)
+              ;; kill polybar if running and start a fresh new one
+              (start-process-shell-command "polybar" nil "killall polybar; polybar panel")
               ;; yes, this is stupid, I know
               (run-with-timer 2 nil
                               (lambda ()
                                 ;; waiting for a better solution...
+                                ;; https://www.reddit.com/r/Polybar/comments/fv1c2f/polybar_using_default_x_cursor/
+                                (start-process-shell-command "xmouse" nil "xsetroot -cursor_name left_ptr")
                                 (message "EXWM up and running! Now in workspace %d." exwm-workspace-current-index)))))
 
+  (add-hook 'exwm-manage-finish-hook    'energos/exwm-manage-window)
   (add-hook 'exwm-workspace-switch-hook 'energos/workspace-switch-event)
   (add-hook 'exwm-update-class-hook     'energos/exwm-update-class)
   (add-hook 'exwm-update-title-hook     'energos/exwm-update-title)
@@ -164,9 +189,10 @@
           ([?\C-s]   . [?\C-f ?\C-g])
           ([?\C-k]   . [S-end delete])))
 
+  ;; use polybar instead of the built-in tray
   ;; Load the system tray before exwm-init
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
+  ;; (require 'exwm-systemtray)
+  ;; (exwm-systemtray-enable)
 
   ;; Enable EXWM
   (exwm-enable)
