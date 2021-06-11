@@ -32,10 +32,10 @@ alert = #bd2c40
 enable-ipc = true
 ;monitor = ${env:MONITOR:HDMI-1}
 ; width = 100%
-width = 20%
+width = 26%
 ; height = 32
 height = 32
-offset-x = 80%
+offset-x = 74%
 offset-y = 0
 radius = 6.0
 fixed-center = false
@@ -55,17 +55,17 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Open Sans:size=12;4
-font-1 = Open Sans:size=14;4
-font-2 = URW Gothic L:size=18;6
+font-0 = DejaVu Sans:size=12;5
+font-1 = DejaVu Sans:size=14;5
+font-2 = DejaVu Sans:size=18;6
 font-3 = Font Awesome 5 Free:size=18;6
 font-4 = Font Awesome 5 Free Solid:size=18;6
 font-5 = Font Awesome 5 Brands:size=18;6
-font-6 = Dingbats:size=26;6
+font-6 = DejaVu Sans:size=20;6
 
 modules-left = exwm-workspace
 modules-center =
-modules-right = date alsa
+modules-right = filesystem cpu temperature date alsa
 ;modules-right = filesystem xbacklight alsa xkeyboard memory cpu battery temperature date powermenu
 
 tray-position = right
@@ -104,20 +104,19 @@ type = custom/ipc
 hook-0 = emacsclient -e "exwm-workspace-current-index"
 hook-1 = emacsclient -e "(energos/exwm-current-workspace-pretty)" | sed -e 's/^"//' -e 's/"$//'
 initial = 2
-format-prefix = " "
+format-prefix = " %{T7}"
 format-prefix-foreground = ${colors.foreground-alt}
-format-font = 3
 
 [module/date]
 type = internal/date
 interval = 5
-date = "%d/%m"
+date = "%a %d/%m"
 date-alt =
 time = " %H:%M"
 time-alt =
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
-label = %time% %date%
+label = "%time% %{T2}%date%"
 label-font = 3
 
 [module/alsa]
@@ -137,3 +136,66 @@ ramp-volume-2 = ""
 
 label-volume-font = 2
 label-muted-font = 2
+
+[module/filesystem]
+type = internal/fs
+interval = 30
+
+mount-0 = /
+mount-1 = /var
+mount-2 = /home
+;mount-3 = /home/Depot
+
+label-mounted = %{F#56bcde}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+label-mounted-font = 2
+
+[module/temperature]
+type = internal/temperature
+;thermal-zone = 0
+hwmon-path = /sys/class/hwmon/hwmon0/temp1_input
+;hwmon-path = temp.txt
+
+base-temperature = 20
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline =
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.secondary}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+label-font = 2
+label-warn-font = 2
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+ramp-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+interval = 5
+format-prefix = "CPU:"
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #f90000
+label = %percentage:2%%
+label-font = 2
+format-prefix-font = 2
+
+format = <label> <ramp-load>
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
