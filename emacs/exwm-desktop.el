@@ -70,6 +70,11 @@
     ("mpv" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line)))
   (message "A new window of class %s(%s) named \"%s\" is born." exwm-class-name exwm-instance-name exwm-title))
 
+(defun energos/polybar-restart ()
+  "Restart polybar panel."
+  (interactive)
+  (start-process-shell-command "polybar-restart" nil "polybar-msg cmd restart"))
+
 (defun energos/polybar-msg (module-name hook-index)
   (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" module-name hook-index)))
 
@@ -106,7 +111,7 @@
               ;; Start at workspace 1
               (exwm-workspace-switch-create 1)
               ;; kill polybar if running and start a fresh new one
-              (start-process-shell-command "polybar" nil "killall polybar; polybar panel")
+              (start-process-shell-command "polybar" nil "killall polybar; polybar -q panel")
               ;; yes, this is stupid, I know
               (run-with-timer 2 nil
                               (lambda ()
