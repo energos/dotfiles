@@ -173,10 +173,14 @@
 (use-package magit
   :ensure t
   :bind (("C-x g"   . magit-status)
-         ("C-x M-g" . magit-dispatch-popup))
-  :bind (:map magit-hunk-section-map
-              ("RET"        . magit-diff-visit-file-other-window)
-              ("<S-return>" . magit-diff-visit-file))
+         ("C-x M-g" . magit-dispatch-popup)
+         (:map magit-hunk-section-map
+               ("RET"        . magit-diff-visit-file-other-window)
+               ("<S-return>" . magit-diff-visit-file))
+         (:map magit-mode-map
+               ("<M-tab>"    . nil))
+         (:map magit-section-mode-map
+               ("<M-tab>"    . nil)))
   :init
   ;; https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
   ;; (setq vc-handled-backends nil)

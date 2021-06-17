@@ -158,6 +158,9 @@
           ([?\s- ]   . counsel-linux-app)
           ([?\M- ]   . counsel-linux-app)
 
+          ([M-tab]   . exwm-workspace-switch-to-buffer)
+          ([M-f13]   . exwm-workspace-switch-to-buffer)
+
           ;; 's-r': Reset (to line-mode).
           ([?\s-r]   . exwm-reset)
 
