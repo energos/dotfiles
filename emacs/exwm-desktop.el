@@ -63,11 +63,12 @@
 (defun energos/exwm-manage-window ()
   (pcase exwm-class-name
     ("Firefox" (exwm-workspace-move-window 2))
-    ("Connman-gtk" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line))
-    ("Artha" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line))
-    ("kruler" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line))
-    ("dosbox" (exwm-input--release-keyboard) (exwm-layout-toggle-mode-line))
-    ("mpv" (exwm-floating-toggle-floating) (exwm-layout-toggle-mode-line)))
+    ("Xmessage" (exwm-floating--set-floating exwm--id) (exwm-layout-hide-mode-line))
+    ("Connman-gtk" (exwm-floating--set-floating exwm--id) (exwm-layout-hide-mode-line))
+    ("Artha" (exwm-floating--set-floating exwm--id) (exwm-layout-hide-mode-line))
+    ("kruler" (exwm-floating--set-floating exwm--id) (exwm-layout-hide-mode-line))
+    ("dosbox" (exwm-input--release-keyboard) (exwm-layout-hide-mode-line))
+    ("mpv" (exwm-floating--set-floating exwm--id) (exwm-layout-hide-mode-line)))
   (message "A new window of class %s(%s) named \"%s\" is born." exwm-class-name exwm-instance-name exwm-title))
 
 (defun energos/polybar-restart ()
