@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 DEBUGPORT=${DEBUGPORT:-""}
@@ -64,5 +63,6 @@ cat <<EOF
 EOF
 
 # WARNING: weird characters like '\' and '!' are problematic
+# TODO:    fix crashes with weird characters in zathura history file
 # TODO:    https://github.com/koalaman/shellcheck/wiki/SC2012
 # TODO:    okular recent files
