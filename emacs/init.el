@@ -364,6 +364,31 @@
 (use-package inf-ruby
   :ensure t)
 
+;; https://github.com/emacs-lsp/lsp-mode
+;; https://emacs-lsp.github.io/lsp-mode/
+;; https://github.com/elixir-lsp/elixir-ls
+(use-package lsp-mode
+  :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  (add-to-list 'exec-path (expand-file-name "elixir-ls" user-emacs-directory))
+  :hook ((elixir-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred))
+
+(use-package lsp-ivy
+  :ensure t
+  :after (lsp-mode)
+  :commands lsp-ivy-workspace-symbol)
+
+;; https://github.com/elixir-editors/emacs-elixir
+(use-package elixir-mode
+  :ensure t)
+
+;; https://github.com/zweifisch/ob-elixir
+(use-package ob-elixir
+  :ensure t)
+
 ;; https://github.com/hniksic/emacs-htmlize
 (use-package htmlize
   :ensure t)
@@ -751,6 +776,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
    (python . t)
    (scheme . t)
    (forth . t)
+   (elixir . t)
    ))
 
 ;; --- DANGER! ---
@@ -775,6 +801,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
               (string= lang "python")
               (string= lang "scheme")
               (string= lang "forth")
+              (string= lang "elixir")
               ))))
 
 ;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
