@@ -16,3 +16,5 @@
     ls = ls-tree -r
     staged = ls-files -s
     unstage = reset HEAD --
+[init]
+    defaultBranch = master
