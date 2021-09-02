@@ -1439,6 +1439,13 @@
       </position>
     </application>
 
+    <application class="Connman-gtk">
+      <position force="no">
+        <x>-32</x>
+        <y>-64</y>
+      </position>
+    </application>
+
   </applications>
 
 </openbox_config>
