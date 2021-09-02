@@ -148,8 +148,7 @@
       '(("melpa-stbl" .  0)
         ("gnu"        .  5)
         ("melpa"      . 10)))
-(setq package-pinned-packages '((helm      . "melpa-stbl")
-                                (helm-core . "melpa-stbl")))
+(setq package-pinned-packages nil)
 (package-initialize)
 
 ;; https://stackoverflow.com/questions/57153556/
@@ -388,6 +387,11 @@
 ;; https://github.com/zweifisch/ob-elixir
 (use-package ob-elixir
   :ensure t)
+
+;; https://github.com/J3RN/inf-elixir
+(use-package inf-elixir
+  :ensure t
+  :after (elixir-mode))
 
 ;; https://github.com/hniksic/emacs-htmlize
 (use-package htmlize
@@ -669,7 +673,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list [82 146 166 220 249])
+  (let* ((list [82 146 166 220 249 294])
          (i (energos/inc-or-dec
              (frame-parameter (selected-frame) 'energos/width)
              (1- (length list)) dec))
