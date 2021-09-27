@@ -68,6 +68,8 @@ fi
 # Call connman-gtk if connman daemon is running
 [[ -x /etc/init.d/connman ]] && /etc/init.d/connman status &> /dev/null && (connman-gtk &> /dev/null &)
 
+/usr/lib64/libexec/polkit-kde-authentication-agent-1 &
+
 # https://wiki.gentoo.org/wiki/Elogind#startx_integration
 # exec dbus-launch --exit-with-session openbox-session
 # exec openbox-session
