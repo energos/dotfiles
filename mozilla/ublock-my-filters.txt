@@ -1,1 +1,8 @@
 i.ytimg.com/an_webp
+www.youtube.com##.ytd-thumbnail-overlay-loading-preview-renderer
+www.youtube.com##.ytd-video-preview
+www.youtube.com##.ytp-ce-covering-overlay
+www.youtube.com##.ytp-ce-element
+www.youtube.com##.ytp-cards
+www.youtube.com##.ytp-cards-teaser
+www.youtube.com##.ytp-cards-button-icon
