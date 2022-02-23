@@ -1,0 +1,32 @@
+#+TITLE:   Firefox como me gusta
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+* Avoid Firefox annoyances
+  - Tabs on Bottom
+  - Disable Proton
+  - Override URL bar enlargement
+  - Hide close buttons on tab bar
+  - Move "Close Multiple Tabs" and "Close Tab" entries to menu bottom
+  - Hide navigation from context menu
+  - Disable fullscreen transition animation
+  - Remove clutter from URL bar
+** Setup
+   Copy (or link) to your Firefox $profile_folder
+   #+begin_src sh :noeval
+     cp user.js $profile_folder/
+     mkdir -p $profile_folder/chrome
+     cp userChrome.css $profile_folder/chrome
+     cp disable_proton.css $profile_folder/chrome
+     cp tabs_on_bottom.css $profile_folder/chrome
+     cp userChrome.1294934.css $profile_folder/chrome
+   #+end_src
+
+* Avoid YouTube annoyances
+** Setup
+   - Install [[https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/][uBlock Origin]] addon
+   - From uBlock dashboard tab "My filters" import ublock-my-filters.txt
+* Better formatted link copy
+** Setup
+   - Install [[https://addons.mozilla.org/en-US/firefox/addon/link-text-and-location-copier/][Link Text and Location Copier]] addon
+   - From the addon preferences import link-text-location-copier.json

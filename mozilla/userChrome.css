@@ -1,9 +1,15 @@
 
 /***********************************************************************
  * Tabs on Bottom!
- * https://support.mozilla.org/en-US/questions/1276775
+ * https://github.com/MrOtherGuy/firefox-csshacks
  */
-@import url(userChrome.1276775.css);
+@import url(tabs_on_bottom.css);
+
+/***********************************************************************
+ * Disable Proton!
+ * https://www.dedoimedo.com/computers/firefox-91-disable-proton.html
+ */
+@import url(disable_proton.css);
 
 /***********************************************************************
  * Override URL bar enlargement
@@ -11,24 +17,12 @@
  */
 @import url(userChrome.1294934.css);
 
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
 /***********************************************************************
  * Hide all tab Close buttons
  */
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button { display: none !important; }
 
 /***********************************************************************
- * Add a New Tab context menu entry
- * https://addons.mozilla.org/en-US/firefox/addon/new-tab-context/
- *
- * Move entry to top and remove icon
- * https://www.reddit.com/r/firefox/comments/7dvtw0/guide_how_to_edit_your_context_menu/
- */
-#tabContextMenu menuitem[label="New Tab"] { -moz-box-ordinal-group: 0 !important; }
-#tabContextMenu menuitem[label="New Tab"] .menu-iconic-icon { display: none !important; }
-#tabContextMenu menuitem[label="New Tab"] { margin-left: 3px !important; }
-
 /* Move "Close Multiple Tabs" and "Close Tab" entries to bottom
  */
 #context_closeTabOptions { -moz-box-ordinal-group: 8 !important; }
