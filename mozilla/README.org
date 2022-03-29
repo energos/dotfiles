@@ -12,16 +12,15 @@
   - Disable fullscreen transition animation
   - Remove clutter from URL bar
 ** Setup
-   Copy (or link) to your Firefox $profile_folder
-   #+begin_src sh :noeval
-     cp user.js $profile_folder/
-     mkdir -p $profile_folder/chrome
-     cp userChrome.css $profile_folder/chrome
-     cp disable_proton.css $profile_folder/chrome
-     cp tabs_on_bottom.css $profile_folder/chrome
-     cp userChrome.1294934.css $profile_folder/chrome
-   #+end_src
-
+   - Copy (or link) to your Firefox $profile_folder
+     #+begin_src sh :noeval
+       cp user.js $profile_folder/
+       mkdir -p $profile_folder/chrome
+       cp userChrome.css $profile_folder/chrome
+       cp disable_proton.css $profile_folder/chrome
+       cp tabs_on_bottom.css $profile_folder/chrome
+       cp userChrome.1294934.css $profile_folder/chrome
+     #+end_src
 * Avoid YouTube annoyances
 ** Setup
    - Install [[https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/][uBlock Origin]] addon
@@ -30,3 +29,12 @@
 ** Setup
    - Install [[https://addons.mozilla.org/en-US/firefox/addon/link-text-and-location-copier/][Link Text and Location Copier]] addon
    - From the addon preferences import link-text-location-copier.json
+* Clean those pesky cookies
+** Setup
+   - Install [[https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/][Cookie AutoDelete]] addon
+* Manage your tabs
+** Setup
+   - Install [[https://addons.mozilla.org/en-US/firefox/addon/onetab/][OneTab]] addon
+* Restore "View Image" context menu item
+** Setup
+   - Install [[https://addons.mozilla.org/en-US/firefox/addon/view-image-context-menu-item/][View Image Context Menu Item]] addon
