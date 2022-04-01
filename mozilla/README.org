@@ -2,6 +2,8 @@
 #+OPTIONS: toc:nil num:nil html-postamble:nil
 #+STARTUP: showall
 
+* FFS, stay in the [[https://support.mozilla.org/en-US/kb/firefox-esr-release-cycle][ESR channel]]
+
 * Avoid Firefox annoyances
   - Tabs on Bottom
   - Disable Proton

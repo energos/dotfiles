@@ -28,6 +28,7 @@ user_pref("browser.search.region", "US");
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.sessionstore.interval", 60000);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser.tabs.drawInTitlebar", false);
 user_pref("browser.tabs.insertRelatedAfterCurrent", false);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.tabs.warnOnCloseOtherTabs", false);
