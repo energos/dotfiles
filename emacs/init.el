@@ -44,6 +44,8 @@
 
 (defalias 'list-buffers 'ibuffer)
 
+(setq large-file-warning-threshold 100000000) ; big file warning
+
 ;; --- Enable some disabled commands ---
 ;; https://www.emacswiki.org/emacs/DisabledCommands
 (put 'upcase-region 'disabled nil)
