@@ -7,12 +7,12 @@ crappy=yes
 cat <<EOF
 <openbox_pipe_menu>
 EOF
-[[ -x $(command -v vmplayer) ]] && cat <<EOF && crappy=no
+[[ -x $(command -v vmplayer) ]] && lsmod | grep "vm[mon\|net]" && cat <<EOF && crappy=no
 <item label="VMware Workstation Player" icon="/usr/share/icons/hicolor/48x48/apps/vmware-player.png">
  <action name="Execute"><command>vmplayer</command></action>
 </item>
 EOF
-[[ -x $(command -v VirtualBox) ]] && cat <<EOF && crappy=no
+[[ -x $(command -v VirtualBox) ]] && lsmod | grep vbox && cat <<EOF && crappy=no
 <item label="VirtualBox" icon="${ICONS}/apps/48/virtualbox.svg">
  <action name="Execute"><command>VirtualBox</command></action>
 </item>
