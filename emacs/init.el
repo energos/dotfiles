@@ -150,7 +150,7 @@
       '(("melpa-stbl" .  0)
         ("gnu"        .  5)
         ("melpa"      . 10)))
-(setq package-pinned-packages nil)
+(setq package-pinned-packages '((calibredb . "melpa-stbl")))
 (package-initialize)
 
 ;; https://stackoverflow.com/questions/57153556/
@@ -508,12 +508,10 @@
   :ensure t
   :defer t
   :init
-  (autoload 'calibredb "calibredb")
   (setq calibredb-root-dir "~/Library")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/Library")))
   (setq calibredb-date-width 0))
-
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Elfeed
