@@ -445,10 +445,10 @@
 
 (require 'package nil t) ;; describe-package
 
-(eval-when-compile (require 'cl)) ;; case
+;; (eval-when-compile (require 'cl)) ;; case
 
-(unless (require 'cl-lib nil t) ;; gentemp - Emacs 24+
-  (require 'cl))                ;; Emacs < 24
+;; (unless (require 'cl-lib nil t) ;; gentemp - Emacs 24+
+;;   (require 'cl))                ;; Emacs < 24
 
 
 ;; Quiet the byte-compiler.
@@ -2661,7 +2661,7 @@ anything else (default): `inherit'
 
 VARIABLE's current value cannot satisfy a regexp type: it is
 impossible to know which concrete types a value must match."
-  (case mode
+  (cl-case mode
     ((nil inherit)     (help-var-inherits-type-p variable types))
     (inherit-or-value  (or (help-var-inherits-type-p variable types)
                            (help-var-val-satisfies-type-p variable types)))
