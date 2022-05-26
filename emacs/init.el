@@ -124,7 +124,7 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LOCAL elisp FILES
 ;;
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; https://emacsmirror.net/
 
@@ -622,7 +622,7 @@
 ;; hand picked themes:
 ;; https://github.com/emacs-jp/replace-colorthemes
 ;; Please set your themes directory to 'custom-theme-load-path
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 ;; choose one of them:
 ;; (load-theme 'charcoal-black t t)
@@ -961,7 +961,7 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-a") 'unhighlight)
 
 ;; --- Frequently used files ---
-(global-set-key (kbd "\e\ei") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "\e\ei") (lambda () (interactive) (find-file (expand-file-name "init.el" user-emacs-directory))))
 (global-set-key (kbd "\e\en") (lambda () (interactive) (find-file org-default-notes-file)))
 (global-set-key (kbd "\e\es") (lambda () (interactive) (switch-to-buffer "*scratch*")))
 
