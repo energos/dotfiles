@@ -1,50 +1,49 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; PREFERÊNCIAS
-;;
-(desktop-save-mode 1)                   ; restaurar desktop, exceto
-(setq desktop-restore-frames nil)       ; a configuração de windows e frames
+;; PREFERENCES
 
-(setq inhibit-startup-screen t)         ; desabilitar 'splash screen'
-(setq initial-buffer-choice t)          ; iniciar mostrando o *scratch* buffer
+(desktop-save-mode 1)                   ; restore desktop, except
+(setq desktop-restore-frames nil)       ; for window and frame configuration
 
-(scroll-bar-mode -1)                    ; desabilitar 'scrollbar'
-(menu-bar-mode -1)                      ; desabilitar 'menu'
-(tool-bar-mode -1)                      ; desabilitar 'tool-bar'
-(tooltip-mode -1)                       ; desabilitar 'tooltips'
-(blink-cursor-mode -1)                  ; cursor NÃO piscando
-(setq visible-cursor nil)               ; cursor menos gritante no terminal (console)
-(line-number-mode 1)                    ; mostrar linha no 'mode line'
-(column-number-mode 1)                  ; mostra coluna no 'mode-line'
-(show-paren-mode 1)                     ; destacar par de parenteses
-(setq frame-resize-pixelwise t)         ; pixel perfect resize
-(setq-default truncate-lines t)         ; disable line wrap
-(setq truncate-partial-width-windows nil)
-(setq save-interprogram-paste-before-kill t)
-(delete-selection-mode 1)
-(winner-mode 1)
+(setq inhibit-startup-screen t)         ; disable 'splash screen'
+(setq initial-buffer-choice t)          ; show *scratch* buffer at startup
+
+(scroll-bar-mode -1)                    ; disable 'scrollbar'
+(menu-bar-mode -1)                      ; disable 'menu'
+(tool-bar-mode -1)                      ; disable 'tool-bar'
+(tooltip-mode -1)                       ; disable 'tooltips'
+(blink-cursor-mode -1)                  ; NON blinking cursor
+(setq visible-cursor nil)               ; less annoying console cursor
+(line-number-mode 1)                    ; display line number in 'mode-line'
+(column-number-mode 1)                  ; display column number in 'mode-line'
+(show-paren-mode 1)                     ; visualize matching parens
+
+(setq frame-resize-pixelwise nil)       ; whole character frame resize
+(setq-default truncate-lines nil)       ; wrap lines longer than the window width
+(setq truncate-partial-width-windows 40)        ; except in "narrow" windows
+
+(setq save-interprogram-paste-before-kill t)    ; ???
+(delete-selection-mode 1)               ; replace selection with typed text
+
+(winner-mode 1)                         ; undo/redo window configuration
 
 (prefer-coding-system 'utf-8-unix)      ; UTF-8, no crlf, please
+(defalias 'yes-or-no-p 'y-or-n-p)       ; ask for "y or n"
+(setq confirm-nonexistent-file-or-buffer t)     ; confirm file/buffer creation
+(setq large-file-warning-threshold 100000000)   ; big file warning
 
-(setq scroll-step 1)                    ; scroll de apenas 1 linha
-(setq scroll-preserve-screen-position t); PgUp/PgDown mantém posição do cursor,
-(setq scroll-error-top-bottom t)        ; exceto na primeira e última página
-(setq hscroll-step 1)                   ; scroll horizontal de 1 caracter,
-(setq hscroll-margin 0)                 ; apenas ao chegar aos extremos da janela
+(setq scroll-step 1)                    ; one line vertical scroll
+(setq scroll-preserve-screen-position t); keep cursor position on PgUp/PgDown,
+(setq scroll-error-top-bottom t)        ; except on first and last pages
+(setq hscroll-step 1)                   ; one character horizontal scroll,
+(setq hscroll-margin 0)                 ; on window edges
 
-(defalias 'yes-or-no-p 'y-or-n-p)       ; "y or n" em vez de "yes or no"
-(setq confirm-nonexistent-file-or-buffer t) ; confirmar criação arquivo/buffer
-
-;; ediff sem frame de controle e com janelas lado a lado
+;; ediff: no control frame, side by side windows
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
 ;; prefer horizontal split (side-by-side)
 (setq split-width-threshold 132)
 (setq split-height-threshold nil)
-
-(defalias 'list-buffers 'ibuffer)
-
-(setq large-file-warning-threshold 100000000) ; big file warning
 
 ;; --- Enable some disabled commands ---
 ;; https://www.emacswiki.org/emacs/DisabledCommands
@@ -66,7 +65,13 @@
           (lambda ()
             (define-key c-mode-map (kbd "<tab>") 'indent-for-tab-command)))
 
-;; --- Mensagem inicial ---
+;; --- Tramp needs PuTTY on Windows® version of Emacs ---
+;; ssh method works fine on Cygwin© and *nix Emacs
+;; see https://www.gnu.org/software/tramp/
+(when (eq system-type 'windows-nt)
+  (setq tramp-default-method "plink"))
+
+;; --- Initial message ---
 (let ((command "fortune"))
   (if (executable-find command)
       (setq initial-scratch-message
@@ -79,12 +84,6 @@
                                      line
                                      "\n")))
               string))))
-
-;; --- Tramp needs PuTTY on Windows® version of Emacs ---
-;; ssh method works fine on Cygwin© and *nix Emacs
-;; see https://www.gnu.org/software/tramp/
-(when (eq system-type 'windows-nt)
-  (setq tramp-default-method "plink"))
 
 ;; --- webjump ---
 (setq webjump-sites
