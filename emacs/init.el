@@ -60,10 +60,8 @@
 (setq-default tab-always-indent 'complete)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq backward-delete-char-untabify-method nil)
 (electric-indent-mode -1)
-(add-hook 'c-mode-hook
-          (lambda ()
-            (define-key c-mode-map (kbd "<tab>") 'indent-for-tab-command)))
 
 ;; --- Tramp needs PuTTY on Windows® version of Emacs ---
 ;; ssh method works fine on Cygwin© and *nix Emacs
@@ -102,10 +100,8 @@
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LOCAL elisp FILES
-;;
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; https://emacsmirror.net/
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; framemove
 ;; https://github.com/emacsmirror/framemove
@@ -113,13 +109,9 @@
   (require 'framemove)
   (setq framemove-hook-into-windmove t))
 
-;; help-fns+
-;; https://github.com/emacsmirror/help-fns-plus
-(require 'help-fns+)
-
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGES
-;;
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stbl" . "https://stable.melpa.org/packages/") t)
@@ -863,6 +855,7 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
 (global-set-key (kbd "<mouse-4>") 'ignore)
 (global-set-key (kbd "<mouse-5>") 'ignore)
 
+;; --- Translate Caps_Lock (via xmodmap) -> F13 -> Hyper ---
 (global-set-key (kbd "<f13>") 'ignore)
 (define-key key-translation-map (kbd "<f13>") 'event-apply-hyper-modifier)
 (when (or (eq system-type 'windows-nt) (eq system-type 'cygwin))
@@ -950,7 +943,6 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "C-x <insert>") 'overwrite-mode)
 
 ;; --- Kill buffers ---
-;; Too much noise in "helm-mode-kill-buffer"
 (global-set-key (kbd "C-x K") 'kill-buffer)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 ;; Never kill *scratch* or *Messages*
