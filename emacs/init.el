@@ -88,37 +88,17 @@
 ;; --- webjump ---
 (setq webjump-sites
       '(
-        ("Google" .
-         [simple-query "https://www.google.com"
-                       "https://www.google.com/search?q="
-                       ""])
-        ("DuckDuckGo" .
-         [simple-query "https://duckduckgo.com"
-                       "https://duckduckgo.com/?q="
-                       ""])
-        ("The Weather Channel" .
-         "https://weather.com/pt-BR/clima/10dias/l/BRXX0163:1:BR")
-        ("Wikipedia" .
-         [simple-query "https://wikipedia.org"
-                       "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search="
-                       ""])
-        ("Oxford Dictionary" .
-         [simple-query "https://en.oxforddictionaries.com"
-                       "https://en.oxforddictionaries.com/definition/"
-                       ""])
-        ("Urban Dictionary" .
-         [simple-query "https://www.urbandictionary.com"
-                       "https://www.urbandictionary.com/define.php?term="
-                       ""])
-        ("Emacs Wiki" .
-         [simple-query "https://www.emacswiki.org"
-                       "https://www.emacswiki.org/cgi-bin/wiki/"
-                       ""])
-        ("Emacs Home Page" .
-         "https://www.gnu.org/software/emacs/emacs.html")
+        ("Emacs Home Page"      . "https://www.gnu.org/software/emacs/")
+        ("Awesome Emacs"        . "https://github.com/emacs-tw/awesome-emacs")
+        ("Emacs Wiki"           . "https://www.emacswiki.org")
+        ("The other Emacs Wiki" . "https://wikemacs.org")
+        ("It's Magit!"          . "https://magit.vc/")
+        ("Gentoo Home Page"     . "https://www.gentoo.org/")
+        ("Gentoo Packages"      . "https://packages.gentoo.org/")
+        ("Gentoo app-emacs"     . "https://packages.gentoo.org/categories/app-emacs")
+        ("Common Lisp"          . "https://lisp-lang.org/")
+        ("Awesome Common Lisp"  . "https://github.com/CodyReichert/awesome-cl")
         ))
-
-(global-set-key (kbd "H-w") 'webjump)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LOCAL elisp FILES
@@ -991,6 +971,8 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
 (global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
+(global-set-key (kbd "H-w") 'webjump)
+
 (unless (string= (getenv "WINDOW_MANAGER") "emacs")
   (global-set-key (kbd "H-n") 'make-frame-command))
 
