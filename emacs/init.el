@@ -127,21 +127,24 @@
 ;; https://stackoverflow.com/questions/57153556/
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; use-package
 ;; https://github.com/jwiegley/use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(setq use-package-always-ensure t)
 
+;; which-key
 (use-package which-key
-  :ensure t
   :config
   (setq which-key-idle-delay 3.0)
   (which-key-mode))
 
+;; magit
 ;; https://github.com/magit/magit
 (use-package magit
-  :ensure t
   :bind (("C-x g"   . magit-status)
+         ("H-m"     . magit-status)
          ("C-x M-g" . magit-dispatch-popup)
          (:map magit-hunk-section-map
                ("RET"        . magit-diff-visit-file-other-window)
@@ -155,21 +158,22 @@
   ;; (setq vc-handled-backends nil)
   (setq auto-revert-check-vc-info t))
 
+;; minions
 (use-package minions
-  :ensure t
   :config
   (setq minions-mode-line-lighter "[+]")
   (minions-mode 1))
 
+;; smex
 ;; https://github.com/nonsequitur/smex/
 ;; https://github.com/abo-abo/swiper/issues/629
-(use-package smex
-  :ensure t)
+(use-package smex)
+
+;; ivy/counsel/swiper
 ;; https://github.com/abo-abo/swiper
 ;; http://oremacs.com/swiper
 ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
 (use-package counsel
-  :ensure t
   :demand
   :bind (("M-i"     . swiper))
   :config
@@ -187,12 +191,14 @@
   (setq counsel-linux-app-format-function 'counsel-linux-app-format-function-name-pretty)
   (ivy-mode 1)
   (counsel-mode 1))
+
+;; ivy-hydra
 (use-package ivy-hydra
-  :ensure t
   :after (ivy))
+
+;; ivy-rich
 ;; https://github.com/Yevgnen/ivy-rich
 (use-package ivy-rich
-  :ensure t
   :after (ivy)
   :init
   (setq ivy-rich-path-style 'abbrev
@@ -256,18 +262,18 @@
     (:before (&rest _) ivy-rich-reset-cache)
   (clrhash ivy-rich--ivy-switch-buffer-cache))
 
+;; counsel-gtags
 ;; https://github.com/FelipeLema/emacs-counsel-gtags
 (use-package counsel-gtags
-  :ensure t
   :bind (:map counsel-gtags-mode-map
               ("M-." . counsel-gtags-dwim)
               ("M-," . counsel-gtags-go-backward))
   :hook ((c-mode . counsel-gtags-mode)
          (c++-mode . counsel-gtags-mode)))
 
+;; treemacs
 ;; https://github.com/Alexander-Miller/treemacs
 (use-package treemacs
-  :ensure t
   :bind (("<f8>"    . treemacs-select-window)
          ("C-<f8>"  . treemacs))
   :config
@@ -285,59 +291,71 @@
   (setq treemacs-width 25
         treemacs-is-never-other-window t))
 
+;; function-args
 ;; https://github.com/abo-abo/function-args
 (use-package function-args
-  :ensure t
   :config
   (fa-config-default))
 
+;; company
 ;; http://company-mode.github.io/
 (use-package company
-  :ensure t
   :bind (:map company-mode-map
               ("<tab>" . company-indent-or-complete-common))
   :hook (c-mode . company-mode)
   :config
   (setq company-idle-delay 3))
 
+;; company-c-headers
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
-  :ensure t
   :after (company)
   :config
   (add-to-list 'company-c-headers-path-system "/usr/avr/include")
   (add-to-list 'company-backends 'company-c-headers))
 
+;; flycheck
 ;; https://github.com/flycheck/flycheck
-(use-package flycheck
-  :ensure t)
+(use-package flycheck)
 
+;; expand-region
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
-  :ensure t
   :bind (("C-=" . er/expand-region)))
 
+;; geiser
 ;; http://www.nongnu.org/geiser/
 (use-package geiser
-  :ensure t
   :init
   (setq geiser-repl-startup-time 20000)
   (setq geiser-repl-use-other-window nil)
   (setq geiser-active-implementations '(guile racket chicken))
   (setq geiser-default-implementation 'guile))
 
-(use-package geiser-guile
-  :ensure t)
+(global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
+(global-set-key (kbd "H-g")
+                (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
+                  (interactive)
+                  (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
+                         (message "C-x C-e will call geiser-eval-last-sexp"))))
+(global-set-key (kbd "H-G")
+                (lambda () "Set C-x C-e to call the default command."
+                  (interactive)
+                  (progn (local-unset-key (kbd "C-x C-e"))
+                         (message "C-x C-e reset to default"))))
 
+;; geiser-guile
+(use-package geiser-guile)
+
+;; inf-ruby
 ;; https://github.com/nonsequitur/inf-ruby
-(use-package inf-ruby
-  :ensure t)
+(use-package inf-ruby)
 
+;; lsp-mode
 ;; https://github.com/emacs-lsp/lsp-mode
 ;; https://emacs-lsp.github.io/lsp-mode/
 ;; https://github.com/elixir-lsp/elixir-ls
 (use-package lsp-mode
-  :ensure t
   :init
   (setq lsp-keymap-prefix "C-c l")
   (add-to-list 'exec-path (expand-file-name "elixir-ls" user-emacs-directory))
@@ -345,31 +363,31 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred))
 
+;; lsp-ivy
 (use-package lsp-ivy
-  :ensure t
   :after (lsp-mode)
   :commands lsp-ivy-workspace-symbol)
 
+;; elixir-mode
 ;; https://github.com/elixir-editors/emacs-elixir
-(use-package elixir-mode
-  :ensure t)
+(use-package elixir-mode)
 
+;; ob-elixir
 ;; https://github.com/zweifisch/ob-elixir
-(use-package ob-elixir
-  :ensure t)
+(use-package ob-elixir)
 
+;; inf-elixir
 ;; https://github.com/J3RN/inf-elixir
 (use-package inf-elixir
-  :ensure t
   :after (elixir-mode))
 
+;; htmlize
 ;; https://github.com/hniksic/emacs-htmlize
-(use-package htmlize
-  :ensure t)
+(use-package htmlize)
 
+;; pdf-tools
 ;; https://github.com/politza/pdf-tools
 (use-package pdf-tools
-  :ensure t
   :defer nil
   :bind (:map pdf-view-mode-map
               ("<home>"   . image-bob)
@@ -381,15 +399,15 @@
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26")))
 
+;; org-pdf-tool
 ;; https://github.com/fuxialexander/org-pdftools
 (use-package org-pdftools
-  :ensure t
   :after (pdf-tools)
   :hook (org-load . org-pdftools-setup-link))
 
+;; org-noter
 ;; https://github.com/weirdNox/org-noter
 (use-package org-noter
-  :ensure t
   :after (org)
   :config
   (setq org-noter-doc-split-fraction '(0.4 . 0.5)
@@ -407,14 +425,14 @@
 ;; https://github.com/org-roam/org-roam
 ;; org-roam
 
+;; ace-window
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
-  :ensure t
   :bind (("H-o" . ace-window)))
 
+;; projectile
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
-  :ensure t
   :config
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy)
@@ -422,13 +440,12 @@
   (define-key projectile-mode-map (kbd "H-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
+;; ;; perspective
 ;; ;; https://github.com/nex3/perspective-el
 ;; (use-package perspective
-;;   :ensure t
 ;;   :config
 ;;   (persp-mode))
-;; (use-package persp-projectile
-;;   :ensure t)
+;; (use-package persp-projectile)
 
 ;; https://www.complang.tuwien.ac.at/forth/gforth/Docs-html/Emacs-and-Gforth.html
 ;; (autoload 'forth-mode "gforth.el")
@@ -436,9 +453,9 @@
 (add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
 (add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
 
+;; calibredb
 ;; https://github.com/chenyanming/calibredb.el
 (use-package calibredb
-  :ensure t
   :defer t
   :init
   (setq calibredb-root-dir "~/Library")
@@ -450,21 +467,21 @@
 ;; THEMES
 
 ;; themes from the packages repository:
-(use-package afternoon-theme    :ensure t :defer t)
-(use-package ample-zen-theme    :ensure t :defer t)
-(use-package blackboard-theme   :ensure t :defer t)
-(use-package darkburn-theme     :ensure t :defer t)
-(use-package darkmine-theme     :ensure t :defer t)
-(use-package darktooth-theme    :ensure t :defer t)
-(use-package eclipse-theme      :ensure t :defer t)
-(use-package hc-zenburn-theme   :ensure t :defer t)
-(use-package idea-darkula-theme :ensure t :defer t)
-(use-package lush-theme         :ensure t :defer t)
-(use-package material-theme     :ensure t :defer t)
-(use-package naquadah-theme     :ensure t :defer t)
-(use-package reverse-theme      :ensure t :defer t)
-(use-package tangotango-theme   :ensure t :defer t)
-(use-package zenburn-theme      :ensure t :defer t)
+(use-package afternoon-theme    :defer t)
+(use-package ample-zen-theme    :defer t)
+(use-package blackboard-theme   :defer t)
+(use-package darkburn-theme     :defer t)
+(use-package darkmine-theme     :defer t)
+(use-package darktooth-theme    :defer t)
+(use-package eclipse-theme      :defer t)
+(use-package hc-zenburn-theme   :defer t)
+(use-package idea-darkula-theme :defer t)
+(use-package lush-theme         :defer t)
+(use-package material-theme     :defer t)
+(use-package naquadah-theme     :defer t)
+(use-package reverse-theme      :defer t)
+(use-package tangotango-theme   :defer t)
+(use-package zenburn-theme      :defer t)
 
 ;; hand picked themes:
 ;; https://github.com/emacs-jp/replace-colorthemes
@@ -836,24 +853,11 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-c") (kbd "C-c C-c"))
 (global-set-key (kbd "H-e") (kbd "C-x C-e"))
 (global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
-(global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
-(global-set-key (kbd "H-m") 'magit-status)
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
 (global-set-key (kbd "H-w") 'webjump)
 
 (unless (string= (getenv "WINDOW_MANAGER") "emacs")
   (global-set-key (kbd "H-n") 'make-frame-command))
-
-(global-set-key (kbd "H-g")
-                (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
-                  (interactive)
-                  (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
-                         (message "C-x C-e will call geiser-eval-last-sexp"))))
-(global-set-key (kbd "H-G")
-                (lambda () "Set C-x C-e to call the default command."
-                  (interactive)
-                  (progn (local-unset-key (kbd "C-x C-e"))
-                         (message "C-x C-e reset to default"))))
 
 (global-set-key (kbd "H-0")
                 (lambda () "Delete window or delete frame if there is only one window."
@@ -922,10 +926,12 @@ Move point to the previous position that is the beggining of a symbol."
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; AREA 51
+
 (load (expand-file-name "experimental.el" user-emacs-directory))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
+
 (require 'server)
 (unless (server-running-p)
   (server-start))
@@ -933,6 +939,7 @@ Move point to the previous position that is the beggining of a symbol."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CUSTOMIZE
 ;; Keep this file free from customize data
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (unless (file-exists-p custom-file)
   (with-temp-buffer (write-file custom-file)))
