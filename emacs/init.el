@@ -388,7 +388,7 @@
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
 (use-package pdf-tools
-  :defer nil
+  :demand
   :bind (:map pdf-view-mode-map
               ("<home>"   . image-bob)
               ("<end>"    . image-eob)
@@ -456,7 +456,7 @@
 ;; calibredb
 ;; https://github.com/chenyanming/calibredb.el
 (use-package calibredb
-  :defer t
+  :demand
   :init
   (setq calibredb-root-dir "~/Library")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
