@@ -18,3 +18,5 @@
     unstage = reset HEAD --
 [init]
     defaultBranch = master
+[pull]
+	ff = only
