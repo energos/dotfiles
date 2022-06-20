@@ -1,18 +1,64 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-
-# Note: PS1 and umask are already set in /etc/profile. You should not
-# need this unless you want different defaults for root.
-# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
-# umask 022
-
-# You may uncomment the following lines if you want `ls' to be colorized:
-# export LS_OPTIONS='--color=auto'
-# eval "$(dircolors)"
-# alias ls='ls $LS_OPTIONS'
-# alias ll='ls $LS_OPTIONS -l'
-# alias l='ls $LS_OPTIONS -lA'
+# /root/.bashrc
 #
-# Some more alias to avoid making mistakes:
-# alias rm='rm -i'
-# alias cp='cp -i'
-# alias mv='mv -i'
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
+
+
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
+if [[ $- != *i* ]] ; then
+    # Shell is non-interactive.  Be done now!
+    return
+fi
+
+# Put your fun stuff here...
+
+# https://stackoverflow.com/questions/41046558/bashrc-how-to-check-in-what-terminal-the-shell-is-running
+# Search history
+if [[ ! -v INSIDE_EMACS ]]; then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+fi
+
+# preserve history
+HISTFILESIZE=100000
+HISTSIZE=100000
+shopt -s histappend
+
+# don't include duplicates in history
+# don't include lines beggining with spaces
+HISTCONTROL=ignoreboth
+
+# list size in megabytes
+export BLOCKSIZE=M
+
+# your favorite editor
+export EDITOR=zile
+
+alias mc='mc -d'
+alias less='less -i'
+
+stty -ixon
+
+# prompt
+if [[ ${EUID} == 0 ]] ; then
+    PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+else
+    # Add git branch to bash prompt
+    if [[ -r /usr/share/git/git-prompt.sh ]] ; then
+        source /usr/share/git/git-prompt.sh
+        # from /etc/bash/bashrc
+        # PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+        # from /usr/share/git/git-prompt.sh
+        # PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+        #
+        # slice, mix and shake:
+        PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;35m\]$(__git_ps1 " (%s)") \[\033[01;34m\]\$\[\033[00m\] '
+        GIT_PS1_SHOWDIRTYSTATE=1
+    else
+        PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    fi
+fi
