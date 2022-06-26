@@ -326,6 +326,7 @@
 ;; geiser
 ;; http://www.nongnu.org/geiser/
 (use-package geiser
+  :ensure t
   :init
   (setq geiser-repl-startup-time 20000)
   (setq geiser-repl-use-other-window nil)
