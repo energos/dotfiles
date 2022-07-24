@@ -42,6 +42,10 @@ export BLOCKSIZE=M
 # your favorite editor
 export EDITOR=zile
 
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
 alias mc='mc -d'
 alias less='less -i'
 alias zless='zless -i'
