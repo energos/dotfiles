@@ -21,6 +21,8 @@ user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", true);
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 user_pref("browser.newtabpage.activity-stream.showSearch", true);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.topSitesRows", 6);
 user_pref("browser.newtabpage.activity-stream.newNewtabExperience.enabled", false);
 user_pref("browser.proton.enabled", false);
