@@ -16,6 +16,8 @@ fi
 
 # Put your fun stuff here...
 
+unset PROMPT_COMMAND
+
 # https://stackoverflow.com/questions/41046558/bashrc-how-to-check-in-what-terminal-the-shell-is-running
 # Search history
 if [[ ! -v INSIDE_EMACS ]]; then
@@ -38,8 +40,13 @@ export BLOCKSIZE=M
 # your favorite editor
 export EDITOR=zile
 
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
 alias mc='mc -d'
 alias less='less -i'
+alias zless='zless -i'
 
 stty -ixon
 
