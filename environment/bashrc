@@ -16,6 +16,8 @@ fi
 
 # Put your fun stuff here...
 
+unset PROMPT_COMMAND
+
 # Load host/user specific configuration
 [[ -f ~/.pqprc ]] && . ~/.pqprc
 
