@@ -132,6 +132,7 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
 ;; which-key
@@ -326,7 +327,6 @@
 ;; geiser
 ;; http://www.nongnu.org/geiser/
 (use-package geiser
-  :ensure t
   :init
   (setq geiser-repl-startup-time 20000)
   (setq geiser-repl-use-other-window nil)
