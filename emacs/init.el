@@ -124,9 +124,6 @@
 (setq package-pinned-packages '((calibredb . "melpa-stbl")))
 (package-initialize)
 
-;; https://stackoverflow.com/questions/57153556/
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
 ;; use-package
 ;; https://github.com/jwiegley/use-package
 (unless (package-installed-p 'use-package)
