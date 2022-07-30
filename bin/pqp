@@ -8,7 +8,7 @@
 
 TERMINAL=urxvtcd
 ICONS=$HOME/.local/share/icons
-HIDEDESKTOP=4
+HIDEDESKTOP=${HIDEDESKTOP:-4}
 
 urxvtcd ()
 {
@@ -100,6 +100,9 @@ shift $((OPTIND - 1))
 case "$1" in
     "")
         show_window ^Terminal$ $HIDEDESKTOP || $TERMINAL -name Terminal
+        ;;
+    "konsole")
+        show_window ^konsole$ $HIDEDESKTOP || konsole &
         ;;
     "emacs")
         show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs" 2> /dev/null &)
