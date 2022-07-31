@@ -200,10 +200,27 @@ case "$1" in
         show_window ^cmusMusicPlayer$ 0 || urxvtcd -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
-        # Get the last file opened by the document viewer
-        # TODO: Add okular and qpdfview. Currently works only with zathura.
-        # TODO: treat empty history case
-        show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP || (xdg-open "$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }' | tail -n +1 | head -n 1)" &)
+        if ! show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP; then
+            shift
+            if [[ -z $* ]]; then
+                # No command line parameter, get file name from the last file opened by the document viewer
+                case "$(xdg-mime query default application/pdf)" in
+                    "okularApplication_pdf.desktop")
+                        file=$(grep ^File $HOME/.config/okularrc | tail -1 | cut -d = -f 2 | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }')
+                        ;;
+                    "org.pwmt.zathura.desktop")
+                        file=$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }' | tail -n +1 | head -n 1)
+                        ;;
+                    *)
+                        file=$HOME/Books/default
+                        ;;
+                esac
+            else
+                # Get file name from command line parameter
+                file="$*"
+            fi
+            [[ -f "$file" ]] && gtk-launch $(xdg-mime query default application/pdf) "$file" || gtk-launch $(xdg-mime query default application/pdf)
+        fi
         ;;
     "man")
         $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
