@@ -5,11 +5,11 @@ artha &
 (sleep 0.4 && fbpanel --profile default) &
 (sleep 0.6 && parcellite) &
 (sleep 0.8 && volumeicon) &
-(sleep 1.0 && sh -c 'while /usr/bin/fortune | col -x | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK:1,Another:0 -default OK -file - ; do :; done') &
+(sleep 1.0 && hello) &
 
 # Too much artifacts with amdgpu. Use compton as a workaround.
 # (sleep 1.0 && lsmod | grep -q ^amdgpu && compton) &
 # Start compton anyway
 (sleep 2.0 && compton) &
 
-(sleep 3.0 && conky) &
+(sleep 3.0 && conky -q -d) &
