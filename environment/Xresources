@@ -32,6 +32,7 @@ xterm*faceName:         Inconsolata:size=12
 #else
 xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
+xterm*termName:         xterm-256color
 xterm*background:       black
 xterm*foreground:       white
 xterm*metaSendsEscape:  true

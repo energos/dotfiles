@@ -58,7 +58,7 @@ alias reboot='loginctl reboot'
 alias startX="startx -- vt$XDG_VTNR -dpi ${DPI:=96}"
 unset DPI # To unset or not to unset?
 
-export MC_XDG_OPEN=$HOME/bin/nohup-open
+export MC_XDG_OPEN=nohup-open
 
 # If ALSA_CARD is not defined (from ~/.pqprc) default to ALSA_CARD=0
 export ALSA_CARD=${ALSA_CARD:-0}

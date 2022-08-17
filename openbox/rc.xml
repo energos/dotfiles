@@ -972,33 +972,33 @@
     <!-- Set this to TRUE to move the mouse pointer across the desktop when
        switching due to hitting the edge of the screen -->
     <context name="Frame">
-      <!-- CEE trocado A por W
+      <!-- CEE trocado A por W-S
       -->
-      <mousebind button="W-Left" action="Press">
+      <mousebind button="W-S-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="W-Left" action="Click">
+      <mousebind button="W-S-Left" action="Click">
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="W-Left" action="Drag">
+      <mousebind button="W-S-Left" action="Drag">
         <action name="Move"/>
       </mousebind>
-      <mousebind button="W-Right" action="Press">
+      <mousebind button="W-S-Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="W-Right" action="Drag">
+      <mousebind button="W-S-Right" action="Drag">
         <action name="Resize"/>
       </mousebind>
-      <mousebind button="W-Middle" action="Press">
+      <mousebind button="W-S-Middle" action="Press">
         <action name="Lower"/>
         <!-- <action name="FocusToBottom"/> -->
         <!-- <action name="Unfocus"/> -->
         <action name="Focus"/>
       </mousebind>
-      <!-- /CEE trocado A por W
+      <!-- /CEE trocado A por W-S
       -->
       <!-- CEE - Odeio quando muda o desktop com o "scroll wheel"
       <mousebind button="A-Up" action="Click">
