@@ -1,0 +1,16 @@
+/* https://support.mozilla.org/lt/questions/1356680
+ */
+@-moz-document url-prefix(about:home), url-prefix(about:newtab) {
+  /* increase overall tile size (moves them closer together */
+  .top-site-outer {
+    padding: 4px !important;
+  }
+  .top-site-outer .tile {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .top-site-outer .tile .icon-wrapper {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
