@@ -70,6 +70,9 @@ fi
 
 /usr/lib64/libexec/polkit-kde-authentication-agent-1 &
 
+# Set a sane volume. Looking at you, pulseaudio.
+pqp volume 50%
+
 # https://wiki.gentoo.org/wiki/Elogind#startx_integration
 # exec dbus-launch --exit-with-session openbox-session
 # exec openbox-session

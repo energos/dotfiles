@@ -298,8 +298,7 @@ case "$1" in
                 amixer -q sset "$mute" toggle
                 ;;
             *)
-                amixer sget "$volume"
-                [[ "$mute" != "$volume" ]] && amixer sget "$mute"
+                [[ -n "$2" ]] && amixer -q sset "$volume" $2
                 ;;
         esac
         ;;
