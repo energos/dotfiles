@@ -11,6 +11,7 @@ user_pref("browser.bookmarks.autoExportHTML", true);
 user_pref("browser.backspace_action", 2);
 user_pref("browser.chrome.toolbar_tips", false);
 user_pref("browser.ctrlTab.recentlyUsedOrder", false);
+user_pref("browser.download.always_ask_before_handling_new_types", true);
 user_pref("browser.download.autohideButton", false);
 user_pref("browser.download.panel.shown", true);
 user_pref("browser.download.useDownloadDir", false);
