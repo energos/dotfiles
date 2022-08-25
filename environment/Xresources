@@ -16,7 +16,8 @@ Xft.dpi:                XSERVER_DPI
 
 #ifdef HIGH_DPI
 !Emacs.font:             Iosevka 12
-Emacs.font:             Consolas 12
+!Emacs.font:             Consolas 12
+Emacs.font:             Hack 11
 #else
 Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
@@ -33,6 +34,7 @@ xterm*faceName:         Inconsolata:size=12
 xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
 xterm*termName:         xterm-256color
+xterm*iconHint:         /home/energos/.local/share/icons/utilities-terminal.xpm
 xterm*background:       black
 xterm*foreground:       white
 xterm*metaSendsEscape:  true
