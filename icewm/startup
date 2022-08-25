@@ -7,9 +7,9 @@ artha &
 (sleep 0.8 && volumeicon) &
 (sleep 1.0 && hello) &
 
-# Too much artifacts with amdgpu. Use compton as a workaround.
-# (sleep 1.0 && lsmod | grep -q ^amdgpu && compton) &
-# Start compton anyway
-(sleep 2.0 && compton) &
+# Too much artifacts with amdgpu. Use picom (compton successor) as a workaround.
+# (sleep 1.0 && lsmod | grep -q ^amdgpu && picom) &
+# Start picom anyway
+(sleep 2.0 && picom) &
 
 (sleep 3.0 && conky -q -d) &

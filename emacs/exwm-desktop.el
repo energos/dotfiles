@@ -14,7 +14,7 @@
 
 ;; Start some stuff
 (start-process-shell-command "parcellite" nil "parcellite")
-(start-process-shell-command "compton" nil "compton")
+(start-process-shell-command "picom" nil "picom")
 (start-process-shell-command "artha" nil "artha")
 (start-process-shell-command "feh" nil "~/.fehbg")
 (message "Loading background processes")
