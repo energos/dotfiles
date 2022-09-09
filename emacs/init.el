@@ -384,7 +384,7 @@
 (use-package htmlize)
 
 ;; pdf-tools
-;; https://github.com/politza/pdf-tools
+;; https://github.com/vedang/pdf-tools
 (use-package pdf-tools
   :demand
   :bind (:map pdf-view-mode-map

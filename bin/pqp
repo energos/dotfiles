@@ -3,6 +3,9 @@
 # echo "$1 | $2 | $3 | $4 | $5 | $6"
 # exit
 
+# I'll check later, I promisse...
+# shellcheck disable=2086,2015,2068,1090,2046
+
 # Load host/user specific configuration
 [[ -f ~/.pqprc ]] && . ~/.pqprc
 
@@ -348,7 +351,7 @@ case "$1" in
             esac
         fi
         case "${TERM}" in
-            "xterm")
+            "xterm"*)
                 # echo "This is xterm - size is ${size} - font is ${font_xterm}"
                 xtermcontrol --font "${font_xterm}"
                 ;;
