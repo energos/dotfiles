@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # echo "energos was here..."
 # echo "$1 | $2 | $3 | $4 | $5 | $6"
 # exit

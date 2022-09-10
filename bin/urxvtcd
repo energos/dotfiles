@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/usr/bin/env bash
 urxvtc 2> /dev/null "$@" || (urxvtd -q -o -f && urxvtc "$@")

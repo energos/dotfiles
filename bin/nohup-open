@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # https://wiki.archlinux.org/index.php/Midnight_Commander#Opening_files
 

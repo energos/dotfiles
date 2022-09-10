@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if command -v fortune > /dev/null ; then
     (while fortune | col -x | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK:1,Another:0 -default OK -file - ; do :; done) &
 else
