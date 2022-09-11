@@ -331,12 +331,12 @@
         <menu>client-layer-menu</menu>
       </action>
     </keybind>
-    <keybind key="Menu">
+    <keybind key="C-Menu">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
     </keybind>
-    <keybind key="C-Menu">
+    <keybind key="Menu">
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
       </action>
@@ -961,34 +961,35 @@
     <!-- Set this to TRUE to move the mouse pointer across the desktop when
        switching due to hitting the edge of the screen -->
     <context name="Frame">
-      <!-- CEE trocado A por W
-           Problemas no VirtualBox Guest, usar S-W
+      <!-- CEE trocado A por W-S
+           Problemas em VM Guest, usar W
       -->
-      <mousebind button="S-W-Left" action="Press">
+      <mousebind button="W-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="S-W-Left" action="Click">
+      <mousebind button="W-Left" action="Click">
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="S-W-Left" action="Drag">
+      <mousebind button="W-Left" action="Drag">
         <action name="Move"/>
       </mousebind>
-      <mousebind button="S-W-Right" action="Press">
+      <mousebind button="W-Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="S-W-Right" action="Drag">
+      <mousebind button="W-Right" action="Drag">
         <action name="Resize"/>
       </mousebind>
-      <mousebind button="S-W-Middle" action="Press">
+      <mousebind button="W-Middle" action="Press">
         <action name="Lower"/>
         <!-- <action name="FocusToBottom"/> -->
         <!-- <action name="Unfocus"/> -->
         <action name="Focus"/>
       </mousebind>
       <!-- /CEE trocado A por W
+           Problemas em VM Guest, usar W
       -->
       <!-- CEE - Odeio quando muda o desktop com o "scroll wheel"
       <mousebind button="A-Up" action="Click">
@@ -1426,6 +1427,13 @@
       <position force="no">
         <x>center</x>
         <y>3/8</y>
+      </position>
+    </application>
+
+    <application class="Connman-gtk">
+      <position force="no">
+        <x>-32</x>
+        <y>-64</y>
       </position>
     </application>
 
