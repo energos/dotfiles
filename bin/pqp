@@ -194,13 +194,13 @@ case "$1" in
         pqp navigator "$engine$(xclip -selection clipboard -o)"
         ;;
     "mc")
-        $TERMINAL -icon "$ICONS/mc.svg" -title "Midnight Commander" -sl 0 -geometry 96x36 -e $@ -d
+        show_window ^MidnightCommander$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/mc.svg" -title "Midnight Commander" -name MidnightCommander -sl 0 -geometry 96x36 -e $@ -d
         ;;
     "gkrellm")
         show_window ^Gkrellm$ 0 || (gkrellm &)
         ;;
     "cmus")
-        show_window ^cmusMusicPlayer$ 0 || urxvtcd -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
+        show_window ^cmusMusicPlayer$ 0 || $TERMINAL -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
         ;;
     "pdf")
         if ! show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP; then
@@ -229,16 +229,16 @@ case "$1" in
         $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -bl -sl 0 -geometry +0+0 -e sh -c "$* || read -n 1 -s -p 'Press any key to exit!'" && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
         ;;
     "info")
-        $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -sl 0 -geometry +458+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
+        $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -bl -sl 0 -geometry +0+0 -e $@ && sleep 0.05 && wmctrl -r :ACTIVE: -b add,maximized_vert &
         ;;
     "help")
         $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
         ;;
     "logs")
-        brocket -a freakingLogs
+        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 88x20-0-16 -e dmesg -wT
         ;;
-    "mrxvt")
-        LANG="en_US.ISO-8859-1" mrxvt -stt -profile0.tabTitle "terminal (ISO-8859-1)" &
+    "calendar")
+        show_window ^freakingCalendar$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
         ;;
     "res")
         case "$2" in

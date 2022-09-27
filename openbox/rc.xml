@@ -283,7 +283,12 @@
     </keybind>
     <keybind key="W-m">
       <action name="Execute">
-        <command>brocket -a claws-mail</command>
+        <command>pqp mc</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-m">
+      <action name="Execute">
+        <command>pqp -n mc</command>
       </action>
     </keybind>
     <keybind key="W-e">
@@ -417,7 +422,14 @@
       <action name="Execute">
         <!-- <command>gsimplecal</command> -->
         <command>
-          urxvtcd -title CALENDAR -geometry 70x36 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
+          pqp calendar
+        </command>
+      </action>
+    </keybind>
+    <keybind key="W-g">
+      <action name="Execute">
+        <command>
+          pqp logs
         </command>
       </action>
     </keybind>
