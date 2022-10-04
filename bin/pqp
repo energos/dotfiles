@@ -200,7 +200,7 @@ case "$1" in
         show_window ^Gkrellm$ 0 || (gkrellm &)
         ;;
     "cmus")
-        show_window ^cmusMusicPlayer$ 0 || $TERMINAL -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -sl 0 -geometry 68x18-0+0 -e cmus
+        show_window ^cmusMusicPlayer$ 0 || $TERMINAL -fn xft:Hack:size=10 -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -title "C* Music Player" -sl 0 -geometry 64x18-0+0 -e cmus
         ;;
     "pdf")
         if ! show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP; then
