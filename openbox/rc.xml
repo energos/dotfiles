@@ -434,6 +434,11 @@
         <command>pqp volume toggle</command>
       </action>
     </keybind>
+    <keybind key="W-v">
+      <action name="Execute">
+        <command>pqp volume</command>
+      </action>
+    </keybind>
     <!-- Media Player -->
     <keybind key="XF86AudioPlay">
       <action name="Execute">

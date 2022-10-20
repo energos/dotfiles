@@ -300,6 +300,9 @@ case "$1" in
             "toggle")
                 amixer -q sset "$mute" toggle
                 ;;
+            "")
+                show_window ^Pavucontrol$ 0 || pavucontrol &
+                ;;
             *)
                 [[ -n "$2" ]] && amixer -q sset "$volume" $2
                 ;;
