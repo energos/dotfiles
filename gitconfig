@@ -2,7 +2,7 @@
     name = energos
     email = energos@users.noreply.github.com
 [core]
-    excludesfile = /home/energos/.gitignore
+    excludesfile = ~/.gitignore
     pager = less -iFXR
     editor = jed
     autocrlf = false
