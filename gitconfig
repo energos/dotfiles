@@ -4,7 +4,7 @@
 [core]
     excludesfile = ~/.gitignore
     pager = less -iFXR
-    editor = jed
+    editor = emacs_nox
     autocrlf = false
 [alias]
     lg1 = log --graph --pretty=tformat:'%C(auto)%h%d %s %C(cyan)(%ar)%C(reset)'
