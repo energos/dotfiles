@@ -42,7 +42,7 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 
 ;; prefer horizontal split (side-by-side)
-(setq split-width-threshold 132)
+(setq split-width-threshold 128)
 (setq split-height-threshold nil)
 
 ;; --- Enable some disabled commands ---
@@ -535,10 +535,9 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list [82 146 166 220 249 294])
-         (i (energos/inc-or-dec
-             (frame-parameter (selected-frame) 'energos/width)
-             (1- (length list)) dec))
+  (let* ((list [54 72 91 109 128 146 165 183 202 220 239 257 278 294])
+         (n (frame-parameter (selected-frame) 'energos/width))
+         (i (energos/inc-or-dec (if (integerp n) n 2) (1- (length list)) dec))
          (width (aref list i)))
     (set-frame-parameter (selected-frame) 'energos/width i)
     (set-frame-width (selected-frame) width)
