@@ -535,9 +535,9 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list [54 72 91 109 128 146 165 183 202 220 239 257 278 294])
+  (let* ((list [54 63 72 82 91 100 109 119 128 137 146 156 165 174 183 192 202 211 220 230 239 248 257 266 276 285 294])
          (n (frame-parameter (selected-frame) 'energos/width))
-         (i (energos/inc-or-dec (if (integerp n) n 2) (1- (length list)) dec))
+         (i (energos/inc-or-dec (if (integerp n) n 4) (1- (length list)) dec))
          (width (aref list i)))
     (set-frame-parameter (selected-frame) 'energos/width i)
     (set-frame-width (selected-frame) width)
