@@ -5,7 +5,7 @@ artha &
 (sleep 0.4 && fbpanel --profile default) &
 (sleep 0.6 && parcellite) &
 (sleep 0.8 && volumeicon) &
-(sleep 1.0 && hello) &
+(sleep 1.0 && hello-fortune) &
 
 # Too much artifacts with amdgpu. Use picom (compton successor) as a workaround.
 # (sleep 1.0 && lsmod | grep -q ^amdgpu && picom) &
