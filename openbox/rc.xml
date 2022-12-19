@@ -482,11 +482,6 @@
         </command>
       </action>
     </keybind>
-    <keybind key="W-space">
-      <action name="Execute">
-        <command>dmenu_raise.sh</command>
-      </action>
-    </keybind>
 
     <!-- Window scaling and resize -->
     <keybind key="W-w">
@@ -894,7 +889,7 @@
       <action name="FocusToBottom"/>
       <action name="Unfocus"/>
     </keybind>
-    <keybind key="A-space">
+    <keybind key="W-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
