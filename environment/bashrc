@@ -67,6 +67,9 @@ unset DPI # To unset or not to unset?
 
 export MC_XDG_OPEN=nohup-open
 
+# https://github.com/hedning/nix-bash-completions
+export XDG_DATA_DIRS="$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
 # If ALSA_CARD is not defined (from ~/.pqprc) default to ALSA_CARD=0
 export ALSA_CARD=${ALSA_CARD:-0}
 
