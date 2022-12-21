@@ -1,4 +1,4 @@
-# /etc/skel/.bash_profile
+# ~/.bash_profile -*-Shell-script-*-
 
 # https://wiki.gentoo.org/wiki/X_without_Display_Manager
 if ! shopt -q login_shell; then
