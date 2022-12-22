@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -v INSIDE_EMACS ]]; then
+    emacsclient "$@"
+else
+    emacs-nox "$@"
+fi

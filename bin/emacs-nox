@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+if [[ -v TMUX ]]; then
+    emacs -Q -nw -nbc --eval "(progn\
+(setq visible-cursor nil)\
+(menu-bar-mode -1)\
+(defalias \`yes-or-no-p \`y-or-n-p)\
+(setq scroll-step 1)\
+(setq scroll-preserve-screen-position t)\
+(setq scroll-error-top-bottom t)\
+(setq-default tab-always-indent \`complete)\
+(setq-default indent-tabs-mode nil)\
+(setq backward-delete-char-untabify-method nil)\
+(global-set-key (kbd \"C-z\") \`undo)\
+(global-set-key (kbd \"<clearline>\") \`end-of-buffer)\
+(define-key function-key-map \"\e[1;5H\" [C-home])\
+(define-key function-key-map \"\e[1;5F\" [C-end])\
+(define-key function-key-map \"\e[1;2H\" [S-home])\
+(define-key function-key-map \"\e[1;2F\" [S-end])\
+(define-key function-key-map \"\e[1;6H\" [C-S-home])\
+(define-key function-key-map \"\e[1;6F\" [C-S-end])\
+(define-key function-key-map \"\e[1;2A\" [S-up])\
+(define-key function-key-map \"\e[1;2B\" [S-down])\
+(define-key function-key-map \"\e[1;2C\" [S-right])\
+(define-key function-key-map \"\e[1;2D\" [S-left])\
+)" "$@"
+else
+    emacs -Q -nw -nbc --eval "(progn\
+(setq visible-cursor nil)\
+(menu-bar-mode -1)\
+(defalias \`yes-or-no-p \`y-or-n-p)\
+(setq scroll-step 1)\
+(setq scroll-preserve-screen-position t)\
+(setq scroll-error-top-bottom t)\
+(setq-default tab-always-indent \`complete)\
+(setq-default indent-tabs-mode nil)\
+(setq backward-delete-char-untabify-method nil)\
+(global-set-key (kbd \"C-z\") \`undo)\
+(global-set-key (kbd \"<clearline>\") \`end-of-buffer)\
+)" "$@"
+fi

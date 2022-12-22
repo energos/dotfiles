@@ -38,14 +38,21 @@ HISTCONTROL=ignoreboth
 export BLOCKSIZE=M
 
 # your favorite editor
-emacs_nox () {
-    emacs -Q -nw -nbc --eval "(setq visible-cursor nil)" "$@"
-}
-export -f emacs_nox
-export EDITOR=emacs_nox
-if [[ ${EUID} == 0 ]] ; then
-    alias emacs=emacs_nox
-fi
+export EDITOR=zile
+
+alias emacs='emacs -Q -nw -nbc --eval "(progn\
+(setq visible-cursor nil)\
+(menu-bar-mode -1)\
+(defalias \`yes-or-no-p \`y-or-n-p)\
+(setq scroll-step 1)\
+(setq scroll-preserve-screen-position t)\
+(setq scroll-error-top-bottom t)\
+(setq-default tab-always-indent \`complete)\
+(setq-default indent-tabs-mode nil)\
+(setq backward-delete-char-untabify-method nil)\
+(global-set-key (kbd \"C-z\") \`undo)\
+(global-set-key (kbd \"<clearline>\") \`end-of-buffer)\
+)" "$@"'
 
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'

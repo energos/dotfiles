@@ -41,16 +41,10 @@ HISTCONTROL=ignoreboth
 # list size in megabytes
 export BLOCKSIZE=M
 
-# your favorite editor
-emacs_nox () {
-    emacs -Q -nw -nbc --eval "(setq visible-cursor nil)" "$@"
-}
-export -f emacs_nox
-export EDITOR=emacs_nox
-if [[ ${EUID} == 0 ]] ; then
-    alias emacs=emacs_nox
-fi
+# your favorite editor is ~/bin/emacs-nox
+export EDITOR=emacs-nox
 
+alias emacs='emacs-nox'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
