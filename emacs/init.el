@@ -466,6 +466,12 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
+
+;; vterm
+;; https://github.com/akermu/emacs-libvterm
+(setq vterm-min-window-width 54)
+(setq vterm-clear-scrollback-when-clearing t)
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
