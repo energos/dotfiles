@@ -10,6 +10,8 @@ if [[ -v TMUX ]]; then
 (setq-default tab-always-indent \`complete)\
 (setq-default indent-tabs-mode nil)\
 (setq backward-delete-char-untabify-method nil)\
+(add-to-list \`load-path \"/usr/share/emacs/site-lisp\")
+(require \`site-gentoo)\
 (global-set-key (kbd \"C-z\") \`undo)\
 (global-set-key (kbd \"<clearline>\") \`end-of-buffer)\
 (define-key function-key-map \"\e[1;5H\" [C-home])\
@@ -34,6 +36,8 @@ else
 (setq-default tab-always-indent \`complete)\
 (setq-default indent-tabs-mode nil)\
 (setq backward-delete-char-untabify-method nil)\
+(add-to-list \`load-path \"/usr/share/emacs/site-lisp\")
+(require \`site-gentoo)\
 (global-set-key (kbd \"C-z\") \`undo)\
 (global-set-key (kbd \"<clearline>\") \`end-of-buffer)\
 )" "$@"
