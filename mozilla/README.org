@@ -4,7 +4,7 @@
 
 * FFS, stay in the [[https://support.mozilla.org/en-US/kb/firefox-esr-release-cycle][ESR channel]]
 * Disable automatic update
-  - Copy to your Firefox $binary_folder. See [[https://github.com/mozilla/policy-templates][Policy Templates for Firefox]].
+  - Copy to your Firefox $binary_folder. See [[https://support.mozilla.org/en-US/kb/customizing-firefox-using-policiesjson][Customizing Firefox Using policies.json]].
     #+begin_src sh :noeval
       cp policies.json $binary_folder/distribution/
     #+end_src
