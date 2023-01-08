@@ -481,7 +481,6 @@
 (use-package afternoon-theme    :defer t)
 (use-package ample-zen-theme    :defer t)
 (use-package blackboard-theme   :defer t)
-(use-package darkburn-theme     :defer t)
 (use-package darkmine-theme     :defer t)
 (use-package darktooth-theme    :defer t)
 (use-package eclipse-theme      :defer t)
