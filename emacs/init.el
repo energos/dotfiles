@@ -63,11 +63,13 @@
 (setq backward-delete-char-untabify-method nil)
 (electric-indent-mode -1)
 
-;; --- Tramp needs PuTTY on Windows® version of Emacs ---
-;; ssh method works fine on Cygwin© and *nix Emacs
-;; see https://www.gnu.org/software/tramp/
 (when (eq system-type 'windows-nt)
-  (setq tramp-default-method "plink"))
+  ;; --- Tramp needs PuTTY on Windows® version of Emacs ---
+  ;; ssh method works fine on Cygwin© and *nix Emacs
+  ;; see https://www.gnu.org/software/tramp/
+  (setq tramp-default-method "plink")
+  ;; no Windows® sounds
+  (setq ring-bell-function 'ignore))
 
 ;; --- Initial message ---
 (let ((command "fortune"))
