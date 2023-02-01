@@ -177,7 +177,7 @@
 ;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
 (use-package counsel
   :demand
-  :bind (("M-i"     . swiper))
+  :bind (("M-i"     . swiper-thing-at-point))
   :config
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "
