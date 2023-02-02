@@ -951,6 +951,8 @@ Move point to the previous position that is the beggining of a symbol."
 ;; START SERVER!
 
 (require 'server)
+;; ~/bin/emacs-git needs to know which server to connect to
+(setenv "EMACS_SERVER" server-name)
 (unless (server-running-p)
   (server-start))
 

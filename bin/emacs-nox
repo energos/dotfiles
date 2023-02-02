@@ -16,6 +16,10 @@ ELISP="$(xargs -0 -d '\n' <<EOF
 (require 'git-commit)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<clearline>") 'end-of-buffer)
+(require 'server)
+(setq server-name (concat "server" (getenv "EMACS_TTY")))
+(setenv "EMACS_SERVER" server-name)
+(unless (server-running-p) (server-start))
 EOF
 )"
 
@@ -35,4 +39,4 @@ EOF
 )"
 fi
 
-emacs -Q -nw --eval "(progn $ELISP)" "$@"
+EMACS_TTY=$(tty | tr -s '/ ' '_') emacs -Q -nw --eval "(progn $ELISP)" "$@"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ -v INSIDE_EMACS ]]; then
-    emacsclient "$@"
+if [[ -v INSIDE_EMACS ]] && [[ -v EMACS_SERVER ]]; then
+    emacsclient -s "$EMACS_SERVER" "$@"
 else
     emacs-nox "$@"
 fi
