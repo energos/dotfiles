@@ -138,7 +138,7 @@ EOF
     # Editors
     cat <<EOF
 <item label="Emacs" icon="/usr/share/pixmaps/emacs.png">
-<action name="Execute"><command>emacsclient -c -n -a "emacs"</command></action> </item>
+<action name="Execute"><command>pqp -n emacs</command></action> </item>
 <item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png">
 <action name="Execute"><command>geany</command></action> </item>
 EOF

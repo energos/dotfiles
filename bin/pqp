@@ -108,7 +108,7 @@ case "$1" in
         show_window ^konsole$ $HIDEDESKTOP || konsole &
         ;;
     "emacs")
-        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs" 2> /dev/null &)
+        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs -fh -g +0+0" 2> /dev/null &)
         ;;
     "firefox")
         show_window ^Navigator$ $HIDEDESKTOP || (firefox &> /dev/null &)
