@@ -278,31 +278,6 @@
   :hook ((c-mode . counsel-gtags-mode)
          (c++-mode . counsel-gtags-mode)))
 
-;; treemacs
-;; https://github.com/Alexander-Miller/treemacs
-(use-package treemacs
-  :bind (("<f8>"    . treemacs-select-window)
-         ("C-<f8>"  . treemacs))
-  :config
-  (defun treemacs-custom-filter (file _)
-    (or (s-ends-with? ".o"   file)
-        (s-ends-with? ".map" file)
-        (s-ends-with? ".log" file)
-        (s-ends-with? ".elf" file)
-        (s-ends-with? ".bin" file)
-        (s-ends-with? ".sym" file)
-        (s-equals? "GPATH" file)
-        (s-equals? "GRTAGS" file)
-        (s-equals? "GTAGS" file)))
-  (push #'treemacs-custom-filter treemacs-ignored-file-predicates)
-  (setq treemacs-width 25
-        treemacs-is-never-other-window t))
-
-;; function-args
-;; https://github.com/abo-abo/function-args
-(use-package function-args
-  :config
-  (fa-config-default))
 
 ;; company
 ;; http://company-mode.github.io/
@@ -320,6 +295,33 @@
   :config
   (add-to-list 'company-c-headers-path-system "/usr/avr/include")
   (add-to-list 'company-backends 'company-c-headers))
+;; ;; treemacs
+;; ;; https://github.com/Alexander-Miller/treemacs
+;; ;; useful ??
+;; (use-package treemacs
+;;   :bind (("<f8>"    . treemacs-select-window)
+;;          ("C-<f8>"  . treemacs))
+;;   :config
+;;   (defun treemacs-custom-filter (file _)
+;;     (or (s-ends-with? ".o"   file)
+;;         (s-ends-with? ".map" file)
+;;         (s-ends-with? ".log" file)
+;;         (s-ends-with? ".elf" file)
+;;         (s-ends-with? ".bin" file)
+;;         (s-ends-with? ".sym" file)
+;;         (s-equals? "GPATH" file)
+;;         (s-equals? "GRTAGS" file)
+;;         (s-equals? "GTAGS" file)))
+;;   (push #'treemacs-custom-filter treemacs-ignored-file-predicates)
+;;   (setq treemacs-width 25
+;;         treemacs-is-never-other-window t))
+
+;; ;; function-args
+;; ;; https://github.com/abo-abo/function-args
+;; ;; useful for company ??
+;; (use-package function-args
+;;   :config
+;;   (fa-config-default))
 
 ;; flycheck
 ;; https://github.com/flycheck/flycheck
@@ -330,63 +332,63 @@
 (use-package expand-region
   :bind (("C-=" . er/expand-region)))
 
-;; geiser
-;; http://www.nongnu.org/geiser/
-(use-package geiser
+
+
   :init
-  (setq geiser-repl-startup-time 20000)
-  (setq geiser-repl-use-other-window nil)
-  (setq geiser-active-implementations '(guile racket chicken))
-  (setq geiser-default-implementation 'guile))
+;; useful ??
 
-(global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
-(global-set-key (kbd "H-g")
-                (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
-                  (interactive)
-                  (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
-                         (message "C-x C-e will call geiser-eval-last-sexp"))))
-(global-set-key (kbd "H-G")
-                (lambda () "Set C-x C-e to call the default command."
-                  (interactive)
-                  (progn (local-unset-key (kbd "C-x C-e"))
-                         (message "C-x C-e reset to default"))))
+;; ;; geiser
+;; ;; http://www.nongnu.org/geiser/
+;; (use-package geiser
+;;   :init
+;;   (setq geiser-repl-startup-time 20000)
+;;   (setq geiser-repl-use-other-window nil)
+;;   (setq geiser-active-implementations '(guile racket chicken))
+;;   (setq geiser-default-implementation 'guile))
 
-;; geiser-guile
-(use-package geiser-guile)
+;; (global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
+;; (global-set-key (kbd "H-g")
+;;                 (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
+;;                   (interactive)
+;;                   (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
+;;                          (message "C-x C-e will call geiser-eval-last-sexp"))))
+;; (global-set-key (kbd "H-G")
+;;                 (lambda () "Set C-x C-e to call the default command."
+;;                   (interactive)
+;;                   (progn (local-unset-key (kbd "C-x C-e"))
+;;                          (message "C-x C-e reset to default"))))
 
-;; inf-ruby
-;; https://github.com/nonsequitur/inf-ruby
-(use-package inf-ruby)
+;; ;; geiser-guile
+;; (use-package geiser-guile)
 
-;; lsp-mode
-;; https://github.com/emacs-lsp/lsp-mode
-;; https://emacs-lsp.github.io/lsp-mode/
-;; https://github.com/elixir-lsp/elixir-ls
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  (add-to-list 'exec-path (expand-file-name "elixir-ls" user-emacs-directory))
-  :hook ((elixir-mode . lsp-deferred)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred))
+;; ;; inf-ruby
+;; ;; https://github.com/nonsequitur/inf-ruby
+;; (use-package inf-ruby)
 
-;; lsp-ivy
-(use-package lsp-ivy
-  :after (lsp-mode)
-  :commands lsp-ivy-workspace-symbol)
+;; ;; lsp-mode
+;; ;; https://github.com/emacs-lsp/lsp-mode
+;; ;; https://emacs-lsp.github.io/lsp-mode/
+;; ;; https://github.com/elixir-lsp/elixir-ls
+;; (use-package lsp-mode
+;;   :init
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   (add-to-list 'exec-path (expand-file-name "elixir-ls" user-emacs-directory))
+;;   :hook ((elixir-mode . lsp-deferred)
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands (lsp lsp-deferred))
 
-;; elixir-mode
-;; https://github.com/elixir-editors/emacs-elixir
-(use-package elixir-mode)
+;; ;; elixir-mode
+;; ;; https://github.com/elixir-editors/emacs-elixir
+;; (use-package elixir-mode)
 
-;; ob-elixir
-;; https://github.com/zweifisch/ob-elixir
-(use-package ob-elixir)
+;; ;; ob-elixir
+;; ;; https://github.com/zweifisch/ob-elixir
+;; (use-package ob-elixir)
 
-;; inf-elixir
-;; https://github.com/J3RN/inf-elixir
-(use-package inf-elixir
-  :after (elixir-mode))
+;; ;; inf-elixir
+;; ;; https://github.com/J3RN/inf-elixir
+;; (use-package inf-elixir
+;;   :after (elixir-mode))
 
 ;; htmlize
 ;; https://github.com/hniksic/emacs-htmlize
@@ -406,20 +408,20 @@
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26")))
 
-;; org-pdf-tool
-;; https://github.com/fuxialexander/org-pdftools
-(use-package org-pdftools
-  :after (pdf-tools)
-  :hook (org-load . org-pdftools-setup-link))
+;; ;; org-pdf-tool
+;; ;; https://github.com/fuxialexander/org-pdftools
+;; (use-package org-pdftools
+;;   :after (pdf-tools)
+;;   :hook (org-load . org-pdftools-setup-link))
 
-;; org-noter
-;; https://github.com/weirdNox/org-noter
-(use-package org-noter
-  :after (org)
-  :config
-  (setq org-noter-doc-split-fraction '(0.4 . 0.5)
-        org-noter-default-notes-file-names '("books.org")
-        org-noter-notes-search-path '("~/Work/org")))
+;; ;; org-noter
+;; ;; https://github.com/weirdNox/org-noter
+;; (use-package org-noter
+;;   :after (org)
+;;   :config
+;;   (setq org-noter-doc-split-fraction '(0.4 . 0.5)
+;;         org-noter-default-notes-file-names '("books.org")
+;;         org-noter-notes-search-path '("~/Work/org")))
 
 ;; TODO...
 ;;
@@ -432,20 +434,20 @@
 ;; https://github.com/org-roam/org-roam
 ;; org-roam
 
-;; ace-window
-;; https://github.com/abo-abo/ace-window
-(use-package ace-window
-  :bind (("H-o" . ace-window)))
+;; ;; ace-window
+;; ;; https://github.com/abo-abo/ace-window
+;; (use-package ace-window
+;;   :bind (("H-o" . ace-window)))
 
-;; projectile
-;; https://github.com/bbatsov/projectile
-(use-package projectile
-  :config
-  (projectile-mode +1)
-  (setq projectile-completion-system 'ivy)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "H-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+;; ;; projectile
+;; ;; https://github.com/bbatsov/projectile
+;; (use-package projectile
+;;   :config
+;;   (projectile-mode +1)
+;;   (setq projectile-completion-system 'ivy)
+;;   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+;;   (define-key projectile-mode-map (kbd "H-p") 'projectile-command-map)
+;;   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; ;; perspective
 ;; ;; https://github.com/nex3/perspective-el
@@ -454,11 +456,12 @@
 ;;   (persp-mode))
 ;; (use-package persp-projectile)
 
-;; https://www.complang.tuwien.ac.at/forth/gforth/Docs-html/Emacs-and-Gforth.html
-;; (autoload 'forth-mode "gforth.el")
-(load "gforth.el")
-(add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
-(add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
+;; ;; gforth
+;; ;; https://www.complang.tuwien.ac.at/forth/gforth/Docs-html/Emacs-and-Gforth.html
+;; ;; (autoload 'forth-mode "gforth.el")
+;; (load "gforth.el")
+;; (add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
+;; (add-to-list 'auto-mode-alist '("\\.fth$" . forth-mode))
 
 ;; calibredb
 ;; https://github.com/chenyanming/calibredb.el
@@ -564,33 +567,35 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
     (set-frame-width nil width)
     (message (format "Frame width resized to %d characters" width))))
 
-;; --- Send a key event to another application in same desktop ---
-(defun send-key-to-window-class (class key &optional noactivate)
-  "Send a KEY event to a application of class CLASS in same desktop.
-If last argument NOACTIVATE (optional) is t, will send the key without
-activating the window. Some applications will refuse to accept the key
-if its window is not active."
-  (if noactivate (setq noactivate "NOACTIVATE") (setq noactivate ""))
-  (if (executable-find "xdotool")
-      (message (shell-command-to-string (format "\
-class=\"%s\"; key=\"%s\"; noact=\"%s\"; \
-window=$(xdotool search --desktop $(xdotool get_desktop) --classname ^${class}$ | head -1); \
-if \[\[ -n ${window} \]\]; then \
-xdotool keyup ${key}; \
-\[\[ -z ${noact} \]\] && actual=$(xdotool getwindowfocus); \
-echo -n Sending key \\'${key}\\' to \\'${class}\\' window; \
-\[\[ -z ${noact} \]\] && xdotool windowactivate --sync ${window} key ${key} \|\| \
-xdotool key --window ${window} ${key}; \
-\[\[ -z ${noact} \]\] && xdotool windowactivate ${actual}; \
-else echo -n No \\'${class}\\' window found in current desktop; fi"
-                                                class key noactivate)))
-    (message "No 'xdotool' executable found")))
+;; usefull ??
 
-;; --- Recarregar o Browser ---
-(defun browser-reload ()
-  "Reload current desktop browser window."
-  (interactive)
-  (send-key-to-window-class "Navigator" "F5"))
+;; ;; --- Send a key event to another application in same desktop ---
+;; (defun send-key-to-window-class (class key &optional noactivate)
+;;   "Send a KEY event to a application of class CLASS in same desktop.
+;; If last argument NOACTIVATE (optional) is t, will send the key without
+;; activating the window. Some applications will refuse to accept the key
+;; if its window is not active."
+;;   (if noactivate (setq noactivate "NOACTIVATE") (setq noactivate ""))
+;;   (if (executable-find "xdotool")
+;;       (message (shell-command-to-string (format "\
+;; class=\"%s\"; key=\"%s\"; noact=\"%s\"; \
+;; window=$(xdotool search --desktop $(xdotool get_desktop) --classname ^${class}$ | head -1); \
+;; if \[\[ -n ${window} \]\]; then \
+;; xdotool keyup ${key}; \
+;; \[\[ -z ${noact} \]\] && actual=$(xdotool getwindowfocus); \
+;; echo -n Sending key \\'${key}\\' to \\'${class}\\' window; \
+;; \[\[ -z ${noact} \]\] && xdotool windowactivate --sync ${window} key ${key} \|\| \
+;; xdotool key --window ${window} ${key}; \
+;; \[\[ -z ${noact} \]\] && xdotool windowactivate ${actual}; \
+;; else echo -n No \\'${class}\\' window found in current desktop; fi"
+;;                                                 class key noactivate)))
+;;     (message "No 'xdotool' executable found")))
+
+;; ;; --- Recarregar o Browser ---
+;; (defun browser-reload ()
+;;   "Reload current desktop browser window."
+;;   (interactive)
+;;   (send-key-to-window-class "Navigator" "F5"))
 
 ;; --- Symbol highlighting ---
 ;; https://stackoverflow.com/questions/23891638/emacs-highlight-symbol-in-multiple-windows
@@ -645,118 +650,120 @@ else echo -n No \\'${class}\\' window found in current desktop; fi"
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG-MODE
 
-(setq org-directory "~/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-agenda-files '("~/org/notes.org" "~/org/agenda.org"))
+;; TODO...
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ditaa . nil)
-   (dot . t)
-   (calc . t)
-   (shell . t)
-   (emacs-lisp . t)
-   (gnuplot . t)
-   (ruby . t)
-   (C . t)
-   (python . t)
-   (scheme . t)
-   (forth . t)
-   (elixir . t)
-   ))
+;; (setq org-directory "~/org")
+;; (setq org-default-notes-file (concat org-directory "/notes.org"))
+;; (setq org-agenda-files '("~/org/notes.org" "~/org/agenda.org"))
 
-;; --- DANGER! ---
-;; Avaliar código sem exigir confirmação
-;; https://orgmode.org/manual/Code-evaluation-security.html
-;; --- DANGER! ---
-(setq org-confirm-elisp-link-function nil)
-(setq org-confirm-babel-evaluate
-      (lambda (lang body)
-        (not (or
-              ;; t                        ; não pergunto nada
-              (string= lang "ditaa")      ; não pergunto por ditaa
-              (string= lang "dot")        ; ...
-              (string= lang "calc")
-              (string= lang "emacs-lisp")
-              (string= lang "elisp")
-              (string= lang "C")
-              (string= lang "C++")
-              (string= lang "sh")         ; https://emacs.stackexchange.com/questions/35321/
-              (string= lang "shell")      ;
-              (string= lang "ruby")
-              (string= lang "python")
-              (string= lang "scheme")
-              (string= lang "forth")
-              (string= lang "elixir")
-              ))))
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((ditaa . nil)
+;;    (dot . t)
+;;    (calc . t)
+;;    (shell . t)
+;;    (emacs-lisp . t)
+;;    (gnuplot . t)
+;;    (ruby . t)
+;;    (C . t)
+;;    (python . t)
+;;    (scheme . t)
+;;    (forth . t)
+;;    (elixir . t)
+;;    ))
 
-;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
-(setq org-file-apps
-      '((auto-mode . emacs)
-        ("\\.mm\\'" . default)
-        ("\\.x?html?\\'" . "xdg-open %s")
-        ("\\.djvu\\'" . "xdg-open %s")
-        ("\\.pdf\\'" . "xdg-open %s")))
+;; ;; --- DANGER! ---
+;; ;; Avaliar código sem exigir confirmação
+;; ;; https://orgmode.org/manual/Code-evaluation-security.html
+;; ;; --- DANGER! ---
+;; (setq org-confirm-elisp-link-function nil)
+;; (setq org-confirm-babel-evaluate
+;;       (lambda (lang body)
+;;         (not (or
+;;               ;; t                        ; não pergunto nada
+;;               (string= lang "ditaa")      ; não pergunto por ditaa
+;;               (string= lang "dot")        ; ...
+;;               (string= lang "calc")
+;;               (string= lang "emacs-lisp")
+;;               (string= lang "elisp")
+;;               (string= lang "C")
+;;               (string= lang "C++")
+;;               (string= lang "sh")         ; https://emacs.stackexchange.com/questions/35321/
+;;               (string= lang "shell")      ;
+;;               (string= lang "ruby")
+;;               (string= lang "python")
+;;               (string= lang "scheme")
+;;               (string= lang "forth")
+;;               (string= lang "elixir")
+;;               ))))
 
-;; --- preferences ---
-(setq org-replace-disputed-keys t)
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
-(setq org-link-frame-setup
-      (quote
-       ((vm . vm-visit-folder-other-frame)
-        (vm-imap . vm-visit-imap-folder-other-frame)
-        (gnus . org-gnus-no-new-news)
-        (file . find-file)
-        (wl . wl-other-frame))))
-(setq org-goto-interface 'outline-path-completion
-      org-goto-max-level 10)
-(setq org-export-coding-system 'utf-8)
+;; ;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
+;; (setq org-file-apps
+;;       '((auto-mode . emacs)
+;;         ("\\.mm\\'" . default)
+;;         ("\\.x?html?\\'" . "xdg-open %s")
+;;         ("\\.djvu\\'" . "xdg-open %s")
+;;         ("\\.pdf\\'" . "xdg-open %s")))
 
-;; --- org-refile ---
-;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
-(setq org-refile-targets '((nil . (:maxlevel . 6)) (org-agenda-files . (:maxlevel . 6))))
-(setq org-refile-use-outline-path 'file)
-(setq org-outline-path-complete-in-steps nil)
+;; ;; --- preferences ---
+;; (setq org-replace-disputed-keys t)
+;; (setq org-src-fontify-natively t)
+;; (setq org-src-tab-acts-natively t)
+;; (setq org-link-frame-setup
+;;       (quote
+;;        ((vm . vm-visit-folder-other-frame)
+;;         (vm-imap . vm-visit-imap-folder-other-frame)
+;;         (gnus . org-gnus-no-new-news)
+;;         (file . find-file)
+;;         (wl . wl-other-frame))))
+;; (setq org-goto-interface 'outline-path-completion
+;;       org-goto-max-level 10)
+;; (setq org-export-coding-system 'utf-8)
 
-;; --- org-capture ---
-(require 'org-protocol)
-(require 'org-capture)
+;; ;; --- org-refile ---
+;; ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+;; (setq org-refile-targets '((nil . (:maxlevel . 6)) (org-agenda-files . (:maxlevel . 6))))
+;; (setq org-refile-use-outline-path 'file)
+;; (setq org-outline-path-complete-in-steps nil)
 
-(setq org-capture-templates
-      '(("t" "Task" entry (file+headline org-default-notes-file "Tasks")
-         "* TODO %u %?" :prepend t)
-        ("j" "Journal entry" entry (file+datetree "journal.org")
-         "* %U %^{Title}\n  %?")
-        ("n" "Note" entry (file+headline org-default-notes-file "Unsorted Notes")
-         "* %?\n  %i\n  %a")
-        ))
-;; See org-capture-templates help:
-;; %?          After completing the template, position cursor here.
-;;
-;; %i          Initial content, copied from the active region.  If %i is
-;;             indented, the entire inserted text will be indented as well.
-;;
-;; %a          Annotation, normally the link created with `org-store-link'.
-;; %t          Time stamp, date only.
-;; %T          Time stamp, with date and time.
-;; %u, %U      Like the above, but inactive time stamps.
+;; ;; --- org-capture ---
+;; (require 'org-protocol)
+;; (require 'org-capture)
 
-;; --- link to man pages ---
-;; https://www.gnu.org/software/emacs/manual/html_node/org/Adding-hyperlink-types.html
-;; org-man.el is archived in package org-plus-contrib at https://orgmode.org/elpa.html
-(require 'org-man)
-(setq org-man-command 'man)
+;; (setq org-capture-templates
+;;       '(("t" "Task" entry (file+headline org-default-notes-file "Tasks")
+;;          "* TODO %u %?" :prepend t)
+;;         ("j" "Journal entry" entry (file+datetree "journal.org")
+;;          "* %U %^{Title}\n  %?")
+;;         ("n" "Note" entry (file+headline org-default-notes-file "Unsorted Notes")
+;;          "* %?\n  %i\n  %a")
+;;         ))
+;; ;; See org-capture-templates help:
+;; ;; %?          After completing the template, position cursor here.
+;; ;;
+;; ;; %i          Initial content, copied from the active region.  If %i is
+;; ;;             indented, the entire inserted text will be indented as well.
+;; ;;
+;; ;; %a          Annotation, normally the link created with `org-store-link'.
+;; ;; %t          Time stamp, date only.
+;; ;; %T          Time stamp, with date and time.
+;; ;; %u, %U      Like the above, but inactive time stamps.
 
-;; --- org-mode specific shortcuts ---
-(global-set-key (kbd "C-c b") 'org-switchb)
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
+;; ;; --- link to man pages ---
+;; ;; https://www.gnu.org/software/emacs/manual/html_node/org/Adding-hyperlink-types.html
+;; ;; org-man.el is archived in package org-plus-contrib at https://orgmode.org/elpa.html
+;; (require 'org-man)
+;; (setq org-man-command 'man)
 
-;; --- restore old shortcuts for structure templates ---
-;; https://orgmode.org/manual/Structure-Templates.html
-(require 'org-tempo)
+;; ;; --- org-mode specific shortcuts ---
+;; (global-set-key (kbd "C-c b") 'org-switchb)
+;; (global-set-key (kbd "C-c l") 'org-store-link)
+;; (global-set-key (kbd "C-c a") 'org-agenda)
+;; (global-set-key (kbd "C-c c") 'org-capture)
+
+;; ;; --- restore old shortcuts for structure templates ---
+;; ;; https://orgmode.org/manual/Structure-Templates.html
+;; (require 'org-tempo)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
@@ -889,58 +896,60 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-2") 'split-window-below)
 (global-set-key (kbd "H-3") 'split-window-horizontally)
 
-;; --- Send a key event to another application        ---
-;; --- WARNING! Send the same key used as a shortcut! ---
-(global-set-key (kbd "H-<f5>") 'browser-reload)
-(global-set-key (kbd "H-<prior>")
-                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Prior")))
-(global-set-key (kbd "H-<next>")
-                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Next")))
-(global-set-key (kbd "H-<home>")
-                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Home")))
-(global-set-key (kbd "H-<end>")
-                (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "End")))
 
-;; --- Make ---
-(global-set-key (kbd "<f9>") (lambda () "Make all" (interactive) (save-buffer 0) (compile "make")))
-(global-set-key (kbd "S-<f9>") (lambda () "Make clean" (interactive) (save-buffer 0) (compile "make clean")))
-(global-set-key (kbd "C-<f9>") (lambda () "Make flash" (interactive) (save-buffer 0) (compile "make flash")))
-(global-set-key (kbd "C-S-<f9>") (lambda () "Make verify" (interactive) (compile "make verify")))
-(global-set-key (kbd "M-<f9>") (lambda () "Make reset" (interactive) (compile "make reset")))
+;; ;; useful ??
 
-(setq compilation-window-height 24)
-(setq compilation-scroll-output 'first-error)
+;; ;; --- Send a key event to another application        ---
+;; ;; --- WARNING! Send the same key used as a shortcut! ---
+;; (global-set-key (kbd "H-<f5>") 'browser-reload)
+;; (global-set-key (kbd "H-<prior>")
+;;                 (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Prior")))
+;; (global-set-key (kbd "H-<next>")
+;;                 (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Next")))
+;; (global-set-key (kbd "H-<home>")
+;;                 (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "Home")))
+;; (global-set-key (kbd "H-<end>")
+;;                 (lambda () (interactive) (send-key-to-window-class "org.pwmt.zathura" "End")))
 
-;; --- Support for keyboard physical macro keys ---
-;;
-;; M1 - ESC <f1> -> C-c &
-;; M2 - ESC <f2> -> C-c C-o
-;; M3 - ESC <f3> -> C-c C-c
-;; M4 - ESC <f4> -> C-x C-e
-;; M5 - ESC <f5> -> C-x
+;; ;; --- Make ---
+;; (global-set-key (kbd "<f9>") (lambda () "Make all" (interactive) (save-buffer 0) (compile "make")))
+;; (global-set-key (kbd "S-<f9>") (lambda () "Make clean" (interactive) (save-buffer 0) (compile "make clean")))
+;; (global-set-key (kbd "C-<f9>") (lambda () "Make flash" (interactive) (save-buffer 0) (compile "make flash")))
+;; (global-set-key (kbd "C-S-<f9>") (lambda () "Make verify" (interactive) (compile "make verify")))
+;; (global-set-key (kbd "M-<f9>") (lambda () "Make reset" (interactive) (compile "make reset")))
 
-;; m1 map
-(define-prefix-command 'energos/m1-map)
-(define-key energos/m1-map (kbd "<f1>") (kbd "C-x C-e"))
-(define-key energos/m1-map (kbd "<f2>") (kbd "C-x C-e"))
-(define-key energos/m1-map (kbd "<f3>") (kbd "C-x C-e"))
-(define-key (current-global-map) (kbd "H-<escape>") energos/m1-map)
+;; (setq compilation-window-height 24)
+;; (setq compilation-scroll-output 'first-error)
 
-;; M1
-(define-key key-translation-map (kbd "ESC <f1>") (kbd "C-c &"))
+;; ;; --- Support for keyboard physical macro keys ---
+;; ;;
+;; ;; M1 - ESC <f1> -> C-c &
+;; ;; M2 - ESC <f2> -> C-c C-o
+;; ;; M3 - ESC <f3> -> C-c C-c
+;; ;; M4 - ESC <f4> -> C-x C-e
+;; ;; M5 - ESC <f5> -> C-x
 
-;; M2
-(define-key key-translation-map (kbd "ESC <f2>") (kbd "C-c C-o"))
+;; ;; m1 map
+;; (define-prefix-command 'energos/m1-map)
+;; (define-key energos/m1-map (kbd "<f1>") (kbd "C-x C-e"))
+;; (define-key energos/m1-map (kbd "<f2>") (kbd "C-x C-e"))
+;; (define-key energos/m1-map (kbd "<f3>") (kbd "C-x C-e"))
+;; (define-key (current-global-map) (kbd "H-<escape>") energos/m1-map)
 
-;; M3
-(define-key key-translation-map (kbd "ESC <f3>") (kbd "C-c C-c"))
+;; ;; M1
+;; (define-key key-translation-map (kbd "ESC <f1>") (kbd "C-c &"))
 
-;; M4
-(define-key key-translation-map (kbd "ESC <f4>") (kbd "C-x C-e"))
+;; ;; M2
+;; (define-key key-translation-map (kbd "ESC <f2>") (kbd "C-c C-o"))
 
-;; M5
-(define-key key-translation-map (kbd "ESC <f5>") (kbd "C-x"))
+;; ;; M3
+;; (define-key key-translation-map (kbd "ESC <f3>") (kbd "C-c C-c"))
 
+;; ;; M4
+;; (define-key key-translation-map (kbd "ESC <f4>") (kbd "C-x C-e"))
+
+;; ;; M5
+;; (define-key key-translation-map (kbd "ESC <f5>") (kbd "C-x"))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; AREA 51
