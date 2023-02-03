@@ -8,6 +8,9 @@
 
 (desktop-save-mode)                     ; restore desktop, except
 (setq desktop-restore-frames nil)       ; for window and frame configuration
+(savehist-mode)                         ; preserve minibuffer history
+(recentf-mode)                          ; show recent files
+(save-place-mode)                       ; remember last cursor position
 
 (setq inhibit-startup-screen t)         ; disable 'splash screen'
 (setq initial-buffer-choice t)          ; show *scratch* buffer at startup
@@ -170,132 +173,8 @@
 (use-package minions
   :config
   (setq minions-mode-line-lighter "[+]")
-
-;; smex
-;; https://github.com/nonsequitur/smex/
-;; https://github.com/abo-abo/swiper/issues/629
-(use-package smex)
-
-;; ivy/counsel/swiper
-;; https://github.com/abo-abo/swiper
-;; http://oremacs.com/swiper
-;; https://writequit.org/denver-emacs/presentations/2017-04-11-ivy.html
-(use-package counsel
-  :demand
-  :bind (("M-i"     . swiper-thing-at-point))
-  :config
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d "
-        ivy-height 16
-        ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-        ivy-on-del-error-function #'ding
-        ivy-initial-inputs-alist nil
-        ivy-use-selectable-prompt t
-        ivy-extra-directories '("../"))
-  (set-face-background 'swiper-line-face "firebrick")
-  (setq counsel-find-file-ignore-regexp
-        "\\(?:\\`[#.~]\\)\\|\\(?:[#~]\\'\\)\\|\\(?:\\.bin\\'\\)\\|\\(?:\\.lib\\'\\)\\|\\(?:\\.a\\'\\)\\|\\(?:\\.o\\'\\)\\|\\(?:\\.elf\\'\\)")
-  (setq counsel-linux-app-format-function 'counsel-linux-app-format-function-name-pretty)
-  (ivy-mode 1)
-  (counsel-mode 1))
-
-;; ivy-hydra
-(use-package ivy-hydra
-  :after (ivy))
-
-;; ivy-rich
-;; https://github.com/Yevgnen/ivy-rich
-(use-package ivy-rich
-  :after (ivy)
-  :init
-  (setq ivy-rich-path-style 'abbrev
-        ivy-virtual-abbreviate 'full)
-  :config
-  (setq ivy-rich-parse-remote-buffer nil)
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-  (setq ivy-rich-display-transformers-list
-        '(ivy-switch-buffer
-          (:columns
-           ((ivy-switch-buffer-transformer (:width 40)) ; add face by the original transformer
-            ;; (ivy-rich-switch-buffer-size (:width 7)) ; return buffer size
-            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right)) ; return buffer indicator
-            ;; (ivy-rich-switch-buffer-major-mode (:width 12 :face warning)) ; return major mode info
-            (ivy-rich-switch-buffer-project (:width 10 :face success)) ; return project name `projectile'
-            (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3)))))) ; return file path relative to project root or `default-directory' if project is nil
-           :predicate
-           (lambda (cand) (get-buffer cand)))
-          counsel-find-file
-          (:columns
-           ((ivy-read-file-transformer)
-            (ivy-rich-counsel-find-file-truename (:face font-lock-doc-face))))
-          counsel-M-x
-          (:columns
-           ((counsel-M-x-transformer (:width 40))
-            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face)))) ; return docstring of the command
-          counsel-describe-function
-          (:columns
-           ((counsel-describe-function-transformer (:width 40))
-            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face)))) ; return docstring of the function
-          counsel-describe-variable
-          (:columns
-           ((counsel-describe-variable-transformer (:width 40))
-            (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face)))) ; return docstring of the variable
-          counsel-recentf
-          (:columns
-           ((ivy-rich-candidate (:width 0.8))
-            (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))) ; return last modified time of the file
-          package-install
-          (:columns
-           ((ivy-rich-candidate (:width 30))
-            (ivy-rich-package-version (:width 16 :face font-lock-comment-face)) ; return package version
-            (ivy-rich-package-archive-summary (:width 7 :face font-lock-builtin-face)) ; return archive summary
-            (ivy-rich-package-install-summary (:face font-lock-doc-face))))) ; return package description
-        )
-  (ivy-rich-mode 1))
-
-;; https://github.com/Yevgnen/ivy-rich/issues/87#issuecomment-689581896
-(defvar ivy-rich--ivy-switch-buffer-cache
-  (make-hash-table :test 'equal))
-
-(define-advice ivy-rich--ivy-switch-buffer-transformer
-    (:around (old-fn x) cache)
-  (let ((ret (gethash x ivy-rich--ivy-switch-buffer-cache)))
-    (unless ret
-      (setq ret (funcall old-fn x))
-      (puthash x ret ivy-rich--ivy-switch-buffer-cache))
-    ret))
-
-(define-advice +ivy/switch-buffer
-    (:before (&rest _) ivy-rich-reset-cache)
-  (clrhash ivy-rich--ivy-switch-buffer-cache))
-
-;; counsel-gtags
-;; https://github.com/FelipeLema/emacs-counsel-gtags
-(use-package counsel-gtags
-  :bind (:map counsel-gtags-mode-map
-              ("M-." . counsel-gtags-dwim)
-              ("M-," . counsel-gtags-go-backward))
-  :hook ((c-mode . counsel-gtags-mode)
-         (c++-mode . counsel-gtags-mode)))
-
-
-;; company
-;; http://company-mode.github.io/
-(use-package company
-  :bind (:map company-mode-map
-              ("<tab>" . company-indent-or-complete-common))
-  :hook (c-mode . company-mode)
-  :config
-  (setq company-idle-delay 3))
   (minions-mode))
 
-;; company-c-headers
-;; https://github.com/randomphrase/company-c-headers
-(use-package company-c-headers
-  :after (company)
-  :config
-  (add-to-list 'company-c-headers-path-system "/usr/avr/include")
-  (add-to-list 'company-backends 'company-c-headers))
 ;; ;; treemacs
 ;; ;; https://github.com/Alexander-Miller/treemacs
 ;; ;; useful ??
@@ -334,9 +213,195 @@
 (use-package expand-region
   :bind (("C-=" . er/expand-region)))
 
+;; vertico
+;; https://github.com/minad/vertico
+(use-package vertico
+  :config
+  (vertico-mode)
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+  (setq vertico-count 20)               ; Show more candidates
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;; (setq vertico-cycle t)
+  )
 
+;; orderless
+;; https://github.com/oantolin/orderless
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
+;; marginalia
+;; https://github.com/minad/marginalia
+(use-package marginalia
+  :config
+  (marginalia-mode))
+
+;; consult
+;; https://github.com/minad/consult
+(use-package consult
+  :bind (("M-i"     . consult-line)
+         ("M-y"     . consult-yank-from-kill-ring)
+         ("C-x C-b" . switch-to-buffer)
+         ("C-H-b"   . switch-to-buffer)
+         ("C-x b"   . consult-buffer)
+         ("H-b"     . consult-buffer))
+  :config
+  (consult-customize
+   consult-buffer :preview-key nil)
+
+  ;; Shorten recent files in consult-buffer
+  ;; https://github.com/minad/consult/wiki#shorten-recent-files-in-consult-buffer
+
+  (defun my-consult--source-recentf-items-uniq ()
+    (let ((ht (consult--buffer-file-hash))
+          file-name-handler-alist ;; No Tramp slowdown please.
+          items)
+      (dolist (file (my-recentf-list-uniq) (nreverse items))
+        ;; Emacs 29 abbreviates file paths by default, see
+        ;; `recentf-filename-handlers'.
+        (unless (eq (aref (cdr file) 0) ?/)
+          (setcdr file (expand-file-name (cdr file))))
+        (unless (gethash (cdr file) ht)
+          (push (propertize
+                 (car file)
+                 'multi-category `(file . ,(cdr file)))
+                items)))))
+
+  (plist-put consult--source-recent-file
+             :items #'my-consult--source-recentf-items-uniq)
+
+  (defun my-recentf-list-uniq ()
+    (let* ((proposed (mapcar (lambda (f)
+                               (cons (file-name-nondirectory f) f))
+                             recentf-list))
+           (recentf-uniq proposed)
+           conflicts resol file)
+      ;; collect conflicts
+      (while proposed
+        (setq file (pop proposed))
+        (if (assoc (car file) conflicts)
+            (push (cdr file) (cdr (assoc (car file) conflicts)))
+          (if (assoc (car file) proposed)
+              (push (list (car file) (cdr file)) conflicts))))
+      ;; resolve conflicts
+      (dolist (name conflicts)
+        (let* ((files (mapcar (lambda (f)
+                                ;; (file remaining-path curr-propos)
+                                (list f
+                                      (file-name-directory f)
+                                      (file-name-nondirectory f)))
+                              (cdr name)))
+               (curr-step (mapcar (lambda (f)
+                                    (file-name-nondirectory
+                                     (directory-file-name (cadr f))))
+                                  files)))
+          ;; Quick check, if there are no duplicates, we are done.
+          (if (eq (length curr-step) (length (delete-dups curr-step)))
+              (setq resol
+                    (append resol
+                            (mapcar (lambda (f)
+                                      (cons (car f)
+                                            (file-name-concat
+                                             (file-name-nondirectory
+                                              (directory-file-name (cadr f)))
+                                             (file-name-nondirectory (car f)))))
+                                    files)))
+            (while files
+              (let (files-remain)
+                (dolist (file files)
+                  (let ((curr-propos (caddr file))
+                        (curr-part (file-name-nondirectory
+                                    (directory-file-name (cadr file))))
+                        (rest-path (file-name-directory
+                                    (directory-file-name (cadr file))))
+                        (curr-step
+                         (mapcar (lambda (f)
+                                   (file-name-nondirectory
+                                    (directory-file-name (cadr f))))
+                                 files)))
+                    (if (member curr-part (cdr (member curr-part curr-step)))
+                        ;; There is more than one curr-part in curr-step for
+                        ;; this candidate.
+                        (push (list (car file)
+                                    rest-path
+                                    (file-name-concat curr-part curr-propos))
+                              files-remain)
+                      ;; There is no repetition of curr-part in curr-step
+                      ;; for this candidate.
+                      (push (cons (car file)
+                                  (file-name-concat curr-part curr-propos))
+                            resol))))
+                (setq files files-remain))))))
+      ;; apply resolved conflicts
+      (let (items)
+        (dolist (file recentf-uniq (nreverse items))
+          (let ((curr-resol (assoc (cdr file) resol)))
+            (if curr-resol
+                (push (cons (cdr curr-resol) (cdr file)) items)
+              (push file items))))))))
+
+;; corfu
+;; https://github.com/minad/corfu
+;; https://github.com/minad/corfu/blob/main/extensions/corfu-popupinfo.el
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  ;; (corfu-auto t)                 ;; Enable auto completion
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-quit-at-boundary nil)      ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+  ;; ;; https://github.com/Gavinok/emacs.d/blob/main/init.el
+  ;; (corfu-cycle t)                 ; Allows cycling through candidates
+  (corfu-auto nil)                   ; Enable auto completion
+  (corfu-auto-prefix 3)
+  (corfu-auto-delay 0.0)
+  ;; (corfu-echo-documentation 0.25) ; Enable documentation for completions
+  ;; (corfu-preview-current 'insert) ; Do not preview current candidate
+  ;; (corfu-preselect-first nil)
+  ;; (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
+
+  ;; Enable Corfu only for certain modes.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.
+  ;; This is recommended since Dabbrev can be used globally (M-/).
+  ;; See also `corfu-excluded-modes'.
+  :config
+  (global-corfu-mode))
+
+;; embark
+;; https://github.com/oantolin/embark
+(use-package embark
+  :bind
+  (("C-."   . embark-act)         ;; pick some comfortable binding
+   ("C-;"   . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings))   ;; alternative for `describe-bindings'
   :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 ;; useful ??
 
 ;; ;; geiser
@@ -470,6 +535,7 @@
 (use-package calibredb
   :demand t
   :config
+  (require 'consult)
   (setq calibredb-root-dir "~/Library")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/Library")))
