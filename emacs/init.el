@@ -1,12 +1,12 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PREFERENCES
 
-(desktop-save-mode 1)                   ; restore desktop, except
 ;; resize initial frame to 1/2 screen width
 ;; temporary ugly hack. it works for me...
 (set-frame-width nil (if (= (default-font-width) 11) 173 146))
 (set-frame-parameter nil 'energos/width 10)
 
+(desktop-save-mode)                     ; restore desktop, except
 (setq desktop-restore-frames nil)       ; for window and frame configuration
 
 (setq inhibit-startup-screen t)         ; disable 'splash screen'
@@ -18,18 +18,18 @@
 (tooltip-mode -1)                       ; disable 'tooltips'
 (blink-cursor-mode -1)                  ; NON blinking cursor
 (setq visible-cursor nil)               ; less annoying console cursor
-(line-number-mode 1)                    ; display line number in 'mode-line'
-(column-number-mode 1)                  ; display column number in 'mode-line'
-(show-paren-mode 1)                     ; visualize matching parens
+(line-number-mode)                      ; display line number in 'mode-line'
+(column-number-mode)                    ; display column number in 'mode-line'
+(show-paren-mode)                       ; visualize matching parens
 
 (setq frame-resize-pixelwise nil)       ; whole character frame resize
 (setq-default truncate-lines nil)       ; wrap lines longer than the window width
 (setq truncate-partial-width-windows 40)        ; except in "narrow" windows
 
 (setq save-interprogram-paste-before-kill t)    ; ???
-(delete-selection-mode 1)               ; replace selection with typed text
+(delete-selection-mode)                 ; replace selection with typed text
 
-(winner-mode 1)                         ; undo/redo window configuration
+(winner-mode)                           ; undo/redo window configuration
 
 (prefer-coding-system 'utf-8-unix)      ; UTF-8, no crlf, please
 (defalias 'yes-or-no-p 'y-or-n-p)       ; ask for "y or n"
@@ -104,6 +104,7 @@
         ("Common Lisp"          . "https://lisp-lang.org/")
         ("Awesome Common Lisp"  . "https://github.com/CodyReichert/awesome-cl")
         ))
+(global-set-key (kbd "H-w") 'webjump)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LOCAL elisp FILES
@@ -128,7 +129,6 @@
       '(("melpa-stbl" .  0)
         ("gnu"        .  5)
         ("melpa"      . 10)))
-(setq package-pinned-packages '((calibredb . "melpa-stbl")))
 (package-initialize)
 
 ;; use-package
@@ -140,17 +140,18 @@
 (setq use-package-always-ensure t)
 
 ;; which-key
+;; https://github.com/justbur/emacs-which-key
 (use-package which-key
   :config
   (setq which-key-idle-delay 3.0)
   (which-key-mode))
 
-;; magit
+;; It's Magit!
+;; https://magit.vc/
 ;; https://github.com/magit/magit
 (use-package magit
   :bind (("C-x g"   . magit-status)
          ("H-m"     . magit-status)
-         ("C-x M-g" . magit-dispatch-popup)
          (:map magit-hunk-section-map
                ("RET"        . magit-diff-visit-file-other-window)
                ("<S-return>" . magit-diff-visit-file))
@@ -162,14 +163,13 @@
   ;; Syntax highlight for git commit messages
   (require 'git-commit)
   ;; https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
-  ;; (setq vc-handled-backends nil)
   (setq auto-revert-check-vc-info t))
 
 ;; minions
+;; https://github.com/tarsius/minions
 (use-package minions
   :config
   (setq minions-mode-line-lighter "[+]")
-  (minions-mode 1))
 
 ;; smex
 ;; https://github.com/nonsequitur/smex/
@@ -287,6 +287,7 @@
   :hook (c-mode . company-mode)
   :config
   (setq company-idle-delay 3))
+  (minions-mode))
 
 ;; company-c-headers
 ;; https://github.com/randomphrase/company-c-headers
@@ -324,6 +325,7 @@
 ;;   (fa-config-default))
 
 ;; flycheck
+;; https://www.flycheck.org
 ;; https://github.com/flycheck/flycheck
 (use-package flycheck)
 
@@ -397,7 +399,7 @@
 ;; pdf-tools
 ;; https://github.com/vedang/pdf-tools
 (use-package pdf-tools
-  :demand
+  :demand t
   :bind (:map pdf-view-mode-map
               ("<home>"   . image-bob)
               ("<end>"    . image-eob)
@@ -466,8 +468,8 @@
 ;; calibredb
 ;; https://github.com/chenyanming/calibredb.el
 (use-package calibredb
-  :demand
-  :init
+  :demand t
+  :config
   (setq calibredb-root-dir "~/Library")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/Library")))
@@ -478,11 +480,12 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
-
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
-(setq vterm-min-window-width 54)
-(setq vterm-clear-scrollback-when-clearing t)
+(use-package vterm
+  :config
+  (setq vterm-min-window-width 54)
+  (setq vterm-clear-scrollback-when-clearing t))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
@@ -513,10 +516,12 @@
 ;; (enable-theme 'charcoal-black)
 (load-theme 'afternoon t t)
 (enable-theme 'afternoon)
+(set-face-attribute 'highlight nil :background "#294F6E")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
 
+(global-set-key (kbd "M-]") 'goto-match-paren)
 ;; https://www.emacswiki.org/emacs/NavigatingParentheses
 (defun goto-match-paren ()
   "Go to the matching parenthesis if on parenthesis.
@@ -768,6 +773,9 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
 
+;; --- Use hippie-expand instead of dabbrev-expand ---
+(global-set-key (kbd "M-/") 'hippie-expand)
+
 ;; --- We don't need a freaking mouse wheel ---
 (mouse-wheel-mode -1)
 (global-set-key (kbd "<mouse-4>") 'ignore)
@@ -862,28 +870,23 @@ Move point to the previous position that is the beggining of a symbol."
 
 ;; --- Kill buffers ---
 (global-set-key (kbd "C-x K") 'kill-buffer)
+(global-set-key (kbd "H-K") 'kill-buffer)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "H-k") 'kill-current-buffer)
 ;; Never kill *scratch* or *Messages*
 (with-current-buffer "*scratch*"
   (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*"
   (emacs-lock-mode 'kill))
 
-;; --- CapsLock -> F13 -> Hyper ---
+;; --- find/save/exit ---
 (global-set-key (kbd "H-s") 'save-buffer)
-(global-set-key (kbd "H-K") 'kill-buffer)
-(global-set-key (kbd "H-k") 'kill-current-buffer)
-(global-set-key (kbd "H-b") 'switch-to-buffer)
 (global-set-key (kbd "H-f") 'find-file)
-(global-set-key (kbd "H-c") (kbd "C-c C-c"))
-(global-set-key (kbd "H-e") (kbd "C-x C-e"))
-(global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
 (global-set-key (kbd "H-Q") 'save-buffers-kill-terminal)
-(global-set-key (kbd "H-w") 'webjump)
 
+;; -- frames/windows --
 (unless (string= (getenv "WINDOW_MANAGER") "emacs")
   (global-set-key (kbd "H-n") 'make-frame-command))
-
 (global-set-key (kbd "H-0")
                 (lambda () "Delete window or delete frame if there is only one window."
                   (interactive)
@@ -896,6 +899,10 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "H-2") 'split-window-below)
 (global-set-key (kbd "H-3") 'split-window-horizontally)
 
+;; ???
+(global-set-key (kbd "H-c") (kbd "C-c C-c"))
+(global-set-key (kbd "H-e") (kbd "C-x C-e"))
+(global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
 
 ;; ;; useful ??
 
@@ -954,7 +961,9 @@ Move point to the previous position that is the beggining of a symbol."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; AREA 51
 
-(load (expand-file-name "experimental.el" user-emacs-directory))
+(let ((file (expand-file-name "experimental.el" user-emacs-directory)))
+  (when (file-exists-p file)
+    (load file)))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; START SERVER!
