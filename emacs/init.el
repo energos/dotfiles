@@ -136,37 +136,41 @@
 
 ;; use-package
 ;; https://github.com/jwiegley/use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; https://packages.gentoo.org/packages/app-emacs/use-package
+(unless (require 'use-package nil t)
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package)))
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
-(use-package which-key
-  :config
-  (setq which-key-idle-delay 3.0)
-  (which-key-mode))
+;; https://packages.gentoo.org/packages/app-emacs/which-key
+(unless (require 'which-key nil t)
+  (use-package which-key))
+(setq which-key-idle-delay 3.0)
+(which-key-mode)
 
 ;; It's Magit!
 ;; https://magit.vc/
 ;; https://github.com/magit/magit
-(use-package magit
-  :bind (("C-x g"   . magit-status)
-         ("H-m"     . magit-status)
-         (:map magit-hunk-section-map
-               ("RET"        . magit-diff-visit-file-other-window)
-               ("<S-return>" . magit-diff-visit-file))
-         (:map magit-mode-map
-               ("<M-tab>"    . nil))
-         (:map magit-section-mode-map
-               ("<M-tab>"    . nil)))
-  :init
-  ;; Syntax highlight for git commit messages
-  (require 'git-commit)
-  ;; https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
-  (setq auto-revert-check-vc-info t))
+;; https://packages.gentoo.org/packages/app-emacs/magit
+(unless (require 'magit nil t)
+  (use-package magit))
+(bind-keys ("C-x g"         . magit-status)
+           ("H-m"           . magit-status)
+           :map magit-hunk-section-map
+           ("<return>"      . magit-diff-visit-file-other-window)
+           ("<S-return>"    . magit-diff-visit-file)
+           :map magit-mode-map
+           ("<M-tab>"       . nil)
+           :map magit-section-mode-map
+           ("<M-tab>"       . nil))
+;; Syntax highlight for git commit messages
+(require 'git-commit)
+;; https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
+(setq auto-revert-check-vc-info t)
 
 ;; minions
 ;; https://github.com/tarsius/minions
@@ -206,180 +210,190 @@
 ;; flycheck
 ;; https://www.flycheck.org
 ;; https://github.com/flycheck/flycheck
-(use-package flycheck)
+;; https://packages.gentoo.org/packages/app-emacs/flycheck
+(unless (require 'flycheck nil t)
+  (use-package flycheck))
 
 ;; expand-region
 ;; https://github.com/magnars/expand-region.el
-(use-package expand-region
-  :bind (("C-=" . er/expand-region)))
+;; https://packages.gentoo.org/packages/app-emacs/expand-region
+(unless (require 'expand-region nil t)
+  (use-package expand-region))
+(bind-keys ("C-=" . er/expand-region))
 
 ;; vertico
 ;; https://github.com/minad/vertico
-(use-package vertico
-  :config
-  (vertico-mode)
-  ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
-  (setq vertico-count 20)               ; Show more candidates
-  ;; Grow and shrink the Vertico minibuffer
-  ;; (setq vertico-resize t)
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  ;; (setq vertico-cycle t)
-  )
+;; https://packages.gentoo.org/packages/app-emacs/vertico
+(unless (require 'vertico nil t)
+  (use-package vertico))
+(vertico-mode)
+;; Different scroll margin
+;; (setq vertico-scroll-margin 0)
+(setq vertico-count 20)               ; Show more candidates
+;; Grow and shrink the Vertico minibuffer
+;; (setq vertico-resize t)
+;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+;; (setq vertico-cycle t)
 
 ;; orderless
 ;; https://github.com/oantolin/orderless
-(use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+;; https://packages.gentoo.org/packages/app-emacs/orderless
+(unless (require 'orderless nil t)
+  (use-package orderless))
+(setq completion-styles '(orderless basic)
+      completion-category-overrides '((file (styles basic partial-completion))))
 
 ;; marginalia
 ;; https://github.com/minad/marginalia
-(use-package marginalia
-  :config
-  (marginalia-mode))
+;; https://packages.gentoo.org/packages/app-emacs/marginalia
+(unless (require 'marginalia nil t)
+  (use-package marginalia))
+(marginalia-mode)
 
 ;; consult
 ;; https://github.com/minad/consult
-(use-package consult
-  :bind (("M-i"     . consult-line)
-         ("M-y"     . consult-yank-from-kill-ring)
-         ("C-x C-b" . switch-to-buffer)
-         ("C-H-b"   . switch-to-buffer)
-         ("C-x b"   . consult-buffer)
-         ("H-b"     . consult-buffer))
-  :config
-  (consult-customize
-   consult-buffer :preview-key nil)
+;; https://packages.gentoo.org/packages/app-emacs/consult
+(unless (require 'consult nil t)
+  (use-package consult))
+(bind-keys ("M-i"     . consult-line)
+           ("M-y"     . consult-yank-from-kill-ring)
+           ("C-x C-b" . switch-to-buffer)
+           ("C-H-b"   . switch-to-buffer)
+           ("C-x b"   . consult-buffer)
+           ("H-b"     . consult-buffer))
+(consult-customize
+ consult-buffer :preview-key nil)
 
-  ;; Shorten recent files in consult-buffer
-  ;; https://github.com/minad/consult/wiki#shorten-recent-files-in-consult-buffer
+;; Shorten recent files in consult-buffer
+;; https://github.com/minad/consult/wiki#shorten-recent-files-in-consult-buffer
 
-  (defun my-consult--source-recentf-items-uniq ()
-    (let ((ht (consult--buffer-file-hash))
-          file-name-handler-alist ;; No Tramp slowdown please.
-          items)
-      (dolist (file (my-recentf-list-uniq) (nreverse items))
-        ;; Emacs 29 abbreviates file paths by default, see
-        ;; `recentf-filename-handlers'.
-        (unless (eq (aref (cdr file) 0) ?/)
-          (setcdr file (expand-file-name (cdr file))))
-        (unless (gethash (cdr file) ht)
-          (push (propertize
-                 (car file)
-                 'multi-category `(file . ,(cdr file)))
-                items)))))
+(defun my-consult--source-recentf-items-uniq ()
+  (let ((ht (consult--buffer-file-hash))
+        file-name-handler-alist ;; No Tramp slowdown please.
+        items)
+    (dolist (file (my-recentf-list-uniq) (nreverse items))
+      ;; Emacs 29 abbreviates file paths by default, see
+      ;; `recentf-filename-handlers'.
+      (unless (eq (aref (cdr file) 0) ?/)
+        (setcdr file (expand-file-name (cdr file))))
+      (unless (gethash (cdr file) ht)
+        (push (propertize
+               (car file)
+               'multi-category `(file . ,(cdr file)))
+              items)))))
 
-  (plist-put consult--source-recent-file
-             :items #'my-consult--source-recentf-items-uniq)
+(plist-put consult--source-recent-file
+           :items #'my-consult--source-recentf-items-uniq)
 
-  (defun my-recentf-list-uniq ()
-    (let* ((proposed (mapcar (lambda (f)
-                               (cons (file-name-nondirectory f) f))
-                             recentf-list))
-           (recentf-uniq proposed)
-           conflicts resol file)
-      ;; collect conflicts
-      (while proposed
-        (setq file (pop proposed))
-        (if (assoc (car file) conflicts)
-            (push (cdr file) (cdr (assoc (car file) conflicts)))
-          (if (assoc (car file) proposed)
-              (push (list (car file) (cdr file)) conflicts))))
-      ;; resolve conflicts
-      (dolist (name conflicts)
-        (let* ((files (mapcar (lambda (f)
-                                ;; (file remaining-path curr-propos)
-                                (list f
-                                      (file-name-directory f)
-                                      (file-name-nondirectory f)))
-                              (cdr name)))
-               (curr-step (mapcar (lambda (f)
-                                    (file-name-nondirectory
-                                     (directory-file-name (cadr f))))
+(defun my-recentf-list-uniq ()
+  (let* ((proposed (mapcar (lambda (f)
+                             (cons (file-name-nondirectory f) f))
+                           recentf-list))
+         (recentf-uniq proposed)
+         conflicts resol file)
+    ;; collect conflicts
+    (while proposed
+      (setq file (pop proposed))
+      (if (assoc (car file) conflicts)
+          (push (cdr file) (cdr (assoc (car file) conflicts)))
+        (if (assoc (car file) proposed)
+            (push (list (car file) (cdr file)) conflicts))))
+    ;; resolve conflicts
+    (dolist (name conflicts)
+      (let* ((files (mapcar (lambda (f)
+                              ;; (file remaining-path curr-propos)
+                              (list f
+                                    (file-name-directory f)
+                                    (file-name-nondirectory f)))
+                            (cdr name)))
+             (curr-step (mapcar (lambda (f)
+                                  (file-name-nondirectory
+                                   (directory-file-name (cadr f))))
+                                files)))
+        ;; Quick check, if there are no duplicates, we are done.
+        (if (eq (length curr-step) (length (delete-dups curr-step)))
+            (setq resol
+                  (append resol
+                          (mapcar (lambda (f)
+                                    (cons (car f)
+                                          (file-name-concat
+                                           (file-name-nondirectory
+                                            (directory-file-name (cadr f)))
+                                           (file-name-nondirectory (car f)))))
                                   files)))
-          ;; Quick check, if there are no duplicates, we are done.
-          (if (eq (length curr-step) (length (delete-dups curr-step)))
-              (setq resol
-                    (append resol
-                            (mapcar (lambda (f)
-                                      (cons (car f)
-                                            (file-name-concat
-                                             (file-name-nondirectory
-                                              (directory-file-name (cadr f)))
-                                             (file-name-nondirectory (car f)))))
-                                    files)))
-            (while files
-              (let (files-remain)
-                (dolist (file files)
-                  (let ((curr-propos (caddr file))
-                        (curr-part (file-name-nondirectory
-                                    (directory-file-name (cadr file))))
-                        (rest-path (file-name-directory
-                                    (directory-file-name (cadr file))))
-                        (curr-step
-                         (mapcar (lambda (f)
-                                   (file-name-nondirectory
-                                    (directory-file-name (cadr f))))
-                                 files)))
-                    (if (member curr-part (cdr (member curr-part curr-step)))
-                        ;; There is more than one curr-part in curr-step for
-                        ;; this candidate.
-                        (push (list (car file)
-                                    rest-path
-                                    (file-name-concat curr-part curr-propos))
-                              files-remain)
-                      ;; There is no repetition of curr-part in curr-step
-                      ;; for this candidate.
-                      (push (cons (car file)
+          (while files
+            (let (files-remain)
+              (dolist (file files)
+                (let ((curr-propos (caddr file))
+                      (curr-part (file-name-nondirectory
+                                  (directory-file-name (cadr file))))
+                      (rest-path (file-name-directory
+                                  (directory-file-name (cadr file))))
+                      (curr-step
+                       (mapcar (lambda (f)
+                                 (file-name-nondirectory
+                                  (directory-file-name (cadr f))))
+                               files)))
+                  (if (member curr-part (cdr (member curr-part curr-step)))
+                      ;; There is more than one curr-part in curr-step for
+                      ;; this candidate.
+                      (push (list (car file)
+                                  rest-path
                                   (file-name-concat curr-part curr-propos))
-                            resol))))
-                (setq files files-remain))))))
-      ;; apply resolved conflicts
-      (let (items)
-        (dolist (file recentf-uniq (nreverse items))
-          (let ((curr-resol (assoc (cdr file) resol)))
-            (if curr-resol
-                (push (cons (cdr curr-resol) (cdr file)) items)
-              (push file items))))))))
+                            files-remain)
+                    ;; There is no repetition of curr-part in curr-step
+                    ;; for this candidate.
+                    (push (cons (car file)
+                                (file-name-concat curr-part curr-propos))
+                          resol))))
+              (setq files files-remain))))))
+    ;; apply resolved conflicts
+    (let (items)
+      (dolist (file recentf-uniq (nreverse items))
+        (let ((curr-resol (assoc (cdr file) resol)))
+          (if curr-resol
+              (push (cons (cdr curr-resol) (cdr file)) items)
+            (push file items)))))))
 
 ;; corfu
 ;; https://github.com/minad/corfu
 ;; https://github.com/minad/corfu/blob/main/extensions/corfu-popupinfo.el
-(use-package corfu
-  ;; Optional customizations
-  :custom
-  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  ;; (corfu-auto t)                 ;; Enable auto completion
-  ;; (corfu-separator ?\s)          ;; Orderless field separator
-  (corfu-quit-at-boundary nil)      ;; Never quit at completion boundary
-  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+;; https://packages.gentoo.org/packages/app-emacs/corfu
+(unless (require 'corfu nil t)
+  (use-package corfu))
 
-  ;; ;; https://github.com/Gavinok/emacs.d/blob/main/init.el
-  ;; (corfu-cycle t)                 ; Allows cycling through candidates
-  (corfu-auto nil)                   ; Enable auto completion
-  (corfu-auto-prefix 3)
-  (corfu-auto-delay 0.0)
-  ;; (corfu-echo-documentation 0.25) ; Enable documentation for completions
-  ;; (corfu-preview-current 'insert) ; Do not preview current candidate
-  ;; (corfu-preselect-first nil)
-  ;; (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
+;; Optional customizations
+(setq
+ ;;  corfu-cycle t                 ;; Enable cycling for `corfu-next/previous'
+ ;;  corfu-auto t                  ;; Enable auto completion
+ ;;  corfu-separator ?\s           ;; Orderless field separator
+ corfu-quit-at-boundary nil        ;; Never quit at completion boundary
+ ;; corfu-quit-no-match nil        ;; Never quit, even if there is no match
+ ;; corfu-preview-current nil      ;; Disable current candidate preview
+ ;; corfu-preselect 'prompt        ;; Preselect the prompt
+ ;; corfu-on-exact-match nil       ;; Configure handling of exact matches
+ ;; corfu-scroll-margin 5          ;; Use scroll margin
 
-  ;; Enable Corfu only for certain modes.
-  ;; :hook ((prog-mode . corfu-mode)
-  ;;        (shell-mode . corfu-mode)
-  ;;        (eshell-mode . corfu-mode))
+ ;; ;; https://github.com/Gavinok/emacs.d/blob/main/init.el
+ ;; corfu-cycle t                  ;; Allows cycling through candidates
+ corfu-auto nil                    ;; Enable auto completion
+ corfu-auto-prefix 3
+ corfu-auto-delay 0.0
+ ;; corfu-echo-documentation 0.25  ;; Enable documentation for completions
+ ;; corfu-preview-current 'insert  ;; Do not preview current candidate
+ ;; corfu-preselect-first nil
+ ;; corfu-on-exact-match nil       ;; Don't auto expand tempel snippets
+ )
 
-  ;; Recommended: Enable Corfu globally.
-  ;; This is recommended since Dabbrev can be used globally (M-/).
-  ;; See also `corfu-excluded-modes'.
-  :config
-  (global-corfu-mode))
+;; Enable Corfu only for certain modes.
+;; :hook ((prog-mode . corfu-mode)
+;;        (shell-mode . corfu-mode)
+;;        (eshell-mode . corfu-mode))
+
+;; Recommended: Enable Corfu globally.
+;; This is recommended since Dabbrev can be used globally (M-/).
+;; See also `corfu-excluded-modes'.
+(global-corfu-mode)
 
 ;; embark
 ;; https://github.com/oantolin/embark
@@ -463,17 +477,17 @@
 
 ;; pdf-tools
 ;; https://github.com/vedang/pdf-tools
-(use-package pdf-tools
-  :demand t
-  :bind (:map pdf-view-mode-map
-              ("<home>"   . image-bob)
-              ("<end>"    . image-eob)
-              ("<C-home>" . pdf-view-first-page)
-              ("<C-end>"  . pdf-view-last-page))
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26")))
+(unless (require 'pdf-tools nil t)
+  (use-package pdf-tools
+    :demand t))
+(bind-keys :map pdf-view-mode-map
+           ("<home>"   . image-bob)
+           ("<end>"    . image-eob)
+           ("<C-home>" . pdf-view-first-page)
+           ("<C-end>"  . pdf-view-last-page))
+(pdf-tools-install)
+(setq-default pdf-view-display-size 'fit-page)
+(setq pdf-view-midnight-colors '("#eaeaea" . "#181a26"))
 
 ;; ;; org-pdf-tool
 ;; ;; https://github.com/fuxialexander/org-pdftools
@@ -548,10 +562,11 @@
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
-(use-package vterm
-  :config
-  (setq vterm-min-window-width 54)
-  (setq vterm-clear-scrollback-when-clearing t))
+;; https://packages.gentoo.org/packages/app-emacs/vterm
+(unless (require 'vterm nil t)
+  (use-package vterm))
+(setq vterm-min-window-width 54)
+(setq vterm-clear-scrollback-when-clearing t)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
