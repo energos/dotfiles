@@ -13,11 +13,10 @@
 #endif
 
 Xft.dpi:                XSERVER_DPI
+Xcursor.size:           CURSOR_SIZE
 
 #ifdef HIGH_DPI
 Emacs.font:             Iosevka Term 11
-!Emacs.font:             Consolas 12
-!Emacs.font:             Hack 11
 #else
 Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
@@ -28,7 +27,6 @@ Emacs.geometry:         108x56
 Emacs.cursorBlink:      off
 
 #ifdef HIGH_DPI
-!xterm*faceName:         Droid Sans Mono Slashed:size=11
 xterm*faceName:         Inconsolata:size=12
 #else
 xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
@@ -43,15 +41,12 @@ xterm*metaSendsEscape:  true
 xterm*backarrowKey:     false
 
 #ifdef HIGH_DPI
-!URxvt*font:             xft:Droid Sans Mono Slashed:size=11
-!URxvt.letterSpace:      -2
-!URxvt*font:             xft:Inconsolata:size=12
-!URxvt.letterSpace:      -1
-URxvt*font:             xft:Iosevka:size=11
+URxvt*font:             xft:Iosevka Term:size=11
 !URxvt.letterSpace:      0
 #else
 URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
+URxvt*termName:         rxvt-unicode-256color
 URxvt*scrollBar:        false
 URxvt*savedLines:       1000
 URxvt*iso14755:         false
@@ -64,15 +59,10 @@ URxvt.keysym.C-1:       command:\033]10;white\007\033]11;black\007
 URxvt.keysym.C-2:       command:\033]10;yellow\007\033]11;dark blue\007
 URxvt.keysym.C-3:       command:\033]10;dark blue\007\033]11;khaki\007
 URxvt.keysym.C-4:       command:\033]10;black\007\033]11;white\007
-
 !http://stackoverflow.com/questions/8254705/redhat-linux-change-directory-color/8254921#8254921
 URxvt*background:       black
 URxvt*foreground:       white
-!URxvt.background:       #000000
-!URxvt.foreground:       gray75
-!URxvt.color3:           DarkGoldenrod
 URxvt.color4:           RoyalBlue
-!URxvt.color11:          LightGoldenrod
 URxvt.color12:          LightSteelBlue
 !URxvt.color7:           gray75
 !URxvt.colorBD:          #ffffff
@@ -81,12 +71,8 @@ URxvt.color12:          LightSteelBlue
 !URxvt.cursorColor:      grey90
 !URxvt.highlightColor:   grey25
 
-Xcursor.size:           CURSOR_SIZE
-
 Xmessage*font:          FIXED_FONT
 Xmessage*nearMouse:     FALSE
 Xmessage*center:        TRUE
-!Xmessage*geometry:      +1400+1000
-
 XFontSel*font:          FIXED_FONT
 Xmag*font:              FIXED_FONT
