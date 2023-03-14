@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DEBUGPORT=${DEBUGPORT:-""}
 USER_ICONS=$HOME/.local/share/icons

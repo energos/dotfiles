@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 USER_ICONS=$HOME/.local/share/icons
 ICONS=/usr/share/icons/breeze
