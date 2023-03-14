@@ -813,7 +813,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;;         ("\\.pdf\\'" . "xdg-open %s")))
 
 ;; ;; --- preferences ---
-;; (setq org-replace-disputed-keys t)
+(setq org-replace-disputed-keys t)
 ;; (setq org-src-fontify-natively t)
 ;; (setq org-src-tab-acts-natively t)
 ;; (setq org-link-frame-setup
@@ -868,9 +868,9 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;; (global-set-key (kbd "C-c a") 'org-agenda)
 ;; (global-set-key (kbd "C-c c") 'org-capture)
 
-;; ;; --- restore old shortcuts for structure templates ---
-;; ;; https://orgmode.org/manual/Structure-Templates.html
-;; (require 'org-tempo)
+;; --- restore old shortcuts for structure templates ---
+;; https://orgmode.org/manual/Structure-Templates.html
+(require 'org-tempo)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
