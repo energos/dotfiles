@@ -97,8 +97,9 @@ then
     # ********************
 
     # Menu Title
+    eval $(grep '^NAME=' /etc/os-release)
     cat <<EOF
-<separator label="Gentoo! @ ${HOSTNAME}" />
+<separator label="${NAME}! @ ${HOSTNAME}" />
 <separator />
 EOF
 
