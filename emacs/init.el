@@ -400,7 +400,9 @@
 (use-package embark
   :bind
   (("C-."   . embark-act)         ;; pick some comfortable binding
+   ("H-."   . embark-act)
    ("C-;"   . embark-dwim)        ;; good alternative: M-.
+   ("H-<f13>" . embark-dwim)
    ("C-h B" . embark-bindings))   ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -515,10 +517,29 @@
 ;; https://github.com/org-roam/org-roam
 ;; org-roam
 
-;; ;; ace-window
-;; ;; https://github.com/abo-abo/ace-window
-;; (use-package ace-window
-;;   :bind (("H-o" . ace-window)))
+;; ace-window
+;; https://github.com/abo-abo/ace-window
+;; https://packages.gentoo.org/packages/app-emacs/ace-window
+(unless (require 'ace-window nil t)
+  (use-package ace-window))
+(bind-keys ("H-o" . ace-window))
+(setq aw-dispatch-always t)
+
+;; https://karthinks.com/software/fifteen-ways-to-use-embark/
+(require 'embark)
+(eval-when-compile
+  (defmacro embark-ace-action (fn)
+    `(defun ,(intern (concat "embark-ace-" (symbol-name fn))) ()
+       (interactive)
+       (with-demoted-errors "%s"
+         (require 'ace-window)
+         (let ((aw-dispatch-always t))
+           (aw-switch-to-window (aw-select nil))
+           (call-interactively (symbol-function ',fn)))))))
+
+(define-key embark-file-map     (kbd "o") (embark-ace-action find-file))
+(define-key embark-buffer-map   (kbd "o") (embark-ace-action switch-to-buffer))
+(define-key embark-bookmark-map (kbd "o") (embark-ace-action bookmark-jump))
 
 ;; ;; projectile
 ;; ;; https://github.com/bbatsov/projectile
@@ -983,7 +1004,6 @@ Move point to the previous position that is the beggining of a symbol."
 ;; ???
 (global-set-key (kbd "H-c") (kbd "C-c C-c"))
 (global-set-key (kbd "H-e") (kbd "C-x C-e"))
-(global-set-key (kbd "H-<f13>") (kbd "C-x C-e"))
 
 ;; ;; useful ??
 
