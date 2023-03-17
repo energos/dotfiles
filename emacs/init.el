@@ -3,8 +3,8 @@
 
 ;; resize initial frame to 1/2 screen width
 ;; temporary ugly hack. it works for me...
-(set-frame-width nil (if (= (default-font-width) 11) 173 146))
-(set-frame-parameter nil 'energos/width 10)
+(set-frame-width nil (if (= (default-font-width) 11) 162 146))
+(set-frame-parameter nil 'energos/width 9)
 
 (desktop-save-mode)                     ; restore desktop, except
 (setq desktop-restore-frames nil)       ; for window and frame configuration
@@ -487,6 +487,9 @@
            ("<end>"    . image-eob)
            ("<C-home>" . pdf-view-first-page)
            ("<C-end>"  . pdf-view-last-page))
+;; ugly hack...
+(when (eq system-type 'berkeley-unix)
+  (load "pdf-tools-init.el"))
 (pdf-tools-install)
 (setq-default pdf-view-display-size 'fit-page)
 (setq pdf-view-midnight-colors '("#eaeaea" . "#181a26"))
