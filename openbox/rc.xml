@@ -1502,6 +1502,20 @@
       </position>
     </application>
 
+    <application class="Pavucontrol">
+      <position force="no">
+        <x>-2</x>
+        <y>-40</y>
+      </position>
+    </application>
+
+    <application name="freakingCalendar">
+      <position force="no">
+        <x>center</x>
+        <y>center</y>
+      </position>
+    </application>
+
   </applications>
 
 </openbox_config>

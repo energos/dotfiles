@@ -202,6 +202,9 @@ case "$1" in
     "cmus")
         show_window ^cmusMusicPlayer$ 0 || $TERMINAL -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -title "C* Music Player" -sl 0 -geometry 64x18-0+0 -e cmus
         ;;
+    "deadbeef")
+        show_window ^Deadbeef$ 0 || deadbeef &> /dev/null &
+        ;;
     "pdf")
         if ! show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP; then
             shift
@@ -238,7 +241,7 @@ case "$1" in
         show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 88x20-0-16 -e dmesg -wT
         ;;
     "calendar")
-        show_window ^freakingCalendar$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
+        show_window ^freakingCalendar$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36 -e bash -c "cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
         ;;
     "res")
         case "$2" in
@@ -301,7 +304,7 @@ case "$1" in
                 amixer -q sset "$mute" toggle
                 ;;
             "")
-                show_window ^Pavucontrol$ 0 || pavucontrol &
+                show_window ^Pavucontrol$ 0 || pavucontrol --class=Pavucontrol --name=pavucontrol &
                 ;;
             *)
                 [[ -n "$2" ]] && amixer -q sset "$volume" $2
