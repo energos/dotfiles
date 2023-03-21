@@ -4,45 +4,38 @@
 # to run user-specific things.
 #
 
-# If you want to use GNOME config tools...
-#
-#if test -x /usr/lib/openbox/gnome-settings-daemon >/dev/null; then
-#  /usr/lib/openbox/gnome-settings-daemon &
-#elif which gnome-settings-daemon >/dev/null 2>&1; then
-#  gnome-settings-daemon &
-#fi
-
-# If you want to use XFCE config tools...
-#
-#xfce-mcs-manager &
-
-# VBoxClient-all
-
 xsetroot -solid '#3366aa'
 
-# gkrellm &
-# (sleep 10.0 && wmctrl -r gkrellm -b add,hidden) &
-# rhr_gkrellm
-# (sleep 10.0 && rhr_gkrellm) &
-
-# (sleep 0.6 && xrandr --output VGA-1 --mode 1024x1280 --pos 0x0 --output VGA-2 --mode 1920x1080 --pos 1024x200 --output VGA-3 --mode 1280x1024 --pos 2944x256) &
-# (sleep 0.6 && xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x200 --output DVI-1 --pos 2944x256) &
-
+gkrellm &
 artha &
+parcellite &
 
-(sleep 0.8 && fbpanel --profile default) &
-(sleep 1.0 && parcellite) &
-(sleep 1.8 && volumeicon) &
+# ugly hack - open pavucontrol and send it to desktop 8
+pqp volume
+(sleep 8 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
+
+eval $(grep '^NAME=' /etc/os-release)
+case $NAME in
+    *BSD)
+        # xmessage $NAME is '*BSD' &
+        (sleep 0.8 && tint2) &
+        (sleep 1.8 && dsbmixer -i) &
+        ;;
+    Gentoo)
+        # xmessage $NAME is 'Gentoo' &
+        (sleep 0.8 && fbpanel --profile default) &
+        (sleep 1.8 && volumeicon) &
+        (sleep 3.0 && conky -q -d) &
+        ;;
+    *)
+        xmessage $NAME is 'unknown' &
+        ;;
+esac
 
 (sleep 1.9 && $HOME/.fehbg) &
 (sleep 2.0 && hello-fortune) &
 
-# Too much artifacts with amdgpu. Use picom (compton successor) as a workaround.
-# (sleep 2.0 && lsmod | grep -q ^amdgpu && picom) &
-# Start picom anyway
 (sleep 2.0 && picom) &
-
-(sleep 3.0 && conky -q -d) &
 
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
