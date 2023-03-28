@@ -1,0 +1,26 @@
+eval $(grep '^NAME=' /etc/os-release)
+OS_NAME=$NAME
+
+USER_ICONS=${HOME}/.local/share/icons
+
+case $NAME in
+    *BSD)
+        OS_SHARE=/usr/local/share
+        OS_LOGO=${USER_ICONS}/beastie.png
+        ;;
+    Gentoo)
+        OS_SHARE=/usr/share
+        OS_LOGO=${USER_ICONS}/gentoo.svg
+        ;;
+    *)
+        OS_SHARE=/usr/share
+        ;;
+esac
+
+OS_ICONS=${OS_SHARE}/icons/breeze
+
+export OS_NAME
+export OS_SHARE
+export OS_ICONS
+export USER_ICONS
+export OS_LOGO
