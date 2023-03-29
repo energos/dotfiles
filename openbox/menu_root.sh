@@ -102,25 +102,35 @@ EOF
 
     # Terminal & File Manager
     cat <<EOF
-<item label="Terminal (urxvt)" icon="${USER_ICONS}/Utilities-terminal.svg">
-<action name="Execute"><command>urxvtcd -name Terminal</command></action> </item>
-<item label="Terminal (xterm)" icon="${OS_ICONS}/apps/48/utilities-terminal.svg">
+<item label="URxvt Terminal" icon="${USER_ICONS}/Utilities-terminal.svg">
+<action name="Execute"><command>pqp -n</command></action> </item>
+<menu id="Terminals" label="Terminals" icon="${USER_ICONS}/utilities-terminal.svg">
+<item label="URxvt" icon="${USER_ICONS}/Utilities-terminal.svg">
+<action name="Execute"><command>pqp -n</command></action> </item>
+<item label="XTerm" icon="${OS_ICONS}/apps/48/xterm.svg">
 <action name="Execute"><command>xterm</command></action> </item>
-<item label="Midnight Commander" icon="${USER_ICONS}/mc.svg">
-<action name="Execute"><command>pqp mc</command></action> </item>
 EOF
-    if [[ -x $(command -v dolphin) ]]
-    then
-        cat <<EOF
-<item label="File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg">
+    [[ -x $(command -v konsole) ]] && cat <<EOF
+<item label="Konsole" icon="${USER_ICONS}/utilities-terminal.svg">
+<action name="Execute"><command>pqp -n konsole</command></action> </item>
+EOF
+   cat <<EOF
+</menu> <separator />
+<item label="Midnight Commander" icon="${USER_ICONS}/mc.svg">
+<action name="Execute"><command>pqp -n mc</command></action> </item>
+EOF
+    [[ -x $(command -v dolphin) ]] && cat <<EOF
+<item label="Dolphin File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg">
 <action name="Execute"><command>dolphin</command></action> </item>
 EOF
-    else
-        [[ -x $(command -v pcmanfm) ]] && cat <<EOF
-<item label="File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg" >
+    [[ -x $(command -v thunar) ]] && cat <<EOF
+<item label="Thunar File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg" >
+<action name="Execute"><command>thunar</command></action> </item>
+EOF
+    [[ -x $(command -v pcmanfm) ]] && cat <<EOF
+<item label="PCManFM File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg" >
 <action name="Execute"><command>pcmanfm</command></action> </item>
 EOF
-    fi
     cat <<EOF
 <separator />
 EOF
@@ -203,6 +213,12 @@ EOF
     # The Manuals
     cat <<EOF
 <menu id="manuals" icon="${USER_ICONS}/Blue_question_mark_icon.svg" />
+<separator />
+EOF
+
+    # About $OS_NAME
+    cat <<EOF
+<menu id="about-${OS_NAME}" icon="${OS_LOGO}" />
 <separator />
 EOF
 

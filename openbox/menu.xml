@@ -68,14 +68,6 @@
         <command>pqp navigator https://www.gnu.org/manual/manual.html</command>
       </action>
     </item>
-    <separator />
-    <menu id="gentoo" label="Gentoo"  icon="/home/energos/.local/share/icons/gentoo.svg">
-      <item label="The Gentoo Handbook">
-        <action name="Execute">
-          <command>pqp navigator https://wiki.gentoo.org/wiki/Handbook:Main_Page</command>
-        </action>
-      </item>
-    </menu>
   </menu>
 
   <!-- Openbox sub-menu -->
@@ -120,6 +112,44 @@
     </item>
     <item label="Reconfigure Openbox">
       <action name="Reconfigure" />
+    </item>
+  </menu>
+
+  <!-- About Gentoo sub-menu -->
+  <menu id="about-Gentoo" label="About Gentoo">
+    <item label="Release Info">
+      <action name="Execute">
+        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+      </action>
+    </item>
+    <item label="Gentoo Home Page">
+      <action name="Execute">
+        <command>pqp navigator https://www.gentoo.org/</command>
+      </action>
+    </item>
+  </menu>
+
+  <!-- About FreeBSD sub-menu -->
+  <menu id="about-FreeBSD" label="About FreeBSD">
+    <item label="Release Info">
+      <action name="Execute">
+        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+      </action>
+    </item>
+    <item label="FreeBSD Home Page">
+      <action name="Execute">
+        <command>pqp navigator https://www.freebsd.org/</command>
+      </action>
+    </item>
+    <item label="FreeBSD Handbook">
+      <action name="Execute">
+        <command>pqp navigator https://docs.freebsd.org/en/books/handbook/</command>
+      </action>
+    </item>
+    <item label="FreeBSD Journal">
+      <action name="Execute">
+        <command>pqp navigator https://freebsdfoundation.org/our-work/journal/browser-based-edition/</command>
+      </action>
     </item>
   </menu>
 

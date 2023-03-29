@@ -10,6 +10,11 @@ EOF
 <action name="Execute"><command>pqp -h cmus</command></action>
 </item>
 EOF
+[[ -x $(command -v deadbeef) ]] && cat <<EOF && crappy=no
+<item label="DeaDBeeF" icon="${OS_SHARE}/icons/hicolor/48x48/apps/deadbeef.png">
+<action name="Execute"><command>pqp deadbeef</command></action>
+</item>
+EOF
 [[ -x $(command -v smplayer) ]] && cat <<EOF && crappy=no
 <item label="SMPlayer Media Player" icon="${OS_SHARE}/icons/hicolor/scalable/apps/smplayer.svg">
 <action name="Execute"><command>smplayer</command></action>
