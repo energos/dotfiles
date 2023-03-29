@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 DEBUGPORT=${DEBUGPORT:-""}
-USER_ICONS=$HOME/.local/share/icons
-ICONS=/usr/share/icons/breeze
 
 # Get default navigator
 # Exclude some sub-menus if this is a crappy host
@@ -12,25 +10,25 @@ navigator=${NAVIGATOR:-firefox}
 # Ugly, ugly, very ugly
 case $navigator in
     falkon)
-        navigator_icon=/usr/share/icons/hicolor/48x48/apps/falkon.png
+        navigator_icon=${OS_SHARE}/icons/hicolor/48x48/apps/falkon.png
         ;;
     qutebrowser)
-        navigator_icon=/usr/share/icons/hicolor/scalable/apps/qutebrowser.svg
+        navigator_icon=${OS_SHARE}/icons/hicolor/scalable/apps/qutebrowser.svg
         ;;
     netsurf)
-        navigator_icon=/usr/share/pixmaps/netsurf.xpm
+        navigator_icon=${OS_SHARE}/pixmaps/netsurf.xpm
         ;;
     midori)
-        navigator_icon=/usr/share/icons/hicolor/22x22/apps/midori.png
+        navigator_icon=${OS_SHARE}/icons/hicolor/22x22/apps/midori.png
         ;;
     dillo)
-        navigator_icon=/usr/share/pixmaps/dillo.png
+        navigator_icon=${OS_SHARE}/pixmaps/dillo.png
         ;;
     firefox)
-        navigator_icon=/usr/share/icons/hicolor/48x48/apps/firefox.png
+        navigator_icon=${OS_SHARE}/pixmaps/firefox.png
         ;;
     *)
-        navigator_icon=${ICONS}/apps/48/internet-web-browser.svg
+        navigator_icon=${OS_ICONS}/apps/48/internet-web-browser.svg
         ;;
 esac
 
@@ -97,9 +95,8 @@ then
     # ********************
 
     # Menu Title
-    eval $(grep '^NAME=' /etc/os-release)
     cat <<EOF
-<separator label="${NAME}! @ ${HOSTNAME}" />
+<separator label="${OS_NAME}! @ ${HOSTNAME}" />
 <separator />
 EOF
 
@@ -107,7 +104,7 @@ EOF
     cat <<EOF
 <item label="Terminal (urxvt)" icon="${USER_ICONS}/Utilities-terminal.svg">
 <action name="Execute"><command>urxvtcd -name Terminal</command></action> </item>
-<item label="Terminal (xterm)" icon="${ICONS}/apps/48/utilities-terminal.svg">
+<item label="Terminal (xterm)" icon="${OS_ICONS}/apps/48/utilities-terminal.svg">
 <action name="Execute"><command>xterm</command></action> </item>
 <item label="Midnight Commander" icon="${USER_ICONS}/mc.svg">
 <action name="Execute"><command>pqp mc</command></action> </item>
@@ -115,12 +112,12 @@ EOF
     if [[ -x $(command -v dolphin) ]]
     then
         cat <<EOF
-<item label="File Manager" icon="${ICONS}/apps/48/system-file-manager.svg">
+<item label="File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg">
 <action name="Execute"><command>dolphin</command></action> </item>
 EOF
     else
         [[ -x $(command -v pcmanfm) ]] && cat <<EOF
-<item label="File Manager" icon="${ICONS}/apps/48/system-file-manager.svg" >
+<item label="File Manager" icon="${OS_ICONS}/apps/48/system-file-manager.svg" >
 <action name="Execute"><command>pcmanfm</command></action> </item>
 EOF
     fi
@@ -132,19 +129,19 @@ EOF
     cat <<EOF
 <item label="${navigator^}" icon="${navigator_icon}">
 <action name="Execute"><command>pqp -n navigator</command></action> </item>
-<menu id="browsers" label="Browsers" icon="${ICONS}/apps/48/internet-web-browser.svg" execute="~/.config/openbox/menu_browsers.sh" />
+<menu id="browsers" label="Browsers" icon="${OS_ICONS}/apps/48/internet-web-browser.svg" execute="~/.config/openbox/menu_browsers.sh" />
 <separator />
 EOF
 
     # Editors
     cat <<EOF
-<item label="Emacs" icon="/usr/share/pixmaps/emacs.png">
+<item label="Emacs" icon="${OS_ICONS}/apps/48/emacs.svg">
 <action name="Execute"><command>pqp -n emacs</command></action> </item>
-<item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png">
+<item label="Geany" icon="${OS_SHARE}/icons/hicolor/48x48/apps/geany.png">
 <action name="Execute"><command>geany</command></action> </item>
 EOF
     [[ -x $(command -v kate) ]] && cat <<EOF
-<item label="Kate" icon="${ICONS}/apps/48/kate.svg">
+<item label="Kate" icon="${OS_ICONS}/apps/48/kate.svg">
 <action name="Execute"><command>kate</command></action> </item>
 EOF
     cat <<EOF
@@ -153,23 +150,23 @@ EOF
 
     # Electronics/CAD
     [[ $MENU_ELECTRONICS != no ]] && cat <<EOF
-<menu id="cad" label="Electronics" icon="/usr/share/icons/hicolor/scalable/categories/applications-electronics.svg" execute="~/.config/openbox/menu_electronics.sh" />
+<menu id="cad" label="Electronics" icon="${USER_ICONS}/applications-electronics.svg" execute="~/.config/openbox/menu_electronics.sh" />
 <separator />
 EOF
 
     # Multimedia
     cat <<EOF
-<menu id="multimedia" label="Multimedia" icon="${ICONS}/categories/32/applications-multimedia.svg" execute="~/.config/openbox/menu_multimedia.sh" />
+<menu id="multimedia" label="Multimedia" icon="${OS_ICONS}/categories/32/applications-multimedia.svg" execute="~/.config/openbox/menu_multimedia.sh" />
 <separator />
 EOF
 
     # eBooks
     cat <<EOF
-<menu id="ebooks" label="eBooks" icon="${USER_ICONS}/book-viewer.png" execute="~/.config/openbox/menu_books.sh $HOME/Books" />
+<menu id="ebooks" label="eBooks" icon="${OS_ICONS}/places/32/folder-documents.svg" execute="~/.config/openbox/menu_books.sh $HOME/Books" />
 EOF
     [[ -x $(command -v calibre) ]] && cat <<EOF
-<item label="Calibre eBook Manager" icon="/usr/share/icons/hicolor/48x48/apps/calibre-gui.png">
-<action name="Execute"><command>calibre --detach</command></action> </item>
+<item label="Calibre eBook Manager" icon="${OS_SHARE}/icons/hicolor/48x48/apps/calibre-gui.png">
+<action name="Execute"><command>calibre</command></action> </item>
 EOF
     cat <<EOF
 <separator />
@@ -177,16 +174,16 @@ EOF
 
     # Office
     cat <<EOF
-<item label="LibreOffice Calc" icon="/usr/share/icons/hicolor/48x48/apps/libreoffice-calc.png">
+<item label="LibreOffice Calc" icon="${OS_SHARE}/icons/hicolor/48x48/apps/libreoffice-calc.png">
 <action name="Execute"><command>localc</command></action> </item>
-<item label="LibreOffice Writer" icon="/usr/share/icons/hicolor/48x48/apps/libreoffice-writer.png">
+<item label="LibreOffice Writer" icon="${OS_SHARE}/icons/hicolor/48x48/apps/libreoffice-writer.png">
 <action name="Execute"><command>lowriter</command></action> </item>
 <separator />
 EOF
 
     # Virtual Machines
     [[ $MENU_VIRTUALIZATION != no ]] && cat <<EOF
-<menu id="virtualization" label="Virtualization" icon="${ICONS}/places/32/folder.svg" execute="~/.config/openbox/menu_virtualization.sh" />
+<menu id="virtualization" label="Virtualization" icon="${OS_ICONS}/places/32/folder.svg" execute="~/.config/openbox/menu_virtualization.sh" />
 <separator />
 EOF
 
@@ -199,7 +196,7 @@ EOF
 
     # Applications
     cat <<EOF
-<menu id="applications" icon="${ICONS}/places/32/folder.svg" />
+<menu id="applications" icon="${OS_ICONS}/places/32/folder.svg" />
 <separator />
 EOF
 
@@ -211,7 +208,7 @@ EOF
 
     # Openbox
     cat <<EOF
-<menu id="openbox" icon="/usr/share/pixmaps/openbox.png" />
+<menu id="openbox" icon="${OS_SHARE}/pixmaps/openbox.png" />
 <separator />
 EOF
 
@@ -223,7 +220,7 @@ EOF
 
     # Exit
     cat <<EOF
-<menu id="menu-exit" icon="${ICONS}/actions/32/application-exit.svg" />
+<menu id="menu-exit" icon="${OS_ICONS}/actions/32/application-exit.svg" />
 <separator />
 EOF
 
