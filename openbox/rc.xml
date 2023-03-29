@@ -305,71 +305,6 @@
     <keybind key="W-F11">
       <action name="ToggleDecorations"/>
     </keybind>
-    <keybind key="C-A-Escape">
-      <action name="Execute">
-        <command>xkill</command>
-      </action>
-    </keybind>
-    <keybind key="A-F2">
-      <action name="Execute">
-        <command>gmrun</command>
-      </action>
-    </keybind>
-    <keybind key="W-i">
-      <action name="Execute">
-        <command>pqp navigator</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-i">
-      <action name="Execute">
-        <command>pqp -n navigator</command>
-      </action>
-    </keybind>
-    <keybind key="W-m">
-      <action name="Execute">
-        <command>pqp mc</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-m">
-      <action name="Execute">
-        <command>pqp -n mc</command>
-      </action>
-    </keybind>
-    <keybind key="W-e">
-      <action name="Execute">
-        <command>pqp emacs</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-e">
-      <action name="Execute">
-        <command>pqp -n emacs</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-t">
-      <action name="Execute">
-        <command>pqp -n</command>
-      </action>
-    </keybind>
-    <keybind key="W-t">
-      <action name="Execute">
-        <command>pqp</command>
-      </action>
-    </keybind>
-    <keybind key="W-x">
-      <action name="Execute">
-        <command>pqp pdf</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-x">
-      <action name="Execute">
-        <command>pqp -n pdf</command>
-      </action>
-    </keybind>
-    <keybind key="W-q">
-      <action name="Execute">
-        <command>pqp gkrellm</command>
-      </action>
-    </keybind>
     <keybind key="Super_R">
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
@@ -388,98 +323,6 @@
     <keybind key="Menu">
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
-      </action>
-    </keybind>
-    <!-- Screen Brightness -->
-    <keybind key="XF86MonBrightnessUp">
-      <action name="Execute">
-        <command>xbacklight +5</command>
-      </action>
-    </keybind>
-    <keybind key="XF86MonBrightnessDown">
-      <action name="Execute">
-        <command>xbacklight -5</command>
-      </action>
-    </keybind>
-    <!-- Raise Volume -->
-    <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute">
-        <command>pqp volume up</command>
-      </action>
-    </keybind>
-    <keybind key="F15">
-      <action name="Execute">
-        <command>pqp volume up</command>
-      </action>
-    </keybind>
-    <!-- Lower Volume -->
-    <keybind key="XF86AudioLowerVolume">
-      <action name="Execute">
-        <command>pqp volume down</command>
-      </action>
-    </keybind>
-    <keybind key="F14">
-      <action name="Execute">
-        <command>pqp volume down</command>
-      </action>
-    </keybind>
-    <!-- Toggle Mute -->
-    <keybind key="XF86AudioMute">
-      <action name="Execute">
-        <command>pqp volume toggle</command>
-      </action>
-    </keybind>
-    <keybind key="S-F14">
-      <action name="Execute">
-        <command>pqp volume toggle</command>
-      </action>
-    </keybind>
-    <keybind key="W-v">
-      <action name="Execute">
-        <command>pqp volume</command>
-      </action>
-    </keybind>
-    <!-- Media Player -->
-    <keybind key="XF86AudioPlay">
-      <action name="Execute">
-        <command>pqp cmus</command>
-      </action>
-    </keybind>
-    <keybind key="S-F15">
-      <action name="Execute">
-        <command>pqp cmus</command>
-      </action>
-    </keybind>
-    <!-- Take a screenshot with spectacle when Print is pressed -->
-    <keybind key="Print">
-      <action name="Execute">
-        <command>spectacle</command>
-      </action>
-    </keybind>
-    <!-- Take a screenshot of the active window when Alt+Print are pressed -->
-    <keybind key="A-Print">
-      <action name="Execute">
-        <command>spectacle -a</command>
-      </action>
-    </keybind>
-    <keybind key="W-l">
-      <action name="Execute">
-        <command>slock</command>
-      </action>
-    </keybind>
-    <keybind key="W-c">
-      <action name="Execute">
-        <!-- <command>gsimplecal</command> -->
-        <command>
-          pqp calendar
-        </command>
-      </action>
-    </keybind>
-    <keybind key="W-g">
-      <action name="Execute">
-        <command>
-          pqp logs
-        </command>
       </action>
     </keybind>
 
@@ -1002,18 +845,6 @@
         </action>
       </keybind>
     </keybind>
-    <!-- Keybindings for running applications -->
-    <!-- CEE
-    <keybind key="W-e">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Konqueror</name>
-        </startupnotify>
-        <command>kfmclient openProfile filemanagement</command>
-      </action>
-    </keybind>
-    /CEE -->
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>

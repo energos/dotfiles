@@ -37,6 +37,9 @@ esac
 
 (sleep 2.0 && picom) &
 
+# Keyboard shortcuts
+xbindkeys
+
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
 xcape -e 'Super_L=Control_L|Menu'
