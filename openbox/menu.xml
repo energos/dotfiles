@@ -7,7 +7,7 @@
 
   <!-- The Manuals sub-menu -->
   <menu id="manuals" label="The Manuals">
-    <menu id="emacs" label="The GNU Emacs Manuals" icon="/usr/share/icons/hicolor/48x48/apps/emacs.png">
+    <menu id="emacs" label="The GNU Emacs Manuals" icon="/home/energos/.local/share/icons/emacs.png">
       <item label="The Emacs Editor">
         <action name="Execute">
           <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html</command>
@@ -41,9 +41,9 @@
       </item>
     </menu>
     <separator />
-    <item label="All About GIT" icon="/home/energos/.local/share/icons/git.png">
+    <item label="Git Documentation" icon="/home/energos/.local/share/icons/git.png">
       <action name="Execute">
-        <command>pqp navigator http://speedy/~energos/git.html</command>
+        <command>pqp navigator https://git-scm.com/doc</command>
       </action>
     </item>
     <item label="Magit User Manual" icon="/home/energos/.local/share/icons/magit.png">
