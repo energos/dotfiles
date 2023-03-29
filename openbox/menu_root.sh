@@ -236,7 +236,20 @@ EOF
 
     # Exit
     cat <<EOF
-<menu id="menu-exit" icon="${OS_ICONS}/actions/32/application-exit.svg" />
+<menu id="menu-exit" icon="${OS_ICONS}/actions/32/application-exit.svg" label="Exit">
+<item label="Log Out" icon="${OS_ICONS}/actions/32/system-log-out.svg">
+<action name="Exit"> <prompt>yes</prompt> </action>
+</item>
+<separator />
+<item label="Reboot" icon="${OS_ICONS}/actions/32/system-reboot.svg">
+<action name="Execute"> <command>loginctl reboot</command>
+<prompt>Are you sure you want to Reboot?</prompt>
+</action>
+</item>
+<item label="Shutdown" icon="${OS_ICONS}/actions/32/system-shutdown.svg">
+<action name="Execute"> <command>loginctl poweroff</command>
+<prompt>Are you sure you want to Shutdown?</prompt>
+</action> </item> </menu>
 <separator />
 EOF
 
