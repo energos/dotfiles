@@ -642,22 +642,6 @@
         <action name="Unmaximize"><direction>vertical</direction></action>
         <action name="ShrinkToEdge"><direction>south</direction></action>
       </keybind>
-      <!-- Monitor scaling -->
-      <keybind key="F1">
-        <action name="Execute">
-          <command>pqp res 1 # SCALE 1</command>
-        </action>
-      </keybind>
-      <keybind key="F2">
-        <action name="Execute">
-          <command>pqp res 2 # SCALE 1.5</command>
-        </action>
-      </keybind>
-      <keybind key="F3">
-        <action name="Execute">
-          <command>pqp res 3 # SCALE 1.65</command>
-        </action>
-      </keybind>
     </keybind>
 
     <!-- Window scaling and width resize -->
@@ -796,54 +780,6 @@
       <action name="DirectionalCycleWindows">
         <direction>down</direction>
       </action>
-    </keybind>
-    <!-- Keybindings to search the internet for the contents of the clipboard -->
-    <keybind key="W-s">
-      <keybind key="g">
-        <action name="Execute">
-          <command>pqp search google</command>
-        </action>
-      </keybind>
-      <keybind key="y">
-        <action name="Execute">
-          <command>pqp search youtube</command>
-        </action>
-      </keybind>
-      <keybind key="d">
-        <action name="Execute">
-          <command>pqp search dictionary</command>
-        </action>
-      </keybind>
-      <keybind key="u">
-        <action name="Execute">
-          <command>pqp search urban-dictionary</command>
-        </action>
-      </keybind>
-      <keybind key="k">
-        <action name="Execute">
-          <command>pqp search kabum</command>
-        </action>
-      </keybind>
-      <keybind key="t">
-        <action name="Execute">
-          <command>pqp search tweakers</command>
-        </action>
-      </keybind>
-      <keybind key="h">
-        <action name="Execute">
-          <command>pqp search hardware.info</command>
-        </action>
-      </keybind>
-      <keybind key="s">
-        <action name="Execute">
-          <command>pqp search stack-overflow</command>
-        </action>
-      </keybind>
-      <keybind key="w">
-        <action name="Execute">
-          <command>pqp search wikipedia</command>
-        </action>
-      </keybind>
     </keybind>
   </keyboard>
   <mouse>

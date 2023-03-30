@@ -161,38 +161,6 @@ case "$1" in
             [[ -n $* ]] && (sleep 0.5 && $navigator "$*" &> /dev/null &)
         fi
         ;;
-    "search")
-        case "$2" in
-            "youtube")
-                engine="https://www.youtube.com/results?search_query="
-                ;;
-            "dictionary")
-                engine="https://en.oxforddictionaries.com/definition/"
-                ;;
-            "urban-dictionary")
-                engine="https://www.urbandictionary.com/define.php?term="
-                ;;
-            "kabum")
-                engine="https://www.kabum.com.br/cgi-local/site/listagem/listagem.cgi?string="
-                ;;
-            "tweakers")
-                engine="https://tweakers.net/zoeken/?keyword="
-                ;;
-            "hardware.info")
-                engine="https://nl.hardware.info/#search:"
-                ;;
-            "stack-overflow")
-                engine="https://stackoverflow.com/search?q="
-                ;;
-            "wikipedia")
-                engine="https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search="
-                ;;
-            *)
-                engine="https://www.google.com/search?q="
-                ;;
-        esac
-        pqp navigator "$engine$(xclip -selection clipboard -o)"
-        ;;
     "mc")
         show_window ^MidnightCommander$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/mc.svg" -title "Midnight Commander" -name MidnightCommander -sl 0 -geometry 96x36 -e $@ -d
         ;;
@@ -242,31 +210,6 @@ case "$1" in
         ;;
     "calendar")
         show_window ^freakingCalendar$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36 -e bash -c "cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
-        ;;
-    "res")
-        case "$2" in
-            "1")
-                # SCALE 1
-                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 1920x1080+3840+1080 --scale 1x1 --pos 3840x1080
-                # Sometimes it doesn't work on the first try...
-                sleep 0.5
-                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 1920x1080+3840+1080 --scale 1x1 --pos 3840x1080
-                ;;
-            "2")
-                # SCALE 1.5
-                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 2880x1620+3840+540 --scale 1.5x1.5 --pos 3840x540
-                # Sometimes it doesn't work on the first try...
-                sleep 0.5
-                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 2880x1620+3840+540 --scale 1.5x1.5 --pos 3840x540
-                ;;
-            *)
-                # SCALE 1.65
-                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 3168x1782+3840+220 --scale 1.65x1.65 --pos 3840x220
-                # Sometimes it doesn't work on the first try...
-                sleep 0.5
-                xrandr --output DisplayPort-0 --auto --pos 0x0 --output HDMI-0 --auto --panning 3168x1782+3840+220 --scale 1.65x1.65 --pos 3840x220
-                ;;
-        esac
         ;;
     "ww")
         # set active window width
