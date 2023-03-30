@@ -41,3 +41,7 @@ examples:
 ---
 
 Installation: [INSTALL.md](INSTALL.md)
+
+### Credits
+
+- https://github.com/trizen/obmenu-generator

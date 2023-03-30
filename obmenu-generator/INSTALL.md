@@ -41,3 +41,7 @@
 - `cpanm Linux::DesktopFiles`
 - copy or symlink the `obmenu-generator` file inside your PATH
 - place the `schema.pl` file inside `~/.config/obmenu-generator/`
+
+### Credits
+
+- https://github.com/trizen/obmenu-generator
