@@ -34,3 +34,10 @@
 - [Arch Linux](https://aur.archlinux.org/packages/obmenu-generator/)
 - [Debian](https://software.opensuse.org/download.html?project=home%3AHead_on_a_Stick%3Aobmenu-generator&package=obmenu-generator)
 - [Slackware](https://slackbuilds.org/repository/14.2/desktop/obmenu-generator/)
+
+### FreeBSD install:
+
+- `pkg install perl5 p5-Gtk3 p5-Data-Dump p5-App-cpanminus`
+- `cpanm Linux::DesktopFiles`
+- copy or symlink the `obmenu-generator` file inside your PATH
+- place the `schema.pl` file inside `~/.config/obmenu-generator/`

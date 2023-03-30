@@ -3,7 +3,7 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
 
   <!-- Applications sub-menu -->
-  <menu id="applications" label="Applications" execute="/usr/bin/perl /usr/bin/obmenu-generator -i" />
+  <menu id="applications" label="Applications" execute="obmenu-generator -i" />
 
   <!-- The Manuals sub-menu -->
   <menu id="manuals" label="The Manuals">
