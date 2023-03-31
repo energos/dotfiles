@@ -1269,11 +1269,22 @@
       </position>
     </application>
 
+    <application class="Gsimplecal">
+      <position force="no">
+        <x>-2</x>
+        <y>-40</y>
+      </position>
+    </application>
+
     <application class="Pavucontrol">
       <position force="no">
         <x>-2</x>
         <y>-40</y>
       </position>
+    </application>
+
+    <application class="dsbmixer">
+      <desktop>all</desktop>
     </application>
 
     <application name="freakingCalendar">
