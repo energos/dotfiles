@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Load host/user specific configuration
 [[ -f ~/.pqprc ]] && . ~/.pqprc
@@ -11,16 +11,15 @@ else
     ~/.config/openbox/menu_root.sh -d > ~/.config/openbox/menu_root.xml
 fi
 
+# Evaluate XRANDR if defined (in ~/.pqprc)
+[[ $XRANDR =~ ^xrandr[[:space:]] ]] && eval $XRANDR
+
 # https://superuser.com/questions/418699/
 DPI=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
 
 THRESHOLD=${THRESHOLD:-120}
 [[ $DPI -gt $THRESHOLD ]] && HDPI="-DHIGH_DPI" || HDPI=""
 xrdb $HDPI -DXSERVER_DPI=$DPI ~/.Xresources
-
-# Evaluate XRANDR if defined (in ~/.pqprc), e.g.
-# XRANDR="xrandr --output DVI-0 --pos 0x0 --rotate left --output HDMI-0 --pos 1024x0"
-[[ $XRANDR =~ ^xrandr[[:space:]] ]] && eval $XRANDR
 
 # Get configured console keymap from /etc/conf.d/keymaps and set X keymap accordingly
 eval $(grep ^keymap= /etc/conf.d/keymaps)
