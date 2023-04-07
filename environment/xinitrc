@@ -21,13 +21,16 @@ THRESHOLD=${THRESHOLD:-120}
 [[ $DPI -gt $THRESHOLD ]] && HDPI="-DHIGH_DPI" || HDPI=""
 xrdb $HDPI -DXSERVER_DPI=$DPI ~/.Xresources
 
-# Get configured console keymap from /etc/conf.d/keymaps and set X keymap accordingly
-eval $(grep ^keymap= /etc/conf.d/keymaps)
+# Get configured console keymap from /etc/conf.d/keymaps (Gentoo) or /etc/rc.conf (FreeBSD) and set X keymap accordingly
+for file in /etc/conf.d/keymaps /etc/rc.conf; do
+    [[ -r $file ]] && eval $(grep ^keymap= $file)
+    [[ -n $keymap ]] && break
+done
 case "$keymap" in
-    br-abnt2)
+    br[.-]*)
         setxkbmap -model abnt2,pc104 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
         ;;
-    pt-latin1)
+    pt[.-]*)
         setxkbmap -model pc105 -layout pt,us -variant basic,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
         ;;
     *)
