@@ -107,6 +107,9 @@ case "$1" in
     "konsole")
         show_window ^konsole$ $HIDEDESKTOP || konsole &
         ;;
+    "kitty")
+        show_window ^kitty$ $HIDEDESKTOP || kitty &
+        ;;
     "emacs")
         show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs -fh -g +0+0" 2> /dev/null &)
         ;;

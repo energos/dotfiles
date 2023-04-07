@@ -84,6 +84,10 @@
   Mod4 + t
 "pqp -n"
   Shift+Mod4 + t
+"pqp kitty"
+  Mod4 + k
+"pqp -n kitty"
+  Shift+Mod4 + k
 "pqp gkrellm"
   Mod4 + q
 "spectacle"

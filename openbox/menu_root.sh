@@ -110,6 +110,10 @@ EOF
 <item label="XTerm" icon="${OS_ICONS}/apps/48/xterm.svg">
 <action name="Execute"><command>xterm</command></action> </item>
 EOF
+    [[ -x $(command -v kitty) ]] && cat <<EOF
+<item label="kitty" icon="${OS_SHARE}/icons/hicolor/scalable/apps/kitty.svg">
+<action name="Execute"><command>pqp -n kitty ${HOME}</command></action> </item>
+EOF
     [[ -x $(command -v konsole) ]] && cat <<EOF
 <item label="Konsole" icon="${USER_ICONS}/utilities-terminal.svg">
 <action name="Execute"><command>pqp -n konsole</command></action> </item>
