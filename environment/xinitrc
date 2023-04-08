@@ -64,14 +64,6 @@ else
         [[ $(hostname) == $SYNERGY_SERVER ]] && synergys || synergyc $SYNERGY_SERVER
     fi
 fi
-
-# Call wicd-client if wicd daemon is running
-[[ -x /etc/init.d/wicd ]] && /etc/init.d/wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
-# Call connman-gtk if connman daemon is running
-[[ -x /etc/init.d/connman ]] && /etc/init.d/connman status &> /dev/null && (connman-gtk &> /dev/null &)
-
-/usr/lib64/libexec/polkit-kde-authentication-agent-1 &
-
 # Set a sane volume. Looking at you, pulseaudio.
 pqp volume 50%
 

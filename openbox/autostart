@@ -40,6 +40,21 @@ esac
 # Keyboard shortcuts
 xbindkeys
 
+# start services UI
+# I hate those pesky *.desktop files...
+#
+# network manager UI
+service=$(command -v service || command -v rc-service)
+if [[ -n $service ]]; then
+    # Call wicd-client if wicd daemon is running
+    $service wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
+    # Call connman-gtk if connman daemon is running
+    $service connman status &> /dev/null && (connman-gtk &> /dev/null &)
+fi
+# polkit authentication UI
+service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1)
+$service &
+
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
 xcape -e 'Super_L=Control_L|Menu'
