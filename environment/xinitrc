@@ -73,18 +73,16 @@ export QT_ENABLE_HIGHDPI_SCALING=0
 pqp volume 50%
 
 # https://wiki.gentoo.org/wiki/Elogind#startx_integration
-# exec dbus-launch --exit-with-session openbox-session
-# exec openbox-session
-# exec startkde
-# exec twm
-# exec dbus-launch --exit-with-session icewm-session
-# exec icewm-session
-
+launch=$(command -v ck-launch-session)
+if [[ -z $launch ]]; then
+    launch="dbus-launch --exit-with-session"
+fi
 export WINDOW_MANAGER=${WINDOW_MANAGER:-openbox}
 case $WINDOW_MANAGER in
-    openbox)    exec dbus-launch --exit-with-session openbox-session;;
-    icewm)      exec dbus-launch --exit-with-session icewm-session;;
-    emacs)      exec dbus-launch --exit-with-session emacs -mm --debug-init -l ~/.emacs.d/exwm-desktop.el;;
+    openbox)    exec $launch openbox-session;;
+    icewm)      exec $launch icewm-session;;
+    emacs)      exec $launch emacs -mm --debug-init -l ~/.emacs.d/exwm-desktop.el;;
     w10)        VirtualBoxVM -startvm "W10" -fullscreen;;
+    bsd)        VirtualBoxVM -startvm "Beastie" -fullscreen;;
     *)          exec $WINDOW_MANAGER;;
 esac
