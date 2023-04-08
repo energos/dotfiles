@@ -57,4 +57,5 @@ $service &
 
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
-xcape -e 'Super_L=Control_L|Menu'
+eval $(grep ^HYPERVISOR= ~/.pqprc)
+[[ -z $HYPERVISOR ]] && xcape -e 'Super_L=Control_L|Menu'
