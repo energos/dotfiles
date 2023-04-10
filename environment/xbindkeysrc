@@ -109,6 +109,9 @@
   XF86MonBrightnessDown
 
 
+"wn $(xclip -o) -over | sed 's/--/\n  /g' | xmessage -buttons OK -default OK -file -"
+  Mod4 + slash
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

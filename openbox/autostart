@@ -9,7 +9,7 @@
 xsetroot -solid '#3366aa'
 
 gkrellm &
-artha &
+[[ -x $(command -v artha) ]] && (artha &)
 parcellite &
 
 # ugly hack - open pavucontrol and send it to desktop 8
