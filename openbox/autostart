@@ -14,7 +14,8 @@ parcellite &
 
 # ugly hack - open pavucontrol and send it to desktop 8
 pqp volume
-(sleep 8 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
+(sleep 5 && pqp volume 50%) &   # Set a sane volume. Looking at you, pulseaudio.
+(sleep 10 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
 
 # OS_NAME is defined in ~/.config/openbox/environment
 case $OS_NAME in

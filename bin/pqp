@@ -247,7 +247,13 @@ case "$1" in
                 amixer sget "$mute" | grep '\[off\]' &> /dev/null && amixer -q sset "$mute" unmute || amixer -q sset "$volume" 1%-
                 ;;
             "toggle")
-                amixer -q sset "$mute" toggle
+                if grep ^NAME=FreeBSD$ /etc/os-release &> /dev/null; then
+                    # 'amixer sset <scontrol> toggle' doesn't work in FreeBSD
+                    # Thanks to https://forums.freebsd.org/threads/muting-audio-with-mixer.66038/post-465154
+                    mixer pcm | grep '0:0' &> /dev/null; [ $? -eq 0 ] && mixer pcm 100 &> /dev/null || mixer pcm 0 &> /dev/null
+                else
+                    amixer -q sset "$mute" toggle
+                fi
                 ;;
             "")
                 show_window ^Pavucontrol$ 0 || pavucontrol --class=Pavucontrol --name=pavucontrol &
@@ -256,6 +262,8 @@ case "$1" in
                 [[ -n "$2" ]] && amixer -q sset "$volume" $2
                 ;;
         esac
+        # Update PulseAudio idea of current volume
+        [[ -x $(command -v pamixer) ]] && pamixer --get-volume &> /dev/null
         ;;
     "font")
         tty -s || exit

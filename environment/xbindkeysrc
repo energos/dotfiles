@@ -108,6 +108,17 @@
 "xbacklight -5"
   XF86MonBrightnessDown
 
+"pqp volume"
+  Mod4 + v
+"pqp volume down"
+  F14
+"pqp volume up"
+  F15
+"pqp volume toggle"
+  Mod4 + F14
+
+"pqp deadbeef"
+  Mod4 + F15
 
 "wn $(xclip -o) -over | sed 's/--/\n  /g' | xmessage -buttons OK -default OK -file -"
   Mod4 + slash
