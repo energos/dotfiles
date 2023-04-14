@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 #
 # These things are run when an Openbox X Session is started.
 # You may place a similar script in $HOME/.config/openbox/autostart
@@ -9,7 +7,7 @@
 xsetroot -solid '#3366aa'
 
 gkrellm &
-[[ -x $(command -v artha) ]] && (artha &)
+[ -x "$(command -v artha)" ] && (artha &)
 parcellite &
 
 # ugly hack - open pavucontrol and send it to desktop 8
@@ -48,7 +46,7 @@ xbindkeys
 #
 # network manager UI
 service=$(command -v service || command -v rc-service)
-if [[ -n $service ]]; then
+if [ -n "$service" ]; then
     # Call wicd-client if wicd daemon is running
     $service wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
     # Call connman-gtk if connman daemon is running
@@ -61,4 +59,4 @@ $service &
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
 eval $(grep ^HYPERVISOR= ~/.pqprc)
-[[ -z $HYPERVISOR ]] && xcape -e 'Super_L=Control_L|Menu'
+[ -z "$HYPERVISOR" ] && xcape -e 'Super_L=Control_L|Menu'
