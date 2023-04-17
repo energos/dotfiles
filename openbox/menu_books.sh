@@ -42,14 +42,16 @@ EOF
     cat <<EOF
 <menu id="RecentFiles" label="Recent Files" icon="${OS_ICONS}/places/32/folder-recent.svg">
 EOF
-    awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }' | while read -r book
+    awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | awk -F '[\\[\\]]' '$2 ~ /^\// { print $2 }' | head -n 10 | while read -r book
     do
         shortname
-        cat <<EOF
+        if [[ -f "$book" ]]; then
+            cat <<EOF
 <item label="${name}" icon="${USER_ICONS}/pdf.svg">
   <action name="Execute"><command>xdg-open "${book}"</command></action>
 </item>
 EOF
+        fi
     done
     cat<<EOF
 </menu>
