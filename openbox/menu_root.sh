@@ -175,6 +175,10 @@ EOF
 EOF
 
     # eBooks
+    [[ -x $(command -v okular) ]] && cat <<EOF
+<item label="Okular Viewer" icon="${OS_ICONS}/apps/48/okular.svg">
+<action name="Execute"><command>okular</command></action> </item>
+EOF
     cat <<EOF
 <menu id="ebooks" label="eBooks" icon="${OS_ICONS}/places/32/folder-documents.svg" execute="~/.config/openbox/menu_books.sh $HOME/Books" />
 EOF
