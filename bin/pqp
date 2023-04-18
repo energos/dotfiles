@@ -181,15 +181,12 @@ case "$1" in
             shift
             if [[ -z $* ]]; then
                 # No command line parameter, get file name from the last file opened by the document viewer
-                case "$(xdg-mime query default application/pdf)" in
-                    "okularApplication_pdf.desktop")
-                        file=$(grep ^File $HOME/.config/okularrc | tail -1 | cut -d = -f 2 | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }')
-                        ;;
-                    "org.pwmt.zathura.desktop")
-                        file=$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' "$HOME/.local/share/zathura/history" | sort -r | head -n 10 | awk -F '[\\[\\]]' '{ print $2 }' | xargs -d '\n' -I % sh -c '{ [[ -f "%" ]] && echo "%"; }' | tail -n +1 | head -n 1)
+                case $(xdg-mime query default application/pdf) in
+                    *zathura*)
+                        file=$(awk 'BEGIN { RS=""; FS="\n" } /^[^#]/ { print $11 " " $1 }' ~/.local/share/zathura/history | sort -r | awk -F '[\\[\\]]' '$2 ~ /^\// { print $2 }' | head -n 10 | while read -r book; do [[ -f "$book" ]] && echo $book; done | head -n 1)
                         ;;
                     *)
-                        file=$HOME/Books/default
+                        file=$(grep ^File ~/.config/okularrc | sed 's/File//g' | sort -n -r | awk -F '=' '{ print $2 }' | envsubst | while read -r book; do [[ -f "$book" ]] && echo $book; done | head -n 1)
                         ;;
                 esac
             else

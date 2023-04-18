@@ -102,6 +102,8 @@
   Control+Alt + Escape
 "pqp logs"
   Mod4 + l
+"pqp pdf"
+  Mod4 + x
 
 "xbacklight +5"
   XF86MonBrightnessUp
