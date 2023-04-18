@@ -236,21 +236,26 @@ case "$1" in
         # ;;
         volume=${ALSA_VOLUME:-Master}
         mute=${ALSA_MUTE:-Master}
+        amixer sget "$mute" | grep '\[off\]' &> /dev/null || amixer sget PCM 2> /dev/null | grep '\[0%\]' &> /dev/null && muted="YES"
+        mute_toggle ()
+        {
+            if grep ^NAME=FreeBSD$ /etc/os-release &> /dev/null; then
+                # 'amixer sset <scontrol> toggle' doesn't work in FreeBSD
+                # Thanks to https://forums.freebsd.org/threads/muting-audio-with-mixer.66038/post-465154
+                [[ $muted == "YES" ]] && amixer sset PCM 100% &> /dev/null || amixer sset PCM 0% &> /dev/null
+            else
+                amixer -q sset "$mute" toggle
+            fi
+        }
         case "$2" in
             "up")
-                amixer sget "$mute" | grep '\[off\]' &> /dev/null && amixer -q sset "$mute" unmute || amixer -q sset "$volume" 1%+
+                [[ $muted == "YES" ]] && mute_toggle || amixer -q sset "$volume" 1%+
                 ;;
             "down")
-                amixer sget "$mute" | grep '\[off\]' &> /dev/null && amixer -q sset "$mute" unmute || amixer -q sset "$volume" 1%-
+                [[ "$muted" == "YES" ]] && mute_toggle || amixer -q sset "$volume" 1%-
                 ;;
             "toggle")
-                if grep ^NAME=FreeBSD$ /etc/os-release &> /dev/null; then
-                    # 'amixer sset <scontrol> toggle' doesn't work in FreeBSD
-                    # Thanks to https://forums.freebsd.org/threads/muting-audio-with-mixer.66038/post-465154
-                    mixer pcm | grep '0:0' &> /dev/null; [ $? -eq 0 ] && mixer pcm 100 &> /dev/null || mixer pcm 0 &> /dev/null
-                else
-                    amixer -q sset "$mute" toggle
-                fi
+                mute_toggle
                 ;;
             "")
                 show_window ^Pavucontrol$ 0 || pavucontrol --class=Pavucontrol --name=pavucontrol &
