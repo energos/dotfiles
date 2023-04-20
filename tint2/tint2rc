@@ -86,7 +86,7 @@ border_width = 0
 border_sides =
 border_content_tint_weight = 0
 background_content_tint_weight = 0
-background_color = #023444 100
+background_color = #023444 0
 border_color = #777777 100
 background_color_hover = #28343a 100
 border_color_hover = #777777 100
@@ -99,7 +99,7 @@ border_width = 0
 border_sides =
 border_content_tint_weight = 0
 background_content_tint_weight = 0
-background_color = #023444 100
+background_color = #023444 0
 border_color = #777777 100
 gradient_id = 0
 background_color_hover = #28343a 100
@@ -109,7 +109,7 @@ border_color_pressed = #777777 100
 
 #-------------------------------------
 # Panel
-panel_items = L:FSC
+panel_items = LFSC
 panel_size = 100% 40
 panel_margin = 0 0
 panel_padding = 4 2 4
@@ -127,7 +127,7 @@ autohide_hide_timeout = 1.2
 autohide_height = 2
 strut_policy = none
 panel_window_name = tint2
-disable_transparency = 0
+disable_transparency = 1
 mouse_effects = 1
 font_shadow = 0
 mouse_hover_icon_asb = 100 0 10
