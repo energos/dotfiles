@@ -4,6 +4,27 @@
 # to run user-specific things.
 #
 
+
+# Autostart sequence
+#
+#  0.0 - background color
+#  0.0 - gkrellm
+#  0.0 - artha
+#  0.0 - parcellite
+#  0.0 - pavucontrol - pqp volume
+#  0.0 - mixer - dsbmixer or volumeicon
+#  0.0 - network manager
+#  0.0 - polkit
+#  0.0 - xcape
+#  1.0 - wallpaper - fehbg
+#  2.0 - picom
+#  3.0 - panel - tint2 or fbpanel
+#  4.0 - conky
+#  5.0 - set volume - pqp volume 50%
+#  6.0 - fortune
+#  7.0 - hide pavucontrol
+
+
 xsetroot -solid '#3366aa'
 
 gkrellm &
@@ -13,28 +34,28 @@ parcellite &
 # ugly hack - open pavucontrol and send it to desktop 8
 pqp volume
 (sleep 5 && pqp volume 50%) &   # Set a sane volume. Looking at you, pulseaudio.
-(sleep 10 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
+(sleep 7 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
 
 # OS_NAME is defined in ~/.config/openbox/environment
 case $OS_NAME in
     *BSD)
         # xmessage $OS_NAME is '*BSD' &
-        (sleep 0.8 && tint2) &
-        (sleep 1.8 && dsbmixer -i) &
+        (sleep 3.0 && tint2) &
+        dsbmixer -i &
         ;;
     Gentoo)
         # xmessage $OS_NAME is 'Gentoo' &
-        (sleep 0.8 && fbpanel --profile default) &
-        (sleep 1.8 && volumeicon) &
-        (sleep 3.0 && conky -q -d) &
+        (sleep 3.0 && fbpanel --profile default) &
+        volumeicon &
+        (sleep 4.0 && conky -q -d) &
         ;;
     *)
         xmessage $OS_NAME is 'unknown' &
         ;;
 esac
 
-(sleep 1.9 && $HOME/.fehbg) &
-(sleep 2.0 && hello-fortune) &
+(sleep 1.0 && $HOME/.fehbg) &
+(sleep 6.0 && hello-fortune) &
 
 (sleep 2.0 && picom) &
 
