@@ -9,6 +9,41 @@
 # Load host/user specific configuration
 [[ -f ~/.pqprc ]] && . ~/.pqprc
 
+# OS specific helper functions
+if grep ^NAME=FreeBSD$ /etc/os-release &> /dev/null; then
+    mute_toggle ()
+    {
+        # 'amixer sset <scontrol> toggle' doesn't work in FreeBSD
+        # Thanks to https://forums.freebsd.org/threads/muting-audio-with-mixer.66038/post-465154
+        [[ $muted == "YES" ]] && amixer sset PCM 100% &> /dev/null || amixer sset PCM 0% &> /dev/null
+    }
+    system_poweroff ()
+    {
+        poweroff
+        echo FreeBSD poweroff
+    }
+    system_reboot ()
+    {
+        shutdown -r now
+        echo FreeBSD reboot
+    }
+else
+    mute_toggle ()
+    {
+        amixer -q sset "$mute" toggle
+    }
+    system_poweroff ()
+    {
+        loginctl poweroff
+        echo Lixux poweroff
+    }
+    system_reboot ()
+    {
+        loginctl reboot
+        echo Linux reboot
+    }
+fi
+
 TERMINAL=urxvtcd
 ICONS=$HOME/.local/share/icons
 HIDEDESKTOP=${HIDEDESKTOP:-4}
@@ -237,16 +272,6 @@ case "$1" in
         volume=${ALSA_VOLUME:-Master}
         mute=${ALSA_MUTE:-Master}
         amixer sget "$mute" | grep '\[off\]' &> /dev/null || amixer sget PCM 2> /dev/null | grep '\[0%\]' &> /dev/null && muted="YES"
-        mute_toggle ()
-        {
-            if grep ^NAME=FreeBSD$ /etc/os-release &> /dev/null; then
-                # 'amixer sset <scontrol> toggle' doesn't work in FreeBSD
-                # Thanks to https://forums.freebsd.org/threads/muting-audio-with-mixer.66038/post-465154
-                [[ $muted == "YES" ]] && amixer sset PCM 100% &> /dev/null || amixer sset PCM 0% &> /dev/null
-            else
-                amixer -q sset "$mute" toggle
-            fi
-        }
         case "$2" in
             "up")
                 [[ $muted == "YES" ]] && mute_toggle || amixer -q sset "$volume" 1%+
@@ -329,6 +354,12 @@ case "$1" in
     "title")
         shift
         tty -s && printf '\e]0;%s\a' "$*"
+        ;;
+    "poweroff")
+        system_poweroff
+        ;;
+    "reboot")
+        system_reboot
         ;;
     *)
         $TERMINAL -title "$*" -e $@

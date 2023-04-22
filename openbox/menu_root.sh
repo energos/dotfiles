@@ -250,12 +250,12 @@ EOF
 </item>
 <separator />
 <item label="Reboot" icon="${OS_ICONS}/actions/32/system-reboot.svg">
-<action name="Execute"> <command>loginctl reboot</command>
+<action name="Execute"> <command>pqp reboot</command>
 <prompt>Are you sure you want to Reboot?</prompt>
 </action>
 </item>
 <item label="Shutdown" icon="${OS_ICONS}/actions/32/system-shutdown.svg">
-<action name="Execute"> <command>loginctl poweroff</command>
+<action name="Execute"> <command>pqp poweroff</command>
 <prompt>Are you sure you want to Shutdown?</prompt>
 </action> </item> </menu>
 <separator />
