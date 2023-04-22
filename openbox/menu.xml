@@ -7,7 +7,7 @@
 
   <!-- The Manuals sub-menu -->
   <menu id="manuals" label="The Manuals">
-    <menu id="emacs" label="The GNU Emacs Manuals" icon="/home/energos/.local/share/icons/emacs.png">
+    <menu id="emacs" label="The GNU Emacs Manuals" icon=".local/share/icons/emacs.png">
       <item label="The Emacs Editor">
         <action name="Execute">
           <command>pqp navigator https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html</command>
@@ -41,29 +41,29 @@
       </item>
     </menu>
     <separator />
-    <item label="Git Documentation" icon="/home/energos/.local/share/icons/git.png">
+    <item label="Git Documentation" icon=".local/share/icons/git.png">
       <action name="Execute">
         <command>pqp navigator https://git-scm.com/doc</command>
       </action>
     </item>
-    <item label="Magit User Manual" icon="/home/energos/.local/share/icons/magit.png">
+    <item label="Magit User Manual" icon=".local/share/icons/magit.png">
       <action name="Execute">
         <command>pqp navigator https://magit.vc/manual/magit/index.html</command>
       </action>
     </item>
     <separator />
-    <item label="The Guile Reference Manual" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
+    <item label="The Guile Reference Manual" icon=".local/share/icons/heckert_gnu.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/software/guile/manual/html_node/index.html</command>
       </action>
     </item>
-    <item label="The GNU C Reference Manual" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
+    <item label="The GNU C Reference Manual" icon=".local/share/icons/heckert_gnu.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html</command>
       </action>
     </item>
     <separator />
-    <item label="All GNU Manuals" icon="/home/energos/.local/share/icons/heckert_gnu.svg">
+    <item label="All GNU Manuals" icon=".local/share/icons/heckert_gnu.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/manual/manual.html</command>
       </action>
