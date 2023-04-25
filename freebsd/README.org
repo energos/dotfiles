@@ -1,0 +1,130 @@
+#+TITLE:   FreeBSD Configuration
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+Loose notes about [[https://freebsd.org/][FreeBSD]] configuration
+
+* Upgrade the system
+: pkg update
+: pkg upgrade
+* Install bash, mc, tmux, git and zile
+: pkg install bash bash-completion mc-nox11 tmux git zile
+* Clone this repository
+: mkdir ~/Work
+: cd ~/Work
+: git clone git@github.com:energos/dotfiles
+* Install the whole enchilada
+: ln -s Work/dotfiles/freebsd/packages.txt ~/packages.txt
+: pkg install $(cat ~/packages.txt)
+* Change shell to bash
+: chsh -s /usr/local/bin/bash <user>
+* Link config files
+: ln -s Work/dotfiles/environment/bashrc ~/.bashrc
+: ln -s Work/dotfiles/environment/bash_profile ~/.bash_profile
+: ln -s Work/dotfiles/tmux/tmux.conf ~/.tmux.conf
+: ln -s Work/dotfiles/.gitignore ~/.gitignore
+: ln -s Work/dotfiles/gitconfig ~/.gitconfig
+: ln -s Work/dotfiles/environment/Xresources ~/.Xresources
+: ln -s Work/dotfiles/environment/xinitrc ~/.xinitrc
+: ln -s Work/dotfiles/environment/xbindkeysrc ~/.xbindkeysrc
+** ~/bin
+: mkdir ~/bin
+: ln -s ../Work/dotfiles/bin/emacs-git ~/bin
+: ln -s ../Work/dotfiles/bin/emacs-nox ~/bin
+: ln -s ../Work/dotfiles/bin/hello-fortune ~/bin
+: ln -s ../Work/dotfiles/bin/nohup-open ~/bin
+: ln -s ../Work/dotfiles/bin/pqp ~/bin
+: ln -s ../Work/dotfiles/bin/urxvtcd ~/bin
+** gsimplecal
+: mkdir ~/.config/gsimplecal
+: ln -s ../../Work/dotfiles/gsimplecal/config ~/.config/gsimplecal
+** kitty
+: mkdir ~/.config/kitty
+: ln -s ../../Work/dotfiles/kitty/kitty.conf ~/.config/kitty
+** mpv
+: mkdir ~/.config/mpv
+: ln -s ../../Work/dotfiles/mpv/input.conf ~/.config/mpv
+: ln -s ../../Work/dotfiles/mpv/mpv.conf ~/.config/mpv
+** obmenu-generator
+As root:
+: pkg install perl5 p5-Gtk3 p5-Data-Dump p5-App-cpanminus
+: cpanm Linux::DesktopFiles
+As user:
+: mkdir ~/.config/obmenu-generator
+: ln -s ../../Work/dotfiles/obmenu-generator/schema.pl ~/.config/obmenu-generator
+: ln -s ../Work/dotfiles/bin/obmenu-generator ~/bin
+** openbox
+: mkdir ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/autostart ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/environment ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu.xml ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu_books.sh ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu_browsers.sh ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu_electronics.sh ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu_multimedia.sh ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu_root.sh ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/menu_virtualization.sh ~/.config/openbox
+: ln -s ../../Work/dotfiles/openbox/rc.xml ~/.config/openbox
+** picom
+: mkdir ~/.config/picom
+: ln -s ../../Work/dotfiles/picom/picom.conf ~/.config/picom
+** tint2
+: mkdir ~/.config/tint2
+: ln -s ../../Work/dotfiles/tint2/tint2rc ~/.config/tint2
+** yt-dlp
+: mkdir ~/.config/yt-dlp
+: ln -s ../../Work/dotfiles/yt-dlp/config ~/.config/yt-dlp
+** fonts
+: mkdir ~/.local/share/fonts
+: ln -s ../../../Work/dotfiles/fonts/<font> ~/.local/share/fonts
+** icons
+: mkdir ~/.local/share/icons
+: cp -R ~/Work/dotfiles/icons/* ~/.local/share/icons
+** desktop files
+: mkdir ~/.local/share/applications
+: cp ~/Work/dotfiles/applications/* ~/.local/share/applications
+* Amenities
+- feh
+- wallpaper
+- music play list
+* Synergy
+* System config
+- /boot/images
+- /boot/loader.conf
+- /boot/lua/gfx-daemon.lua
+- /etc/login.conf
+- /etc/rc.conf
+- /etc/sysctl.conf
+* Disable core dumps
+* /root
+* ~/.config
+- DSB
+- deadbeef
+- .gtkrc-2.0
+- .gkrellm
+- zathura
+- qt5ct
+- parcellite
+- gtk-2.0
+- gtk-3.0
+
+* Hiccups
+** VirtualBox Guest - Text not visible in terminals
+~/.config/picom.conf
+#+begin_verse
+# backend = "glx";
+backend = "xrender";
+#+end_verse
+** Black background with picom running
+Set a wallpaper
+** VBoxClient do not start
+Did you forget to edit ~/.pqprc?
+** xcape starts in vbox guest
+Did you forget to edit ~/.pqprc?
+** Pulseaudio high CPU load
+Unset "Show volume meters"
+** VirtuaBox guest - critical error on poweroff - guru meditation
+Run on host to poweroff the guest:
+: VBoxManage controlvm "Beastie New" poweroff
+Add to /boot/loader.conf
+: hw.efi.poweroff=0
