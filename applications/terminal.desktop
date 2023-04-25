@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=URxvt
+GenericName=Terminal emulator
+Comment=The best terminal, ever
+Exec=pqp -n
+Icon=Utilities-terminal
+Categories=System;TerminalEmulator;

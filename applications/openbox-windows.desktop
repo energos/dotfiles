@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Openbox-Windows
+GenericName=Openbox Window List
+Comment=
+Exec=xdotool key Menu
+Icon=window-list
