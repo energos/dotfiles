@@ -1,0 +1,2 @@
+* License
+[[https://github.com/be5invis/Iosevka/blob/main/LICENSE.md][SIL Open Font License v1.1]]
