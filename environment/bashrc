@@ -31,7 +31,6 @@ fi
 # preserve history
 HISTFILESIZE=100000
 HISTSIZE=100000
-HISTIGNORE="history*:?:??:pwd"
 shopt -s histappend
 
 # don't include duplicates in history
@@ -53,8 +52,8 @@ alias mc='mc -d'
 alias less='less -i'
 alias zless='zless -i'
 alias avrdude='avrdude 2>&1'
-alias poweroff='loginctl poweroff'
-alias reboot='loginctl reboot'
+alias poweroff='pqp poweroff'
+alias reboot='pqp reboot'
 # If DPI is not defined (from ~/.pqprc) default to DPI=96
 alias startX="startx -- vt$XDG_VTNR -dpi ${DPI:=96}"
 unset DPI # To unset or not to unset?
@@ -62,6 +61,7 @@ unset DPI # To unset or not to unset?
 export MC_XDG_OPEN=nohup-open
 
 # https://github.com/hedning/nix-bash-completions
+# TODO: test if ~/.nix-profile exists
 export XDG_DATA_DIRS="$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
 # If ALSA_CARD is not defined (from ~/.pqprc) default to ALSA_CARD=0
@@ -69,13 +69,17 @@ export ALSA_CARD=${ALSA_CARD:-0}
 
 stty -ixon
 
+# FreeBSD
+[[ -r /usr/local/share/bash-completion/bash_completion.sh ]] && source /usr/local/share/bash-completion/bash_completion.sh
+
 # prompt
 if [[ ${EUID} == 0 ]] ; then
     PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
 else
     # Add git branch to bash prompt
-    # try alternative location if file does not exist
+    # try alternative locations if file does not exist
     git_prompt=/usr/share/git/git-prompt.sh
+    [[ -r $git_prompt ]] || git_prompt=/usr/local/share/git-core/contrib/completion/git-prompt.sh
     [[ -r $git_prompt ]] || git_prompt=/usr/lib/git-core/git-sh-prompt
     if [[ -r $git_prompt ]] ; then
         source $git_prompt
