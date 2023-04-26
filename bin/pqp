@@ -271,7 +271,12 @@ case "$1" in
         # ;;
         volume=${ALSA_VOLUME:-Master}
         mute=${ALSA_MUTE:-Master}
-        amixer sget "$mute" | grep '\[off\]' &> /dev/null || amixer sget PCM 2> /dev/null | grep '\[0%\]' &> /dev/null && muted="YES"
+        mute_test ()
+        {
+            unset muted
+            amixer sget "$mute" | grep '\[off\]' &> /dev/null || amixer sget PCM 2> /dev/null | grep '\[0%\]' &> /dev/null && muted="YES"
+        }
+        mute_test
         case "$2" in
             "up")
                 [[ $muted == "YES" ]] && mute_toggle || amixer -q sset "$volume" 1%+
@@ -291,6 +296,16 @@ case "$1" in
         esac
         # Update PulseAudio idea of current volume
         [[ -x $(command -v pamixer) ]] && pamixer --get-volume &> /dev/null
+        # Notify
+        if [[ -n "$2" ]]; then
+            mute_test
+            if [[ $muted == "YES" ]]; then
+                dunstify -a "pqp" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:pqpVolume "Volume MUTED"
+            else
+                volume_level=$(amixer sget $volume | awk -F'[\[%]' '/Left:/ { print $2 }')
+                dunstify -a "pqp" -u low -i audio-volume-high -h string:x-dunst-stack-tag:pqpVolume -h int:value:"$volume_level" "Volume: ${volume_level}%"
+            fi
+        fi
         ;;
     "font")
         tty -s || exit

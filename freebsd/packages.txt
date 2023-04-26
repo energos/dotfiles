@@ -10,6 +10,7 @@ deadbeef
 dmenu
 drm-kmod
 dsbmixer
+dunst
 e2fsprogs
 emacs
 en-aspell
