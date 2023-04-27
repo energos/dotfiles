@@ -60,7 +60,7 @@ case $HYPERVISOR in
         # Do not start synergy if SYNERGY_SERVER is empty or not defined
         if [[ -n $SYNERGY_SERVER ]]; then
             # start a synergy server or connect to a existing one
-            [[ $(hostname) == $SYNERGY_SERVER ]] && synergys -d NOTE || synergyc -d ERROR $SYNERGY_SERVER
+            [[ $(hostname) == $SYNERGY_SERVER ]] && synergys -d ERROR || synergyc -d ERROR $SYNERGY_SERVER
         fi
         ;;
 esac
