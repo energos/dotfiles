@@ -5,7 +5,6 @@ bash-completion
 bsdinfo
 calibre
 cmake
-curl
 deadbeef
 dmenu
 drm-kmod
@@ -29,13 +28,11 @@ gsimplecal
 hack-font
 hs-ShellCheck
 htop
-hunspell
 inconsolata-ttf
 janet
 julia
 kate
 kdiff3
-kf5-breeze-icons
 kitty
 konsole
 kpat
@@ -65,8 +62,8 @@ pdf-tools
 picom
 pkg
 plasma5-polkit-kde-agent-1
-pt-hunspell
 pt_BR-aspell
+pt-hunspell
 python
 qiv
 qt5ct
