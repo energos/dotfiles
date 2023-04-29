@@ -16,7 +16,7 @@ Xft.dpi:                XSERVER_DPI
 Xcursor.size:           CURSOR_SIZE
 
 #ifdef HIGH_DPI
-Emacs.font:             Iosevka Term 11
+Emacs.font:             Iosevka Term 10
 #else
 Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
@@ -27,7 +27,7 @@ Emacs.geometry:         108x56
 Emacs.cursorBlink:      off
 
 #ifdef HIGH_DPI
-xterm*faceName:         Inconsolata:size=12
+xterm*faceName:         Inconsolata:size=11
 #else
 xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 #endif
@@ -41,7 +41,7 @@ xterm*metaSendsEscape:  true
 xterm*backarrowKey:     false
 
 #ifdef HIGH_DPI
-URxvt*font:             xft:Iosevka Term:size=11
+URxvt*font:             xft:Iosevka Term:size=10
 !URxvt.letterSpace:      0
 #else
 URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
