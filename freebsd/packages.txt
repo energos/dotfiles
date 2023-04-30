@@ -24,7 +24,6 @@ gkrellm2
 gmrun
 gnome-themes-extra
 graphviz
-gsimplecal
 hack-font
 hs-ShellCheck
 htop

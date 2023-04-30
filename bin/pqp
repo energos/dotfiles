@@ -244,7 +244,8 @@ case "$1" in
         show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x20-0-16 -e tail -Fn30 /var/log/messages
         ;;
     "calendar")
-        show_window ^freakingCalendar$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36 -e bash -c "cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
+        dont_hide=1
+        show_window ^freakingCalendar$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36$2 -e bash -c "cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
         ;;
     "ww")
         # set active window width

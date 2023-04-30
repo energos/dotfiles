@@ -88,9 +88,9 @@ border_content_tint_weight = 0
 background_content_tint_weight = 0
 background_color = #023444 0
 border_color = #777777 100
-background_color_hover = #28343a 100
+background_color_hover = #234567 100
 border_color_hover = #777777 100
-background_color_pressed = #222222 100
+background_color_pressed = #123456 100
 border_color_pressed = #777777 100
 
 # Background 8: Default task, Iconified task, Launcher
@@ -223,7 +223,7 @@ clock_padding = 10 0
 clock_background_id = 7
 clock_tooltip =
 clock_tooltip_timezone =
-clock_lclick_command = gsimplecal &
+clock_lclick_command = pqp calendar -12-48
 clock_rclick_command =
 clock_mclick_command =
 clock_uwheel_command =
