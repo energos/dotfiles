@@ -198,16 +198,16 @@ launcher_background_id = 8
 launcher_icon_background_id = 0
 launcher_icon_size = 32
 launcher_icon_asb = 98 0 0
-launcher_icon_theme = Breeze
+launcher_icon_theme = breeze
 launcher_icon_theme_override = 0
 startup_notifications = 0
 launcher_tooltip = 0
 launcher_item_app = ~/.local/share/applications/openbox-menu.desktop
 launcher_item_app = ~/.local/share/applications/openbox-windows.desktop
-# launcher_item_app = /usr/local/share/applications/thunar.desktop
+launcher_item_app = ~/.local/share/applications/filemanager.desktop
 launcher_item_app = ~/.local/share/applications/terminal.desktop
 launcher_item_app = ~/.local/share/applications/deadbeef.desktop
-launcher_item_app = /usr/local/share/applications/firefox.desktop
+launcher_item_app = ~/.local/share/applications/firefox.desktop
 launcher_item_app = ~/.local/share/applications/emacs.desktop
 
 #-------------------------------------

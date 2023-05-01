@@ -40,12 +40,10 @@ pqp volume
 case $OS_NAME in
     *BSD)
         # xmessage $OS_NAME is '*BSD' &
-        (sleep 3.0 && tint2) &
         dsbmixer -i &
         ;;
     Gentoo)
         # xmessage $OS_NAME is 'Gentoo' &
-        (sleep 3.0 && fbpanel --profile default) &
         volumeicon &
         (sleep 4.0 && conky -q -d) &
         ;;
@@ -58,6 +56,8 @@ esac
 (sleep 6.0 && hello-fortune) &
 
 (sleep 2.0 && picom) &
+
+(sleep 3.0 && tint2) &
 
 # Keyboard shortcuts
 xbindkeys
