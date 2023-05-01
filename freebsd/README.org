@@ -108,6 +108,15 @@ As user:
 - gtk-2.0
 - gtk-3.0
 
+* Default applications
+: xdg-mime default thunar.desktop inode/directory
+: xdg-mime default okularApplication_pdf.desktop application/pdf
+: xdg-mime default okularApplication_pdf.desktop image/vnd.djvu
+: xdg-mime default qiv.desktop image/jpeg
+: xdg-mime default qiv.desktop image/png
+: xdg-mime default qiv.desktop image/x-xpixmap
+: xdg-mime default qiv.desktop image/svg+xml
+: xdg-mime default qiv.desktop image/gif
 * Hiccups
 ** VirtualBox Guest - Text not visible in terminals
 ~/.config/picom.conf

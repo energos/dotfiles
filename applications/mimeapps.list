@@ -1,0 +1,9 @@
+[Default Applications]
+inode/directory=thunar.desktop
+application/pdf=okularApplication_pdf.desktop
+image/vnd.djvu=okularApplication_pdf.desktop
+image/jpeg=qiv.desktop
+image/png=qiv.desktop
+image/x-xpixmap=qiv.desktop
+image/svg+xml=qiv.desktop
+image/gif=qiv.desktop
