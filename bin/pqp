@@ -241,7 +241,7 @@ case "$1" in
         $TERMINAL -icon "$ICONS/Blue_question_mark_icon.svg" -title "$*" -sl 0 -geometry +458+0 -e sh -c "$* | less"
         ;;
     "logs")
-        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x20-0-16 -e tail -Fn30 /var/log/messages
+        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x20-0-0 -e tail -Fn30 /var/log/messages
         ;;
     "calendar")
         dont_hide=1
