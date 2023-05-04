@@ -5,6 +5,7 @@ bash-completion
 bsdinfo
 calibre
 cmake
+compat.el
 deadbeef
 dmenu
 drm-kmod
@@ -20,6 +21,7 @@ fortune-mod-freebsd-classic
 gcc
 geany
 git
+git-modes
 gkrellm2
 gmrun
 gnome-themes-extra

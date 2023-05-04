@@ -117,6 +117,79 @@ As user:
 : xdg-mime default qiv.desktop image/x-xpixmap
 : xdg-mime default qiv.desktop image/svg+xml
 : xdg-mime default qiv.desktop image/gif
+* Emacs
+
+| Gentoo        | FreeBSD    |
+|---------------+------------|
+| ace-window    |            |
+| compat        | compat.el  |
+| consult       |            |
+| corfu         |            |
+| ebuild-mode   |            |
+| emacs-daemon  |            |
+| expand-region |            |
+| flycheck      |            |
+| git-modes     | git-modes  |
+| magit         | magit      |
+| marginalia    |            |
+| orderless     |            |
+| org-mode      |            |
+| pdf-tools     | pdf-tools  |
+| use-package   |            |
+| vertico       |            |
+| vterm         |            |
+| libvterm      | libvterm   |
+| which-key     |            |
+|               |            |
+| dictionary    | dictionary |
+| slime         | slime      |
+|               |            |
+
+
+* terminal illness
+
+|             | tmux      | xterm     | urxvt   |
+|-------------+-----------+-----------+---------|
+| [home]      | "\e[1~"   | "\e[H"    | "\e[7~" |
+| [S-home]    | "\e[1;2H" | "\e[1;2H" | "\e[7$" |
+| [C-home]    | "\e[1;5H" | "\e[1;5H" | "\e[7^" |
+| [C-S-home]  | "\e[1;6H" | "\e[1;6H" | "\e[7@" |
+|             |           |           |         |
+| [end]       | "\e[4~"   | "\e[F"    | "\e[8~" |
+| [S-end]     | "\e[1;2F" | "\e[1;2F" | "\e[8$" |
+| [C-end]     | "\e[1;5F" | "\e[1;5F" | "\e[8^" |
+| [C-S-end]   | "\e[1;6F" | "\e[1;6F" | "\e[8@" |
+|             |           |           |         |
+| [prior]     | "\e[5~"   | "\e[5~"   | "\e[5~" |
+| [S-prior]   | ?         | ?         |         |
+| [C-prior]   | "\e[5;5~" | "\e[5;5~" | "\e[5^" |
+| [C-S-prior] | ?         | ?         | "\e[5@" |
+|             |           |           |         |
+| [next]      | "\e[6~"   | "\e[6~"   | "\e[6~" |
+| [S-next]    | ?         | ?         |         |
+| [C-next]    | "\e[6;5~" | "\e[6;5~" | "\e[6^" |
+| [C-S-next]  | ?         | ?         | "\e[6@" |
+|             |           |           |         |
+| [up]        | "\e[A"    | "\e[A"    | "\e[A"  |
+| [S-up]      | "\e[1;2A" | "\e[1;2A" | "\e[a"  |
+| [C-up]      | "\e[1;5A" | "\e[1;5A" | "\eOa"  |
+| [C-S-up]    | ?         | ?         | "\e[a"  |
+|             |           |           |         |
+| [down]      | "\e[B"    | "\e[B"    | "\e[B"  |
+| [S-down]    | "\e[1;2B" | "\e[1;2B" | "\e[b"  |
+| [C-down]    | "\e[1;5B" | "\e[1;5B" | "\eOb"  |
+| [C-S-down]  | ?         | "\e[1;6B" | "\e[b"  |
+|             |           |           |         |
+| [right]     | "\e[C"    | "\e[C"    | "\e[C"  |
+| [S-right]   | "\e[1;2C" | "\e[1;2C" | "\e[c"  |
+| [C-right]   | "\e[1;5C" | "\e[1;5C" | "\eOc"  |
+| [C-S-right] | ?         | "\e[1;6C" | "\e[c"  |
+|             |           |           |         |
+| [left]      | "\e[D"    | "\e[D"    | "\e[D"  |
+| [S-left]    | "\e[1;2D" | "\e[1;2D" | "\e[d"  |
+| [C-left]    | "\e[1;5D" | "\e[1;5D" | "\eOd"  |
+| [C-S-left]  | ?         | "\e[1;6D" | "\e[d"  |
+
 * Hiccups
 ** VirtualBox Guest - Text not visible in terminals
 ~/.config/picom.conf

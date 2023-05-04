@@ -39,6 +39,7 @@ xterm*background:       black
 xterm*foreground:       white
 xterm*metaSendsEscape:  true
 xterm*backarrowKey:     false
+XTerm.ttyModes:         erase ^?
 
 #ifdef HIGH_DPI
 URxvt*font:             xft:Iosevka Term:size=10
