@@ -55,17 +55,15 @@ alias avrdude='avrdude 2>&1'
 alias poweroff='pqp poweroff'
 alias reboot='pqp reboot'
 # If DPI is not defined (from ~/.pqprc) default to DPI=96
-alias startX="startx -- vt$XDG_VTNR -dpi ${DPI:=96}"
-unset DPI # To unset or not to unset?
+alias startX="startx -- -dpi ${DPI:=96}"
 
 export MC_XDG_OPEN=nohup-open
 
 # https://github.com/hedning/nix-bash-completions
-# TODO: test if ~/.nix-profile exists
-export XDG_DATA_DIRS="$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+[[ -d $HOME/.nix-profile ]] && export XDG_DATA_DIRS="$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
-# If ALSA_CARD is not defined (from ~/.pqprc) default to ALSA_CARD=0
-export ALSA_CARD=${ALSA_CARD:-0}
+# Export ALSA_CARD if defined in ~/.pqprc
+[[ -n $ALSA_CARD ]] && export ALSA_CARD
 
 stty -ixon
 

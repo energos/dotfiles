@@ -15,22 +15,36 @@ fi
 
 # Put your fun stuff here...
 
-# user's Racket
-[[ -d ${HOME}/racket/bin ]] && PATH="${HOME}/racket/bin:${PATH}"
-[[ -d ${HOME}/racket/man ]] && MANPATH="${HOME}/racket/man:${MANPATH}"
-# user's .local/bin
-[[ -d ${HOME}/.local/bin ]] && PATH="${HOME}/.local/bin:${PATH}"
-# user's bin
-[[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
-
-export PATH
-export MANPATH
-
-# add /usr/local/share/info to INFOPATH
-[[ -d /usr/local/share/info ]] && export INFOPATH="/usr/local/share/info:${INFOPATH}"
+eval $(grep '^NAME=' /etc/os-release)
+case $NAME in
+    *BSD)
+        # echo "$NAME is a *BSD"
+        ttyv=/dev/ttyv0
+        if [ -x /usr/bin/fortune ] ; then /usr/bin/fortune freebsd-tips ; fi
+        ;;
+    Gentoo)
+        # echo "$NAME is Gentoo"
+        ttyv=/dev/tty1
+        # user's Racket
+        [[ -d ${HOME}/racket/bin ]] && PATH="${HOME}/racket/bin:${PATH}"
+        [[ -d ${HOME}/racket/man ]] && MANPATH="${HOME}/racket/man:${MANPATH}"
+        # user's .local/bin
+        [[ -d ${HOME}/.local/bin ]] && PATH="${HOME}/.local/bin:${PATH}"
+        # user's bin
+        [[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
+        export PATH
+        export MANPATH
+        # add /usr/local/share/info to INFOPATH
+        [[ -d /usr/local/share/info ]] && export INFOPATH="/usr/local/share/info:${INFOPATH}"
+        ;;
+    *)
+        echo "$NAME is unknown"
+        ;;
+esac
+unset NAME
 
 # And now we start X11
 if [[ "${START_X11}" == "1" ]]; then
-    unset START_X11
-    [[ -t 0 && $(tty) == /dev/tty1 && ! $DISPLAY ]] && startX
+    # echo "Starting X..."
+    [[ -t 0 && "$(tty)" == "${ttyv}" && ! $DISPLAY ]] && exec startx -- $([[ -n ${XDG_VTNR} ]] && echo -n vt${XDG_VTNR}\ )-dpi ${DPI:=96}
 fi
