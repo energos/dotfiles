@@ -6,3 +6,4 @@ GenericName=Openbox Start Menu
 Comment=Start here
 Exec=xdotool key Control+Menu
 Icon=freebsd
+NoDisplay=true

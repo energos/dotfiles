@@ -6,3 +6,4 @@ GenericName=Openbox Window List
 Comment=
 Exec=xdotool key Menu
 Icon=window-list
+NoDisplay=true
