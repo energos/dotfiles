@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-DEBUGPORT=${DEBUGPORT:-""}
-
 # Get default navigator
 # Exclude some sub-menus if this is a crappy host
-[[ -f ~/.pqprc ]] && . ~/.pqprc > /dev/null
+if [[ -f ~/.pqprc ]]; then
+    eval $(grep '^NAVIGATOR=' ~/.pqprc)
+    eval $(grep -e '^MENU_.*=' ~/.pqprc)
+    eval $(grep '^DEBUGPORT=' ~/.pqprc)
+fi
+
+DEBUGPORT=${DEBUGPORT:-""}
 navigator=${NAVIGATOR:-firefox}
 
 # Ugly, ugly, very ugly

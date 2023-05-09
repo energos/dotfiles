@@ -19,7 +19,10 @@ fi
 unset PROMPT_COMMAND
 
 # Load host/user specific configuration
-[[ -f ~/.pqprc ]] && . ~/.pqprc
+if [[ -f ~/.pqprc ]]; then
+    eval $(grep '^ALSA_CARD=' ~/.pqprc)
+    eval $(grep '^DPI=' ~/.pqprc)
+fi
 
 # https://stackoverflow.com/questions/41046558/bashrc-how-to-check-in-what-terminal-the-shell-is-running
 # Search history
@@ -56,6 +59,7 @@ alias poweroff='pqp poweroff'
 alias reboot='pqp reboot'
 # If DPI is not defined (from ~/.pqprc) default to DPI=96
 alias startX="startx -- -dpi ${DPI:=96}"
+unset DPI
 
 export MC_XDG_OPEN=nohup-open
 

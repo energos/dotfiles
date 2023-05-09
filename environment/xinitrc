@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Load host/user specific configuration
-[[ -f ~/.pqprc ]] && . ~/.pqprc
+if [[ -f ~/.pqprc ]]; then
+    eval $(grep '^HYPERVISOR=' ~/.pqprc)
+    eval $(grep '^XRANDR=' ~/.pqprc)
+    eval $(grep '^SYNERGY_SERVER=' ~/.pqprc)
+fi
 
 # Generates the Openbox menu
 [[ -x ~/.config/openbox/menu_root.sh ]] && if [[ $MENU_DYNAMIC == no ]]

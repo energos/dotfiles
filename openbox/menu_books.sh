@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ -f ~/.pqprc ]]; then
+    eval $(grep '^DEBUGPORT=' ~/.pqprc)
+fi
+
 DEBUGPORT=${DEBUGPORT:-""}
 BOOKS=$*
 
