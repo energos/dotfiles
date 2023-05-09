@@ -24,3 +24,5 @@ export OS_SHARE
 export OS_ICONS
 export USER_ICONS
 export OS_LOGO
+
+export NO_AT_BRIDGE=1
