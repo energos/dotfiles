@@ -1,3 +1,4 @@
+# -*-Shell-script-*-
 #
 # These things are run when an Openbox X Session is started.
 # You may place a similar script in $HOME/.config/openbox/autostart
@@ -66,12 +67,16 @@ xbindkeys
 # I hate those pesky *.desktop files...
 #
 # network manager UI
-service=$(command -v service || command -v rc-service)
-if [ -n "$service" ]; then
-    # Call wicd-client if wicd daemon is running
-    $service wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
-    # Call connman-gtk if connman daemon is running
-    $service connman status &> /dev/null && (connman-gtk &> /dev/null &)
+if [ -x "$(command -v networkmgr)" ]; then
+    sudo networkmgr &
+else
+    service=$(command -v service || command -v rc-service)
+    if [ -n "$service" ]; then
+        # Call wicd-client if wicd daemon is running
+        $service wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
+        # Call connman-gtk if connman daemon is running
+        $service connman status &> /dev/null && (connman-gtk &> /dev/null &)
+    fi
 fi
 # polkit authentication UI
 service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1)
