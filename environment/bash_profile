@@ -30,6 +30,7 @@ case $NAME in
         [[ -d ${HOME}/racket/man ]] && MANPATH="${HOME}/racket/man:${MANPATH}"
         # user's .local/bin
         [[ -d ${HOME}/.local/bin ]] && PATH="${HOME}/.local/bin:${PATH}"
+        [[ -d ${HOME}/.local/share/man ]] && MANPATH="${HOME}/.local/share/man:${MANPATH}"
         # user's bin
         [[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
         export PATH
