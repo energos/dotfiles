@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Phonon Audio and Video
+Type=Application
+Comment=KDE multimedia abstraction library
+Exec=phononsettings
+TryExec=phononsettings
+Icon=preferences-desktop-sound
+Categories=AudioVideo;
+NoDisplay=true

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Horizon EDA
+Comment=Free EDA package
+Categories=Engineering;Electronics;
+Type=Application
+Terminal=false
+Icon=horizon-eda
+Exec=horizon-eda %U
