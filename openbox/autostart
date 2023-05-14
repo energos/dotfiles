@@ -45,7 +45,8 @@ case $OS_NAME in
         ;;
     Gentoo)
         # xmessage $OS_NAME is 'Gentoo' &
-        volumeicon &
+        gentoo-pipewire-launcher &
+        (sleep 5.5 && volumeicon) &
         (sleep 4.0 && conky -q -d) &
         ;;
     *)
