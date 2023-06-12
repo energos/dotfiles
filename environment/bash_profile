@@ -39,7 +39,8 @@ case $NAME in
         [[ -d /usr/local/share/info ]] && export INFOPATH="/usr/local/share/info:${INFOPATH}"
         ;;
     *)
-        echo "$NAME is unknown"
+        echo "Welcome to $NAME"
+        unset MANPAGER
         ;;
 esac
 unset NAME

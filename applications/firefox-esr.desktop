@@ -1,0 +1,27 @@
+[Desktop Entry]
+Version=1.0
+Name=Mozilla Firefox
+GenericName=Web Browser
+Comment=Browse the Web
+Exec=firefox %u
+Icon=firefox
+Terminal=false
+Type=Application
+MimeType=application/pdf;application/vnd.mozilla.xul+xml;application/xhtml+xml;text/html;text/mml;text/xml;x-scheme-handler/http;x-scheme-handler/https;
+StartupNotify=true
+Categories=Network;WebBrowser;
+Keywords=web;browser;internet;
+Actions=new-window;new-private-window;profile-manager-window;
+NoDisplay=true
+
+[Desktop Action new-window]
+Name=Open a New Window
+Exec=firefox --new-window %u
+
+[Desktop Action new-private-window]
+Name=Open a New Private Window
+Exec=firefox --private-window %u
+
+[Desktop Action profile-manager-window]
+Name=Open the Profile Manager
+Exec=firefox --ProfileManager
