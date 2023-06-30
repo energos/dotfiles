@@ -125,6 +125,24 @@
 "wn $(xclip -o) -over | sed 's/--/\n  /g' | xmessage -buttons OK -default OK -file -"
   Mod4 + slash
 
+"rofi -show drun"
+  Mod4 + space
+
+"rofi -show run"
+  Shift+Mod4 + space
+
+"rofi -show window"
+  Shift + Menu
+
+"rofi -show windowcd"
+  Mod4 + Tab
+
+"rofi -show file-browser-extended"
+  Mod4 + f
+
+"rofi-esp"
+  Mod4 + Return
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
