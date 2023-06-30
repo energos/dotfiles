@@ -120,7 +120,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>5</number>
+    <number>9</number>
     <firstdesk>1</firstdesk>
     <names>
       <!-- set names up here if you want to, like this:
@@ -207,34 +207,24 @@
         <to>5</to>
       </action>
     </keybind>
-    <keybind key="W-S-1">
-      <action name="SendToDesktop">
-        <to>1</to>
-        <wrap>no</wrap>
+    <keybind key="W-6">
+      <action name="GoToDesktop">
+        <to>6</to>
       </action>
     </keybind>
-    <keybind key="W-S-2">
-      <action name="SendToDesktop">
-        <to>2</to>
-        <wrap>no</wrap>
+    <keybind key="W-7">
+      <action name="GoToDesktop">
+        <to>7</to>
       </action>
     </keybind>
-    <keybind key="W-S-3">
-      <action name="SendToDesktop">
-        <to>3</to>
-        <wrap>no</wrap>
+    <keybind key="W-8">
+      <action name="GoToDesktop">
+        <to>8</to>
       </action>
     </keybind>
-    <keybind key="W-S-4">
-      <action name="SendToDesktop">
-        <to>4</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-S-5">
-      <action name="SendToDesktop">
-        <to>5</to>
-        <wrap>no</wrap>
+    <keybind key="W-9">
+      <action name="GoToDesktop">
+        <to>9</to>
       </action>
     </keybind>
     <keybind key="A-F10">
@@ -245,6 +235,9 @@
     </keybind>
     <keybind key="A-F11">
       <action name="ToggleFullscreen"/>
+    </keybind>
+    <keybind key="A-F4">
+      <action name="Close"/>
     </keybind>
     <keybind key="W-F5">
       <action name="Lower"/>
@@ -258,68 +251,11 @@
     <keybind key="W-F8">
       <action name="Resize"/>
     </keybind>
+    <keybind key="W-F10">
+      <action name="ShowMenu"> <menu>client-menu</menu> </action>
+    </keybind>
     <keybind key="W-F11">
       <action name="ToggleDecorations"/>
-    </keybind>
-    <keybind key="C-A-Escape">
-      <action name="Execute">
-        <command>xkill</command>
-      </action>
-    </keybind>
-    <keybind key="A-F2">
-      <action name="Execute">
-        <command>gmrun</command>
-      </action>
-    </keybind>
-    <keybind key="W-i">
-      <action name="Execute">
-        <command>pqp navigator</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-i">
-      <action name="Execute">
-        <command>pqp -n navigator</command>
-      </action>
-    </keybind>
-    <keybind key="W-m">
-      <action name="Execute">
-        <command>brocket -a claws-mail</command>
-      </action>
-    </keybind>
-    <keybind key="W-e">
-      <action name="Execute">
-        <command>pqp emacs</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-e">
-      <action name="Execute">
-        <command>pqp -n emacs</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-t">
-      <action name="Execute">
-        <command>pqp -n</command>
-      </action>
-    </keybind>
-    <keybind key="W-t">
-      <action name="Execute">
-        <command>pqp</command>
-      </action>
-    </keybind>
-    <keybind key="W-x">
-      <action name="Execute">
-        <command>pqp pdf</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-x">
-      <action name="Execute">
-        <command>pqp -n pdf</command>
-      </action>
-    </keybind>
-    <keybind key="W-q">
-      <action name="Execute">
-        <command>pqp gkrellm</command>
-      </action>
     </keybind>
     <keybind key="Super_R">
       <action name="ShowMenu">
@@ -341,78 +277,14 @@
         <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
-    <!-- Raise Volume -->
-    <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute">
-        <command>pqp volume up</command>
+    <keybind key="C-XF86MenuKB">
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
       </action>
     </keybind>
-    <keybind key="F15">
-      <action name="Execute">
-        <command>pqp volume up</command>
-      </action>
-    </keybind>
-    <!-- Lower Volume -->
-    <keybind key="XF86AudioLowerVolume">
-      <action name="Execute">
-        <command>pqp volume down</command>
-      </action>
-    </keybind>
-    <keybind key="F14">
-      <action name="Execute">
-        <command>pqp volume down</command>
-      </action>
-    </keybind>
-    <!-- Toggle Mute -->
-    <keybind key="XF86AudioMute">
-      <action name="Execute">
-        <command>pqp volume toggle</command>
-      </action>
-    </keybind>
-    <keybind key="S-F14">
-      <action name="Execute">
-        <command>pqp volume toggle</command>
-      </action>
-    </keybind>
-    <!-- Media Player -->
-    <keybind key="XF86AudioPlay">
-      <action name="Execute">
-        <command>pqp cmus</command>
-      </action>
-    </keybind>
-    <keybind key="S-F15">
-      <action name="Execute">
-        <command>pqp cmus</command>
-      </action>
-    </keybind>
-    <!-- Take a screenshot with spectacle when Print is pressed -->
-    <keybind key="Print">
-      <action name="Execute">
-        <command>spectacle</command>
-      </action>
-    </keybind>
-    <!-- Take a screenshot of the active window when Alt+Print are pressed -->
-    <keybind key="A-Print">
-      <action name="Execute">
-        <command>spectacle -a</command>
-      </action>
-    </keybind>
-    <keybind key="W-l">
-      <action name="Execute">
-        <command>slock</command>
-      </action>
-    </keybind>
-    <keybind key="W-c">
-      <action name="Execute">
-        <!-- <command>gsimplecal</command> -->
-        <command>
-          urxvtcd -title CALENDAR -geometry 70x36 -e sh -c "cal --color=always `date +%Y`; setterm -cursor off; read -n 1 -s -p 'Press any key to exit!'"
-        </command>
-      </action>
-    </keybind>
-    <keybind key="W-space">
-      <action name="Execute">
-        <command>dmenu_raise.sh</command>
+    <keybind key="XF86MenuKB">
+      <action name="ShowMenu">
+        <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
 
@@ -732,68 +604,6 @@
         <action name="Unmaximize"><direction>vertical</direction></action>
         <action name="ShrinkToEdge"><direction>south</direction></action>
       </keybind>
-      <!-- Monitor scaling -->
-      <keybind key="F1">
-        <action name="Execute">
-          <command>pqp res 1 # SCALE 1</command>
-        </action>
-      </keybind>
-      <keybind key="F2">
-        <action name="Execute">
-          <command>pqp res 2 # SCALE 1.5</command>
-        </action>
-      </keybind>
-      <keybind key="F3">
-        <action name="Execute">
-          <command>pqp res 3 # SCALE 1.65</command>
-        </action>
-      </keybind>
-    </keybind>
-
-    <!-- Window scaling and width resize -->
-    <keybind key="W-8">
-      <!-- resize windows width to fraction of monitor width -->
-      <!-- x/8  -->
-      <keybind key="1">
-        <action name="MoveResizeTo">
-          <width>1/8</width>
-        </action>
-      </keybind>
-      <keybind key="2">
-        <action name="MoveResizeTo">
-          <width>2/8</width>
-        </action>
-      </keybind>
-      <keybind key="3">
-        <action name="MoveResizeTo">
-          <width>3/8</width>
-        </action>
-      </keybind>
-      <keybind key="4">
-        <action name="MoveResizeTo">
-          <width>4/8</width>
-        </action>
-      </keybind>
-      <keybind key="5">
-        <action name="MoveResizeTo">
-          <width>5/8</width>
-        </action>
-      </keybind>
-      <keybind key="6">
-        <action name="MoveResizeTo">
-          <width>6/8</width>
-        </action>
-      </keybind>
-      <keybind key="7">
-        <action name="MoveResizeTo">
-          <width>7/8</width>
-        </action>
-      </keybind>
-      <keybind key="8">
-        <action name="MoveResizeTo">
-          <width>8/8</width>
-        </action>
-      </keybind>
     </keybind>
 
     <!-- Move to next Edge in given direction -->
@@ -813,31 +623,8 @@
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
-    <!-- Keybindings for windows -->
-    <keybind key="A-F4">
-      <action name="Close"/>
-    </keybind>
-    <keybind key="A-Escape">
-      <action name="Lower"/>
-      <action name="FocusToBottom"/>
-      <action name="Unfocus"/>
-    </keybind>
-    <keybind key="A-space">
-      <action name="ShowMenu">
-        <menu>client-menu</menu>
-      </action>
-    </keybind>
     <!-- Keybindings for window switching -->
     <keybind key="A-Tab">
-      <action name="NextWindow">
-        <finalactions>
-          <action name="Focus"/>
-          <action name="Raise"/>
-          <action name="Unshade"/>
-        </finalactions>
-      </action>
-    </keybind>
-    <keybind key="W-Tab">
       <action name="NextWindow">
         <finalactions>
           <action name="Focus"/>
@@ -887,66 +674,6 @@
         <direction>down</direction>
       </action>
     </keybind>
-    <!-- Keybindings to search the internet for the contents of the clipboard -->
-    <keybind key="W-s">
-      <keybind key="g">
-        <action name="Execute">
-          <command>pqp search google</command>
-        </action>
-      </keybind>
-      <keybind key="y">
-        <action name="Execute">
-          <command>pqp search youtube</command>
-        </action>
-      </keybind>
-      <keybind key="d">
-        <action name="Execute">
-          <command>pqp search dictionary</command>
-        </action>
-      </keybind>
-      <keybind key="u">
-        <action name="Execute">
-          <command>pqp search urban-dictionary</command>
-        </action>
-      </keybind>
-      <keybind key="k">
-        <action name="Execute">
-          <command>pqp search kabum</command>
-        </action>
-      </keybind>
-      <keybind key="t">
-        <action name="Execute">
-          <command>pqp search tweakers</command>
-        </action>
-      </keybind>
-      <keybind key="h">
-        <action name="Execute">
-          <command>pqp search hardware.info</command>
-        </action>
-      </keybind>
-      <keybind key="s">
-        <action name="Execute">
-          <command>pqp search stack-overflow</command>
-        </action>
-      </keybind>
-      <keybind key="w">
-        <action name="Execute">
-          <command>pqp search wikipedia</command>
-        </action>
-      </keybind>
-    </keybind>
-    <!-- Keybindings for running applications -->
-    <!-- CEE
-    <keybind key="W-e">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Konqueror</name>
-        </startupnotify>
-        <command>kfmclient openProfile filemanagement</command>
-      </action>
-    </keybind>
-    /CEE -->
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
@@ -1434,6 +1161,31 @@
       <position force="no">
         <x>-32</x>
         <y>-64</y>
+      </position>
+    </application>
+
+    <application class="Gsimplecal">
+      <position force="no">
+        <x>-2</x>
+        <y>-40</y>
+      </position>
+    </application>
+
+    <application class="Pavucontrol">
+      <position force="no">
+        <x>-2</x>
+        <y>-40</y>
+      </position>
+    </application>
+
+    <application class="dsbmixer">
+      <desktop>all</desktop>
+    </application>
+
+    <application name="freakingCalendar">
+      <position force="no">
+        <x>center</x>
+        <y>center</y>
       </position>
     </application>
 
