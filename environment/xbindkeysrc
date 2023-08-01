@@ -114,13 +114,21 @@
   Mod4 + v
 "pqp volume down"
   F14
+"pqp volume down"
+  XF86AudioLowerVolume
 "pqp volume up"
   F15
+"pqp volume up"
+  XF86AudioRaiseVolume
 "pqp volume toggle"
   Mod4 + F14
+"pqp volume toggle"
+  Mod4 + XF86AudioLowerVolume
 
 "pqp deadbeef"
   Mod4 + F15
+"pqp deadbeef"
+  Mod4 + XF86AudioRaiseVolume
 
 "wn $(xclip -o) -over | sed 's/--/\n  /g' | xmessage -buttons OK -default OK -file -"
   Mod4 + slash

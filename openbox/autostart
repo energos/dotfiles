@@ -32,16 +32,16 @@ gkrellm &
 [ -x "$(command -v artha)" ] && (artha &)
 parcellite &
 
-# ugly hack - open pavucontrol and send it to desktop 8
-pqp volume
-(sleep 5 && pqp volume 50%) &   # Set a sane volume. Looking at you, pulseaudio.
-(sleep 7 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
-
 # OS_NAME is defined in ~/.config/openbox/environment
 case $OS_NAME in
     *BSD)
         # xmessage $OS_NAME is '*BSD' &
         dsbmixer -i &
+        # ugly hack - open pavucontrol and send it to desktop 8
+        pqp volume
+        # Set a sane volume. Looking at you, pulseaudio.
+        (sleep 5 && pqp volume 50%) &
+        (sleep 7 && xdotool set_desktop_for_window $(xdotool search --classname ^Pavucontrol$ | tail -n 1) 8) &
         ;;
     Gentoo)
         # xmessage $OS_NAME is 'Gentoo' &

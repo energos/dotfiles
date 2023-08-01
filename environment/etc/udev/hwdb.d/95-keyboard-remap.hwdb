@@ -1,0 +1,4 @@
+evdev:input:b0003v0483p5710e0111*
+   KEYBOARD_KEY_70039=bookmarks
+   KEYBOARD_KEY_70047=volumedown
+   KEYBOARD_KEY_70048=volumeup
