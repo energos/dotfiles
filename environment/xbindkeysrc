@@ -145,7 +145,7 @@
 "rofi -show windowcd"
   Mod4 + Tab
 
-"rofi -show file-browser-extended"
+"rofi -show filebrowser"
   Mod4 + f
 
 "rofi-esp"
