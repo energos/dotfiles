@@ -49,6 +49,12 @@ case $OS_NAME in
         (sleep 5.5 && volumeicon) &
         (sleep 4.0 && conky -q -d) &
         ;;
+    Void)
+        # xmessage $OS_NAME is 'Void Linux' &
+        pipewire &
+        (sleep 1 && pipewire-pulse) &
+        (sleep 2 && wireplumber) &
+        ;;
     *)
         xmessage $OS_NAME is 'unknown' &
         ;;

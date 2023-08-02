@@ -38,6 +38,15 @@ case $NAME in
         # add /usr/local/share/info to INFOPATH
         [[ -d /usr/local/share/info ]] && export INFOPATH="/usr/local/share/info:${INFOPATH}"
         ;;
+    Void)
+        # echo "$NAME is Void Linux"
+        ttyv=/dev/tty1
+        # user's .local/bin
+        [[ -d ${HOME}/.local/bin ]] && PATH="${HOME}/.local/bin:${PATH}"
+        # user's bin
+        [[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
+        export PATH
+        ;;
     *)
         echo "Welcome to $NAME"
         unset MANPAGER
