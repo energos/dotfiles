@@ -151,6 +151,9 @@
 "rofi-esp"
   Mod4 + Return
 
+"xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto"
+  Mod4 + Print
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
