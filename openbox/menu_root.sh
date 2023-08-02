@@ -29,7 +29,7 @@ case $navigator in
         navigator_icon=${OS_SHARE}/pixmaps/dillo.png
         ;;
     firefox)
-        navigator_icon=${OS_SHARE}/pixmaps/firefox.png
+        navigator_icon=${OS_SHARE}/icons/hicolor/32x32/apps/firefox.png
         ;;
     *)
         navigator_icon=${OS_ICONS}/apps/48/internet-web-browser.svg
