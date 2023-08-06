@@ -57,12 +57,15 @@ case $HYPERVISOR in
         # If host is a VirtualBox guest
         # run Guest Additions client
         [[ -x $(command -v VBoxClient-all) ]] && VBoxClient-all
+        [[ -x $(command -v spice-vdagent) ]] && spice-vdagent
         # turn off screensaver
         xset s off -dpms
         # Why? Why? Pause is detected as Num_Lock???
         xmodmap -e 'keycode 77 = F15'   # Remap Num_Lock
         # scroll wheel issues in FreeBSD guests
         xmodmap -e 'pointer = 1 2 3 4 5 0 0 0 0 0 0 0'
+        # Automatically set screen resolution
+        xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto
         ;;
     *)
         # If host is not a VirtualBox guest
