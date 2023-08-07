@@ -15,7 +15,8 @@
  * Override URL bar enlargement
  * https://support.mozilla.org/en-US/questions/1294934
  */
-@import url(userChrome.1294934.css);
+/* It is no longer necessary */
+/* @import url(userChrome.1294934.css); */
 
 /***********************************************************************
  * Hide all tab Close buttons
@@ -25,8 +26,9 @@
 /***********************************************************************
 /* Move "Close Multiple Tabs" and "Close Tab" entries to bottom
  */
-#context_closeTabOptions { -moz-box-ordinal-group: 8 !important; }
-#tabContextMenu menuitem[label="Close Tab"] { -moz-box-ordinal-group: 9 !important; }
+/* It doesn't work anymore */
+/* #context_closeTabOptions { -moz-box-ordinal-group: 8 !important; } */
+/* #tabContextMenu menuitem[label="Close Tab"] { -moz-box-ordinal-group: 9 !important; } */
 
 /***********************************************************************
  * Hide Navigation from context menu
