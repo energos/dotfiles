@@ -32,7 +32,7 @@ our $SCHEMA = [
     #          COMMAND                 LABEL              ICON
     {item => ['xdg-open .',       'File Manager', 'system-file-manager']},
     {item => ['pqp -n',           'Terminal',     'Utilities-terminal']},
-    {item => ['xdg-open http://', 'Web Browser',  'web-browser']},
+    {item => ['xdg-open http://', 'Web Browser',  'applications-internet']},
     {item => ['gmrun',            'Run command',  'system-run']},
 
     {sep => 'Categories'},
@@ -49,7 +49,7 @@ our $SCHEMA = [
     {cat => ['office',      'Office',      'applications-office']},
     {cat => ['emulator',    'Emulators',   'terminal-distrobox-icon']},
     {cat => ['other',       'Other',       'applications-other']},
-    {cat => ['settings',    'Settings',    'applications-accessories']},
+    {cat => ['settings',    'Settings',    'preferences-system']},
     {cat => ['system',      'System',      'applications-system']},
 
     #             LABEL          ICON
