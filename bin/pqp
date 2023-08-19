@@ -261,35 +261,35 @@ case "$1" in
         sleep 0.01 && wmctrl -r :ACTIVE: -e "0,-1,-1,-1,$2" &
         ;;
     "volume")
-        if [[ -x $(command -v pulsemixer) ]]; then
+        if [[ -x $(command -v pamixer) ]]; then
             case "$2" in
                 "up")
-                    [[ $(pulsemixer --get-mute) == 1 ]] && pulsemixer --unmute || pulsemixer --change-volume +1 --unmute
+                    [[ $(pamixer --get-mute) == "true" ]] && pamixer -u || pamixer -i 1 -u
                     ;;
                 "down")
-                    [[ $(pulsemixer --get-mute) == 1 ]] && pulsemixer --unmute || pulsemixer --change-volume -1 --unmute
+                    [[ $(pamixer --get-mute) == "true" ]] && pamixer -u || pamixer -d 1 -u
                     ;;
                 "toggle")
-                    pulsemixer --toggle-mute
+                    pamixer -t
                     ;;
                 "")
                     show_window ^Pavucontrol$ 0 || pavucontrol --class=Pavucontrol --name=pavucontrol &
                     ;;
                 *)
-                    [[ -n "$2" ]] && pulsemixer --set-volume $2
+                    [[ -n "$2" ]] && pamixer --set-volume $2
                     ;;
             esac
             # Notify
             if [[ -n "$2" ]]; then
-                if [[  $(pulsemixer --get-mute) == 1  ]]; then
+                if [[  $(pamixer --get-mute) == "true"  ]]; then
                     dunstify -a "pqp" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:pqpVolume "Volume MUTED"
                 else
-                    volume_level=$(pulsemixer --get-volume | awk -F ' ' '{ print $1 }')
+                    volume_level=$(pamixer --get-volume)
                     dunstify -a "pqp" -u low -i audio-volume-high -h string:x-dunst-stack-tag:pqpVolume -h int:value:"$volume_level" "Volume: ${volume_level}%"
                 fi
             fi
         else
-            # Clean this horrible mess.
+            # Clean this horrible mess...
             volume=${ALSA_VOLUME:-Master}
             mute=${ALSA_MUTE:-Master}
             mute_test ()
