@@ -6,7 +6,7 @@ cat <<EOF
 <openbox_pipe_menu>
 EOF
 [[ -x $(command -v cmus) ]] && cat <<EOF && crappy=no
-<item label="C* Music Player" icon="${OS_SHARE}/icons/Adwaita/48x48/mimetypes/audio-x-generic.png">
+<item label="C* Music Player" icon="${USER_ICONS}/Audio-x-generic.svg">
 <action name="Execute"><command>pqp -h cmus</command></action>
 </item>
 EOF
