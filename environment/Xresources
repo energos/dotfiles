@@ -18,7 +18,8 @@ Xcursor.size:           CURSOR_SIZE
 #ifdef HIGH_DPI
 Emacs.font:             Iosevka Term 10
 #else
-Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+!Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+Emacs.font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 #endif
 Emacs.verticalScrollBars: off
 Emacs.menuBar:          off
@@ -29,7 +30,9 @@ Emacs.cursorBlink:      off
 #ifdef HIGH_DPI
 xterm*faceName:         Inconsolata:size=11
 #else
-xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+!xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+!xterm*font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
+xterm*faceName:         terminus:pixelsize=14
 #endif
 xterm*termName:         xterm-256color
 xterm*iconHint:         .local/share/icons/utilities-terminal.xpm
@@ -45,7 +48,8 @@ XTerm.ttyModes:         erase ^?
 URxvt*font:             xft:Iosevka Term:size=10
 !URxvt.letterSpace:      0
 #else
-URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+!URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
+URxvt*font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 #endif
 URxvt*termName:         rxvt-unicode-256color
 URxvt*scrollBar:        false
