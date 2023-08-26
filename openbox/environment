@@ -12,6 +12,10 @@ case $NAME in
         OS_SHARE=/usr/share
         OS_LOGO=${USER_ICONS}/gentoo.svg
         ;;
+    Void)
+        OS_SHARE=/usr/share
+        OS_LOGO=/usr/share/void-artwork/void-logo.svg
+        ;;
     *)
         OS_SHARE=/usr/share
         ;;

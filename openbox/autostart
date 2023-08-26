@@ -54,6 +54,7 @@ case $OS_NAME in
         pipewire &
         (sleep 1 && pipewire-pulse) &
         (sleep 2 && wireplumber) &
+        (sleep 5.5 && volumeicon) &
         ;;
     *)
         xmessage $OS_NAME is 'unknown' &
@@ -83,13 +84,20 @@ else
         $service wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
         # Call connman-gtk if connman daemon is running
         $service connman status &> /dev/null && (connman-gtk &> /dev/null &)
+    else
+        if [ -x "$(command -v cmst)" ]; then
+            cmst -m &
+        fi
     fi
 fi
 # polkit authentication UI
-service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1)
+service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1 || command -v /usr/libexec/polkit-kde-authentication-agent-1)
 $service &
 
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
 eval $(grep ^HYPERVISOR= ~/.pqprc)
 [ -z "$HYPERVISOR" ] && xcape -e 'Super_L=Control_L|Menu'
+
+# Test
+# echo "And the shell is $SHELL" | xmessage -file - &
