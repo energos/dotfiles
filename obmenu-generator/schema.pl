@@ -70,20 +70,21 @@ our $SCHEMA = [
     {beg => ['Advanced Settings', 'applications-engineering']},
 
       # Configuration files
-      {item => ["$editor ~/.conkyrc",              'Conky RC',    'text-x-generic']},
-      {item => ["$editor ~/.config/tint2/tint2rc", 'Tint2 Panel', 'text-x-generic']},
+      {item => ["$editor ~/.config/conky/conky.conf", 'Conky RC',           'text-x-generic']},
+      {item => ["$editor ~/.xbindkeysrc",             'Keyboard Shortcuts', 'text-x-generic']},
+      {item => ["$editor ~/.config/tint2/tint2rc",    'Tint2 Panel',        'text-x-generic']},
 
       # obmenu-generator category
       {beg => ['Obmenu-Generator', 'accessories-text-editor']},
         {item => ["$editor ~/.config/obmenu-generator/schema.pl", 'Menu Schema', 'text-x-generic']},
         {item => ["$editor ~/.config/obmenu-generator/config.pl", 'Menu Config', 'text-x-generic']},
 
-        {sep  => undef},
-        {item => ['obmenu-generator -s -c',    'Generate a static menu',             'accessories-text-editor']},
-        {item => ['obmenu-generator -s -i -c', 'Generate a static menu with icons',  'accessories-text-editor']},
-        {sep  => undef},
-        {item => ['obmenu-generator -p',       'Generate a dynamic menu',            'accessories-text-editor']},
-        {item => ['obmenu-generator -p -i',    'Generate a dynamic menu with icons', 'accessories-text-editor']},
+        # {sep  => undef},
+        # {item => ['obmenu-generator -s -c',    'Generate a static menu',             'accessories-text-editor']},
+        # {item => ['obmenu-generator -s -i -c', 'Generate a static menu with icons',  'accessories-text-editor']},
+        # {sep  => undef},
+        # {item => ['obmenu-generator -p',       'Generate a dynamic menu',            'accessories-text-editor']},
+        # {item => ['obmenu-generator -p -i',    'Generate a dynamic menu with icons', 'accessories-text-editor']},
         {sep  => undef},
 
         {item => ['obmenu-generator -d', 'Refresh cache', 'view-refresh']},
