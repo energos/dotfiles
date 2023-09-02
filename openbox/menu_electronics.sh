@@ -10,6 +10,11 @@ EOF
   <action name="Execute"><command>kicad</command></action>
 </item>
 EOF
+[[ -x /var/lib/flatpak/exports/bin/cc.arduino.IDE2 ]] && cat <<EOF && crappy=no
+<item label="Arduino IDE v2" icon="/var/lib/flatpak/exports/share/icons/hicolor/scalable/apps/cc.arduino.IDE2.svg">
+  <action name="Execute"><command>/var/lib/flatpak/exports/bin/cc.arduino.IDE2</command></action>
+</item>
+EOF
 [[ -x $(command -v eagle) ]] && cat <<EOF && crappy=no
 <item label="Eagle PCB" icon="${OS_SHARE}/pixmaps/eagle-7.3.0-icon50.png">
   <action name="Execute"><command>eagle</command></action>
