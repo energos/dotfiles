@@ -78,6 +78,8 @@ case $HYPERVISOR in
         ;;
 esac
 
+xhost +si:localuser:$USER
+
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_FONT_DPI=$DPI
 export QT_ENABLE_HIGHDPI_SCALING=0
