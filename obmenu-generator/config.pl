@@ -74,5 +74,5 @@ our $CONFIG = {
   "locale_support"      => 1,
   "missing_icon"        => "gtk-missing-image",
   "terminal"            => "xterm",
-  "VERSION"             => 0.91,
+  "VERSION"             => 0.93,
 }

@@ -5,31 +5,47 @@ crappy=yes
 cat <<EOF
 <openbox_pipe_menu>
 EOF
-[[ -x $(command -v kicad) ]] && cat <<EOF && crappy=no
-<item label="KiCad" icon="${OS_SHARE}/icons/hicolor/48x48/apps/kicad.png">
-  <action name="Execute"><command>kicad</command></action>
+
+[[ -x ~/.local/share/flatpak/exports/bin/cc.arduino.IDE2 ]] && cat <<EOF && crappy=no
+<item label="Arduino IDE v2" icon=".local/share/flatpak/exports/share/icons/hicolor/scalable/apps/cc.arduino.IDE2.svg">
+  <action name="Execute"><command>.local/share/flatpak/exports/bin/cc.arduino.IDE2</command></action>
 </item>
 EOF
+
 [[ -x /var/lib/flatpak/exports/bin/cc.arduino.IDE2 ]] && cat <<EOF && crappy=no
 <item label="Arduino IDE v2" icon="/var/lib/flatpak/exports/share/icons/hicolor/scalable/apps/cc.arduino.IDE2.svg">
   <action name="Execute"><command>/var/lib/flatpak/exports/bin/cc.arduino.IDE2</command></action>
 </item>
 EOF
-[[ -x $(command -v eagle) ]] && cat <<EOF && crappy=no
-<item label="Eagle PCB" icon="${OS_SHARE}/pixmaps/eagle-7.3.0-icon50.png">
-  <action name="Execute"><command>eagle</command></action>
-</item>
-EOF
+
 [[ -x $(command -v mcu8051ide) ]] && cat <<EOF && crappy=no
 <item label="MCU 8051 IDE" icon="${OS_SHARE}/pixmaps/mcu8051ide.png">
   <action name="Execute"><command>mcu8051ide</command></action>
 </item>
 EOF
+
+cat <<EOF
+<separator />
+EOF
+
+[[ -x $(command -v kicad) ]] && cat <<EOF && crappy=no
+<item label="KiCad" icon="${OS_SHARE}/icons/hicolor/48x48/apps/kicad.png">
+  <action name="Execute"><command>kicad</command></action>
+</item>
+EOF
+
+[[ -f $HOME/.local/share/applications/eagle.desktop ]] && cat <<EOF && crappy=no
+<item label="Eagle PCB" icon="$HOME/.local/share/icons/eagle.png">
+  <action name="Execute"><command>gio launch $HOME/.local/share/applications/eagle.desktop</command></action>
+</item>
+EOF
+
 [[ "$crappy" == "yes" ]] && cat <<EOF
 <item label="Get yourself a better computer, kid!" icon="${OS_ICONS}/emotes/22/face-wink.svg">
 </item>
 EOF
 cat <<EOF
+<separator />
 <menu id="datasheets" label="Datasheets" icon="${OS_ICONS}/places/32/folder-documents.svg" execute="~/.config/openbox/menu_books.sh $HOME/Datasheets" />
 EOF
 cat <<EOF
