@@ -149,7 +149,7 @@
 "rofi -show filebrowser"
   Mod4 + f
 
-"rofi-esp"
+"bukumarks"
   Mod4 + Return
 
 "xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto"

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+index=$(buku --nostdin -p -f 5 | awk -F '\t' '{ print $1".   "$2"  ("$3")"}' | rofi -dmenu -i -p "Bookmarks" -format d)
+[[ -z $index ]] && exit
+
+raw=$(buku --nostdin -p $index -f 4)
+url=$(echo -n "$raw" | awk -F '\t' '{ print $2 }')
+title=$(echo -n "$raw" | awk -F '\t' '{ print $3 }')
+notification=$(echo -n "Opening \"$title\"")
+
+# echo "index        = $index"
+# echo "raw          = $raw"
+# echo "notification = $notification"
+# echo "url          = $url"
+# exit
+
+notify-send "$notification" --icon=dialog-information
+xdg-open $url
