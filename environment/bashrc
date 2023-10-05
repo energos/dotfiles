@@ -39,6 +39,7 @@ export BLOCKSIZE=M
 # your favorite editor is ~/bin/emacs-nox
 export EDITOR=emacs-nox
 
+alias idf_env='. $HOME/esp/esp-idf/export.sh'
 alias emacs='emacs-nox'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'

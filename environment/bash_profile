@@ -60,9 +60,19 @@ if [[ -f ~/.pqprc ]]; then
     eval $(grep '^DPI=' ~/.pqprc)
 fi
 if [[ "${START_X11}" == "1" ]]; then
-    # echo "Starting X..."
     # [[ -t 0 && "$(tty)" == "${ttyv}" && ! $DISPLAY ]] && exec startx -- $([[ -n ${XDG_VTNR} ]] && echo -n vt${XDG_VTNR}\ )-dpi ${DPI:=96}
-    [[ -t 0 && "$(tty)" == "${ttyv}" && ! $DISPLAY ]] && startx -- $([[ -n ${XDG_VTNR} ]] && echo -n vt${XDG_VTNR}\ )-dpi ${DPI:=96}
+    if [[ -t 0 && "$(tty)" == "${ttyv}" && ! $DISPLAY ]]; then
+        echo -n "Starting X"
+        sleep 1
+        echo -n "."
+        sleep 1
+        echo -n "."
+        sleep 1
+        echo "."
+        sleep 1
+        echo "...right now!"
+        startx -- $([[ -n ${XDG_VTNR} ]] && echo -n vt${XDG_VTNR}\ )-dpi ${DPI:=96}
+    fi
 fi
 unset ttyv
 unset DPI
