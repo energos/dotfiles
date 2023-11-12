@@ -365,25 +365,18 @@
 ;; Optional customizations
 (setq
  ;;  corfu-cycle t                 ;; Enable cycling for `corfu-next/previous'
- ;;  corfu-auto t                  ;; Enable auto completion
- ;;  corfu-separator ?\s           ;; Orderless field separator
- corfu-quit-at-boundary nil        ;; Never quit at completion boundary
- ;; corfu-quit-no-match nil        ;; Never quit, even if there is no match
+ corfu-auto t                      ;; Enable auto completion
+ corfu-separator ?\s               ;; Orderless field separator
+ corfu-quit-at-boundary 'separator ;; Quit at completion boundary
+ corfu-quit-no-match 'separator    ;; Quit if there is no match and no separator
  ;; corfu-preview-current nil      ;; Disable current candidate preview
  ;; corfu-preselect 'prompt        ;; Preselect the prompt
  ;; corfu-on-exact-match nil       ;; Configure handling of exact matches
  ;; corfu-scroll-margin 5          ;; Use scroll margin
-
- ;; ;; https://github.com/Gavinok/emacs.d/blob/main/init.el
- ;; corfu-cycle t                  ;; Allows cycling through candidates
- corfu-auto nil                    ;; Enable auto completion
- corfu-auto-prefix 3
- corfu-auto-delay 0.0
- ;; corfu-echo-documentation 0.25  ;; Enable documentation for completions
- ;; corfu-preview-current 'insert  ;; Do not preview current candidate
- ;; corfu-preselect-first nil
- ;; corfu-on-exact-match nil       ;; Don't auto expand tempel snippets
  )
+
+(bind-keys :map corfu-map
+           ("M-SPC"      . corfu-insert-separator))
 
 ;; Enable Corfu only for certain modes.
 ;; :hook ((prog-mode . corfu-mode)
@@ -459,6 +452,12 @@
 ;;   :hook ((elixir-mode . lsp-deferred)
 ;;          (lsp-mode . lsp-enable-which-key-integration))
 ;;   :commands (lsp lsp-deferred))
+
+;; https://clangd.llvm.org/installation
+(require 'eglot)
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 
 ;; ;; elixir-mode
 ;; ;; https://github.com/elixir-editors/emacs-elixir
