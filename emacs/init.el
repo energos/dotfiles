@@ -174,10 +174,10 @@
 
 ;; minions
 ;; https://github.com/tarsius/minions
-(use-package minions
-  :config
-  (setq minions-mode-line-lighter "[+]")
-  (minions-mode))
+(unless (require 'minions nil t)
+  (use-package minions))
+(setq minions-mode-line-lighter "[+]")
+(minions-mode)
 
 ;; ;; treemacs
 ;; ;; https://github.com/Alexander-Miller/treemacs
@@ -390,26 +390,26 @@
 
 ;; embark
 ;; https://github.com/oantolin/embark
-(use-package embark
-  :bind
-  (("C-."   . embark-act)         ;; pick some comfortable binding
-   ("H-."   . embark-act)
-   ("C-;"   . embark-dwim)        ;; good alternative: M-.
-   ("H-<f13>" . embark-dwim)
-   ("C-h B" . embark-bindings))   ;; alternative for `describe-bindings'
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-  :config
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+(unless (require 'embark nil t)
+  (use-package embark))
+(bind-keys
+ ("C-."     . embark-act)         ;; pick some comfortable binding
+ ("H-."     . embark-act)
+ ("C-;"     . embark-dwim)        ;; good alternative: M-.
+ ("H-<f13>" . embark-dwim)
+ ("C-h B"   . embark-bindings))   ;; alternative for `describe-bindings'
+;; Optionally replace the key help with a completing-read interface
+(setq prefix-help-command #'embark-prefix-help-command)
+;; Hide the mode line of the Embark live/completions buffers
+(add-to-list 'display-buffer-alist
+             '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+               nil
+               (window-parameters (mode-line-format . none))))
+
 ;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+(unless (require 'embark-consult nil t)
+  (use-package embark-consult))
+(add-hook 'embark-collect-mode #'consult-preview-at-point-mode)
 
 ;; useful ??
 
@@ -454,10 +454,11 @@
 ;;   :commands (lsp lsp-deferred))
 
 ;; https://clangd.llvm.org/installation
-(require 'eglot)
+(unless (require 'eglot nil t)
+  (use-package eglot))
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'c-mode-hook #'eglot-ensure)
+(add-hook 'c++-mode-hook #'eglot-ensure)
 
 ;; ;; elixir-mode
 ;; ;; https://github.com/elixir-editors/emacs-elixir
@@ -474,7 +475,8 @@
 
 ;; htmlize
 ;; https://github.com/hniksic/emacs-htmlize
-(use-package htmlize)
+(unless (require 'htmlize nil t)
+  (use-package htmlize))
 
 ;; pdf-tools
 ;; https://github.com/vedang/pdf-tools
