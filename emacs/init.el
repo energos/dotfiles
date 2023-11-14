@@ -240,8 +240,10 @@
 ;; https://packages.gentoo.org/packages/app-emacs/orderless
 (unless (require 'orderless nil t)
   (use-package orderless))
+;; https://github.com/minad/corfu/issues/136
 (setq completion-styles '(orderless basic)
-      completion-category-overrides '((file (styles basic partial-completion))))
+      completion-category-overrides '((file (styles basic partial-completion))
+                                      (eglot (styles orderless basic))))
 
 ;; marginalia
 ;; https://github.com/minad/marginalia
