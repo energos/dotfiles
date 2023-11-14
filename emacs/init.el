@@ -69,6 +69,11 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq backward-delete-char-untabify-method nil)
+;; TAB starts symbol completion in programming modes
+(add-hook
+     'prog-mode-hook
+      (lambda ()
+      (local-set-key (kbd "<tab>") #'indent-for-tab-command)))
 (electric-indent-mode -1)
 
 (when (eq system-type 'windows-nt)
@@ -367,9 +372,9 @@
 ;; Optional customizations
 (setq
  ;;  corfu-cycle t                 ;; Enable cycling for `corfu-next/previous'
- corfu-auto t                      ;; Enable auto completion
+ corfu-auto nil                    ;; Disable auto completion
  corfu-separator ?\s               ;; Orderless field separator
- corfu-quit-at-boundary 'separator ;; Quit at completion boundary
+ corfu-quit-at-boundary nil        ;; Never quit at completion boundary
  corfu-quit-no-match 'separator    ;; Quit if there is no match and no separator
  ;; corfu-preview-current nil      ;; Disable current candidate preview
  ;; corfu-preselect 'prompt        ;; Preselect the prompt
