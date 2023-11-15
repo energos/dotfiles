@@ -466,6 +466,11 @@
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 (add-hook 'c-mode-hook #'eglot-ensure)
 (add-hook 'c++-mode-hook #'eglot-ensure)
+(add-hook 'eglot-managed-mode-hook
+          (lambda ()
+            (setq-local eldoc-echo-area-use-multiline-p nil)
+            (eldoc-mode -1)))
+(setq eglot-ignored-server-capabilities '(:documentHighlightProvider))
 
 ;; ;; elixir-mode
 ;; ;; https://github.com/elixir-editors/emacs-elixir
