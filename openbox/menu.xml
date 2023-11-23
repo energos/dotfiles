@@ -57,15 +57,21 @@
         <command>pqp navigator https://www.gnu.org/software/guile/manual/html_node/index.html</command>
       </action>
     </item>
-    <item label="The GNU C Reference Manual" icon=".local/share/icons/heckert_gnu.svg">
-      <action name="Execute">
-        <command>pqp navigator https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html</command>
-      </action>
-    </item>
     <separator />
     <item label="All GNU Manuals" icon=".local/share/icons/heckert_gnu.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/manual/manual.html</command>
+      </action>
+    </item>
+    <separator />
+    <item label="The GNU C Reference Manual" icon=".local/share/icons/C_Logo.png">
+      <action name="Execute">
+        <command>pqp navigator https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html</command>
+      </action>
+    </item>
+    <item label="The GNU C Library Reference Manual" icon=".local/share/icons/C_Logo.png">
+      <action name="Execute">
+        <command>pqp navigator https://sourceware.org/glibc/manual/html_mono/libc.html</command>
       </action>
     </item>
   </menu>
