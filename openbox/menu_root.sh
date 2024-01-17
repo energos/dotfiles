@@ -195,11 +195,15 @@ EOF
 EOF
 
     # Office
-    cat <<EOF
+   [[ -x $(command -v localc) ]] && separator=1 && cat <<EOF
 <item label="LibreOffice Calc" icon="${OS_SHARE}/icons/hicolor/48x48/apps/libreoffice-calc.png">
 <action name="Execute"><command>localc</command></action> </item>
+EOF
+   [[ -x $(command -v lowriter) ]] && separator=1 && cat <<EOF
 <item label="LibreOffice Writer" icon="${OS_SHARE}/icons/hicolor/48x48/apps/libreoffice-writer.png">
 <action name="Execute"><command>lowriter</command></action> </item>
+EOF
+   [[ -n $separator ]] && unset separator && cat <<EOF
 <separator />
 EOF
 
