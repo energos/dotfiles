@@ -6,25 +6,25 @@ cat <<EOF
 <openbox_pipe_menu>
 EOF
 
-[[ -x ~/.local/share/flatpak/exports/bin/cc.arduino.IDE2 ]] && cat <<EOF && crappy=no
+[[ -x ~/.local/share/flatpak/exports/bin/cc.arduino.IDE2 ]] && separator=1 && cat <<EOF && crappy=no
 <item label="Arduino IDE v2" icon=".local/share/flatpak/exports/share/icons/hicolor/scalable/apps/cc.arduino.IDE2.svg">
   <action name="Execute"><command>.local/share/flatpak/exports/bin/cc.arduino.IDE2</command></action>
 </item>
 EOF
 
-[[ -x /var/lib/flatpak/exports/bin/cc.arduino.IDE2 ]] && cat <<EOF && crappy=no
+[[ -x /var/lib/flatpak/exports/bin/cc.arduino.IDE2 ]] && separator=1 && cat <<EOF && crappy=no
 <item label="Arduino IDE v2" icon="/var/lib/flatpak/exports/share/icons/hicolor/scalable/apps/cc.arduino.IDE2.svg">
   <action name="Execute"><command>/var/lib/flatpak/exports/bin/cc.arduino.IDE2</command></action>
 </item>
 EOF
 
-[[ -x $(command -v mcu8051ide) ]] && cat <<EOF && crappy=no
+[[ -x $(command -v mcu8051ide) ]] && separator=1 && cat <<EOF && crappy=no
 <item label="MCU 8051 IDE" icon="${OS_SHARE}/pixmaps/mcu8051ide.png">
   <action name="Execute"><command>mcu8051ide</command></action>
 </item>
 EOF
 
-cat <<EOF
+[[ -n $separator ]] && unset separator && cat <<EOF
 <separator />
 EOF
 
