@@ -795,6 +795,23 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;;    (elixir . t)
 ;;    ))
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   ;; (ditaa . nil)
+   ;; (dot . t)
+   ;; (calc . t)
+   (shell . t)
+   (emacs-lisp . t)
+   ;; (gnuplot . t)
+   ;; (ruby . t)
+   ;; (C . t)
+   ;; (python . t)
+   ;; (scheme . t)
+   ;; (forth . t)
+   ;; (elixir . t)
+   ))
+
 ;; ;; --- DANGER! ---
 ;; ;; Avaliar código sem exigir confirmação
 ;; ;; https://orgmode.org/manual/Code-evaluation-security.html
