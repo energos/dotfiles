@@ -79,6 +79,8 @@ case $HYPERVISOR in
 esac
 
 xhost +si:localuser:$USER
+# Workaround for slock authentication issue
+xhost +local:
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_FONT_DPI=$DPI
