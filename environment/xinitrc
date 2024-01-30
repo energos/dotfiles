@@ -82,6 +82,9 @@ xhost +si:localuser:$USER
 # Workaround for slock authentication issue
 xhost +local:
 
+# Avoid kglobalaccel and xbindkeys conflict
+(sleep 2 && qdbus org.kde.kglobalaccel /kglobalaccel blockGlobalShortcuts true) &
+
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_FONT_DPI=$DPI
 export QT_ENABLE_HIGHDPI_SCALING=0
