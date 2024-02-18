@@ -131,7 +131,7 @@
   Mod4 + XF86AudioRaiseVolume
 
 # "wn $(xclip -o) -over | sed 's/--/\n  /g' | xmessage -buttons OK -default OK -file -"
-"dict -d wn $(xclip -o) | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK -default OK -file -"
+"dict -d wn $(xclip -o) 2>&1 | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK -default OK -file -"
   Mod4 + slash
 
 "rofi -show drun"
