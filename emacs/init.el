@@ -592,10 +592,10 @@
   (setq calibredb-library-alist '(("~/Library")))
   (setq calibredb-date-width 0))
 
-;; nix-mode
-;; https://github.com/NixOS/nix-mode
-(use-package nix-mode
-  :mode "\\.nix\\'")
+;; ;; nix-mode
+;; ;; https://github.com/NixOS/nix-mode
+;; (use-package nix-mode
+;;   :mode "\\.nix\\'")
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
