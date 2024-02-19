@@ -56,6 +56,15 @@ case $OS_NAME in
         (sleep 2 && wireplumber) &
         (sleep 5.5 && volumeicon) &
         ;;
+    "Devuan GNU/Linux")
+        # xmessage $OS_NAME is 'Devuan' &
+        # This is a freaking mess
+        killall daemon
+        /usr/bin/daemon --respawn --pidfiles=$XDG_RUNTIME_DIR --name=pipewire /usr/bin/pipewire
+        /usr/bin/daemon --respawn --pidfiles=$XDG_RUNTIME_DIR --name=pipewire-wireplumber /usr/bin/wireplumber
+        /usr/bin/daemon --respawn --pidfiles=$XDG_RUNTIME_DIR --name=pipewire-pulse /usr/bin/pipewire-pulse
+        # (sleep 5.5 && volumeicon) &
+        ;;
     *)
         xmessage $OS_NAME is 'unknown' &
         ;;

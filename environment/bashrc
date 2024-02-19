@@ -67,6 +67,8 @@ stty -ixon
 
 # FreeBSD
 [[ -r /usr/local/share/bash-completion/bash_completion.sh ]] && source /usr/local/share/bash-completion/bash_completion.sh
+# Debian/Devuan
+[[ -r /etc/bash_completion ]] && source /etc/bash_completion
 
 # prompt
 if [[ ${EUID} == 0 ]] ; then
