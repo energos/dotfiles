@@ -73,7 +73,7 @@ esac
 (sleep 1.0 && $HOME/.fehbg) &
 (sleep 6.0 && hello-fortune) &
 
-(sleep 2.0 && picom) &
+(sleep 2.0 && picom -b) &
 
 (sleep 3.0 && tint2) &
 
