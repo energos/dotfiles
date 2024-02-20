@@ -253,7 +253,7 @@ case "$1" in
         ;;
     "calendar")
         dont_hide=1
-        show_window ^freakingCalendar$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36$2 -e bash -c "cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
+        show_window ^freakingCalendar$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36$2 -e bash -c "[[ -x \"$(command -v ncal)\" ]] && ncal -b $(date +%Y) || cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
         ;;
     "ww")
         # set active window width
