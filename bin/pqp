@@ -408,7 +408,7 @@ case "$1" in
         system_reboot
         ;;
     *)
-        $TERMINAL -title "$*" -e $@
+        $TERMINAL -title "$*" -e sh -c "echo Running $*...; $@; sleep 2"
 esac
 
 exit 0
