@@ -206,7 +206,6 @@ launcher_item_app = ~/.local/share/applications/openbox-menu.desktop
 launcher_item_app = ~/.local/share/applications/openbox-windows.desktop
 launcher_item_app = ~/.local/share/applications/filemanager.desktop
 launcher_item_app = ~/.local/share/applications/terminal.desktop
-launcher_item_app = ~/.local/share/applications/deadbeef.desktop
 launcher_item_app = ~/.config/tint2/web-browser.desktop
 launcher_item_app = ~/.local/share/applications/emacs.desktop
 

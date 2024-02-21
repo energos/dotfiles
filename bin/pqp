@@ -212,7 +212,11 @@ case "$1" in
         show_window ^cmusMusicPlayer$ 0 || $TERMINAL -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -title "C* Music Player" -sl 0 -geometry 64x18-0+0 -e cmus
         ;;
     "deadbeef")
-        show_window ^Deadbeef$ 0 || deadbeef &> /dev/null &
+        if [[ -x $(command -v deadbeef) ]]; then
+            show_window ^Deadbeef$ 0 || deadbeef &> /dev/null &
+        else
+            pqp cmus
+        fi
         ;;
     "pdf")
         if ! show_window "^org.pwmt.zathura$|^okular$|^qpdfview$" $HIDEDESKTOP; then
