@@ -16,6 +16,10 @@ case $NAME in
         OS_SHARE=/usr/share
         OS_LOGO=/usr/share/void-artwork/void-logo.svg
         ;;
+    "Devuan GNU/Linux")
+        OS_SHARE=/usr/share
+        OS_LOGO=${USER_ICONS}/emblem-devuan.svg
+        ;;
     *)
         OS_SHARE=/usr/share
         ;;

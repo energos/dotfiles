@@ -127,6 +127,20 @@
     </item>
   </menu>
 
+  <!-- About Devuan GNU/Linux sub-menu -->
+  <menu id="about-Devuan GNU/Linux" label="About Devuan GNU/Linux">
+    <item label="Release Info">
+      <action name="Execute">
+        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+      </action>
+    </item>
+    <item label="Devuan GNU/Linux Home Page">
+      <action name="Execute">
+        <command>pqp navigator https://www.devuan.org/</command>
+      </action>
+    </item>
+  </menu>
+
   <!-- About Void Linux sub-menu -->
   <menu id="about-Void" label="About Void Linux">
     <item label="Release Info">
