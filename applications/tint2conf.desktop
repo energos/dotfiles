@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+
+Name=Tint2 Settings
+
+GenericName=Panel configurator
+
+Comment=Tool to configure the tint2 panel
+
+Exec=tint2conf
+Icon=tint2conf
+Terminal=false
+Categories=Settings;DesktopSettings;
+MimeType=application/x-tint2-theme
+
+NoDisplay=true

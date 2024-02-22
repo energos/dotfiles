@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Midnight Commander editor
+Comment=Edit text files
+Exec=mcedit
+Icon=MidnightCommander
+Terminal=true
+Type=Application
+Categories=Utility;TextEditor;
+Keywords=editor;console;text;
+NoDisplay=true

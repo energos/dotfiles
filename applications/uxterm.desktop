@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=UXTerm
+GenericName=Terminal Emulator
+Comment=xterm wrapper for Unicode environments
+Exec=uxterm
+Terminal=false
+Icon=mini.xterm
+Categories=System;TerminalEmulator;
+NoDisplay=true

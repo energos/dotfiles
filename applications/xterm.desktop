@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=XTerm
+GenericName=Terminal Emulator
+Comment=The second best terminal
+Exec=xterm
+Terminal=false
+Icon=xterm-color
+Categories=System;TerminalEmulator;

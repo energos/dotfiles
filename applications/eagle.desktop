@@ -1,6 +1,7 @@
 [Desktop Entry]
 Categories=Electronics;Engineering;
 Comment=Design a printed circuit board.
+TryExec=distrobox
 Exec=distrobox enter ubuntu16 -e eagle %U
 GenericName=PCB Designer
 Icon=eagle

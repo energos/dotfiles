@@ -8,28 +8,26 @@ Categories=AudioVideo;Player;GTK;
 Terminal=false
 Type=Application
 Icon=deadbeef
-X-PulseAudio-Properties=media.role=music
-
-X-Ayatana-Desktop-Shortcuts=Play;Pause;Stop;Next;Prev
-
+TryExec=deadbeef
+Exec=deadbeef
 Keywords=Sound;Music;Audio;Player;Musicplayer;MP3
 
-[Desktop Action Play]
-Name=Play
-Exec=deadbeef --play
-
-[Desktop Action Pause]
-Name=Pause
-Exec=deadbeef --pause
-
-[Desktop Action Stop]
-Name=Stop
-Exec=deadbeef --stop
-
-[Desktop Action Next]
-Name=Next
-Exec=deadbeef --next
-
-[Desktop Action Previous]
-Name=Prev
-Exec=deadbeef --prev
+#[Desktop Action Play]
+#Name=Play
+#Exec=deadbeef --play
+#
+#[Desktop Action Pause]
+#Name=Pause
+#Exec=deadbeef --pause
+#
+#[Desktop Action Stop]
+#Name=Stop
+#Exec=deadbeef --stop
+#
+#[Desktop Action Next]
+#Name=Next
+#Exec=deadbeef --next
+#
+#[Desktop Action Previous]
+#Name=Prev
+#Exec=deadbeef --prev
