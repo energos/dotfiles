@@ -82,26 +82,21 @@ xbindkeys
 
 # start services UI
 # I hate those pesky *.desktop files...
+# I'll use /etc/xdg/autostart, I promise
 #
 # network manager UI
 if [ -x "$(command -v networkmgr)" ]; then
+    # FreeBSD. To be removed...
     sudo networkmgr &
+elif [ -x "$(command -v cmst)" ]; then
+    cmst -m &
 else
-    service=$(command -v service || command -v rc-service)
-    if [ -n "$service" ]; then
-        # Call wicd-client if wicd daemon is running
-        $service wicd status &> /dev/null && (wicd-client -t &> /dev/null &)
-        # Call connman-gtk if connman daemon is running
-        $service connman status &> /dev/null && (connman-gtk &> /dev/null &)
-    else
-        if [ -x "$(command -v cmst)" ]; then
-            cmst -m &
-        fi
-    fi
+    connman-gtk &> /dev/null &
 fi
+#
 # polkit authentication UI
-service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1 || command -v /usr/libexec/polkit-kde-authentication-agent-1)
-$service &
+service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1 || command -v /usr/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1)
+(sleep 2.5 && $service) &
 
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
