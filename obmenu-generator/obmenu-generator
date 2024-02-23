@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# Copyright (C) 2010-2022 Daniel "Trizen" Șuteu <echo dHJpemVuQHByb3Rvbm1haWwuY29tCg== | base64 -d>.
+# Copyright (C) 2010-2023 Daniel "Trizen" Șuteu <echo dHJpemVuQHByb3Rvbm1haWwuY29tCg== | base64 -d>.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 # Name: obmenu-generator
 # License: GPLv3
 # Created: 25 March 2011
-# Latest edit: 06 September 2022
+# Edited: 01 September 2023
 # https://github.com/trizen/obmenu-generator
 
 use 5.014;
@@ -35,7 +35,7 @@ use 5.014;
 use Linux::DesktopFiles;
 
 my $pkgname = 'obmenu-generator';
-my $version = '0.91';
+my $version = '0.93';
 
 our ($CONFIG, $SCHEMA);
 my $output_h = \*STDOUT;
@@ -48,17 +48,19 @@ my $home_dir =
   || (getpwuid($<))[7]
   || `echo -n ~`;
 
-my $xdg_config_home = "$home_dir/.config";
+my $xdg_config_home = $ENV{XDG_CONFIG_HOME} || "$home_dir/.config";
+my $xdg_cache_home  = $ENV{XDG_CACHE_HOME}  || "$home_dir/.cache";
 
 my $menu_id         = "root-menu";
 my $menu_label_text = "Applications";
 my $config_dir      = "$xdg_config_home/$pkgname";
+my $cache_dir       = "$xdg_cache_home/$pkgname";
 my $schema_file     = "$config_dir/schema.pl";
 my $config_file     = "$config_dir/config.pl";
 my $openbox_conf    = "$xdg_config_home/openbox";
 my $menufile        = "$openbox_conf/menu.xml";
-my $cache_db        = "$config_dir/cache.db";
-my $icons_dir       = "$config_dir/icons";
+my $cache_db        = "$cache_dir/cache.db";
+my $icons_dir       = "$cache_dir/icons";
 
 sub usage {
     print <<"HELP";
@@ -202,6 +204,12 @@ if (not -d $config_dir) {
       or die "$0: can't create configuration directory `$config_dir': $!\n";
 }
 
+if (not -d $cache_dir) {
+    require File::Path;
+    File::Path::make_path($cache_dir)
+      or die "$0: can't create cache directory `$cache_dir': $!\n";
+}
+
 if ($with_icons and not -d $icons_dir) {
     remove_database($cache_db);
     require File::Path;
@@ -298,12 +306,23 @@ if ($CONFIG{VERSION} != $version) {
     dump_configuration();
 }
 
+#<<<
+my @desktop_files_paths = do {
+    my %seen;
+    grep { !$seen{$_}++ } (
+        ($ENV{XDG_DATA_DIRS} ? split(/:/, $ENV{XDG_DATA_DIRS}) : ()),
+        @{$CONFIG{'Linux::DesktopFiles'}{desktop_files_paths}},
+    );
+};
+#>>>
+
 my $desk_obj = Linux::DesktopFiles->new(
     %{$CONFIG{'Linux::DesktopFiles'}},
+    desktop_files_paths => \@desktop_files_paths,
 
     categories => [map { exists($_->{cat}) ? $_->{cat}[0] : () } @$SCHEMA],
 
-    keys_to_keep => ['Name', 'Exec',
+    keys_to_keep => ['Name', 'Exec', 'Path',
                      ($with_icons ? 'Icon' : ()),
                      (
                       ref($CONFIG{'Linux::DesktopFiles'}{skip_entry}) eq 'ARRAY'
@@ -515,10 +534,11 @@ foreach my $file ($desk_obj->get_desktop_files) {
         %info = (
             Name => $entry->{Name} // next,
             Exec => $entry->{Exec} // next,
+            Path => $entry->{Path} // '',
 
             (
              $with_icons
-             ? (Icon => check_icon($entry->{Icon}))
+             ? (Icon => check_icon($entry->{Icon}) // '')
              : ()
             ),
 
@@ -526,6 +546,15 @@ foreach my $file ($desk_obj->get_desktop_files) {
             __MTIME__      => $mtime,
         );
 #>>>
+
+        # Support for the Path key
+        if ($info{Path} ne '') {
+            require Encode;
+            my $path = Encode::decode_utf8($info{Path});
+            my $exec = Encode::decode_utf8($info{Exec});
+            $exec = "$^X -e 'chdir(\$ARGV[0]) && exec(\$ARGV[1])' \Q$path\E \Q$exec\E";
+            $info{Exec} = Encode::encode_utf8($exec);
+        }
 
         eval {
 
@@ -563,7 +592,7 @@ foreach my $schema (@$SCHEMA) {
         exists($categories{my $category = lc($schema->{cat}[0]) =~ tr/_a-z0-9/_/cr}) || next;
         $generated_menu .= begin_category($schema->{cat}[1], ($with_icons ? $schema->{cat}[2] : ())) . join(
             q{},
-            map    { $_->[1] }
+            map { $_->[1] }
               sort { $a->[0] cmp $b->[0] }
               map  { [lc($_), $_] }
               map {

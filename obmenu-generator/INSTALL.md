@@ -42,6 +42,13 @@
 - copy or symlink the `obmenu-generator` file inside your PATH
 - place the `schema.pl` file inside `~/.config/obmenu-generator/`
 
+### Debian/Devuan install:
+
+- `apt install perl libdata-dump-perl libgtk3-perl cpanminus --no-install-recommends`
+- `cpanm Linux::DesktopFiles`
+- copy or symlink the `obmenu-generator` file inside your PATH
+- place the `schema.pl` file inside `~/.config/obmenu-generator/`
+
 ### Credits
 
 - https://github.com/trizen/obmenu-generator
