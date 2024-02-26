@@ -193,10 +193,10 @@ As user:
 * Hiccups
 ** VirtualBox Guest - Text not visible in terminals
 ~/.config/picom.conf
-#+begin_verse
+#+begin_example
 # backend = "glx";
 backend = "xrender";
-#+end_verse
+#+end_example
 ** Black background with picom running
 Set a wallpaper
 ** VBoxClient do not start
