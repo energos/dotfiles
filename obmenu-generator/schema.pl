@@ -33,7 +33,7 @@ our $SCHEMA = [
     {item => ['xdg-open .',       'File Manager', 'system-file-manager']},
     {item => ['pqp -n',           'Terminal',     'Utilities-terminal']},
     {item => ['xdg-open http://', 'Web Browser',  'applications-internet']},
-    {item => ['gmrun',            'Run command',  'system-run']},
+    {item => ['gmrun',            'Run Command',  'system-run']},
 
     {sep => 'Categories'},
 

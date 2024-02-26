@@ -215,7 +215,7 @@ EOF
 
     # Run command
     cat <<EOF
-<item label="Run Command" icon="${USER_ICONS}/document-send.png">
+<item label="Run Command" icon="${OS_ICONS}/apps/48/system-run.svg">
 <action name="Execute"><command>gmrun</command></action> </item>
 <separator />
 EOF
