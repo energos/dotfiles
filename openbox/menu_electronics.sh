@@ -18,6 +18,12 @@ EOF
 </item>
 EOF
 
+[[ -x $(command -v arduino-ide) ]] && separator=1 && cat <<EOF && crappy=no
+<item label="Arduino IDE" icon="${USER_ICONS}/arduino-ide.png">
+  <action name="Execute"><command>arduino-ide</command></action>
+</item>
+EOF
+
 [[ -x $(command -v mcu8051ide) ]] && separator=1 && cat <<EOF && crappy=no
 <item label="MCU 8051 IDE" icon="${OS_SHARE}/pixmaps/mcu8051ide.png">
   <action name="Execute"><command>mcu8051ide</command></action>
@@ -35,7 +41,7 @@ EOF
 EOF
 
 [[ -f $HOME/.local/share/applications/eagle.desktop ]] && cat <<EOF && crappy=no
-<item label="Eagle PCB" icon="$HOME/.local/share/icons/eagle.png">
+<item label="Eagle PCB" icon="${USER_ICONS}/eagle.png">
   <action name="Execute"><command>gio launch $HOME/.local/share/applications/eagle.desktop</command></action>
 </item>
 EOF

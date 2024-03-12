@@ -52,9 +52,14 @@
       </action>
     </item>
     <separator />
+    <item label="Bash Reference Manual" icon=".local/share/icons/heckert_gnu.svg">
+      <action name="Execute">
+        <command>pqp navigator https://www.gnu.org/software/bash/manual/bash.html</command>
+      </action>
+    </item>
     <item label="The Guile Reference Manual" icon=".local/share/icons/heckert_gnu.svg">
       <action name="Execute">
-        <command>pqp navigator https://www.gnu.org/software/guile/manual/html_node/index.html</command>
+        <command>pqp navigator https://www.gnu.org/software/guile/manual/guile.html</command>
       </action>
     </item>
     <separator />
@@ -108,7 +113,7 @@
       <action name="Execute"><command>obconf</command></action>
     </item>
     <separator />
-    <item label="Lock Screen (slock)">
+    <item label="Lock Screen">
       <action name="Execute"><command>slock</command></action>
     </item>
     <separator />

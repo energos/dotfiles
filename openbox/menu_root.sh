@@ -122,7 +122,7 @@ EOF
 <item label="Konsole" icon="${USER_ICONS}/utilities-terminal.svg">
 <action name="Execute"><command>pqp -n konsole</command></action> </item>
 EOF
-   cat <<EOF
+    cat <<EOF
 </menu> <separator />
 <item label="Midnight Commander" icon="${USER_ICONS}/mc.svg">
 <action name="Execute"><command>pqp -n mc</command></action> </item>
@@ -195,15 +195,15 @@ EOF
 EOF
 
     # Office
-   [[ -x $(command -v localc) ]] && separator=1 && cat <<EOF
+    [[ -x $(command -v localc) ]] && separator=1 && cat <<EOF
 <item label="LibreOffice Calc" icon="${OS_SHARE}/icons/hicolor/48x48/apps/libreoffice-calc.png">
 <action name="Execute"><command>localc</command></action> </item>
 EOF
-   [[ -x $(command -v lowriter) ]] && separator=1 && cat <<EOF
+    [[ -x $(command -v lowriter) ]] && separator=1 && cat <<EOF
 <item label="LibreOffice Writer" icon="${OS_SHARE}/icons/hicolor/48x48/apps/libreoffice-writer.png">
 <action name="Execute"><command>lowriter</command></action> </item>
 EOF
-   [[ -n $separator ]] && unset separator && cat <<EOF
+    [[ -n $separator ]] && unset separator && cat <<EOF
 <separator />
 EOF
 
@@ -248,6 +248,12 @@ EOF
     cat <<EOF
 <menu id="client-list-menu" icon="${USER_ICONS}/window-list.png"/>
 <separator />
+EOF
+
+    # Lock screen
+    cat <<EOF
+<item label="Lock Screen" icon="${OS_ICONS}/preferences/32/system-lock-screen.svg">
+<action name="Execute"><command>slock</command></action> </item>
 EOF
 
     # Exit
