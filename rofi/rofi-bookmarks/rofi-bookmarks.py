@@ -94,5 +94,5 @@ if __name__ == "__main__":
         search_path = [i for i in args.path.split('/') if i != '']
         profile_path = default_profile_path() if args.profile is None else path_from_name(args.profile)
 
-        print("\x00prompt\x1f ")  # change prompt
+        print("\x00prompt\x1fFirefox Bookmarks")  # change prompt
         write_rofi_input(profile_path, search_path=search_path, sep=args.separator)

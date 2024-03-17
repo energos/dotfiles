@@ -103,7 +103,7 @@
 "pqp logs"
   Mod4 + l
 "pqp pdf"
-  Mod4 + x
+  Shift+Mod4 + x
 
 "xbacklight +5"
   XF86MonBrightnessUp
@@ -148,6 +148,12 @@
 
 "rofi -show filebrowser"
   Mod4 + f
+
+"rofi -show bookmarks -modi 'bookmarks:rofi-bookmarks.py toolbar' -theme-str 'window {width: 50%;}'"
+  Mod4 + b
+
+"bks.sh"
+  Mod4 + x
 
 "bukumarks"
   Mod4 + Return

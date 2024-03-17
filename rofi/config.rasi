@@ -152,6 +152,6 @@ configuration {
   }
 }
 @theme "Indego"
-window {height: 30%;}
+window {height: 40%;}
 window {width:  30%;}
 element-icon {size: 1.0em;}
