@@ -1,0 +1,9 @@
+#+TITLE: rofi-bookmarks
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+- Search Firefox bookmarks with rofi
+
+* Original source
+- [[https://github.com/ant-arctica/rofi-bookmarks][GitHub - ant-arctica/rofi-bookmarks: Better firefox bookmarks script for rofi]]
+- [[file:original/][Copy of original files]]

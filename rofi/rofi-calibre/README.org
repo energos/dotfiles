@@ -1,0 +1,10 @@
+#+TITLE: rofi-calibre
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+- Search Calibre library with rofi
+- This was so much FUBARed from the original source that a name change is necessary
+
+* Original source
+- [[https://github.com/kamui-fin/zathura-calibre][GitHub - kamui-fin/zathura-calibre: Rofi script to integrate zathura and calibre seamlessly]]
+- [[file:original/][Copy of original files]]
