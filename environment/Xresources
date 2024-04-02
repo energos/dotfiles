@@ -28,15 +28,16 @@ Emacs.geometry:         108x56
 Emacs.cursorBlink:      off
 
 #ifdef HIGH_DPI
+xterm*SimpleMenu*font:  -xos4-terminus-medium-r-normal-*-28-*-*-*-*-*-*-*
 xterm*faceName:         Inconsolata:size=11
 #else
+!xterm*font:             -xos4-terminus-medium-r-normal-*-14-*-*-*-*-*-*-*
 !xterm*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
-!xterm*font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
-xterm*faceName:         terminus:pixelsize=14
+xterm*font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 #endif
 xterm*termName:         xterm-256color
 xterm*iconHint:         .local/share/icons/utilities-terminal.xpm
-xterm*geometry:         80x26
+!xterm*geometry:         80x26
 xterm*title:            Terminal
 xterm*background:       black
 xterm*foreground:       white
