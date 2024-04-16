@@ -37,7 +37,8 @@ GRUB_DISTRIBUTOR="Gentoo"
 # The resolution used on graphical terminal.
 # Note that you can use only modes which your graphic card supports via VBE.
 # You can see them in real GRUB with the command `vbeinfo'.
-#GRUB_GFXMODE=640x480
+#GRUB_GFXMODE=640x480x32
+GRUB_GFXMODE=1280x1024x32
 
 # Set to 'text' to force the Linux kernel to boot in normal text
 # mode, 'keep' to preserve the graphics mode set using
@@ -45,11 +46,15 @@ GRUB_DISTRIBUTOR="Gentoo"
 # graphics mode, or a sequence of these separated by commas or
 # semicolons to try several modes in sequence.
 #GRUB_GFXPAYLOAD_LINUX=
+GRUB_GFXPAYLOAD_LINUX=keep
 
 # Path to theme spec txt file.
 # The starfield is by default provided with use truetype.
 # NOTE: when enabling custom theme, ensure you have required font/etc.
 #GRUB_THEME="/boot/grub/themes/starfield/theme.txt"
+
+#GRUB_FONT="/boot/grub/fonts/terminus32b.pf2"
+GRUB_FONT="/boot/grub/fonts/terminus28b.pf2"
 
 # Background image used on graphical terminal.
 # Can be in various bitmap formats.
@@ -58,6 +63,9 @@ GRUB_BACKGROUND="/boot/grub/background.jpg"
 
 # Uncomment if you don't want GRUB to pass "root=UUID=xxx" parameter to kernel
 #GRUB_DISABLE_LINUX_UUID=true
+
+# Comment if you don't want GRUB to pass "root=PARTUUID=xxx" parameter to kernel
+GRUB_DISABLE_LINUX_PARTUUID=false
 
 # Uncomment to disable generation of recovery mode menu entries
 #GRUB_DISABLE_RECOVERY=true
@@ -72,3 +80,5 @@ GRUB_BACKGROUND="/boot/grub/background.jpg"
 # This is useful, for example, to allow users who can't see the screen
 # to know when they can make a choice on the menu.
 #GRUB_INIT_TUNE="60 800 1"
+
+GRUB_DISABLE_OS_PROBER=true

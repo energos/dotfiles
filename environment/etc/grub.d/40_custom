@@ -22,3 +22,14 @@ menuentry "System shutdown" {
 	echo "System shutting down..."
 	halt
 }
+
+menuentry "================================================================================" {
+        true
+}
+
+menuentry "Boot from USB" {
+	echo "Here we go..."
+	set root=(hd0,gpt1)
+	chainloader /efi/boot/bootx64.efi
+	boot
+}
