@@ -6,19 +6,15 @@ USER_ICONS=${HOME}/.local/share/icons
 case $NAME in
     *BSD)
         OS_SHARE=/usr/local/share
-        OS_LOGO=${USER_ICONS}/beastie.png
         ;;
     Gentoo)
         OS_SHARE=/usr/share
-        OS_LOGO=${USER_ICONS}/gentoo.svg
         ;;
     Void)
         OS_SHARE=/usr/share
-        OS_LOGO=/usr/share/void-artwork/void-logo.svg
         ;;
     "Devuan GNU/Linux")
         OS_SHARE=/usr/share
-        OS_LOGO=${USER_ICONS}/emblem-devuan.svg
         ;;
     *)
         OS_SHARE=/usr/share
@@ -31,6 +27,5 @@ export OS_NAME
 export OS_SHARE
 export OS_ICONS
 export USER_ICONS
-export OS_LOGO
 
 export NO_AT_BRIDGE=1

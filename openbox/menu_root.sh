@@ -234,7 +234,7 @@ EOF
 
     # About $OS_NAME
     cat <<EOF
-<menu id="about-${OS_NAME}" icon="${OS_LOGO}" />
+<menu id="about-${OS_NAME}" icon="${USER_ICONS}/os-logo.png" />
 <separator />
 EOF
 
