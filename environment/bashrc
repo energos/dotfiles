@@ -39,6 +39,10 @@ export BLOCKSIZE=M
 # your favorite editor is ~/bin/emacs-nox
 export EDITOR=emacs-nox
 
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
 alias idf_env='. $HOME/esp/esp-idf/export.sh ; export ESPPORT=/dev/ttyUSB0'
 alias emacs='emacs-nox'
 alias egrep='egrep --color=auto'

@@ -33,6 +33,10 @@ export BLOCKSIZE=M
 # your favorite editor
 export EDITOR=zile
 
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
 alias emacs='emacs -Q -nw -nbc --eval "(progn\
 (setq visible-cursor nil)\
 (menu-bar-mode -1)\
