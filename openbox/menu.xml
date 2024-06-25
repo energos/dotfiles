@@ -136,7 +136,7 @@
   <menu id="about-Devuan GNU/Linux" label="About Devuan GNU/Linux">
     <item label="Release Info">
       <action name="Execute">
-        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+        <command>sh -c "cat /etc/os-release | xmessage -buttons OK -default OK -file -"</command>
       </action>
     </item>
     <item label="Devuan GNU/Linux Home Page">
@@ -150,7 +150,7 @@
   <menu id="about-Void" label="About Void Linux">
     <item label="Release Info">
       <action name="Execute">
-        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+        <command>sh -c "cat /etc/os-release | xmessage -buttons OK -default OK -file -"</command>
       </action>
     </item>
     <item label="Void Linux Home Page">
@@ -164,12 +164,17 @@
   <menu id="about-Gentoo" label="About Gentoo">
     <item label="Release Info">
       <action name="Execute">
-        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+        <command>sh -c "cat /etc/os-release | xmessage -buttons OK -default OK -file -"</command>
       </action>
     </item>
     <item label="Gentoo Home Page">
       <action name="Execute">
         <command>pqp navigator https://www.gentoo.org/</command>
+      </action>
+    </item>
+    <item label="Gentoo Handbook">
+      <action name="Execute">
+        <command>pqp navigator https://wiki.gentoo.org/wiki/Handbook:AMD64</command>
       </action>
     </item>
   </menu>
@@ -178,7 +183,7 @@
   <menu id="about-FreeBSD" label="About FreeBSD">
     <item label="Release Info">
       <action name="Execute">
-        <command>sh -c "cat /etc/os-release | xmessage -file -"</command>
+        <command>sh -c "cat /etc/os-release | xmessage -buttons OK -default OK -file -"</command>
       </action>
     </item>
     <item label="FreeBSD Home Page">
