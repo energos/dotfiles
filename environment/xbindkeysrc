@@ -123,12 +123,14 @@
 "pqp volume toggle"
   Mod4 + F14
 "pqp volume toggle"
-  Mod4 + XF86AudioLowerVolume
+  Shift + XF86AudioLowerVolume
+"pqp volume toggle"
+  XF86AudioMute
 
 "pqp deadbeef"
   Mod4 + F15
 "pqp deadbeef"
-  Mod4 + XF86AudioRaiseVolume
+  Shift + XF86AudioRaiseVolume
 
 # "wn $(xclip -o) -over | sed 's/--/\n  /g' | xmessage -buttons OK -default OK -file -"
 "dict -d wn $(xclip -o) 2>&1 | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK -default OK -file -"
