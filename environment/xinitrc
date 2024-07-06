@@ -5,6 +5,7 @@ if [[ -f ~/.pqprc ]]; then
     eval $(grep '^HYPERVISOR=' ~/.pqprc)
     eval $(grep '^XRANDR=' ~/.pqprc)
     eval $(grep '^SYNERGY_SERVER=' ~/.pqprc)
+    eval $(grep '^KEYBOARD=' ~/.pqprc)
 fi
 
 # Generates the Openbox menu
@@ -25,16 +26,12 @@ THRESHOLD=${THRESHOLD:-120}
 [[ $DPI -gt $THRESHOLD ]] && HDPI="-DHIGH_DPI" || HDPI=""
 xrdb $HDPI -DXSERVER_DPI=$DPI ~/.Xresources
 
-# Get configured console keymap from /etc/conf.d/keymaps (Gentoo) or /etc/rc.conf (FreeBSD) and set X keymap accordingly
-for file in /etc/conf.d/keymaps /etc/rc.conf; do
-    [[ -r $file ]] && eval $(grep ^keymap= $file)
-    [[ -n $keymap ]] && break
-done
-case "$keymap" in
-    br[.-]*)
+# Get KEYBOARD if defined (in ~/.pqprc) and set X keymap accordingly
+case "$KEYBOARD" in
+    br)
         setxkbmap -model abnt2,pc104 -layout br,us -variant abnt2,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
         ;;
-    pt[.-]*)
+    pt)
         setxkbmap -model pc105 -layout pt,us -variant basic,intl -option -option grp:shifts_toggle,grp_led:caps,terminate:ctrl_alt_bksp,caps:none,lv3:ralt_switch_multikey
         ;;
     *)
