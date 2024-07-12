@@ -43,6 +43,18 @@ menupopup > menu, menupopup > menuitem {
     /* border-top: 3px solid -moz-accent-color-foreground !important; */
 }
 
+/* Tab text color */
+.tabbrowser-tab[selected="true"] .tab-content{
+    color: black !important;
+}
+.tabbrowser-tab:not([selected]) .tab-content{
+    color: rgb(77,77,77) !important;
+}
+/* Menu text color */
+#main-menubar > menu {
+  color: black !important;
+}
+
 /* Tab bar height */
 .toolbar-items, .tabbrowser-tab {
     max-height: 38px;
