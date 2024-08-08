@@ -71,9 +71,9 @@
 (setq backward-delete-char-untabify-method nil)
 ;; TAB starts symbol completion in programming modes
 (add-hook
-     'prog-mode-hook
-      (lambda ()
-      (local-set-key (kbd "<tab>") #'indent-for-tab-command)))
+ 'prog-mode-hook
+ (lambda ()
+   (local-set-key (kbd "<tab>") #'indent-for-tab-command)))
 (electric-indent-mode -1)
 
 (when (eq system-type 'windows-nt)
