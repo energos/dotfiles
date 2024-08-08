@@ -639,7 +639,6 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
 
-(global-set-key (kbd "M-]") 'goto-match-paren)
 ;; https://www.emacswiki.org/emacs/NavigatingParentheses
 (defun goto-match-paren ()
   "Go to the matching parenthesis if on parenthesis.
@@ -915,6 +914,8 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (mouse-wheel-mode -1)
 (global-set-key (kbd "<mouse-4>") 'ignore)
 (global-set-key (kbd "<mouse-5>") 'ignore)
+(global-set-key (kbd "<wheel-up>") 'ignore)
+(global-set-key (kbd "<wheel-down>") 'ignore)
 
 ;; --- Translate Caps_Lock (via xmodmap) -> F13 -> Hyper ---
 (global-set-key (kbd "<f13>") 'ignore)
