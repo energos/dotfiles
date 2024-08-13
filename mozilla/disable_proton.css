@@ -52,12 +52,25 @@ menupopup > menu, menupopup > menuitem {
 }
 /* Menu text color */
 #main-menubar > menu {
-  color: black !important;
+    color: black !important;
 }
 
 /* Tab bar height */
 .toolbar-items, .tabbrowser-tab {
     max-height: 38px;
+}
+
+#scrollbutton-down{
+    color: black !important;
+}
+#scrollbutton-up{
+    color: black !important;
+}
+#tabbrowser-tabs:not([overflow="true"]) ~ #alltabs-button {
+    display: none !important;
+}
+#alltabs-button {
+    color: black !important;
 }
 
 :root[uidensity=touch] .toolbar-items, .tabbrowser-tab {
