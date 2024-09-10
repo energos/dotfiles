@@ -1,0 +1,13 @@
+! If CapsLock is remaped to KEY_BOOKMARKS in
+! /etc/udev/hwdb.d/95-keyboard-remap.hwdb
+! Remap KEY_BOOKMARKS
+keycode 164 = F13
+
+! Remap Caps_Lock
+keycode 66  = F13
+
+! Remap Scroll_Lock
+keycode 78  = F14
+
+! Remap Pause
+keycode 127 = F15
