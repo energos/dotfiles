@@ -96,6 +96,7 @@ fi
 export WINDOW_MANAGER=${WINDOW_MANAGER:-openbox}
 case $WINDOW_MANAGER in
     openbox)    exec $launch openbox-session;;
+    plasma)     exec $launch startplasma-x11;;
     icewm)      exec $launch icewm-session;;
     emacs)      exec $launch emacs -mm --debug-init -l ~/.emacs.d/exwm-desktop.el;;
     w10)        VirtualBoxVM -startvm "W10" -fullscreen;;
