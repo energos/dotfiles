@@ -3,6 +3,9 @@
 ! Remap KEY_BOOKMARKS
 keycode 164 = F13
 
+! Caps_Lock spits 174 in a VBox guest - Dunno!
+keycode 174 = F13
+
 ! Remap Caps_Lock
 keycode 66  = F13
 
