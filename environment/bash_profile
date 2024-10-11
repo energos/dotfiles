@@ -56,6 +56,15 @@ case $NAME in
         [[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
         export PATH
         ;;
+    "Debian GNU/Linux")
+        # echo "$NAME is Debian!"
+        ttyv=/dev/tty1
+        # user's .local/bin
+        [[ -d ${HOME}/.local/bin ]] && PATH="${HOME}/.local/bin:${PATH}"
+        # user's bin
+        [[ -d ${HOME}/bin ]] && PATH="${HOME}/bin:${PATH}"
+        export PATH
+        ;;
     *)
         echo "Welcome to $NAME"
         unset MANPAGER
