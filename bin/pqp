@@ -291,10 +291,10 @@ case "$1" in
             # Notify
             if [[ -n "$2" ]]; then
                 if [[  $(pamixer --get-mute) == "true"  ]]; then
-                    dunstify -a "pqp" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:pqpVolume "Volume MUTED"
+                    dunstify -a "pqp" -u low -h string:x-dunst-stack-tag:pqpVolume "Volume MUTED"
                 else
                     volume_level=$(pamixer --get-volume)
-                    dunstify -a "pqp" -u low -i audio-volume-high -h string:x-dunst-stack-tag:pqpVolume -h int:value:"$volume_level" "Volume: ${volume_level}%"
+                    dunstify -a "pqp" -u low -h string:x-dunst-stack-tag:pqpVolume -h int:value:"$volume_level" "Volume: ${volume_level}%"
                 fi
             fi
         else
@@ -330,10 +330,10 @@ case "$1" in
             if [[ -n "$2" ]]; then
                 mute_test
                 if [[ $muted == "YES" ]]; then
-                    dunstify -a "pqp" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:pqpVolume "Volume MUTED"
+                    dunstify -a "pqp" -u low -h string:x-dunst-stack-tag:pqpVolume "Volume MUTED"
                 else
                     volume_level=$(amixer sget $volume | awk -F'[\\[%]' '/Left:/ { print $2 }')
-                    dunstify -a "pqp" -u low -i audio-volume-high -h string:x-dunst-stack-tag:pqpVolume -h int:value:"$volume_level" "Volume: ${volume_level}%"
+                    dunstify -a "pqp" -u low -h string:x-dunst-stack-tag:pqpVolume -h int:value:"$volume_level" "Volume: ${volume_level}%"
                 fi
             fi
         fi

@@ -204,7 +204,7 @@
     # icon_theme = Adwaita
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, gnome"
-    icon_theme = "breeze"
+    icon_theme = "breeze-dark"
 
     # Align icons left/right/top/off
     icon_position = left
@@ -219,7 +219,7 @@
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
     # icon_path = /usr/local/share/icons/gnome/16x16/status/:/usr/local/share/icons/gnome/16x16/devices/
-    icon_path = /usr/share/icons/breeze/status/22/
+    icon_path = /usr/share/icons/breeze-dark/status/22/
 
 
     ### History ###
@@ -316,11 +316,12 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#334466"
-    foreground = "#998877"
+    background = "#222222"
+    foreground = "#888888"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
+    icon_position = off
 
 [urgency_normal]
     background = "#285577"
