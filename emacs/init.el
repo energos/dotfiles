@@ -264,8 +264,7 @@
   (use-package consult))
 (bind-keys ("M-i"     . consult-line)
            ("M-y"     . consult-yank-from-kill-ring)
-           ("C-x C-b" . switch-to-buffer)
-           ("C-H-b"   . switch-to-buffer)
+           ("C-x B"   . switch-to-buffer)
            ("C-x b"   . consult-buffer)
            ("H-b"     . consult-buffer))
 (consult-customize
@@ -1005,10 +1004,10 @@ Move point to the previous position that is the beggining of a symbol."
 (global-set-key (kbd "C-x <insert>") 'overwrite-mode)
 
 ;; --- Kill buffers ---
-(global-set-key (kbd "C-x K") 'kill-buffer)
-(global-set-key (kbd "H-K") 'kill-buffer)
-(global-set-key (kbd "C-x k") 'kill-current-buffer)
-(global-set-key (kbd "H-k") 'kill-current-buffer)
+(global-set-key (kbd "C-x k") 'kill-buffer)
+(global-set-key (kbd "C-x K") 'kill-current-buffer)
+(global-set-key (kbd "H-k") 'kill-buffer)
+(global-set-key (kbd "H-K") 'kill-current-buffer)
 ;; Never kill *scratch* or *Messages*
 (with-current-buffer "*scratch*"
   (emacs-lock-mode 'kill))
