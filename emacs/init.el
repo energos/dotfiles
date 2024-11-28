@@ -3,8 +3,11 @@
 
 ;; resize initial frame to 1/2 screen width
 ;; temporary ugly hack. it works for me...
-(set-frame-width nil (if (= (default-font-width) 11) 162 137))
-(set-frame-parameter nil 'energos/width 9)
+(if (= (default-font-width) 11)
+    (progn (set-frame-width nil 173)
+           (set-frame-parameter nil 'energos/width 10))
+  (set-frame-width nil 137)
+  (set-frame-parameter nil 'energos/width 9))
 
 (desktop-save-mode)                     ; restore desktop, except
 (setq desktop-restore-frames nil)       ; for window and frame configuration
