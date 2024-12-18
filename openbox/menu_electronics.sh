@@ -34,24 +34,28 @@ EOF
 <separator />
 EOF
 
-[[ -x $(command -v kicad) ]] && cat <<EOF && crappy=no
+[[ -x $(command -v kicad) ]] && separator=1 && cat <<EOF && crappy=no
 <item label="KiCad" icon="${OS_SHARE}/icons/hicolor/48x48/apps/kicad.png">
   <action name="Execute"><command>kicad</command></action>
 </item>
 EOF
 
-[[ -f $HOME/.local/share/applications/eagle.desktop ]] && cat <<EOF && crappy=no
+[[ -x $(command -v distrobox) ]] && [[ -f $HOME/.local/share/applications/eagle.desktop ]] && separator=1 && cat <<EOF && crappy=no
 <item label="Eagle PCB" icon="${USER_ICONS}/eagle.png">
   <action name="Execute"><command>gio launch $HOME/.local/share/applications/eagle.desktop</command></action>
 </item>
 EOF
 
+[[ -n $separator ]] && unset separator && cat <<EOF
+<separator />
+EOF
+
 [[ "$crappy" == "yes" ]] && cat <<EOF
 <item label="Get yourself a better computer, kid!" icon="${OS_ICONS}/emotes/22/face-wink.svg">
 </item>
+<separator />
 EOF
 cat <<EOF
-<separator />
 <menu id="datasheets" label="Datasheets" icon="${OS_ICONS}/places/32/folder-documents.svg" execute="~/.config/openbox/menu_books.sh $HOME/Datasheets" />
 EOF
 cat <<EOF
