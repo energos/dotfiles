@@ -62,8 +62,8 @@ URxvt*iconFile:         .local/share/icons/Utilities-terminal.svg
 URxvt*geometry:         86x26
 URxvt*title:            Terminal
 !https://stackoverflow.com/questions/50689490/list-of-control-sequences-in-033-for-urxvt-keysym
-URxvt.keysym.C-1:       command:\033]10;white\007\033]11;black\007
-URxvt.keysym.C-2:       command:\033]10;yellow\007\033]11;dark blue\007
+URxvt.keysym.C-1:       command:\033]10;white\007\033]11;#232627\007
+URxvt.keysym.C-2:       command:\033]10;yellow\007\033]11;black\007
 URxvt.keysym.C-3:       command:\033]10;dark blue\007\033]11;khaki\007
 URxvt.keysym.C-4:       command:\033]10;black\007\033]11;white\007
 !http://stackoverflow.com/questions/8254705/redhat-linux-change-directory-color/8254921#8254921
