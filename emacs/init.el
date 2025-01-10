@@ -607,6 +607,17 @@
 (setq vterm-min-window-width 54)
 (setq vterm-clear-scrollback-when-clearing t)
 
+;; nerd-icons
+;; https://github.com/rainstormstudio/nerd-icons.el
+(use-package nerd-icons
+  ;; :custom
+  ;; The Nerd Font you want to use in GUI
+  ;; https://www.nerdfonts.com/
+  ;; "Symbols Nerd Font Mono" is the default and is recommended
+  ;; but you can use any other Nerd Font if you want
+  ;; (nerd-icons-font-family "Symbols Nerd Font Mono")
+  )
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; THEMES
 
