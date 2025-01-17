@@ -648,7 +648,8 @@
 (load-theme 'afternoon t t)
 (enable-theme 'afternoon)
 (set-face-attribute 'highlight nil :background "#294F6E")
-
+;; https://github.com/ozanmakes/emacs-afternoon-theme/issues/1
+(set-face-attribute 'mode-line nil :family 'unspecified)
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
 

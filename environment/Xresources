@@ -16,7 +16,7 @@ Xft.dpi:                XSERVER_DPI
 Xcursor.size:           CURSOR_SIZE
 
 #ifdef HIGH_DPI
-Emacs.font:             Iosevka Term 10
+Emacs.font:             Iosevka Custom 10
 #else
 !Emacs.font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
 Emacs.font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
@@ -47,7 +47,7 @@ xterm*backarrowKey:     false
 XTerm.ttyModes:         erase ^?
 
 #ifdef HIGH_DPI
-URxvt*font:             xft:Iosevka Term:size=10
+URxvt*font:             xft:Iosevka Custom:size=10
 !URxvt.letterSpace:      0
 #else
 !URxvt*font:             -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-*-*
