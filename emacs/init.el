@@ -650,6 +650,19 @@
 (set-face-attribute 'highlight nil :background "#294F6E")
 ;; https://github.com/ozanmakes/emacs-afternoon-theme/issues/1
 (set-face-attribute 'mode-line nil :family 'unspecified)
+;; https://www.gonsie.com/blorg/modeline.html
+;; https://www.colorhexa.com/181a26-to-3366aa
+(and t
+     (let ((active   "#284673")
+           (inactive "#1f2d47")
+           (width    2))
+       (set-face-attribute 'mode-line nil
+                           :background active
+                           :box `(:line-width ,width :color ,active))
+       (set-face-attribute 'mode-line-inactive nil
+                           :background inactive
+                           :box `(:line-width ,width :color ,inactive))))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
 
