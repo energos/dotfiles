@@ -250,10 +250,12 @@ case "$1" in
     "logs")
         if [[ -x $(command -v svlogtail) ]]; then
             log_command="svlogtail"
+        elif [[ -x $(command -v multitail) ]]; then
+            log_command='multitail -t "System Log" /var/log/messages'
         else
             log_command="tail -Fn30 /var/log/messages"
         fi
-        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x20-0-0 -e $log_command
+        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x23-0-0 -e bash -c "$log_command"
         ;;
     "calendar")
         dont_hide=1
