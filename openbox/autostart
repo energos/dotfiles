@@ -28,7 +28,7 @@
 
 xsetroot -solid '#3366aa'
 
-gkrellm &
+# gkrellm &
 [ -x "$(command -v artha)" ] && (artha &)
 parcellite &
 
