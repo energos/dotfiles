@@ -149,7 +149,7 @@ case "$1" in
         show_window ^kitty$ $HIDEDESKTOP || kitty &
         ;;
     "emacs")
-        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs -fh -g +0+0" 2> /dev/null &)
+        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs -fh" 2> /dev/null &)
         ;;
     "firefox")
         show_window ^Navigator$ $HIDEDESKTOP || (firefox &> /dev/null &)
@@ -209,7 +209,7 @@ case "$1" in
         show_window ^Gkrellm$ 0 || (gkrellm &)
         ;;
     "cmus")
-        show_window ^cmusMusicPlayer$ 0 || $TERMINAL -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -title "C* Music Player" -sl 0 -geometry 64x18-0+0 -e cmus
+        show_window ^cmusMusicPlayer$ 0 || $TERMINAL -icon "$ICONS/Audio-x-generic.svg" -name cmusMusicPlayer -title "C* Music Player" -sl 0 -geometry 64x18 -e cmus
         ;;
     "deadbeef")
         if [[ -x $(command -v deadbeef) ]]; then
@@ -255,11 +255,11 @@ case "$1" in
         else
             log_command="tail -Fn30 /var/log/messages"
         fi
-        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x23-0-0 -e bash -c "$log_command"
+        show_window ^freakingLogs$ 0 || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingLogs -title "Freaking System Log" -sl 0 -geometry 86x23 -e bash -c "$log_command"
         ;;
     "calendar")
         dont_hide=1
-        show_window ^freakingCalendar$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36$2 -e bash -c "[[ -x \"$(command -v ncal)\" ]] && ncal -b $(date +%Y) || cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
+        show_window ^freakingCalendar$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/data-information.svg" -name freakingCalendar -title CALENDAR -geometry 70x36 -e bash -c "[[ -x \"$(command -v ncal)\" ]] && ncal -b $(date +%Y) || cal $(date +%Y); echo -en \"\x1b[?25l\"; read -n 1 -s -p 'Press any key to exit!'"
         ;;
     "ww")
         # set active window width
