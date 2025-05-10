@@ -21,6 +21,11 @@ case $NAME in
         ;;
 esac
 
+if [ ! "$DISPLAY" = ":0" ]; then
+    PULSE_SERVER=tcp:127.0.0.1:4713
+    export PULSE_SERVER
+fi
+
 OS_ICONS=${OS_SHARE}/icons/breeze
 
 export OS_NAME
