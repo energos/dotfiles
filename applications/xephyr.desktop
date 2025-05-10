@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Xephyr
+GenericName=Openbox on Xephyr
+Comment=A X server inside a X server
+Exec=pkexec --user dumbfuck sh -l -c 'DISPLAY=:0 startx -- /usr/bin/Xephyr -softCursor -screen 1024x1280 -dpi 96 :1'
+Terminal=true
+Icon=openbox
+Categories=System;
