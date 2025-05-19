@@ -43,7 +43,7 @@ fi
 
 load_cache
 
-selected=$(list_bk | rofi -dmenu -i -no-custom -location 0 -theme-str 'window {width: 50%;}' -format d -p "Library")
+selected=$(list_bk | rofi -dmenu -i -no-custom -location 0 -theme-str 'window {width: 264mm;}' -format d -p "Library")
 if [ -z "$selected" ]; then
     die "Nothing selected"
 fi

@@ -1,5 +1,5 @@
 configuration {
-	modes: "window,drun,run,ssh,windowcd,filebrowser";
+	modi: "window,drun,run,ssh,windowcd,filebrowser";
 	font: "Hack 12";
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -152,6 +152,6 @@ configuration {
   }
 }
 @theme "Indego"
-window {height: 40%;}
-window {width:  30%;}
+window {height: 140mm;}
+window {width:  220mm;}
 element-icon {size: 1.0em;}

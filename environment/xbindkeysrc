@@ -140,11 +140,8 @@
 "dict -d wn $(xclip -o) 2>&1 | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -buttons OK -default OK -file -"
   Mod4 + slash
 
-"rofi -show drun"
+"rofi -show drun -theme-str 'window {width: 132mm;}'"
   Mod4 + space
-
-"rofi -show run"
-  Shift+Mod4 + space
 
 "rofi -show window"
   Shift + Menu
@@ -155,7 +152,7 @@
 "rofi -show filebrowser"
   Mod4 + f
 
-"rofi -show bookmarks -modi 'bookmarks:rofi-bookmarks.py toolbar' -theme-str 'window {width: 50%;}'"
+"rofi -show bookmarks -modi 'bookmarks:rofi-bookmarks.py toolbar' -theme-str 'window {width: 264mm;}'"
   Mod4 + b
 
 "bks.sh"
