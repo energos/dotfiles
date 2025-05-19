@@ -14,5 +14,6 @@ notification=$(echo -n "Opening \"$title\"")
 # echo "url          = $url"
 # exit
 
-notify-send "$notification" --icon=dialog-information
+dunstify -a "bukumarks" -u low -h string:x-dunst-stack-tag:bukumarks "$notification"
+
 xdg-open $url
