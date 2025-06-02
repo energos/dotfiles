@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Openbox-Windows
-GenericName=Openbox Window List
+Name=Panel-Windows
+GenericName=Window List
 Comment=
 Exec=xdotool key Menu
-Icon=window-list
+Icon=panel-windows
 NoDisplay=true

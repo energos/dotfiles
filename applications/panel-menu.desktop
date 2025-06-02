@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Openbox-Menu
-GenericName=Openbox Start Menu
+Name=Panel-Menu
+GenericName=Start Menu
 Comment=Start here
 Exec=xdotool key Control+Menu
-Icon=os-logo
+Icon=panel-menu
 NoDisplay=true

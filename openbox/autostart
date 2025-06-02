@@ -6,31 +6,29 @@
 #
 
 
-# Autostart sequence
+# Autostart sequence, preferably using XDG autostart facilities.
+# I still hate those pesky *.desktop files.
 #
 #  0.0 - background color
-#  0.0 - gkrellm
+#      - gkrellm                            - removed
 #  0.0 - artha
-#  0.0 - parcellite
-#  0.0 - pavucontrol - pqp volume
-#  0.0 - mixer - dsbmixer or volumeicon
-#  0.0 - network manager
-#  0.0 - polkit
-#  0.0 - xcape
+#      - parcellite                         - xdg autostart
+#  0.0 - pavucontrol - pqp volume           - BSD only, removal candidate
+#  5.5 - mixer - dsbmixer or volumeicon
+#      - network manager                    - xdg autostart
+#      - polkit                             - xdg autostart
+#  0.0 - xcape                              - only on primary display
 #  1.0 - wallpaper - fehbg
-#  2.0 - picom
-#  3.0 - panel - tint2 or fbpanel
-#  4.0 - conky
-#  5.0 - set volume - pqp volume 50%
+#      - picom                              - xdg autostart
+#      - panel - tint2 or fbpanel           - xdg autostart
+#      - conky                              - xdg autostart
+#  5.0 - set volume - pqp volume 50%        - BSD only, removal candidate
 #  6.0 - fortune
-#  7.0 - hide pavucontrol
-
+#  7.0 - hide pavucontrol                   - BSD only, removal candidate
 
 xsetroot -solid '#3366aa'
 
-# gkrellm &
 [ -x "$(command -v artha)" ] && (artha &)
-parcellite &
 
 # OS_NAME is defined in ~/.config/openbox/environment
 case $OS_NAME in
@@ -45,9 +43,7 @@ case $OS_NAME in
         ;;
     Gentoo)
         # xmessage $OS_NAME is 'Gentoo' &
-        gentoo-pipewire-launcher &
         (sleep 5.5 && volumeicon) &
-        (sleep 4.0 && conky -q -d) &
         ;;
     Void)
         # xmessage $OS_NAME is 'Void Linux' &
@@ -76,31 +72,8 @@ esac
 (sleep 1.0 && $HOME/.fehbg) &
 (sleep 6.0 && hello-fortune) &
 
-(sleep 2.0 && picom -b) &
-
-(sleep 3.0 && tint2) &
-
 # Keyboard shortcuts
 xbindkeys
-
-# start services UI
-# I hate those pesky *.desktop files...
-# I'll use /etc/xdg/autostart, I promise
-#
-# network manager UI
-if [ -x "$(command -v networkmgr)" ]; then
-    # FreeBSD. To be removed...
-    sudo networkmgr &
-elif [ -x "$(command -v cmst)" ]; then
-    cmst -m &
-else
-    connman-gtk &> /dev/null &
-fi
-#
-# polkit authentication UI
-service=$(command -v /usr/local/lib/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib64/libexec/polkit-kde-authentication-agent-1 || command -v /usr/libexec/polkit-kde-authentication-agent-1 || command -v /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1)
-(sleep 2.5 && $service) &
-
 # Super key opens Openbox menu
 # https://github.com/alols/xcape
 eval $(grep ^HYPERVISOR= ~/.pqprc)
