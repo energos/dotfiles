@@ -3,7 +3,7 @@
  * Tabs on Bottom!
  * https://github.com/MrOtherGuy/firefox-csshacks
  */
-@import url(tabs_on_bottom.css);
+@import url(tabs_on_bottom_v2.css);
 
 /***********************************************************************
  * Disable Proton!
@@ -50,4 +50,4 @@
  * Remove text from Private Browsing indicator
  * 'user_pref("browser.privatebrowsing.enable-new-indicator", false);' does not work anymore
  */
-#private-browsing-indicator-with-label > label { display: none; }
+.private-browsing-indicator-with-label > label { display: none; }
