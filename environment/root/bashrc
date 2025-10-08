@@ -47,8 +47,13 @@ alias emacs='emacs -Q -nw -nbc --eval "(progn\
 (setq-default tab-always-indent \`complete)\
 (setq-default indent-tabs-mode nil)\
 (setq backward-delete-char-untabify-method nil)\
+(icomplete-vertical-mode)\
+(load-theme \`modus-vivendi-tritanopia)\
+(global-set-key (kbd \"C-x C-b\") \`ibuffer)\
 (global-set-key (kbd \"C-z\") \`undo)\
 (global-set-key (kbd \"<clearline>\") \`end-of-buffer)\
+(define-key function-key-map \"\\e[7@\" [C-S-home])\
+(define-key function-key-map \"\\e[8@\" [C-S-end])\
 )" "$@"'
 
 alias egrep='egrep --color=auto'

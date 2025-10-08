@@ -10,6 +10,8 @@ ELISP="$(xargs -0 <<EOF
 (setq-default tab-always-indent 'complete)
 (setq-default indent-tabs-mode nil)
 (setq backward-delete-char-untabify-method nil)
+(icomplete-vertical-mode)
+(load-theme 'modus-vivendi-tritanopia)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<clearline>") 'end-of-buffer)
