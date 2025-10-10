@@ -142,6 +142,9 @@ case "$1" in
     "")
         show_window ^Terminal$ $HIDEDESKTOP || $TERMINAL -name Terminal
         ;;
+    "terminal")
+        show_window ^Terminal$ $HIDEDESKTOP || $TERMINAL -name Terminal
+        ;;
     "konsole")
         show_window ^konsole$ $HIDEDESKTOP || konsole &
         ;;
@@ -149,7 +152,9 @@ case "$1" in
         show_window ^kitty$ $HIDEDESKTOP || kitty &
         ;;
     "emacs")
-        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs -fh" 2> /dev/null &)
+        shift
+        [[ -n $@ ]] && force_new=1
+        show_window ^Emacs$ $HIDEDESKTOP || (emacsclient -c -n -a "emacs -fh" "$@" 2> /dev/null &)
         ;;
     "firefox")
         show_window ^Navigator$ $HIDEDESKTOP || (firefox &> /dev/null &)
