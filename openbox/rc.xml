@@ -1143,8 +1143,35 @@
 -->
     <!-- No decorations on zathura -->
     <application class="Zathura"> <decor>no</decor> </application>
-    <!-- No decorations on emacs -->
-    <application class="Emacs"> <decor>no</decor> </application>
+
+    <!-- Emacs -->
+    <application class="Emacs">
+      <decor>no</decor>
+      <position force="no">
+        <x>0</x> <y>0</y>
+      </position>
+    </application>
+
+    <!-- Open Xephyr fullscreen on secondary monitor -->
+    <application class="Xephyr">
+	<decor>no</decor>
+	<fullscreen>yes</fullscreen>
+	<desktop>all</desktop>
+	<skip_taskbar>yes</skip_taskbar>
+	<position force="yes">
+      <monitor>2</monitor>
+	  <x>0</x> <y>0</y>
+	</position>
+	</application>
+
+    <!-- Openbox on Xephyr terminal -->
+    <application title="Openbox on Xephyr">
+	<desktop>9</desktop>
+	<position force="no">
+      <monitor>2</monitor>
+	  <x>0</x> <y>0</y>
+	</position>
+	</application>
 
     <!-- Center gmrun -->
     <application class="Gmrun">
@@ -1152,6 +1179,30 @@
       <position force="no">
         <x>center</x>
         <y>3/8</y>
+      </position>
+    </application>
+
+    <!-- Center xmessage -->
+    <application class="Xmessage">
+      <position force="no">
+        <x>center</x>
+        <y>center</y>
+      </position>
+    </application>
+
+    <!-- Freaking Logs -->
+    <application title="Freaking System Log">
+      <position force="no">
+        <x>-0</x>
+        <y>-0</y>
+      </position>
+    </application>
+
+    <!-- cmus -->
+    <application title="C* Music Player">
+      <position force="no">
+        <x>-0</x>
+        <y>0</y>
       </position>
     </application>
 

@@ -1168,7 +1168,7 @@
 
     <!-- Openbox on Xephyr terminal -->
     <application title="Openbox on Xephyr">
-	<desktop>8</desktop>
+	<desktop>9</desktop>
 	<position force="no">
       <monitor>2</monitor>
 	  <x>0</x> <y>0</y>
