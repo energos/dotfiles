@@ -1,6 +1,6 @@
 // http://kb.mozillazine.org/User.js_file
 
-user_pref("accessibility.typeaheadfind", false);
+user_pref("accessibility.typeaheadfind.enablesound", false);
 user_pref("accessibility.typeaheadfind.flashBar", 0);
 user_pref("app.normandy.api_url", "");
 user_pref("app.normandy.enabled", false);
