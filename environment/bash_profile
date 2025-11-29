@@ -7,11 +7,8 @@ if ! shopt -q login_shell; then
     exit 1
 fi
 
-# This file is sourced by bash for login shells.  The following line
-# runs your .bashrc and is recommended by the bash info pages.
-if [[ -f ~/.bashrc ]] ; then
-    . ~/.bashrc
-fi
+
+# Before sourcing .bashrc we must set the PATH...
 
 # Put your fun stuff here...
 
@@ -71,6 +68,12 @@ case $NAME in
         ;;
 esac
 unset NAME
+
+# This file is sourced by bash for login shells.  The following line
+# runs your .bashrc and is recommended by the bash info pages.
+if [[ -f ~/.bashrc ]] ; then
+    . ~/.bashrc
+fi
 
 # And now we start X11
 if [[ -f ~/.pqprc ]]; then
