@@ -111,7 +111,7 @@ EOF
 <menu id="Terminals" label="Terminals" icon="${USER_ICONS}/utilities-terminal.svg">
 <item label="URxvt" icon="${USER_ICONS}/Utilities-terminal.svg">
 <action name="Execute"><command>pqp -n</command></action> </item>
-<item label="XTerm" icon="${OS_ICONS}/apps/48/xterm.svg">
+<item label="XTerm" icon="${USER_ICONS}/xterm-breeze.svg">
 <action name="Execute"><command>xterm</command></action> </item>
 EOF
     [[ -x $(command -v kitty) ]] && cat <<EOF
@@ -153,7 +153,7 @@ EOF
 
     # Editors
     cat <<EOF
-<item label="Emacs" icon="${OS_ICONS}/apps/48/emacs.svg">
+<item label="Emacs" icon="${USER_ICONS}/emacs.png">
 <action name="Execute"><command>pqp -n emacs</command></action> </item>
 <item label="Geany" icon="${OS_SHARE}/icons/hicolor/48x48/apps/geany.png">
 <action name="Execute"><command>geany</command></action> </item>

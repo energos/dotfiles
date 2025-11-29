@@ -69,17 +69,17 @@
       </action>
     </item>
     <separator />
-    <item label="GNU C Language Manual" icon=".local/share/icons/C_Logo.png">
+    <item label="GNU C Language Manual" icon=".local/share/icons/C_logo.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/software/c-intro-and-ref/manual/c-intro-and-ref.html</command>
       </action>
     </item>
-    <item label="The GNU C Reference Manual" icon=".local/share/icons/C_Logo.png">
+    <item label="The GNU C Reference Manual" icon=".local/share/icons/C_logo.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html</command>
       </action>
     </item>
-    <item label="The GNU C Library" icon=".local/share/icons/C_Logo.png">
+    <item label="The GNU C Library" icon=".local/share/icons/C_logo.svg">
       <action name="Execute">
         <command>pqp navigator https://www.gnu.org/software/libc/manual/html_mono/libc.html</command>
       </action>

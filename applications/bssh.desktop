@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Avahi F*** Off SSH Server Browser
+Comment=Absolutely useless
+Exec=/usr/bin/bssh
+Terminal=false
+Type=Application
+Icon=network-wired
+Categories=GNOME;Network;
+StartupNotify=false
+NoDisplay=true
