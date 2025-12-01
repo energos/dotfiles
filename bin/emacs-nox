@@ -11,7 +11,7 @@ ELISP="$(xargs -0 <<EOF
 (setq-default indent-tabs-mode nil)
 (setq backward-delete-char-untabify-method nil)
 (icomplete-vertical-mode)
-(load-theme 'modus-vivendi-tritanopia)
+(load-theme 'modus-vivendi-deuteranopia)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<clearline>") 'end-of-buffer)
@@ -40,4 +40,4 @@ EOF
 )"
 fi
 
-EMACS_TTY=$(tty | tr -s '/ ' '_') emacs -q -nbc --no-splash -nw --eval "(progn $ELISP)" "$@"
+EMACS_TTY=$(tty | tr -s '/ ' '_') COLORTERM=truecolor emacs -q -nbc --no-splash -nw --eval "(progn $ELISP)" "$@"
