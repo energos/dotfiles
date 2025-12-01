@@ -1,3 +1,4 @@
+! -*- compile-command: "xrdb -DHIGH_DPI -DXSERVER_DPI=156 ~/.Xresources" -*-
 ! ~/.Xresources
 
 #ifdef HIGH_DPI
