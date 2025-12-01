@@ -34,6 +34,8 @@ case $NAME in
         export MANPATH
         # add /usr/local/share/info to INFOPATH
         [[ -d /usr/local/share/info ]] && export INFOPATH="/usr/local/share/info:${INFOPATH}"
+        # not sure about this...
+	    export XDG_DATA_DIRS="${HOME}/.local/share:${XDG_DATA_DIRS}"
         ;;
     Void)
         # echo "$NAME is Void Linux"
