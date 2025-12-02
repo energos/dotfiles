@@ -623,45 +623,47 @@
 
 ;; themes from the packages repository:
 (use-package afternoon-theme    :defer t)
-(use-package ample-zen-theme    :defer t)
-(use-package blackboard-theme   :defer t)
-(use-package darkmine-theme     :defer t)
-(use-package darktooth-theme    :defer t)
-(use-package eclipse-theme      :defer t)
-(use-package hc-zenburn-theme   :defer t)
-(use-package idea-darkula-theme :defer t)
-(use-package lush-theme         :defer t)
-(use-package material-theme     :defer t)
-(use-package naquadah-theme     :defer t)
-(use-package reverse-theme      :defer t)
-(use-package tangotango-theme   :defer t)
-(use-package zenburn-theme      :defer t)
 
-;; hand picked themes:
-;; https://github.com/emacs-jp/replace-colorthemes
+;; Hand picked themes:
 ;; Please set your themes directory to 'custom-theme-load-path
+;; https://github.com/emacs-jp/replace-colorthemes
+;; https://github.com/emacs-jp/replace-colorthemes/blob/master/billw-theme.el
+;; https://github.com/emacs-jp/replace-colorthemes/blob/master/charcoal-black-theme.el
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
-;; choose one of them:
-;; (load-theme 'charcoal-black t t)
-;; (enable-theme 'charcoal-black)
-(load-theme 'afternoon t t)
-(enable-theme 'afternoon)
-(set-face-attribute 'highlight nil :background "#294F6E")
+;; Choose one of them:
+;; (load-theme 'charcoal-black t)
+;; (load-theme 'modus-vivendi-deuteranopia t)
+(load-theme 'billw t)
+;; (load-theme 'afternoon t)
+
+;; Fix some annoyances
 ;; https://github.com/ozanmakes/emacs-afternoon-theme/issues/1
-(set-face-attribute 'mode-line nil :family 'unspecified)
 ;; https://www.gonsie.com/blorg/modeline.html
 ;; https://www.colorhexa.com/181a26-to-3366aa
-(and t
-     (let ((active   "#284673")
-           (inactive "#1f2d47")
-           (width    2))
-       (set-face-attribute 'mode-line nil
-                           :background active
-                           :box `(:line-width ,width :color ,active))
-       (set-face-attribute 'mode-line-inactive nil
-                           :background inactive
-                           :box `(:line-width ,width :color ,inactive))))
+(let ((active   "#284673")
+      (inactive "#1f2d47")
+      (width    2))
+  (set-face-attribute 'mode-line nil
+                      :family 'unspecified
+                      :foreground "white"
+                      :background active
+                      :box `(:line-width ,width :color ,active))
+  (set-face-attribute 'mode-line-inactive nil
+                      :foreground "white smoke"
+                      :background inactive
+                      :box `(:line-width ,width :color ,inactive)))
+(set-face-attribute 'mode-line-buffer-id nil
+                    :foreground 'unspecified
+                    :background 'unspecified)
+(set-face-attribute 'highlight nil
+                    :background "#294F6E")
+(set-face-attribute 'ansi-color-blue nil
+                    :background "#87ceff"
+                    :foreground "#87ceff")
+(set-face-attribute 'ansi-color-bright-blue nil
+                    :background "#80aaff"
+                    :foreground "#80aaff")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFUNs
