@@ -148,6 +148,13 @@
   (setq which-key-idle-delay 3.0)
   (which-key-mode))
 
+;; idle-highlight-mode
+;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
+(use-package idle-highlight-mode
+  :ensure t
+  :config
+  (setq idle-highlight-visible-buffers t)
+  (setq idle-highlight-idle-time 0.5))
 
 ;; It's Magit!
 ;; https://magit.vc/
