@@ -72,20 +72,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq backward-delete-char-untabify-method nil)
-;; TAB starts symbol completion in programming modes
-(add-hook
- 'prog-mode-hook
- (lambda ()
-   (local-set-key (kbd "<tab>") #'indent-for-tab-command)))
-(electric-indent-mode -1)
 
-(when (eq system-type 'windows-nt)
-  ;; --- Tramp needs PuTTY on Windows® version of Emacs ---
-  ;; ssh method works fine on Cygwin© and *nix Emacs
-  ;; see https://www.gnu.org/software/tramp/
-  (setq tramp-default-method "plink")
-  ;; no Windows® sounds
-  (setq ring-bell-function 'ignore))
+;; --- Electric * modes ---
+(electric-indent-mode -1)
+(electric-pair-mode -1)
 
 ;; --- Initial message ---
 (let ((command "fortune"))
@@ -131,6 +121,28 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGES
 
+;; idle-highlight-mode  ; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
+;; which-key            ; https://github.com/justbur/emacs-which-key
+;; minions              ; https://github.com/tarsius/minions
+;; magit                ; https://github.com/magit/magit
+;; expand-region        ; https://github.com/magnars/expand-region.el
+;; vertico              ; https://github.com/minad/vertico/
+;; orderless            ; https://github.com/oantolin/orderless
+;; marginalia           ; https://github.com/minad/marginalia
+;; consult              ; https://github.com/minad/consult
+;; corfu                ; https://github.com/minad/corfu
+;; embark               ; https://github.com/oantolin/embark
+;; embark-consult       ; https://github.com/oantolin/embark
+;; eglot                ; https://github.com/joaotavora/eglot
+;; htmlize              ; https://github.com/emacsorphanage/htmlize
+;; pdf-tools            ; https://github.com/vedang/pdf-tools
+;; calibredb            ; https://github.com/chenyanming/calibredb.el
+;; vterm                ; https://github.com/akermu/emacs-libvterm
+;; nerd-icons           ; https://github.com/rainstormstudio/nerd-icons.el
+;; org-modern           ; https://github.com/minad/org-modern
+;; cape                 ; https://github.com/minad/cape
+;; jinx                 ; https://github.com/minad/jinx
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stbl" . "https://stable.melpa.org/packages/") t)
@@ -141,13 +153,6 @@
         ("gnu"        .  5)
         ("melpa"      . 10)))
 
-;; which-key
-;; https://github.com/justbur/emacs-which-key
-(use-package which-key
-  :config
-  (setq which-key-idle-delay 3.0)
-  (which-key-mode))
-
 ;; idle-highlight-mode
 ;; https://codeberg.org/ideasman42/emacs-idle-highlight-mode
 (use-package idle-highlight-mode
@@ -155,6 +160,22 @@
   :config
   (setq idle-highlight-visible-buffers t)
   (setq idle-highlight-idle-time 0.5))
+
+;; which-key
+;; https://github.com/justbur/emacs-which-key
+;; Now included in Emacs version >= 30
+(use-package which-key
+  :config
+  (setq which-key-idle-delay 3.0)
+  (which-key-mode))
+
+;; minions
+;; https://github.com/tarsius/minions
+(use-package minions
+  :ensure t
+  :config
+  (setq minions-mode-line-lighter "[+]")
+  (minions-mode))
 
 ;; It's Magit!
 ;; https://magit.vc/
@@ -174,48 +195,6 @@
   (require 'git-commit)
   ;; https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
   (setq auto-revert-check-vc-info t))
-
-;; minions
-;; https://github.com/tarsius/minions
-(use-package minions
-  :ensure t
-  :config
-  (setq minions-mode-line-lighter "[+]")
-  (minions-mode))
-
-;; ;; treemacs
-;; ;; https://github.com/Alexander-Miller/treemacs
-;; ;; useful ??
-;; (use-package treemacs
-;;   :bind (("<f8>"    . treemacs-select-window)
-;;          ("C-<f8>"  . treemacs))
-;;   :config
-;;   (defun treemacs-custom-filter (file _)
-;;     (or (s-ends-with? ".o"   file)
-;;         (s-ends-with? ".map" file)
-;;         (s-ends-with? ".log" file)
-;;         (s-ends-with? ".elf" file)
-;;         (s-ends-with? ".bin" file)
-;;         (s-ends-with? ".sym" file)
-;;         (s-equals? "GPATH" file)
-;;         (s-equals? "GRTAGS" file)
-;;         (s-equals? "GTAGS" file)))
-;;   (push #'treemacs-custom-filter treemacs-ignored-file-predicates)
-;;   (setq treemacs-width 25
-;;         treemacs-is-never-other-window t))
-
-;; ;; function-args
-;; ;; https://github.com/abo-abo/function-args
-;; ;; useful for company ??
-;; (use-package function-args
-;;   :config
-;;   (fa-config-default))
-
-;; flycheck
-;; https://www.flycheck.org
-;; https://github.com/flycheck/flycheck
-(use-package flycheck
-  :ensure t)
 
 ;; expand-region
 ;; https://github.com/magnars/expand-region.el
@@ -405,57 +384,14 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; useful ??
-
-;; ;; geiser
-;; ;; http://www.nongnu.org/geiser/
-;; (use-package geiser
-;;   :init
-;;   (setq geiser-repl-startup-time 20000)
-;;   (setq geiser-repl-use-other-window nil)
-;;   (setq geiser-active-implementations '(guile racket chicken))
-;;   (setq geiser-default-implementation 'guile))
-
-;; (global-set-key (kbd "H-d") 'geiser-doc-symbol-at-point)
-;; (global-set-key (kbd "H-g")
-;;                 (lambda () "Set C-x C-e to call geiser-eval-last-sexp."
-;;                   (interactive)
-;;                   (progn (local-set-key (kbd "C-x C-e") 'geiser-eval-last-sexp)
-;;                          (message "C-x C-e will call geiser-eval-last-sexp"))))
-;; (global-set-key (kbd "H-G")
-;;                 (lambda () "Set C-x C-e to call the default command."
-;;                   (interactive)
-;;                   (progn (local-unset-key (kbd "C-x C-e"))
-;;                          (message "C-x C-e reset to default"))))
-
-;; ;; geiser-guile
-;; (use-package geiser-guile)
-
-;; ;; inf-ruby
-;; ;; https://github.com/nonsequitur/inf-ruby
-;; (use-package inf-ruby)
-
-;; ;; lsp-mode
-;; ;; https://github.com/emacs-lsp/lsp-mode
-;; ;; https://emacs-lsp.github.io/lsp-mode/
-;; ;; https://github.com/elixir-lsp/elixir-ls
-;; (use-package lsp-mode
-;;   :init
-;;   (setq lsp-keymap-prefix "C-c l")
-;;   (add-to-list 'exec-path (expand-file-name "elixir-ls" user-emacs-directory))
-;;   :hook ((elixir-mode . lsp-deferred)
-;;          (lsp-mode . lsp-enable-which-key-integration))
-;;   :commands (lsp lsp-deferred))
-
 ;; https://clangd.llvm.org/installation
 ;; https://www.gnu.org/software/emacs/manual/html_mono/eglot.html
 (use-package eglot
   :hook ((c-mode . eglot-ensure)
          (c++-mode . eglot-ensure)
-         (eglot-managed-mode .
-          (lambda ()
-            (setq-local eldoc-echo-area-use-multiline-p nil)
-            (eldoc-mode -1))))
+         (eglot-managed-mode . (lambda ()
+                                 (setq-local eldoc-echo-area-use-multiline-p nil)
+                                 (eldoc-mode -1))))
   :config
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (setq eglot-ignored-server-capabilities '(:documentHighlightProvider)))
@@ -521,29 +457,29 @@
 ;; https://github.com/org-roam/org-roam
 ;; org-roam
 
-;; ace-window
-;; https://github.com/abo-abo/ace-window
-(use-package ace-window
-  :ensure t
-  :bind ("H-o" . ace-window)
-  :config
-  (setq aw-dispatch-always t))
+;; ;; ace-window
+;; ;; https://github.com/abo-abo/ace-window
+;; (use-package ace-window
+;;   :ensure t
+;;   :bind ("H-o" . ace-window)
+;;   :config
+;;   (setq aw-dispatch-always t))
 
-;; https://karthinks.com/software/fifteen-ways-to-use-embark/
-(require 'embark)
-(eval-when-compile
-  (defmacro embark-ace-action (fn)
-    `(defun ,(intern (concat "embark-ace-" (symbol-name fn))) ()
-       (interactive)
-       (with-demoted-errors "%s"
-         (require 'ace-window)
-         (let ((aw-dispatch-always t))
-           (aw-switch-to-window (aw-select nil))
-           (call-interactively (symbol-function ',fn)))))))
+;; ;; https://karthinks.com/software/fifteen-ways-to-use-embark/
+;; (require 'embark)
+;; (eval-when-compile
+;;   (defmacro embark-ace-action (fn)
+;;     `(defun ,(intern (concat "embark-ace-" (symbol-name fn))) ()
+;;        (interactive)
+;;        (with-demoted-errors "%s"
+;;          (require 'ace-window)
+;;          (let ((aw-dispatch-always t))
+;;            (aw-switch-to-window (aw-select nil))
+;;            (call-interactively (symbol-function ',fn)))))))
 
-(define-key embark-file-map     (kbd "o") (embark-ace-action find-file))
-(define-key embark-buffer-map   (kbd "o") (embark-ace-action switch-to-buffer))
-(define-key embark-bookmark-map (kbd "o") (embark-ace-action bookmark-jump))
+;; (define-key embark-file-map     (kbd "o") (embark-ace-action find-file))
+;; (define-key embark-buffer-map   (kbd "o") (embark-ace-action switch-to-buffer))
+;; (define-key embark-bookmark-map (kbd "o") (embark-ace-action bookmark-jump))
 
 ;; ;; projectile
 ;; ;; https://github.com/bbatsov/projectile
@@ -579,11 +515,6 @@
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/Library")))
   (setq calibredb-date-width 0))
-
-;; ;; nix-mode
-;; ;; https://github.com/NixOS/nix-mode
-;; (use-package nix-mode
-;;   :mode "\\.nix\\'")
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
