@@ -70,7 +70,7 @@
 (defun fm-frame-is-to-dir-of (refframe dir otherframe)
   (cond
    ((not (eq (frame-parameter refframe 'display) (frame-parameter otherframe 'display)))
-      nil)
+    nil)
    ((eq refframe otherframe)
     nil)
    ((memq dir '(left up))
@@ -129,8 +129,8 @@
                  '(lambda (f) (fm-range-overlap thisframe f dir))
                  possible-frames)
                 #'(lambda (f1 f2)
-                   (< (fm-dist-from-coords coords-projected-in-dir f1)
-                      (fm-dist-from-coords coords-projected-in-dir f2))))))
+                    (< (fm-dist-from-coords coords-projected-in-dir f1)
+                       (fm-dist-from-coords coords-projected-in-dir f2))))))
           (select-frame-set-input-focus
            (or (car frames-in-line-of-cursor)
                (car frames-in-line-of-frame)
