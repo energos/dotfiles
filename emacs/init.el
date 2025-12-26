@@ -171,10 +171,13 @@
 
 ;; minions
 ;; https://github.com/tarsius/minions
+;; https://www.reddit.com/r/emacs/comments/1k7zxjv/fyi_modelinecollapseminormodes/
 (use-package minions
   :ensure t
   :config
-  (setq minions-mode-line-lighter "[+]")
+  (setq minions-mode-line-lighter "  ")
+  (setq minions-mode-line-delimiters '("" . ""))
+  (setq minions-prominent-modes '(flymake-mode))
   (minions-mode))
 
 ;; It's Magit!
@@ -233,11 +236,18 @@
 ;; consult
 ;; https://github.com/minad/consult
 (use-package consult
-  :bind (("M-i"     . consult-line)
-         ("M-y"     . consult-yank-from-kill-ring)
-         ("C-x B"   . switch-to-buffer)
+  :bind (("M-s M-g" . consult-grep)
+         ("M-s M-f" . consult-find)
+         ("M-s M-o" . consult-outline)
+         ("M-s M-l" . consult-line)
+         ("M-s M-b" . consult-buffer)
+         ("M-s M-y" . consult-yank-from-kill-ring)
          ("C-x b"   . consult-buffer)
-         ("H-b"     . consult-buffer))
+         ("C-x B"   . switch-to-buffer)
+         ("H-b"     . consult-buffer)
+         ("H-B"     . switch-to-buffer)
+         :map consult-narrow-map
+         ("C-h"     . consult-narrow-help))
   :config
   (consult-customize
    consult-buffer :preview-key nil)
@@ -379,22 +389,45 @@
                  nil
                  (window-parameters (mode-line-format . none)))))
 
+;; embark-consult
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+;; eglot
 ;; https://clangd.llvm.org/installation
 ;; https://www.gnu.org/software/emacs/manual/html_mono/eglot.html
 (use-package eglot
   :hook ((c-mode . eglot-ensure)
          (c++-mode . eglot-ensure)
+         (c-ts-mode . eglot-ensure)
+         (c++-ts-mode . eglot-ensure)
          (eglot-managed-mode . (lambda ()
                                  (setq-local eldoc-echo-area-use-multiline-p nil)
                                  (eldoc-mode -1))))
   :config
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (setq eglot-ignored-server-capabilities '(:documentHighlightProvider)))
+
+;; tree-sitter
+(setq major-mode-remap-alist
+      '(
+        ;; (bash-mode   . bash-ts-mode)    ; ???
+        ;; (sh-mode     . bash-ts-mode)    ; ???
+        (c-mode      . c-ts-mode)
+        (c++-mode    . c++-ts-mode)
+        (python-mode . python-ts-mode)
+        ))
+
+;; flymake
+(with-eval-after-load 'flymake
+  (setq python-flymake-command '("pyflakes"))
+  (setq flymake-mode-line-lighter "")
+  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+  (define-key flymake-mode-map (kbd "M-f") 'consult-flymake)
+  )
 
 ;; ;; elixir-mode
 ;; ;; https://github.com/elixir-editors/emacs-elixir
@@ -519,6 +552,10 @@
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
+  :bind (:map vterm-mode-map
+              ("<mouse-1>" . nil)
+              ("<mouse-2>" . nil)
+              ("<mouse-3>" . nil))
   :config
   (setq vterm-min-window-width 54)
   (setq vterm-clear-scrollback-when-clearing t))
@@ -526,6 +563,7 @@
 ;; nerd-icons
 ;; https://github.com/rainstormstudio/nerd-icons.el
 (use-package nerd-icons
+  :ensure t
   ;; :config
   ;; The Nerd Font you want to use in GUI
   ;; https://www.nerdfonts.com/
