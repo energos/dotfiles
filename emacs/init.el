@@ -395,6 +395,45 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+;; Compile it, baby
+;; (global-set-key (kbd "<f9>") 'recompile)
+(global-set-key (kbd "<f9>")
+                (lambda () "Save current buffer and recompile."
+                  (interactive)
+                  (save-buffer)
+                  (recompile)))
+;; C
+(add-hook 'c-ts-mode-hook
+          (lambda ()
+            (unless (or (file-exists-p "makefile")
+                        (file-exists-p "Makefile"))
+              (setq-local compile-command
+                          (let ((file (file-name-nondirectory buffer-file-name)))
+                            (format "%s -o %s %s %s"
+                                    (or (getenv "CC") "gcc")
+                                    (shell-quote-argument (file-name-sans-extension file))
+                                    (or (getenv "CFLAGS") "-ansi -pedantic -Wall")
+                                    (shell-quote-argument file)))))))
+;; C++
+(add-hook 'c++-ts-mode-hook
+          (lambda ()
+            (unless (or (file-exists-p "makefile")
+                        (file-exists-p "Makefile"))
+              (setq-local compile-command
+                          (let ((file (file-name-nondirectory buffer-file-name)))
+                            (format "%s -o %s %s %s"
+                                    (or (getenv "CXX") "g++")
+                                    (shell-quote-argument (file-name-sans-extension file))
+                                    (or (getenv "CXXFLAGS") "-ansi -pedantic -Wall")
+                                    (shell-quote-argument file)))))))
+;; Python
+(add-hook 'python-ts-mode-hook
+          (lambda ()
+            (setq-local compile-command
+                        (let ((file (file-name-nondirectory buffer-file-name)))
+                          (format "%s %s"
+                                  "python" (shell-quote-argument file))))))
+
 ;; eglot
 ;; https://clangd.llvm.org/installation
 ;; https://www.gnu.org/software/emacs/manual/html_mono/eglot.html
