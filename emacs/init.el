@@ -159,7 +159,12 @@
   :ensure t
   :config
   (setq idle-highlight-visible-buffers t)
-  (setq idle-highlight-idle-time 0.5))
+  (setq idle-highlight-idle-time 0.5)
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "Idle Highlight Global mode disabled")
+              (idle-highlight-global-mode -1)
+              )))
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
