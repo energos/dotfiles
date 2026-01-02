@@ -37,12 +37,12 @@ else
     }
     system_poweroff ()
     {
-        loginctl poweroff
+        loginctl poweroff -i
         echo Lixux poweroff
     }
     system_reboot ()
     {
-        loginctl reboot
+        loginctl reboot -i
         echo Linux reboot
     }
 fi
