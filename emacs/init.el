@@ -456,6 +456,7 @@
   (setq eglot-ignored-server-capabilities '(:documentHighlightProvider)))
 
 ;; tree-sitter
+(setq c-ts-mode-indent-offset 4)
 (setq major-mode-remap-alist
       '(
         ;; (bash-mode   . bash-ts-mode)    ; ???
