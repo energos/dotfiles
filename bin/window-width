@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+width=$(xwininfo -id "$(xdotool getactivewindow)" | awk '/Width/ { print $2 }')
+widths=(478 598 718 838 958 1078 1198 1318 1438 1558 1678 1798 1918 2038 2158 2278 2398 2518 2638 2758 2878 2998 3118 3238 3358 3478 3598 3718 3838)
+
+result=${width}
+case "$1" in
+    "")
+        echo "WIDTH=${width}"
+        exit 0
+        ;;
+    "show")
+        echo "WIDTH=${width}" | iconv -f UTF-8 -t ISO-8859-1 | LANG=C xmessage -timeout 5 -buttons OK:0 -default OK -file - &
+        exit 0
+        ;;
+    "up")
+        width=$((width + 20))
+        for i in ${widths[@]}; do
+            if [[ ${i} -gt ${width} ]]; then
+                result=${i}
+                break
+            fi
+        done
+        ;;
+    "down")
+        width=$((width - 20))
+        for i in ${widths[@]}; do
+            if [[ ${i} -lt ${width} ]]; then
+                result=${i}
+            else
+                break
+            fi
+        done
+        ;;
+    *[!0-9]*)
+        echo "Invalid: not an integer number." >&2
+        exit 1
+        ;;
+    *)
+        # Not not an integer number
+        result=${1}
+        ;;
+esac
+
+wmctrl -r :ACTIVE: -e "0,-1,-1,${result},-1" &
+exit 0

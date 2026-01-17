@@ -208,7 +208,7 @@ case "$1" in
         fi
         ;;
     "mc")
-        show_window ^MidnightCommander$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/mc.svg" -title "Midnight Commander" -name MidnightCommander -sl 0 -geometry 96x36 -e $@ -d
+        show_window ^MidnightCommander$ $HIDEDESKTOP || $TERMINAL -icon "$ICONS/mc.svg" -title "Midnight Commander" -name MidnightCommander -sl 0 -geometry 98x36 -e $@ -d
         ;;
     "gkrellm")
         show_window ^Gkrellm$ 0 || (gkrellm &)

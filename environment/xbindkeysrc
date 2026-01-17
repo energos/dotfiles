@@ -164,6 +164,13 @@
 "xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto  && ~/.fehbg"
   Mod4 + Print
 
+"window-width up"
+  Control+Mod4 + Right
+"window-width down"
+  Control+Mod4 + Left
+"window-width show"
+  Control+Mod4 + slash
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

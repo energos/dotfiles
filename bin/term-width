@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+COLUMNS=$(tput cols)
+LINES=$(tput lines)
+
+result=${COLUMNS}
+
+widths=(65 76 87 98 109 119 130 141 152 163 174 185 196 207 218 229 239 250 261 272 283 294 305 316 327 338 348)
+
+case "$1" in
+    "")
+        echo -n "COLUMNS=${COLUMNS}  WIDTH="
+        xwininfo -id "$(xdotool getactivewindow)" | awk '/Width/ { print $2 }'
+        exit 0
+        ;;
+    "up")
+        for i in ${widths[@]}; do
+            if [[ ${i} -gt ${COLUMNS} ]]; then
+                result=${i}
+                break
+            fi
+        done
+        ;;
+    "down")
+        for i in ${widths[@]}; do
+            if [[ ${i} -lt ${COLUMNS} ]]; then
+                result=${i}
+            else
+                break
+            fi
+        done
+        ;;
+    *[!0-9]*)
+        echo "Invalid: not an integer number." >&2
+        exit 1
+        ;;
+    *)
+        # Not not an integer number
+        result=${1}
+        ;;
+esac
+
+printf "\e[8;${LINES};${result}t"
+exit 0
