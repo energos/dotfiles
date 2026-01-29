@@ -1,14 +1,6 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PREFERENCES
 
-;; resize initial frame to 1/2 screen width
-;; temporary ugly hack. it works for me...
-(if (= (default-font-width) 11)
-    (progn (set-frame-width nil 173)
-           (set-frame-parameter nil 'energos/width 10))
-  (set-frame-width nil 137)
-  (set-frame-parameter nil 'energos/width 9))
-
 (desktop-save-mode)                     ; restore desktop, except
 (setq desktop-restore-frames nil)       ; for window and frame configuration
 (savehist-mode)                         ; preserve minibuffer history
@@ -28,7 +20,7 @@
 (column-number-mode)                    ; display column number in 'mode-line'
 (show-paren-mode)                       ; visualize matching parens
 
-(setq frame-resize-pixelwise nil)       ; whole character frame resize
+(setq frame-resize-pixelwise t)         ; pixel wise frame resize
 (setq-default truncate-lines nil)       ; wrap lines longer than the window width
 (setq truncate-partial-width-windows 40)        ; except in "narrow" windows
 
@@ -708,15 +700,16 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list11 [64 75 86 97 108 118 129 140 151 162 173 184 195 206 217 228 238 249 260 271 282 293 304 315 326 337 347])
-         (list13 [54 63 72 82  91 100 109 119 128 137 146 156 165 174 183 192 202 211 220 230 239 248 257 266 276 285 294])
-         (list (if (= (default-font-width) 11) list11 list13))
+  (let* ((list11 [27 34 42 49 56 63 71 78 85 92 100 107 114 122 129 136 143 151 158 165 173 180 187 194 202 209 216 223 231 238 245 252 260 267 274 282 289 296 303 311 318 325 332 340 347])
+         (list13 [27 34 40 46 52 58 64 70 76 82 88 95 101 107 113 119 125 131 137 143])
+         (i0 11)
+         (list (if (= (default-font-width) 11) list11 (setq i0 13) list13))
          (n (frame-parameter nil 'energos/width))
-         (i (energos/inc-or-dec (if (integerp n) n 4) (1- (length list)) dec))
+         (i (energos/inc-or-dec (if (integerp n) n i0) (1- (length list)) dec))
          (width (aref list i)))
     (set-frame-parameter nil 'energos/width i)
     (set-frame-width nil width)
-    (message (format "Frame width resized to %d characters" width))))
+    (message (format "Frame width resized to %d characters (%d pixels)" width (frame-pixel-width)))))
 
 ;; usefull ??
 

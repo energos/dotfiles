@@ -25,7 +25,7 @@ Emacs.font:             -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 Emacs.verticalScrollBars: off
 Emacs.menuBar:          off
 Emacs.toolBar:          0
-Emacs.geometry:         108x56
+Emacs.geometry:         107x56
 Emacs.cursorBlink:      off
 
 #ifdef HIGH_DPI
