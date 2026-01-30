@@ -800,6 +800,49 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;; (setq org-default-notes-file (concat org-directory "/notes.org"))
 ;; (setq org-agenda-files '("~/org/notes.org" "~/org/agenda.org"))
 
+;; --- preferences ---
+(setq org-replace-disputed-keys t)
+
+;; --- restore old shortcuts for structure templates ---
+;; https://orgmode.org/manual/Structure-Templates.html
+(require 'org-tempo)
+
+;; --- org-babel ---
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (shell . t)
+   (emacs-lisp . t)
+   (C . t)
+   ;; (tcl . t)
+   (python . t)
+   (forth . t)
+   (julia . t)
+   (lisp . t)
+   (forth . t)
+   (gnuplot . t)
+   ))
+
+;; --- DANGER! ---
+;; Evaluate code without prompting
+;; https://orgmode.org/manual/Code-Evaluation-Security.html
+;; --- DANGER! ---
+(setq org-confirm-babel-evaluate
+      (lambda (lang body)
+        (not (or
+              ;; t                        ; ask nothing
+              (string= lang "elisp")
+              (string= lang "C")
+              (string= lang "D")
+              ;; (string= lang "tcl")
+              (string= lang "bash")
+              (string= lang "python")
+              (string= lang "julia")
+              (string= lang "lisp")
+              (string= lang "forth")
+              (string= lang "gnuplot")
+              ))))
+
 ;; (org-babel-do-load-languages
 ;;  'org-babel-load-languages
 ;;  '((ditaa . nil)
@@ -816,48 +859,6 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;;    (elixir . t)
 ;;    ))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   ;; (ditaa . nil)
-   ;; (dot . t)
-   ;; (calc . t)
-   (shell . t)
-   (emacs-lisp . t)
-   ;; (gnuplot . t)
-   ;; (ruby . t)
-   ;; (C . t)
-   ;; (python . t)
-   ;; (scheme . t)
-   ;; (forth . t)
-   ;; (elixir . t)
-   ))
-
-;; ;; --- DANGER! ---
-;; ;; Avaliar código sem exigir confirmação
-;; ;; https://orgmode.org/manual/Code-evaluation-security.html
-;; ;; --- DANGER! ---
-;; (setq org-confirm-elisp-link-function nil)
-;; (setq org-confirm-babel-evaluate
-;;       (lambda (lang body)
-;;         (not (or
-;;               ;; t                        ; não pergunto nada
-;;               (string= lang "ditaa")      ; não pergunto por ditaa
-;;               (string= lang "dot")        ; ...
-;;               (string= lang "calc")
-;;               (string= lang "emacs-lisp")
-;;               (string= lang "elisp")
-;;               (string= lang "C")
-;;               (string= lang "C++")
-;;               (string= lang "sh")         ; https://emacs.stackexchange.com/questions/35321/
-;;               (string= lang "shell")      ;
-;;               (string= lang "ruby")
-;;               (string= lang "python")
-;;               (string= lang "scheme")
-;;               (string= lang "forth")
-;;               (string= lang "elixir")
-;;               ))))
-
 ;; ;; https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
 ;; (setq org-file-apps
 ;;       '((auto-mode . emacs)
@@ -867,7 +868,7 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;;         ("\\.pdf\\'" . "xdg-open %s")))
 
 ;; ;; --- preferences ---
-(setq org-replace-disputed-keys t)
+;; (setq org-replace-disputed-keys t)
 ;; (setq org-src-fontify-natively t)
 ;; (setq org-src-tab-acts-natively t)
 ;; (setq org-link-frame-setup
@@ -921,10 +922,6 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
 ;; (global-set-key (kbd "C-c l") 'org-store-link)
 ;; (global-set-key (kbd "C-c a") 'org-agenda)
 ;; (global-set-key (kbd "C-c c") 'org-capture)
-
-;; --- restore old shortcuts for structure templates ---
-;; https://orgmode.org/manual/Structure-Templates.html
-(require 'org-tempo)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; KEYBOARD SHORTCUTS
