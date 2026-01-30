@@ -267,7 +267,7 @@
                  'multi-category `(file . ,(cdr file)))
                 items)))))
 
-  (plist-put consult--source-recent-file
+  (plist-put consult-source-recent-file
              :items #'my-consult--source-recentf-items-uniq)
 
   (defun my-recentf-list-uniq ()
