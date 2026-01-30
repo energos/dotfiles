@@ -372,6 +372,7 @@
 ;; embark
 ;; https://github.com/oantolin/embark
 (use-package embark
+  :ensure t
   :bind (("C-."     . embark-act)         ;; pick some comfortable binding
          ("H-."     . embark-act)
          ("C-;"     . embark-dwim)        ;; good alternative: M-.
@@ -390,6 +391,7 @@
 ;; embark-consult
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
+  :ensure t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
