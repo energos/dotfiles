@@ -833,7 +833,8 @@ If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
       (lambda (lang body)
         (not (or
               ;; t                        ; ask nothing
-              (string= lang "elisp")
+              (string= lang "emacs-lisp")
+              (string= lang "elisp")      ; alias for emacs-lisp
               (string= lang "C")
               (string= lang "D")
               ;; (string= lang "tcl")
