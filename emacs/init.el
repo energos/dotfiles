@@ -1,4 +1,11 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; EARLY AREA 51
+
+(let ((file (expand-file-name "experimental0.el" user-emacs-directory)))
+  (when (file-exists-p file)
+    (load file)))
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PREFERENCES
 
 (desktop-save-mode)                     ; restore desktop, except
