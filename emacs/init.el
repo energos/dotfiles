@@ -691,27 +691,33 @@ Else go to the opening parenthesis one level up."
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(defun energos/inc-or-dec (n max &optional dec)
-  "Increment or decrement N, limiting the result to the interval 0≤N≤MAX.
-If DEC is t:             Return N-1 if 0<N≤MAX, 0 if N≤0, MAX if N>MAX.
-If DEC is nil or absent: Return N+1 if 0≤N<MAX, 0 if N<0, MAX if N≥MAX."
-  (or (integerp n) (setq n 0))                ; must be an integer
-  (setq n (or (and dec (1- n)) (1+ n)))       ; increment or decrement
-  (or (and (< n 0) 0) (and (> n max) max) n)) ; limit to the valid range
-
 (defun energos/resize-frame (&optional dec)
   "If DEC is t, decrease current frame size, else increase current frame size."
   (interactive "P")
-  (let* ((list11 [27 34 42 49 56 63 71 78 85 92 100 107 114 122 129 136 143 151 158 165 173 180 187 194 202 209 216 223 231 238 245 252 260 267 274 282 289 296 303 311 318 325 332 340 347])
-         (list13 [27 34 40 46 52 58 64 70 76 82 88 95 101 107 113 119 125 131 137 143])
-         (i0 11)
-         (list (if (= (default-font-width) 11) list11 (setq i0 13) list13))
-         (n (frame-parameter nil 'energos/width))
-         (i (energos/inc-or-dec (if (integerp n) n i0) (1- (length list)) dec))
-         (width (aref list i)))
-    (set-frame-parameter nil 'energos/width i)
-    (set-frame-width nil width)
-    (message (format "Frame width resized to %d characters (%d pixels)" width (frame-pixel-width)))))
+  (let ( (list
+          (let ( (res (caddr (frame-monitor-workarea))) )
+            (cond
+             ((= res 3840) '(318 398 478 558 638 718 798 878 958 1038 1118 1198 1278 1358 1438 1518 1598 1678 1758 1838 1918 1998 2078 2158 2238 2318 2398 2478 2558 2638 2718 2798 2878 2958 3038 3118 3198 3278 3358 3438 3518 3598 3678 3758 3838))
+             ((= res 1280) '(211 265 318 371 425 478 531 585 638 691 745 798 851 905 958 1011 1065 1118 1171 1225 1278))
+             ((= res 1024) '(211 254 297 339 382 425 467 510 553 595 638 681 723 766 809 851 894 937 979 1022))
+             (t '(238 318 398 478 558 638 718 798 878 958 1038 1118 1198 1278 1358 1438 1518 1598 1678 1758 1838 1918)))))
+         (threshold (if dec -20 20))
+         (width (frame-pixel-width))
+         (current)
+         (last) )
+    (setq last (car list))
+    (while list
+      (setq current (car list))
+      ;; (message "%s %s" last current)
+      (if (<= current (+ width threshold))
+          (progn
+            (setq list (cdr list))
+            (setq last current))
+        ;; (message "Aborting loop...")
+        (setq list nil)))
+    ;; (message "dec=%s threshold=%s width=%s last=%s current=%s" dec threshold width last current)
+    (set-frame-width nil (- (if dec last current) 16) nil t)
+    (message (format "Frame width resized to %d characters (%d pixels)" (frame-width) (frame-pixel-width)))))
 
 ;; usefull ??
 
