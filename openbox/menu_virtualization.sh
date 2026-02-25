@@ -16,7 +16,7 @@ EOF
 </item>
 EOF
 [[ -x $(command -v virt-manager) ]] && cat <<EOF && crappy=no
-<item label="Virtual Manager" icon="${OS_ICONS}/apps/48/virt-manager.svg">
+<item label="Virtual Manager" icon="/usr/share/icons/hicolor/48x48/apps/virt-manager.png">
   <action name="Execute"><command>virt-manager</command></action>
 </item>
 EOF
