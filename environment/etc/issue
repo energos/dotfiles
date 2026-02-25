@@ -9,5 +9,5 @@
 [0;35;40m  `Q$$P"                                  """
 [0;37;40m
 
-This is \n (\s \m \r) \t
+Welcome to \n (\S{PRETTY_NAME} \r) on \l
 
