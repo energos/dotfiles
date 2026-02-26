@@ -30,15 +30,20 @@ GRUB_DISTRIBUTOR="Gentoo"
 
 # Append parameters to the linux kernel command line for non-recovery entries
 #GRUB_CMDLINE_LINUX_DEFAULT=""
+#GRUB_CMDLINE_LINUX_DEFAULT="video=1920x1080"
+#GRUB_CMDLINE_LINUX_DEFAULT="video=3840x2160"
+# Disable secondary monitor
+GRUB_CMDLINE_LINUX_DEFAULT="video=HDMI-A-1:d"
 
 # Uncomment to disable graphical terminal (grub-pc only)
 #GRUB_TERMINAL=console
 
-# The resolution used on graphical terminal.
-# Note that you can use only modes which your graphic card supports via VBE.
-# You can see them in real GRUB with the command `vbeinfo'.
-#GRUB_GFXMODE=640x480x32
-GRUB_GFXMODE=1280x1024x32
+# Resolution used on graphical terminal.
+# The list of valid modes may be obtained using the 'vbeinfo' (PC BIOS) or
+# 'videoinfo' (EFI) command from a GRUB boot prompt.
+#GRUB_GFXMODE=640x480
+#GRUB_GFXMODE=1280x1024x32
+GRUB_GFXMODE=1920x1080x32
 
 # Set to 'text' to force the Linux kernel to boot in normal text
 # mode, 'keep' to preserve the graphics mode set using
@@ -46,12 +51,12 @@ GRUB_GFXMODE=1280x1024x32
 # graphics mode, or a sequence of these separated by commas or
 # semicolons to try several modes in sequence.
 #GRUB_GFXPAYLOAD_LINUX=
-GRUB_GFXPAYLOAD_LINUX=keep
+#GRUB_GFXPAYLOAD_LINUX=keep
 
 # Path to theme spec txt file.
 # The starfield is by default provided with use truetype.
 # NOTE: when enabling custom theme, ensure you have required font/etc.
-#GRUB_THEME="/boot/grub/themes/starfield/theme.txt"
+#GRUB_THEME="/boot/grub/themes/gentoo_glass/theme.txt"
 
 #GRUB_FONT="/boot/grub/fonts/terminus32b.pf2"
 GRUB_FONT="/boot/grub/fonts/terminus28b.pf2"
@@ -59,7 +64,8 @@ GRUB_FONT="/boot/grub/fonts/terminus28b.pf2"
 # Background image used on graphical terminal.
 # Can be in various bitmap formats.
 #GRUB_BACKGROUND="/boot/grub/mybackground.png"
-GRUB_BACKGROUND="/boot/grub/background.jpg"
+#GRUB_BACKGROUND="/boot/grub/background.jpg"
+GRUB_BACKGROUND="/boot/grub/background.tga"
 
 # Uncomment if you don't want GRUB to pass "root=UUID=xxx" parameter to kernel
 #GRUB_DISABLE_LINUX_UUID=true
