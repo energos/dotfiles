@@ -1,0 +1,2 @@
+set_color_scheme("black3");
+setkey ("delete_char_cmd", "\e[3~");

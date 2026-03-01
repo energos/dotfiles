@@ -34,7 +34,7 @@ export BLOCKSIZE=M
 export EDITOR=zile
 
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+    . ~/.bash_aliases
 fi
 
 alias emacs='emacs -Q -nw -nbc --eval "(progn\
