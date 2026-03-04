@@ -86,5 +86,9 @@ URxvt.color12:          LightSteelBlue
 Xmessage*font:          FIXED_FONT
 Xmessage*nearMouse:     FALSE
 Xmessage*center:        TRUE
+#ifndef HIGH_DPI
+Xmessage*maxWidth:      980
+#endif
+
 XFontSel*font:          FIXED_FONT
 Xmag*font:              FIXED_FONT
