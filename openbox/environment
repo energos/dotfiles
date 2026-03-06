@@ -34,3 +34,6 @@ export OS_ICONS
 export USER_ICONS
 
 export NO_AT_BRIDGE=1
+
+# clipmenu
+export CM_HISTLENGTH=30

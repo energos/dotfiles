@@ -5,6 +5,7 @@ configuration {
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
+	fixed-num-lines: false;
 	show-icons: true;
 /*	terminal: "rofi-sensible-terminal";*/
 /*	ssh-client: "ssh";*/
@@ -25,6 +26,7 @@ configuration {
 /*	sort: false;*/
 /*	sorting-method: "normal";*/
 /*	case-sensitive: false;*/
+	case-smart: true;
 	cycle: false;
 /*	sidebar-mode: false;*/
 /*	hover-select: false;*/
@@ -152,6 +154,6 @@ configuration {
   }
 }
 @theme "Indego"
-window {height: 140mm;}
-window {width:  220mm;}
+window {width: 220mm;}
+listview {lines: 30;}
 element-icon {size: 1.0em;}

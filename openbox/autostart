@@ -69,6 +69,8 @@ case $OS_NAME in
         ;;
 esac
 
+clipmenud &
+
 (sleep 1.0 && $HOME/.fehbg) &
 (sleep 6.0 && hello-fortune) &
 

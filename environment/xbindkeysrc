@@ -171,6 +171,9 @@
 "window-width show"
   Control+Mod4 + slash
 
+"clipmenu -p Clipboard -theme-str 'window {width: 132mm;}' -font 'Iosevka Custom 11'"
+  Mod4 + h
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
