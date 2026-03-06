@@ -4,6 +4,6 @@ Type=Application
 Name=Clipmenu
 GenericName=Clipboard Manager
 Comment=
-Exec=clipmenu -location 5 -p Clipboard -theme-str 'window {width: 132mm;}' -font 'Iosevka Custom 11'
+Exec=clipmenu -location 5 -p Clipboard -theme-str 'window {width: 132mm;}' -font 'Iosevka Custom 12'
 Icon=clipboard
 NoDisplay=true

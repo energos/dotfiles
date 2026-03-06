@@ -35,5 +35,7 @@ export USER_ICONS
 
 export NO_AT_BRIDGE=1
 
+# What a nightmare 🤦
 # clipmenu
 export CM_HISTLENGTH=30
+export CM_SELECTIONS="clipboard"
