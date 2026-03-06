@@ -13,6 +13,7 @@
 #      - gkrellm                            - removed
 #  0.0 - artha
 #      - parcellite                         - xdg autostart
+#      - clipmenu
 #  0.0 - pavucontrol - pqp volume           - BSD only, removal candidate
 #  5.5 - mixer - dsbmixer or volumeicon
 #      - network manager                    - xdg autostart
@@ -69,6 +70,9 @@ case $OS_NAME in
         ;;
 esac
 
+# What a nightmare 🤦
+autocutsel -s PRIMARY -p 500 -fork
+autocutsel -s CLIPBOARD -p 500 -fork
 clipmenud &
 
 (sleep 1.0 && $HOME/.fehbg) &
