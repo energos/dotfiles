@@ -81,7 +81,7 @@
   (if (executable-find command)
       (setq initial-scratch-message
             (let ((string "")
-                  (list (split-string (shell-command-to-string command) "\n")))
+                  (list (split-string (shell-command-to-string (concat command " -a")) "\n")))
               (dolist (line list)
                 (setq string (concat string
                                      ";;"
