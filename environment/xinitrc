@@ -4,7 +4,6 @@
 if [[ -f ~/.pqprc ]]; then
     eval $(grep '^HYPERVISOR=' ~/.pqprc)
     eval $(grep '^XRANDR=' ~/.pqprc)
-    eval $(grep '^SYNERGY_SERVER=' ~/.pqprc)
     eval $(grep '^KEYBOARD=' ~/.pqprc)
 fi
 
@@ -52,53 +51,51 @@ fi
 
 # Get HYPERVISOR if defined (in ~/.pqprc)
 case $HYPERVISOR in
+    "")
+        # echo "No Hypervisor"
+        ;;
+    qemu)
+        # echo "Qemu Hypervisor"
+        # spice-vdagent - started by /etc/xdg/autostart/spice-vdagent.desktop
+        # [[ -x $(command -v spice-vdagent) ]] && spice-vdagent
+        # turn off screensaver
+        xset s off -dpms
+        ;;
     vbox)
-        # If host is a VirtualBox guest
-        # run Guest Additions client
-        [[ -x $(command -v VBoxClient-all) ]] && VBoxClient-all
-        [[ -x $(command -v spice-vdagent) ]] && spice-vdagent
+        # echo "VirtualBox Hypervisor"
+        # VirtualBox Guest Additions - supposedly started by /etc/xdg/autostart/${WHO_KNOWS}.desktop
+        # [[ -x $(command -v VBoxClient-all) ]] && VBoxClient-all
         # turn off screensaver
         xset s off -dpms
         # Why? Why? Pause is detected as Num_Lock???
         xmodmap -e 'keycode 77 = F15'   # Remap Num_Lock
         # scroll wheel issues in FreeBSD guests
         xmodmap -e 'pointer = 1 2 3 4 5 0 0 0 0 0 0 0'
-        # Automatically set screen resolution
-        xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto
         ;;
     *)
-        # If host is not a VirtualBox guest
-        # Get synergy server name from ~/.pqprc
-        # Do not start synergy if SYNERGY_SERVER is empty or not defined
-        if [[ -n $SYNERGY_SERVER ]]; then
-            # start a synergy server or connect to a existing one
-            [[ $(hostname) == $SYNERGY_SERVER ]] && synergys -d ERROR || synergyc -d ERROR $SYNERGY_SERVER
-        fi
+        # echo "Other Hypervisor: $HYPERVISOR"
+        # turn off screensaver
+        xset s off -dpms
         ;;
 esac
 
-xhost +si:localuser:$USER
-# Workaround for slock authentication issue
-xhost +local:
+xsetroot -solid '#3366aa'
+# exec urxvt
 
-# Avoid kglobalaccel and xbindkeys conflict
-(sleep 2 && qdbus org.kde.kglobalaccel /kglobalaccel blockGlobalShortcuts true) &
+# Allow user dumbfuck to connect to my X server
+xhost +si:localuser:dumbfuck
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct # qt5ct ?!
 export QT_FONT_DPI=$DPI
 export QT_ENABLE_HIGHDPI_SCALING=0
 
-# https://wiki.gentoo.org/wiki/Elogind#startx_integration
-launch=$(command -v ck-launch-session)
-if [[ -z $launch ]]; then
-    launch="dbus-launch --exit-with-session"
-fi
+# https://wiki.gentoo.org/wiki/Elogind#startx_D-Bus_integration
 export WINDOW_MANAGER=${WINDOW_MANAGER:-openbox}
 case $WINDOW_MANAGER in
-    openbox)    exec $launch openbox-session;;
-    plasma)     exec $launch startplasma-x11;;
-    icewm)      exec $launch icewm-session;;
-    emacs)      exec $launch emacs -mm --debug-init -l ~/.emacs.d/exwm-desktop.el;;
+    openbox)    exec dbus-run-session openbox-session;;
+    plasma)     exec dbus-run-session startplasma-x11;;
+    icewm)      exec dbus-run-session icewm-session;;
+    emacs)      exec dbus-run-session emacs -mm --debug-init -l ~/.emacs.d/exwm-desktop.el;;
     w10)        VirtualBoxVM -startvm "W10" -fullscreen;;
     bsd)        VirtualBoxVM -startvm "Beastie" -fullscreen;;
     *)          exec $WINDOW_MANAGER;;
