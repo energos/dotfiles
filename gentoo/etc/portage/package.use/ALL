@@ -1,0 +1,15 @@
+media-video/pipewire -X gstreamer extra ffmpeg pipewire-alsa
+app-misc/mc -X -gpm -spell
+app-editors/jed -gpm -gui -xft
+sys-kernel/installkernel dracut grub
+x11-wm/openbox imlib session xdg -startup-notification
+x11-terms/rxvt-unicode -mousewheel perl -startup-notification 256-color gdk-pixbuf
+media-gfx/feh curl xinerama
+games-misc/fortune-mod offensive
+x11-misc/slock -filecaps
+media-sound/volumeicon -libnotify
+x11-misc/tint2 -startup-notification
+app-admin/eclean-kernel zstd
+app-office/libreoffice-l10n -l10n_en
+# app-text/hunspell l10n_en l10n_pt-BR
+app-text/hunspell -l10n_en

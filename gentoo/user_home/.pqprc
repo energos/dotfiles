@@ -1,0 +1,5 @@
+DPI=156
+# XRANDR="xrandr --output Virtual-1 --mode 3840x2160"
+# XRANDR="xrandr --output Virtual-1 --mode 1920x1080"
+KEYBOARD=us
+HYPERVISOR=qemu

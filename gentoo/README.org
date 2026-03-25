@@ -1,0 +1,54 @@
+#+TITLE: Energos's The (almost) Definitive Gentoo Installation Guide
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+STARTUP: showall
+
+#+begin_comment
+Apenas estes parecem ser entendidos pelo GitHub:
+<C comment, não gera saida
+<s source,  sintax highlight para algumas linguagens
+<e example, saida verbatim - preferencial por enquanto...
+<q quote,   saida formatada de modo ainda não entendido...
+#+end_comment
+
+** Minimal install, Desktop Profile, no X
+*** [[file:etc/portage/make.conf][make.conf]]
+*** [[file:etc/portage/package.use/ALL][package.use]]
+*** [[file:etc/portage/world][world]]
+#+begin_example
+app-admin/eclean-kernel
+app-admin/logrotate
+app-admin/syslog-ng
+app-editors/jed
+app-editors/nano
+app-misc/evtest
+app-misc/mc
+app-misc/neofetch
+app-misc/tmux
+app-portage/gentoolkit
+app-shells/bash-completion
+app-text/multitail
+dev-vcs/git
+games-misc/fortune-mod
+media-fonts/terminus-font
+net-misc/chrony
+net-misc/dhcpcd
+net-misc/openssh
+sys-apps/bat
+sys-apps/plocate
+sys-apps/the_silver_searcher
+sys-kernel/gentoo-kernel-bin
+sys-kernel/linux-firmware
+sys-kernel/linux-headers
+sys-process/cronie
+#+end_example
+*** services
+#+begin_src bash :noeval
+  rc-update add dhcpcd default
+  rc-update add sshd default
+  rc-update add elogind boot
+  rc-update add consolefont boot
+  rc-update add cronie default
+  rc-update add syslog-ng default
+  rc-update add gpm default         # not in a wm guest
+  rc-update add chronyd default     # not in a wm guest
+#+end_src
