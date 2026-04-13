@@ -75,8 +75,8 @@ autocutsel -s PRIMARY -p 500 -fork
 autocutsel -s CLIPBOARD -p 500 -fork
 clipmenud &
 
-(sleep 1.5 && xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto && ~/.fehbg) &
-(sleep 3.0 && hello-fortune) &
+(sleep 4.5 && xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto && ~/.fehbg) &
+(sleep 5.0 && hello-fortune) &
 
 # Keyboard shortcuts
 xbindkeys
