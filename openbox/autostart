@@ -15,7 +15,7 @@
 #      - parcellite                         - xdg autostart
 #      - clipmenu
 #  0.0 - pavucontrol - pqp volume           - BSD only, removal candidate
-#  5.5 - mixer - dsbmixer or volumeicon
+#  8.0 - mixer - dsbmixer or volumeicon     - volumeicon is prone to crashing if called too early. Dunno why.
 #      - network manager                    - xdg autostart
 #      - polkit                             - xdg autostart
 #  0.0 - xcape                              - only on primary display
@@ -44,26 +44,26 @@ case $OS_NAME in
         ;;
     Gentoo)
         # xmessage $OS_NAME is 'Gentoo' &
-        (sleep 5.5 && volumeicon) &
+        (sleep 8.0 && volumeicon) &
         ;;
     Void)
         # xmessage $OS_NAME is 'Void Linux' &
         pipewire &
         (sleep 1 && pipewire-pulse) &
         (sleep 2 && wireplumber) &
-        (sleep 5.5 && volumeicon) &
+        (sleep 8.0 && volumeicon) &
         ;;
     "Devuan GNU/Linux")
         # xmessage $OS_NAME is 'Devuan' &
         # This is a freaking mess
         pipewire-start
-        (sleep 5.5 && volumeicon) &
+        (sleep 8.0 && volumeicon) &
         ;;
     "Debian GNU/Linux")
         # xmessage $OS_NAME is 'Debian' &
         # This is a freaking mess
         pipewire-start
-        (sleep 5.5 && volumeicon) &
+        (sleep 8.0 && volumeicon) &
         ;;
     *)
         xmessage $OS_NAME is 'unknown' &
