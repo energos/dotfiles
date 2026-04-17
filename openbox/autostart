@@ -71,8 +71,11 @@ case $OS_NAME in
 esac
 
 # What a nightmare 🤦
-autocutsel -s PRIMARY -p 500 -fork
-autocutsel -s CLIPBOARD -p 500 -fork
+if ! pgrep --quiet -x spice-vdagentd
+then
+    autocutsel -s PRIMARY -p 500 -fork
+    autocutsel -s CLIPBOARD -p 500 -fork
+fi
 clipmenud &
 
 (sleep 4.5 && xrandr --output $(xrandr | awk '/\<connected\>/ {print $1}') --auto && ~/.fehbg) &
