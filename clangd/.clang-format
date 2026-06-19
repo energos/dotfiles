@@ -1,10 +1,15 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 
 BasedOnStyle: LLVM
+
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
-BreakBeforeBraces: Linux
-AllowShortIfStatementsOnASingleLine: false
+
+BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: true
 IndentCaseLabels: true
 AllowShortFunctionsOnASingleLine: Empty
+
+# ReflowComments: false
+ColumnLimit: 100

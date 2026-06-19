@@ -1,2 +1,4 @@
+# https://clangd.llvm.org/config.html
+
 CompileFlags:
     Add: [-Wunused-variable]
